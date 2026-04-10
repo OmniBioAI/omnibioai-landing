@@ -8,43 +8,17 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f6f8ff;
-    --bg2: #ffffff;
-    --bg3: #eef2ff;
-
-    /* OmniBioAI BLUE */
-    --green: #2563eb;          /* primary */
-    --green-light: #3b82f6;    /* hover/light */
-    --green-dark: #1e40af;     /* deep */
-    --green-pale: #e0e7ff;     /* subtle bg */
-
-    --text: #0b1220;
-    --text-muted: #475569;
-    --text-dim: #94a3b8;
-
-    --border: rgba(37,99,235,0.15);
-    --border-bright: rgba(37,99,235,0.30);
-
-    --shadow: 0 1px 3px rgba(0,0,0,0.05),
-              0 4px 16px rgba(37,99,235,0.08);
+    --bg: #f6f8ff; --bg2: #ffffff; --bg3: #eef2ff;
+    --green: #2563eb; --green-light: #3b82f6; --green-dark: #1e40af; --green-pale: #e0e7ff;
+    --text: #0b1220; --text-muted: #475569; --text-dim: #94a3b8;
+    --border: rgba(37,99,235,0.15); --border-bright: rgba(37,99,235,0.30);
+    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(37,99,235,0.08);
   }
   html { scroll-behavior: smooth; }
   body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(circle, rgba(37,99,235,0.1) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; z-index: 0; }
-
-  .pub-link {
-    display: inline-block;
-    margin-top: 0.4rem;
-    font-size: 0.78rem;
-    font-family: 'DM Mono', monospace;
-    color: var(--green);
-    text-decoration: none;
-  }
-
-  .pub-link:hover {
-    color: var(--green-dark);
-    text-decoration: underline;
-  }
+  .pub-link { display: inline-block; margin-top: 0.4rem; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--green); text-decoration: none; }
+  .pub-link:hover { color: var(--green-dark); text-decoration: underline; }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 3rem; background: rgba(247,250,248,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo-text { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--green-dark); letter-spacing: -0.02em; }
@@ -54,7 +28,6 @@
   .nav-links a:hover { color: var(--green); }
   .nav-cta { background: var(--green) !important; color: #fff !important; padding: 0.45rem 1.2rem; border-radius: 6px; font-weight: 500 !important; }
   .nav-cta:hover { background: var(--green-dark) !important; }
-
   .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; z-index: 1; }
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--green-dark); margin-bottom: 2rem; letter-spacing: 0.05em; }
   .badge-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
@@ -71,63 +44,51 @@
   .stat { text-align: center; }
   .stat-num { font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 500; color: var(--green); display: block; }
   .stat-label { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
-
   section { position: relative; z-index: 1; padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
   .section-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
   .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
   .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; }
-
   .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
   .feature-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: all 0.2s; box-shadow: var(--shadow); }
-  .feature-card:hover { border-color: var(--green-light); transform: translateY(-2px); box-shadow: 0 4px 24px rgba(29,158,117,0.12); }
+  .feature-card:hover { border-color: var(--green-light); transform: translateY(-2px); box-shadow: 0 4px 24px rgba(37,99,235,0.12); }
   .feature-icon { width: 42px; height: 42px; border: 1.5px solid var(--border-bright); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; font-size: 1rem; color: var(--green); background: var(--green-pale); }
   .feature-title { font-size: 0.98rem; font-weight: 500; margin-bottom: 0.5rem; }
   .feature-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
-
   .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
   .arch-diagram { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; font-family: 'DM Mono', monospace; font-size: 0.78rem; box-shadow: var(--shadow); }
   .arch-layer { border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 1rem; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; transition: all 0.2s; background: var(--bg); }
   .arch-layer:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
   .arch-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
   .arch-connector { text-align: center; color: var(--text-dim); font-size: 0.7rem; margin: -0.1rem 0; padding-left: 1.5rem; }
-
   .omics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
   .omics-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.2s; box-shadow: var(--shadow); }
   .omics-card:hover { border-color: var(--green-light); transform: translateY(-2px); }
   .omics-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
   .omics-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.4rem; }
   .omics-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; }
-
   .pub-list { display: flex; flex-direction: column; gap: 0.75rem; }
   .pub-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1.5rem; box-shadow: var(--shadow); transition: border-color 0.2s; }
   .pub-card:hover { border-color: var(--green-light); }
   .pub-year { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green-dark); flex-shrink: 0; margin-top: 3px; background: var(--green-pale); padding: 0.2rem 0.5rem; border-radius: 4px; }
   .pub-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.25rem; line-height: 1.5; }
   .pub-journal { font-size: 0.78rem; color: var(--text-dim); font-family: 'DM Mono', monospace; }
-
   .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
   .tag { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--green-dark); background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 4px; padding: 0.25rem 0.6rem; }
-
   .cta-section { text-align: center; padding: 6rem 2rem; position: relative; z-index: 1; }
-  .cta-box { max-width: 680px; margin: 0 auto; background: var(--bg2); border: 1.5px solid var(--border-bright); border-radius: 20px; padding: 4rem 3rem; box-shadow: 0 8px 40px rgba(29,158,117,0.1); }
+  .cta-box { max-width: 680px; margin: 0 auto; background: var(--bg2); border: 1.5px solid var(--border-bright); border-radius: 20px; padding: 4rem 3rem; box-shadow: 0 8px 40px rgba(37,99,235,0.1); }
   .cta-box h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.2; }
   .cta-box p { color: var(--text-muted); margin-bottom: 2rem; font-weight: 300; }
-
   footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--bg2); }
   .footer-left { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-dim); }
   .footer-links { display: flex; gap: 1.5rem; list-style: none; }
   .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--green); }
   .divider { border: none; border-top: 1px solid var(--border); margin: 0; position: relative; z-index: 1; }
-
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
     .arch-grid, .omics-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.5rem; }
-    footer { flex-direction: column; align-items: flex-start; }
-    .cta-box { padding: 2.5rem 1.5rem; }
-    section { padding: 4rem 1.5rem; }
+    .hero-stats { gap: 1.5rem; } footer { flex-direction: column; align-items: flex-start; }
+    .cta-box { padding: 2.5rem 1.5rem; } section { padding: 4rem 1.5rem; }
   }
 </style>
 </head>
@@ -148,26 +109,18 @@
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank">Demo</a></li>
-    <li><a href="https://app.omnibioai.org" class="nav-cta">Launch App</a></li>
+    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="nav-cta">Request Access</a></li>
   </ul>
 </nav>
 
 <div class="hero">
-  <div class="hero-badge">
-    <div class="badge-dot"></div>
-    Private beta — now accepting researchers
-  </div>
+  <div class="hero-badge"><div class="badge-dot"></div>Private beta — now accepting researchers</div>
   <h1>The <em>AI-native</em> platform<br>for automating multi-omics bioinformatics workflows</h1>
   <p class="hero-sub">OmniBioAI unifies reproducible multi-omics analysis, agentic AI reasoning, and enterprise-grade infrastructure — across local, HPC, and cloud environments.</p>
-  <p style="max-width:650px;margin:0 auto 2.5rem;color:var(--text-muted);font-weight:400;">
-   Modern bioinformatics workflows are fragmented, slow, and difficult to reproduce across environments.
-  </p>
- 
-  <p style="max-width:650px;margin:0 auto 3rem;color:var(--green-dark);font-weight:500;">
-    OmniBioAI automates end-to-end multi-omics analysis with reproducible, production-grade pipelines powered by AI reasoning.
-  </p>
+  <p style="max-width:650px;margin:0 auto 2.5rem;color:var(--text-muted);font-weight:400;">Modern bioinformatics workflows are fragmented, slow, and difficult to reproduce across environments.</p>
+  <p style="max-width:650px;margin:0 auto 3rem;color:var(--green-dark);font-weight:500;">OmniBioAI automates end-to-end multi-omics analysis with reproducible, production-grade pipelines powered by AI reasoning.</p>
   <div class="hero-actions">
-    <a href="https://app.omnibioai.org" class="btn-primary">↗ Request Access</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="btn-primary">↗ Request Access</a>
     <a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank" class="btn-secondary">Watch Demo</a>
   </div>
   <div class="hero-stats">
@@ -185,104 +138,26 @@
   <h2 class="section-title">Built for real science,<br>not demos</h2>
   <p class="section-sub">Every component is designed with clinical-grade reliability and reproducibility at its core.</p>
   <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">⬡</div>
-      <div class="feature-title">Agentic AI reasoning</div>
-      <p class="feature-desc">LangGraph-based orchestration with RAG-powered assistants using Hugging Face and Ollama — bridging deterministic bio-computation with explainable AI interpretation.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">◈</div>
-      <div class="feature-title">Workflow agnostic</div>
-      <p class="feature-desc">Native support for WDL, Nextflow, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">◎</div>
-      <div class="feature-title">GPU-accelerated stack</div>
-      <p class="feature-desc">Optimized on NVIDIA PyTorch with CUDA on DGX Spark. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⬕</div>
-      <div class="feature-title">End-to-end provenance</div>
-      <p class="feature-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">◇</div>
-      <div class="feature-title">Reliability-first design</div>
-      <p class="feature-desc">98% average test coverage across 11 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⬡</div>
-      <div class="feature-title">Plugin ecosystem</div>
-      <p class="feature-desc">Extensible plugin architecture with OnboardAI documentation browser. 30,000+ lines of living documentation updated after every commit.</p>
-    </div>
+    <div class="feature-card"><div class="feature-icon">⬡</div><div class="feature-title">Agentic AI reasoning</div><p class="feature-desc">LangGraph-based orchestration with RAG-powered assistants using Hugging Face and Ollama — bridging deterministic bio-computation with explainable AI interpretation.</p></div>
+    <div class="feature-card"><div class="feature-icon">◈</div><div class="feature-title">Workflow agnostic</div><p class="feature-desc">Native support for WDL, Nextflow, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p></div>
+    <div class="feature-card"><div class="feature-icon">◎</div><div class="feature-title">GPU-accelerated stack</div><p class="feature-desc">Optimized on NVIDIA PyTorch with CUDA on DGX Spark. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics.</p></div>
+    <div class="feature-card"><div class="feature-icon">⬕</div><div class="feature-title">End-to-end provenance</div><p class="feature-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.</p></div>
+    <div class="feature-card"><div class="feature-icon">◇</div><div class="feature-title">Reliability-first design</div><p class="feature-desc">98% average test coverage across 11 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p></div>
+    <div class="feature-card"><div class="feature-icon">⬡</div><div class="feature-title">Plugin ecosystem</div><p class="feature-desc">Extensible plugin architecture with OnboardAI documentation browser. 30,000+ lines of living documentation updated after every commit.</p></div>
   </div>
 </section>
-  <section id="extensibility">
+
+<section id="extensibility">
   <span class="section-tag">Extensibility</span>
   <h2 class="section-title">Built to integrate,<br>extend, and scale</h2>
-  <p class="section-sub">
-    OmniBioAI is designed as a modular platform for advanced users who need custom workflows,
-    reproducibility, and integration across research environments.
-  </p>
-
+  <p class="section-sub">OmniBioAI is designed as a modular platform for advanced users who need custom workflows, reproducibility, and integration across research environments.</p>
   <div class="features-grid">
-
-    <div class="feature-card">
-      <div class="feature-icon">⚙</div>
-      <div class="feature-title">Modular pipeline system</div>
-      <p class="feature-desc">
-        Each bioinformatics workflow is modular, allowing researchers to customize, extend,
-        or replace analysis steps without breaking reproducibility.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🔗</div>
-      <div class="feature-title">Seamless integration</div>
-      <p class="feature-desc">
-        Integrates with existing tools and environments including Python, R, Nextflow, WDL,
-        and HPC systems for flexible deployment.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">☁</div>
-      <div class="feature-title">Cloud & HPC ready</div>
-      <p class="feature-desc">
-        Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms
-        like AWS and Azure with identical execution logic.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="feature-icon">🧬</div>
-      <div class="feature-title">Reproducible by design</div>
-      <p class="feature-desc">
-        Every execution is tracked with full provenance, ensuring reproducibility from raw data
-        to final biological insight.
-      </p>
-    </div>
-
-    <!-- NEW 1 -->
-    <div class="feature-card">
-      <div class="feature-icon">🧠</div>
-      <div class="feature-title">AI-assisted analysis layer</div>
-      <p class="feature-desc">
-        LLM-powered reasoning assists in interpreting multi-omics outputs, summarizing results,
-        and generating biologically meaningful insights to guide downstream analysis decisions.
-      </p>
-    </div>
-
-    <!-- NEW 2 -->
-    <div class="feature-card">
-      <div class="feature-icon">🤖</div>
-      <div class="feature-title">Agentic workflow orchestration</div>
-      <p class="feature-desc">
-        LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines,
-        enabling multi-step reasoning across tools, datasets, and analysis stages.
-      </p>
-    </div>
-
+    <div class="feature-card"><div class="feature-icon">⚙</div><div class="feature-title">Modular pipeline system</div><p class="feature-desc">Each bioinformatics workflow is modular, allowing researchers to customize, extend, or replace analysis steps without breaking reproducibility.</p></div>
+    <div class="feature-card"><div class="feature-icon">🔗</div><div class="feature-title">Seamless integration</div><p class="feature-desc">Integrates with existing tools and environments including Python, R, Nextflow, WDL, and HPC systems for flexible deployment.</p></div>
+    <div class="feature-card"><div class="feature-icon">☁</div><div class="feature-title">Cloud & HPC ready</div><p class="feature-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS and Azure with identical execution logic.</p></div>
+    <div class="feature-card"><div class="feature-icon">🧬</div><div class="feature-title">Reproducible by design</div><p class="feature-desc">Every execution is tracked with full provenance, ensuring reproducibility from raw data to final biological insight.</p></div>
+    <div class="feature-card"><div class="feature-icon">🧠</div><div class="feature-title">AI-assisted analysis layer</div><p class="feature-desc">LLM-powered reasoning assists in interpreting multi-omics outputs, summarizing results, and generating biologically meaningful insights to guide downstream analysis decisions.</p></div>
+    <div class="feature-card"><div class="feature-icon">🤖</div><div class="feature-title">Agentic workflow orchestration</div><p class="feature-desc">LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines, enabling multi-step reasoning across tools, datasets, and analysis stages.</p></div>
   </div>
 </section>
 
@@ -293,36 +168,12 @@
   <h2 class="section-title">Every modality,<br>one platform</h2>
   <p class="section-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
   <div class="omics-grid">
-    <div class="omics-card">
-      <span class="omics-label">scRNA-seq</span>
-      <div class="omics-title">Single-cell transcriptomics</div>
-      <p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">WGS / WES</span>
-      <div class="omics-title">Whole exome & genome</div>
-      <p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">Proteomics</span>
-      <div class="omics-title">Protein expression analysis</div>
-      <p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">Methylation</span>
-      <div class="omics-title">Epigenome profiling</div>
-      <p class="omics-desc">Whole-genome bisulfite sequencing and array-based methylation analysis with clinical reproducibility.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">Drug discovery</span>
-      <div class="omics-title">GNN-based target identification</div>
-      <p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">Clinical</span>
-      <div class="omics-title">Translational pipelines</div>
-      <p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p>
-    </div>
+    <div class="omics-card"><span class="omics-label">scRNA-seq</span><div class="omics-title">Single-cell transcriptomics</div><p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p></div>
+    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome & genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
+    <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
+    <div class="omics-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome profiling</div><p class="omics-desc">Whole-genome bisulfite sequencing and array-based methylation analysis with clinical reproducibility.</p></div>
+    <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
+    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
   </div>
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span><span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span><span class="tag">GATK</span><span class="tag">Seurat</span><span class="tag">DESeq2</span><span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span>
@@ -365,57 +216,31 @@
   <span class="section-tag">Research</span>
   <h2 class="section-title">Peer-reviewed publications</h2>
   <p class="section-sub">Built by researchers, for researchers — grounded in published science across genomics and precision medicine.</p>
-
   <div class="pub-list">
-
     <div class="pub-card">
       <div class="pub-year">2025</div>
       <div>
-        <div class="pub-title">
-          Genetic mutations in lymphocytic variant of hypereosinophilic syndrome: study of five siblings
-        </div>
+        <div class="pub-title">Genetic mutations in lymphocytic variant of hypereosinophilic syndrome: study of five siblings</div>
         <div class="pub-journal">Frontiers in Medicine · December 2025</div>
-
-        <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1679484/full"
-           target="_blank"
-           class="pub-link">
-           ↗ View paper
-        </a>
+        <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1679484/full" target="_blank" class="pub-link">↗ View paper</a>
       </div>
     </div>
-
     <div class="pub-card">
       <div class="pub-year">2018</div>
       <div>
-        <div class="pub-title">
-          Whole Exome Sequencing identifies common and rare variant Metabolic QTLs in a Middle Eastern Population
-        </div>
+        <div class="pub-title">Whole Exome Sequencing identifies common and rare variant Metabolic QTLs in a Middle Eastern Population</div>
         <div class="pub-journal">Nature Communications · January 2018</div>
-
-        <a href="https://www.nature.com/articles/s41467-017-01972-9"
-           target="_blank"
-           class="pub-link">
-           ↗ View paper
-        </a>
+        <a href="https://www.nature.com/articles/s41467-017-01972-9" target="_blank" class="pub-link">↗ View paper</a>
       </div>
     </div>
-
     <div class="pub-card">
       <div class="pub-year">2015</div>
       <div>
-        <div class="pub-title">
-          MetaRNA-Seq: An Interactive Tool to Browse and Annotate Metadata from RNA-Seq Studies
-        </div>
+        <div class="pub-title">MetaRNA-Seq: An Interactive Tool to Browse and Annotate Metadata from RNA-Seq Studies</div>
         <div class="pub-journal">BioMed Research International · August 2015</div>
-
-        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2015/318064"
-           target="_blank"
-           class="pub-link">
-           ↗ View paper
-        </a>
+        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2015/318064" target="_blank" class="pub-link">↗ View paper</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -424,24 +249,11 @@
 <div class="cta-section">
   <div class="cta-box">
     <h2>Ready to accelerate<br>your research?</h2>
-
-    <p>
-      Join the private beta of OmniBioAI. Run reproducible multi-omics workflows,
-      integrate genomic datasets, and accelerate discovery — without infrastructure setup.
-    </p>
-
-    <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--text-dim);">
-      Built by Manish Kumar — 18+ years in bioinformatics & AI systems
-    </p>
-
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="https://app.omnibioai.org" class="btn-primary">
-        ↗ Request Beta Access
-      </a>
-
-      <a href="mailto:manish@omnibioai.org" class="btn-secondary">
-        ✉ Contact
-      </a>
+    <p>Join the private beta of OmniBioAI. Run reproducible multi-omics workflows, integrate genomic datasets, and accelerate discovery — without infrastructure setup.</p>
+    <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--text-dim);">Built by Manish Kumar — 18+ years in bioinformatics & AI systems</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="btn-primary">↗ Request Beta Access</a>
+      <a href="mailto:mandecent.gupta@gmail.com" class="btn-secondary">✉ Contact</a>
     </div>
   </div>
 </div>
@@ -451,7 +263,7 @@
   <ul class="footer-links">
     <li><a href="https://app.omnibioai.org">Launch App</a></li>
     <li><a href="https://github.com/man4ish/omnibioai" target="_blank">GitHub</a></li>
-    <li><a href="mailto:manish@">Contact</a></li>
+    <li><a href="mailto:mandecent.gupta@gmail.com">Contact</a></li>
   </ul>
 </footer>
 
