@@ -90,6 +90,28 @@
     .hero-stats { gap: 1.5rem; } footer { flex-direction: column; align-items: flex-start; }
     .cta-box { padding: 2.5rem 1.5rem; } section { padding: 4rem 1.5rem; }
   }
+ <!-- =============================================
+     ADD THESE STYLES inside your existing <style> block
+     ============================================= -->
+<!--
+  .omics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .hidden-card { display: none; }
+  .show-more-row { display: flex; justify-content: center; margin-top: 1.5rem; }
+  .show-more-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--green-dark);
+    background: var(--green-pale);
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    padding: 0.5rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .show-more-btn:hover { background: var(--green); color: #fff; }
+-->
+
 </style>
 </head>
 <body>
@@ -167,18 +189,132 @@
   <span class="section-tag">Multi-omics coverage</span>
   <h2 class="section-title">Every modality,<br>one platform</h2>
   <p class="section-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
+
   <div class="omics-grid">
-    <div class="omics-card"><span class="omics-label">scRNA-seq</span><div class="omics-title">Single-cell transcriptomics</div><p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p></div>
-    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome & genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
-    <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
-    <div class="omics-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome profiling</div><p class="omics-desc">Whole-genome bisulfite sequencing and array-based methylation analysis with clinical reproducibility.</p></div>
-    <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
-    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
+
+    <!-- Featured 6 (always visible) -->
+    <div class="omics-card">
+      <span class="omics-label">scRNA-seq</span>
+      <div class="omics-title">Single-cell transcriptomics</div>
+      <p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p>
+    </div>
+
+    <div class="omics-card">
+      <span class="omics-label">WGS / WES</span>
+      <div class="omics-title">Whole exome & genome</div>
+      <p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p>
+    </div>
+
+    <div class="omics-card">
+      <span class="omics-label">Proteomics</span>
+      <div class="omics-title">Protein expression analysis</div>
+      <p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p>
+    </div>
+
+    <div class="omics-card">
+      <span class="omics-label">Methylation</span>
+      <div class="omics-title">Epigenome profiling</div>
+      <p class="omics-desc">Whole-genome bisulfite sequencing and array-based methylation analysis with clinical reproducibility.</p>
+    </div>
+
+    <div class="omics-card">
+      <span class="omics-label">Drug discovery</span>
+      <div class="omics-title">GNN-based target identification</div>
+      <p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p>
+    </div>
+
+    <div class="omics-card">
+      <span class="omics-label">Clinical</span>
+      <div class="omics-title">Translational pipelines</div>
+      <p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p>
+    </div>
+
+    <!-- Extra 10 (hidden by default) -->
+    <div class="omics-card hidden-card">
+      <span class="omics-label">ATAC-seq</span>
+      <div class="omics-title">Chromatin accessibility</div>
+      <p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">ChIP-seq</span>
+      <div class="omics-title">Protein-DNA interactions</div>
+      <p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">circRNA</span>
+      <div class="omics-title">Circular RNA analysis</div>
+      <p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">RNA-seq</span>
+      <div class="omics-title">Bulk transcriptomics</div>
+      <p class="omics-desc">Alignment, quantification, differential expression, and pathway analysis for bulk RNA sequencing.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">Spatial</span>
+      <div class="omics-title">Spatial transcriptomics</div>
+      <p class="omics-desc">Spatially resolved gene expression mapping and cell-type deconvolution across tissue sections.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">Spatial single-cell</span>
+      <div class="omics-title">Spatial + single-cell integration</div>
+      <p class="omics-desc">Joint analysis of spatial context and single-cell resolution for deep tissue-level insights.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">SV calling</span>
+      <div class="omics-title">Structural variant detection</div>
+      <p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">Variant calling</span>
+      <div class="omics-title">SNP & indel detection</div>
+      <p class="omics-desc">Germline and somatic variant calling with population-level filtering and clinical annotation.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">Epigenomics</span>
+      <div class="omics-title">Multi-layer epigenome analysis</div>
+      <p class="omics-desc">Integrative analysis of histone marks, accessibility, and methylation for regulatory landscape mapping.</p>
+    </div>
+
+    <div class="omics-card hidden-card">
+      <span class="omics-label">Multi-omics</span>
+      <div class="omics-title">Integrated multi-modal analysis</div>
+      <p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p>
+    </div>
+
   </div>
+
+  <!-- Show more toggle -->
+  <div class="show-more-row">
+    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">
+      Show all pipelines (+10)
+    </button>
+  </div>
+
   <div class="tags">
-    <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span><span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span><span class="tag">GATK</span><span class="tag">Seurat</span><span class="tag">DESeq2</span><span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span>
+    <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
+    <span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span>
+    <span class="tag">GATK</span><span class="tag">Seurat</span><span class="tag">DESeq2</span>
+    <span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
+    <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span>
+    <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span>
+    <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span>
+    <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span>
   </div>
 </section>
+
+
+
+
+
 
 <hr class="divider">
 
@@ -257,7 +393,23 @@
     </div>
   </div>
 </div>
-
+<!-- =============================================
+     ADD THIS SCRIPT before your closing </body> tag
+     ============================================= -->
+<script>
+  var omicsExpanded = false;
+  function toggleOmics() {
+    omicsExpanded = !omicsExpanded;
+    var hiddenCards = document.querySelectorAll('#omics .hidden-card');
+    var btn = document.getElementById('omics-toggle');
+    hiddenCards.forEach(function(card) {
+      card.style.display = omicsExpanded ? 'block' : 'none';
+    });
+    btn.textContent = omicsExpanded
+      ? 'Show fewer pipelines'
+      : 'Show all pipelines (+10)';
+  }
+</script>
 <footer>
   <div class="footer-left">© 2026 OmniBioAI · omnibioai.org · Open Source</div>
   <ul class="footer-links">
