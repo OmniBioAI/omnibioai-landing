@@ -177,7 +177,7 @@ x<!DOCTYPE html>
   <div class="features-grid">
     <div class="feature-card"><div class="feature-icon">⚙</div><div class="feature-title">Modular pipeline system</div><p class="feature-desc">Each bioinformatics workflow is modular, allowing researchers to customize, extend, or replace analysis steps without breaking reproducibility.</p></div>
     <div class="feature-card"><div class="feature-icon">🔗</div><div class="feature-title">Seamless integration</div><p class="feature-desc">Integrates with existing tools and environments including Python, R, Nextflow, WDL, and HPC systems for flexible deployment.</p></div>
-    <div class="feature-card"><div class="feature-icon">☁</div><div class="feature-title">Cloud & HPC ready</div><p class="feature-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS and Azure with identical execution logic.</p></div>
+    <div class="feature-card"><div class="feature-icon">☁</div><div class="feature-title">Cloud & HPC ready</div><p class="feature-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS, Azure, and GCP with identical execution logic.</p></div>
     <div class="feature-card"><div class="feature-icon">🧬</div><div class="feature-title">Reproducible by design</div><p class="feature-desc">Every execution is tracked with full provenance, ensuring reproducibility from raw data to final biological insight.</p></div>
     <div class="feature-card"><div class="feature-icon">🧠</div><div class="feature-title">AI-assisted analysis layer</div><p class="feature-desc">LLM-powered reasoning assists in interpreting multi-omics outputs, summarizing results, and generating biologically meaningful insights to guide downstream analysis decisions.</p></div>
     <div class="feature-card"><div class="feature-icon">🤖</div><div class="feature-title">Agentic workflow orchestration</div><p class="feature-desc">LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines, enabling multi-step reasoning across tools, datasets, and analysis stages.</p></div>
@@ -333,7 +333,7 @@ x<!DOCTYPE html>
     <span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
     <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span>
     <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span>
-    <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span>
+    <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
     <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span>
   </div>
 </section>
@@ -351,7 +351,7 @@ x<!DOCTYPE html>
     <div>
       <h2 class="section-title">Enterprise infrastructure,<br>open source</h2>
       <p class="section-sub">OmniBioAI solves the reproducibility crisis in bioinformatics by combining distributed systems engineering with large language models.</p>
-      <p style="color:var(--text-muted);font-size:0.9rem;font-weight:300;line-height:1.85;">The platform runs identically across local workstations, HPC clusters (Slurm/LSF), and cloud environments (AWS/Azure) — eliminating the "works on my machine" problem that plagues computational biology.</p>
+      <p style="color:var(--text-muted);font-size:0.9rem;font-weight:300;line-height:1.85;">The platform runs identically across local workstations, HPC clusters (Slurm/LSF), and cloud environments (AWS/Azure/GCP) — eliminating the "works on my machine" problem that plagues computational biology.</p>
     </div>
     <div class="arch-diagram">
       <div class="arch-layer"><div class="arch-dot"></div>Cloudflare — global edge + DDoS</div>
@@ -368,7 +368,7 @@ x<!DOCTYPE html>
       <div class="arch-connector">↓</div>
       <div class="arch-layer"><div class="arch-dot"></div>Control Center — health + telemetry</div>
       <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>Local / HPC Slurm / Cloud AWS · Azure</div>
+      <div class="arch-layer"><div class="arch-dot"></div>Local / HPC Slurm / Cloud AWS · Azure · GCP</div>
     </div>
   </div>
 </section>
