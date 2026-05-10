@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniBioAI · Admin · Beta Requests</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#0b0f14; --bg2:#111820; --bg3:#161e28; --bg4:#1c2736;
+    --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+    --accent:#2563eb; --accent-light:#3b82f6; --accent-pale:rgba(37,99,235,0.12);
+    --green:#10b981; --green-pale:rgba(16,185,129,0.12);
+    --red:#ef4444; --red-pale:rgba(239,68,68,0.12);
+    --amber:#f59e0b; --amber-pale:rgba(245,158,11,0.12);
+    --text:#e2e8f0; --muted:#64748b; --dim:#334155;
+    --mono:'DM Mono',monospace; --font:'Outfit',sans-serif; --serif:'DM Serif Display',serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+
+  /* Login */
+  #login-screen { min-height:100vh; display:flex; align-items:center; justify-content:center; }
+  .login-box { background:var(--bg2); border:1px solid var(--border2); border-radius:16px; padding:3rem; width:100%; max-width:400px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+  .login-logo { width:48px; height:48px; background:var(--accent-pale); border:1px solid rgba(37,99,235,0.3); border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:1.4rem; }
+  .login-box h2 { font-family:var(--serif); font-size:1.6rem; margin-bottom:0.5rem; }
+  .login-box p { font-size:0.85rem; color:var(--muted); margin-bottom:2rem; font-family:var(--mono); }
+  .login-input { width:100%; background:var(--bg3); border:1px solid var(--border2); border-radius:8px; padding:0.8rem 1rem; font-size:0.95rem; font-family:var(--mono); color:var(--text); outline:none; margin-bottom:1rem; transition:border-color 0.2s; }
+  .login-input:focus { border-color:var(--accent); }
+  .login-btn { width:100%; background:var(--accent); color:#fff; border:none; border-radius:8px; padding:0.85rem; font-size:0.95rem; font-family:var(--font); font-weight:500; cursor:pointer; transition:background 0.2s; }
+  .login-btn:hover { background:#1d4ed8; }
+  .login-error { font-size:0.8rem; color:var(--red); font-family:var(--mono); margin-top:0.75rem; display:none; }
+
+  /* App */
+  #app { display:none; }
+
+  /* Topbar */
+  .topbar { height:56px; background:var(--bg2); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; padding:0 2rem; position:sticky; top:0; z-index:100; }
+  .topbar-left { display:flex; align-items:center; gap:10px; }
+  .topbar-logo { font-family:var(--mono); font-size:0.9rem; color:var(--accent-light); font-weight:500; }
+  .topbar-sep { color:var(--dim); font-size:0.8rem; }
+  .topbar-title { font-family:var(--mono); font-size:0.8rem; color:var(--muted); }
+  .topbar-right { display:flex; align-items:center; gap:1rem; }
+  .topbar-badge { font-family:var(--mono); font-size:0.7rem; padding:3px 10px; border-radius:20px; background:var(--green-pale); color:var(--green); border:1px solid rgba(16,185,129,0.2); letter-spacing:0.06em; }
+  .logout-btn { font-family:var(--mono); font-size:0.75rem; color:var(--muted); background:transparent; border:1px solid var(--border2); border-radius:6px; padding:5px 12px; cursor:pointer; transition:all 0.2s; }
+  .logout-btn:hover { color:var(--text); border-color:var(--muted); }
+
+  /* Layout */
+  .layout { display:flex; min-height:calc(100vh - 56px); }
+  .sidebar { width:220px; background:var(--bg2); border-right:1px solid var(--border); padding:1.5rem 0; flex-shrink:0; }
+  .sidebar-section { font-family:var(--mono); font-size:0.65rem; color:var(--dim); letter-spacing:0.12em; text-transform:uppercase; padding:0 1.25rem; margin-bottom:0.5rem; margin-top:1.25rem; }
+  .sidebar-section:first-child { margin-top:0; }
+  .nav-item { display:flex; align-items:center; gap:8px; padding:8px 1.25rem; font-size:0.85rem; color:var(--muted); cursor:pointer; transition:all 0.15s; border-left:2px solid transparent; user-select:none; }
+  .nav-item:hover { color:var(--text); background:rgba(255,255,255,0.02); }
+  .nav-item.active { color:var(--accent-light); border-left-color:var(--accent); background:var(--accent-pale); }
+  .nav-badge { margin-left:auto; font-family:var(--mono); font-size:0.65rem; padding:2px 7px; border-radius:10px; background:var(--amber-pale); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
+  .nav-badge.green { background:var(--green-pale); color:var(--green); border-color:rgba(16,185,129,0.2); }
+
+  /* Main */
+  .main { flex:1; padding:2rem; overflow-y:auto; }
+
+  /* KPI */
+  .kpi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:2rem; }
+  .kpi-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:1.25rem 1.5rem; position:relative; overflow:hidden; }
+  .kpi-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; border-radius:12px 12px 0 0; }
+  .kpi-card.blue::before { background:var(--accent); }
+  .kpi-card.green::before { background:var(--green); }
+  .kpi-card.amber::before { background:var(--amber); }
+  .kpi-card.red::before { background:var(--red); }
+  .kpi-label { font-family:var(--mono); font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem; }
+  .kpi-value { font-family:var(--mono); font-size:2rem; font-weight:500; color:var(--text); line-height:1; }
+  .kpi-sub { font-size:0.75rem; color:var(--muted); margin-top:0.35rem; }
+
+  /* Toolbar */
+  .toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.75rem; }
+  .toolbar-left { display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; }
+  .search-input { background:var(--bg2); border:1px solid var(--border2); border-radius:8px; padding:0.55rem 1rem; font-size:0.85rem; font-family:var(--mono); color:var(--text); outline:none; width:260px; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--accent); }
+  .search-input::placeholder { color:var(--muted); }
+  .filter-select { background:var(--bg2); border:1px solid var(--border2); border-radius:8px; padding:0.55rem 0.85rem; font-size:0.8rem; font-family:var(--mono); color:var(--text); outline:none; cursor:pointer; }
+  .btn { padding:0.55rem 1.1rem; border-radius:8px; font-size:0.82rem; font-family:var(--font); font-weight:500; cursor:pointer; transition:all 0.2s; border:none; }
+  .btn-primary { background:var(--accent); color:#fff; }
+  .btn-primary:hover { background:#1d4ed8; }
+  .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border2); }
+  .btn-ghost:hover { color:var(--text); border-color:var(--muted); }
+  .btn-green { background:var(--green); color:#fff; }
+  .btn-green:hover { background:#059669; }
+  .btn-red { background:var(--red); color:#fff; }
+  .btn-red:hover { background:#dc2626; }
+  .btn-sm { padding:4px 10px; font-size:0.75rem; border-radius:6px; }
+
+  /* Table */
+  .table-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  thead tr { border-bottom:1px solid var(--border); }
+  th { padding:10px 14px; font-family:var(--mono); font-size:0.68rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:500; text-align:left; background:var(--bg3); }
+  td { padding:12px 14px; font-size:0.85rem; border-bottom:1px solid var(--border); }
+  tr:last-child td { border-bottom:none; }
+  tr:hover td { background:rgba(255,255,255,0.01); }
+  .td-name { font-weight:500; color:var(--text); }
+  .td-email { font-family:var(--mono); font-size:0.78rem; color:var(--muted); }
+  .td-inst { font-size:0.82rem; color:var(--muted); }
+  .td-date { font-family:var(--mono); font-size:0.75rem; color:var(--dim); }
+
+  /* Pills */
+  .pill { display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-family:var(--mono); font-size:0.68rem; font-weight:500; letter-spacing:0.04em; white-space:nowrap; }
+  .pill-dot { width:5px; height:5px; border-radius:50%; }
+  .pill.pending { background:var(--amber-pale); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
+  .pill.pending .pill-dot { background:var(--amber); }
+  .pill.approved { background:var(--green-pale); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
+  .pill.approved .pill-dot { background:var(--green); }
+  .pill.rejected { background:var(--red-pale); color:var(--red); border:1px solid rgba(239,68,68,0.2); }
+  .pill.rejected .pill-dot { background:var(--red); }
+
+  .actions { display:flex; gap:6px; }
+
+  /* Drawer */
+  .drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:200; display:none; backdrop-filter:blur(4px); }
+  .drawer-overlay.open { display:block; }
+  .drawer { position:fixed; top:0; right:0; bottom:0; width:480px; background:var(--bg2); border-left:1px solid var(--border2); z-index:201; padding:2rem; overflow-y:auto; transform:translateX(100%); transition:transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+  .drawer.open { transform:translateX(0); }
+  .drawer-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:2rem; }
+  .drawer-close { background:transparent; border:1px solid var(--border2); color:var(--muted); border-radius:6px; width:32px; height:32px; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.15s; }
+  .drawer-close:hover { color:var(--text); border-color:var(--muted); }
+  .drawer-field { margin-bottom:1.25rem; }
+  .drawer-label { font-family:var(--mono); font-size:0.65rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.35rem; }
+  .drawer-value { font-size:0.9rem; color:var(--text); line-height:1.6; }
+  .drawer-value.mono { font-family:var(--mono); font-size:0.82rem; }
+  .drawer-textarea { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:0.75rem 1rem; font-size:0.85rem; font-family:var(--font); color:var(--text); width:100%; resize:vertical; outline:none; min-height:80px; transition:border-color 0.2s; margin-bottom:0.75rem; }
+  .drawer-textarea:focus { border-color:var(--accent); }
+  .drawer-actions { display:flex; gap:0.75rem; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border); }
+  .divider-h { border:none; border-top:1px solid var(--border); margin:1.5rem 0; }
+
+  /* Empty */
+  .empty { text-align:center; padding:4rem 2rem; color:var(--muted); }
+  .empty-icon { font-size:2.5rem; margin-bottom:1rem; }
+  .empty-title { font-size:1rem; font-weight:500; color:var(--text); margin-bottom:0.5rem; }
+  .empty-sub { font-size:0.85rem; font-family:var(--mono); }
+
+  /* Toast */
+  .toast { position:fixed; bottom:2rem; right:2rem; background:var(--bg3); border:1px solid var(--border2); border-radius:10px; padding:1rem 1.5rem; font-size:0.85rem; color:var(--text); box-shadow:0 8px 30px rgba(0,0,0,0.3); z-index:300; display:flex; align-items:center; gap:10px; transform:translateY(100px); opacity:0; transition:all 0.3s cubic-bezier(0.4,0,0.2,1); }
+  .toast.show { transform:translateY(0); opacity:1; }
+  .toast-icon { font-size:1.1rem; }
+
+  @media (max-width:900px) {
+    .kpi-strip { grid-template-columns:repeat(2,1fr); }
+    .sidebar { display:none; }
+    .drawer { width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">⬡</div>
+    <h2>Admin Access</h2>
+    <p>omnibioai.org / admin</p>
+    <input type="password" class="login-input" id="admin-password"
+      placeholder="Enter admin password"
+      onkeydown="if(event.key==='Enter') login()">
+    <button class="login-btn" onclick="login()">Sign In →</button>
+    <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-logo">OmniBioAI</span>
+      <span class="topbar-sep">/</span>
+      <span class="topbar-title">Beta Admin</span>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-badge" id="pending-badge">● 0 pending</span>
+      <button class="logout-btn" onclick="logout()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-section">Requests</div>
+      <div class="nav-item active" onclick="setView('all',this)"><span>📋</span> All Requests<span class="nav-badge" id="nav-all-count">0</span></div>
+      <div class="nav-item" onclick="setView('pending',this)"><span>⏳</span> Pending<span class="nav-badge" id="nav-pending-count">0</span></div>
+      <div class="nav-item" onclick="setView('approved',this)"><span>✅</span> Approved<span class="nav-badge green" id="nav-approved-count">0</span></div>
+      <div class="nav-item" onclick="setView('rejected',this)"><span>✕</span> Rejected</div>
+      <div class="sidebar-section">Actions</div>
+      <div class="nav-item" onclick="exportCSV()"><span>↓</span> Export CSV</div>
+      <div class="nav-item" onclick="refreshData()"><span>↻</span> Refresh</div>
+    </div>
+
+    <div class="main">
+      <div class="kpi-strip">
+        <div class="kpi-card blue"><div class="kpi-label">Total Requests</div><div class="kpi-value" id="kpi-total">0</div><div class="kpi-sub">All time</div></div>
+        <div class="kpi-card amber"><div class="kpi-label">Pending Review</div><div class="kpi-value" id="kpi-pending">0</div><div class="kpi-sub">Awaiting decision</div></div>
+        <div class="kpi-card green"><div class="kpi-label">Approved</div><div class="kpi-value" id="kpi-approved">0</div><div class="kpi-sub">Access granted</div></div>
+        <div class="kpi-card red"><div class="kpi-label">Rejected</div><div class="kpi-value" id="kpi-rejected">0</div><div class="kpi-sub">Not approved</div></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <input type="text" class="search-input" placeholder="Search by name, email, institution..." oninput="filterTable()">
+          <select class="filter-select" id="role-filter" onchange="filterTable()">
+            <option value="">All roles</option>
+            <option>Principal Investigator</option>
+            <option>Postdoctoral Researcher</option>
+            <option>PhD Student</option>
+            <option>Bioinformatics Engineer</option>
+            <option>Computational Biologist</option>
+            <option>Data Scientist</option>
+            <option>Clinical Researcher</option>
+            <option>Industry Scientist</option>
+          </select>
+          <select class="filter-select" id="usecase-filter" onchange="filterTable()">
+            <option value="">All use cases</option>
+            <option>Single-cell RNA-seq analysis</option>
+            <option>Whole genome / exome sequencing</option>
+            <option>Bulk RNA-seq</option>
+            <option>Multi-omics integration</option>
+            <option>Drug target discovery</option>
+            <option>Clinical genomics</option>
+            <option>HPC workflow automation</option>
+            <option>Cloud-based genomics</option>
+          </select>
+        </div>
+        <button class="btn btn-ghost" onclick="refreshData()">↻ Refresh</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Email</th><th>Institution</th><th>Role</th>
+              <th>Use Case</th><th>Submitted</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requests-tbody">
+            <tr><td colspan="8"><div class="empty"><div class="empty-icon">📭</div><div class="empty-title">Loading...</div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div>
+      <div style="font-family:var(--mono);font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;">Request Detail</div>
+      <h3 style="font-family:var(--serif);font-size:1.4rem;" id="drawer-name">—</h3>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div id="drawer-status-wrap" style="margin-bottom:1.5rem;"></div>
+  <div class="drawer-field"><div class="drawer-label">Email</div><div class="drawer-value mono" id="drawer-email">—</div></div>
+  <div class="drawer-field"><div class="drawer-label">Institution</div><div class="drawer-value" id="drawer-inst">—</div></div>
+  <div class="drawer-field"><div class="drawer-label">Role</div><div class="drawer-value" id="drawer-role">—</div></div>
+  <div class="drawer-field"><div class="drawer-label">Primary Use Case</div><div class="drawer-value" id="drawer-usecase">—</div></div>
+  <div class="drawer-field">
+    <div class="drawer-label">Research Description</div>
+    <div class="drawer-value" id="drawer-research" style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;font-size:0.85rem;line-height:1.7;">—</div>
+  </div>
+  <div class="drawer-field"><div class="drawer-label">Submitted</div><div class="drawer-value mono" id="drawer-date">—</div></div>
+  <hr class="divider-h">
+  <div class="drawer-label" style="margin-bottom:0.5rem;">Note to researcher (included in approval email)</div>
+  <textarea class="drawer-textarea" id="drawer-note" placeholder="Optional: personal note, onboarding instructions, or download link..."></textarea>
+  <div class="drawer-actions" id="drawer-actions"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✅</span>
+  <span id="toast-msg">Done</span>
+</div>
+
+<script>
+// ── CONFIG ──
+const WORKER_URL = 'https://beta-requests.mandecent-gupta.workers.dev';
+
+// ── HELPERS ──
+function getAdminKey() { return sessionStorage.getItem('admin_key') || ''; }
+
+// ── STATE ──
+let allRequests = [];
+let currentView = 'all';
+
+// ── AUTH ──
+function login() {
+  const pw = document.getElementById('admin-password').value.trim();
+  if (!pw) return;
+  // Verify against worker before storing
+  fetch(`${WORKER_URL}/admin/requests`, {
+    headers: { 'X-Admin-Key': pw }
+  }).then(res => {
+    if (res.ok) {
+      sessionStorage.setItem('admin_key', pw);
+      document.getElementById('login-error').style.display = 'none';
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'block';
+      return res.json();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+      document.getElementById('admin-password').value = '';
+    }
+  }).then(data => {
+    if (data) { allRequests = data; renderAll(); }
+  }).catch(() => {
+    document.getElementById('login-error').style.display = 'block';
+  });
+}
+
+function logout() {
+  sessionStorage.removeItem('admin_key');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  allRequests = [];
+}
+
+// Auto-login if session active
+if (getAdminKey()) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadRequests();
+}
+
+// ── DATA ──
+async function loadRequests() {
+  try {
+    const res = await fetch(`${WORKER_URL}/admin/requests`, {
+      headers: { 'X-Admin-Key': getAdminKey() }
+    });
+    if (res.ok) {
+      allRequests = await res.json();
+    } else if (res.status === 401) {
+      logout();
+      return;
+    } else {
+      allRequests = [];
+    }
+  } catch(e) {
+    console.error('Failed to load requests:', e);
+    allRequests = [];
+  }
+  renderAll();
+}
+
+function refreshData() { loadRequests(); toast('↻ Refreshed', '✅'); }
+
+// ── RENDER ──
+function renderAll() { updateKPIs(); renderTable(getFiltered()); }
+
+function updateKPIs() {
+  const total    = allRequests.length;
+  const pending  = allRequests.filter(r => r.status === 'pending').length;
+  const approved = allRequests.filter(r => r.status === 'approved').length;
+  const rejected = allRequests.filter(r => r.status === 'rejected').length;
+  document.getElementById('kpi-total').textContent    = total;
+  document.getElementById('kpi-pending').textContent  = pending;
+  document.getElementById('kpi-approved').textContent = approved;
+  document.getElementById('kpi-rejected').textContent = rejected;
+  document.getElementById('pending-badge').textContent = `● ${pending} pending`;
+  document.getElementById('nav-all-count').textContent      = total;
+  document.getElementById('nav-pending-count').textContent  = pending;
+  document.getElementById('nav-approved-count').textContent = approved;
+}
+
+function getFiltered() {
+  const search = (document.querySelector('.search-input')?.value || '').toLowerCase();
+  const role   = document.getElementById('role-filter')?.value || '';
+  const uc     = document.getElementById('usecase-filter')?.value || '';
+  return allRequests.filter(r => {
+    if (currentView === 'pending'  && r.status !== 'pending')  return false;
+    if (currentView === 'approved' && r.status !== 'approved') return false;
+    if (currentView === 'rejected' && r.status !== 'rejected') return false;
+    if (role && r.role !== role) return false;
+    if (uc   && r.use_case !== uc) return false;
+    if (search) {
+      const h = `${r.first_name} ${r.last_name} ${r.email} ${r.institution}`.toLowerCase();
+      if (!h.includes(search)) return false;
+    }
+    return true;
+  });
+}
+
+function renderTable(rows) {
+  const tbody = document.getElementById('requests-tbody');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="8"><div class="empty">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-title">No requests found</div>
+      <div class="empty-sub">Try adjusting your filters</div>
+    </div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(r => {
+    const date = new Date(r.submitted_at).toLocaleDateString('en-US',
+      { month:'short', day:'numeric', year:'numeric' });
+    return `<tr>
+      <td><div class="td-name">${r.first_name} ${r.last_name}</div></td>
+      <td><div class="td-email">${r.email}</div></td>
+      <td><div class="td-inst">${r.institution}</div></td>
+      <td style="font-size:0.8rem;color:var(--muted);">${r.role}</td>
+      <td style="font-size:0.8rem;color:var(--muted);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.use_case}</td>
+      <td><div class="td-date">${date}</div></td>
+      <td><span class="pill ${r.status}"><span class="pill-dot"></span>${r.status}</span></td>
+      <td><div class="actions">
+        <button class="btn btn-ghost btn-sm" onclick="openDrawer('${r.id}')">View</button>
+        ${r.status === 'pending' ? `
+          <button class="btn btn-green btn-sm" onclick="approve('${r.id}')">✓</button>
+          <button class="btn btn-red btn-sm" onclick="reject('${r.id}')">✕</button>
+        ` : ''}
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── FILTERING ──
+function filterTable() { renderTable(getFiltered()); }
+
+function setView(view, el) {
+  currentView = view;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  renderTable(getFiltered());
+}
+
+// ── DRAWER ──
+function openDrawer(id) {
+  const r = allRequests.find(x => x.id === id);
+  if (!r) return;
+  document.getElementById('drawer-name').textContent    = `${r.first_name} ${r.last_name}`;
+  document.getElementById('drawer-email').textContent   = r.email;
+  document.getElementById('drawer-inst').textContent    = r.institution;
+  document.getElementById('drawer-role').textContent    = r.role;
+  document.getElementById('drawer-usecase').textContent = r.use_case;
+  document.getElementById('drawer-research').textContent = r.research || '—';
+  document.getElementById('drawer-date').textContent    = new Date(r.submitted_at).toLocaleString();
+  document.getElementById('drawer-note').value          = r.note || '';
+  document.getElementById('drawer-status-wrap').innerHTML =
+    `<span class="pill ${r.status}"><span class="pill-dot"></span>${r.status}</span>`;
+  const actions = document.getElementById('drawer-actions');
+  if (r.status === 'pending') {
+    actions.innerHTML = `
+      <button class="btn btn-green" style="flex:1" onclick="approve('${id}',true)">✓ Approve & Send Email</button>
+      <button class="btn btn-red" onclick="reject('${id}',true)">✕ Reject</button>`;
+  } else if (r.status === 'approved') {
+    actions.innerHTML = `
+      <button class="btn btn-ghost" onclick="resendEmail('${id}')">✉ Resend Email</button>
+      <button class="btn btn-red" onclick="reject('${id}',true)">Revoke Access</button>`;
+  } else {
+    actions.innerHTML = `<button class="btn btn-green" style="flex:1" onclick="approve('${id}',true)">↩ Re-approve</button>`;
+  }
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+// ── APPROVE / REJECT ──
+async function approve(id, fromDrawer = false) {
+  const note = fromDrawer ? document.getElementById('drawer-note').value : '';
+  const r = allRequests.find(x => x.id === id);
+  if (!r) return;
+  r.status = 'approved'; r.note = note;
+  try {
+    await fetch(`${WORKER_URL}/admin/requests/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Key': getAdminKey() },
+      body: JSON.stringify({ status: 'approved', note })
+    });
+  } catch(e) {}
+  renderAll();
+  if (fromDrawer) closeDrawer();
+  toast(`✅ ${r.first_name} ${r.last_name} approved — email sent`, '✅');
+}
+
+async function reject(id, fromDrawer = false) {
+  const r = allRequests.find(x => x.id === id);
+  if (!r) return;
+  if (!confirm(`Reject request from ${r.first_name} ${r.last_name}?`)) return;
+  r.status = 'rejected';
+  try {
+    await fetch(`${WORKER_URL}/admin/requests/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Key': getAdminKey() },
+      body: JSON.stringify({ status: 'rejected' })
+    });
+  } catch(e) {}
+  renderAll();
+  if (fromDrawer) closeDrawer();
+  toast('Request rejected', '✕');
+}
+
+function resendEmail(id) {
+  const r = allRequests.find(x => x.id === id);
+  toast(`📧 Email resent to ${r.email}`, '📧');
+}
+
+// ── EXPORT ──
+function exportCSV() {
+  const cols = ['first_name','last_name','email','institution','role','use_case','status','submitted_at'];
+  const rows = [cols.join(',')];
+  allRequests.forEach(r => {
+    rows.push(cols.map(c => `"${(r[c]||'').replace(/"/g,'""')}"`).join(','));
+  });
+  const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `omnibioai-beta-requests-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  toast('CSV exported', '↓');
+}
+
+// ── TOAST ──
+let toastTimer;
+function toast(msg, icon = '✅') {
+  const el = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  document.getElementById('toast-icon').textContent = icon;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+</script>
+</body>
+</html>

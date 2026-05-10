@@ -1,4 +1,4 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -36,7 +36,7 @@ x<!DOCTYPE html>
   .hero h1 em { font-style: italic; color: var(--green); }
   .hero-sub { font-size: clamp(1rem,2vw,1.15rem); color: var(--text-muted); max-width: 560px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 1rem; transition: all 0.2s; border: 1.5px solid var(--green); box-shadow: 0 2px 12px rgba(37,99,235,0.25); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 1rem; transition: all 0.2s; border: 1.5px solid var(--green); box-shadow: 0 2px 12px rgba(37,99,235,0.25); cursor: pointer; font-family: 'Outfit', sans-serif; }
   .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); transform: translateY(-1px); }
   .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--bg2); color: var(--text-muted); padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 400; font-size: 1rem; transition: all 0.2s; border: 1.5px solid var(--border-bright); box-shadow: var(--shadow); }
   .btn-secondary:hover { color: var(--green); border-color: var(--green); transform: translateY(-1px); }
@@ -61,6 +61,10 @@ x<!DOCTYPE html>
   .arch-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
   .arch-connector { text-align: center; color: var(--text-dim); font-size: 0.7rem; margin: -0.1rem 0; padding-left: 1.5rem; }
   .omics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .hidden-card { display: none; }
+  .show-more-row { display: flex; justify-content: center; margin-top: 1.5rem; }
+  .show-more-btn { font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500; color: var(--green-dark); background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 6px; padding: 0.5rem 1.4rem; cursor: pointer; transition: background 0.2s, color 0.2s; }
+  .show-more-btn:hover { background: var(--green); color: #fff; }
   .omics-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.2s; box-shadow: var(--shadow); }
   .omics-card:hover { border-color: var(--green-light); transform: translateY(-2px); }
   .omics-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
@@ -84,34 +88,38 @@ x<!DOCTYPE html>
   .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--green); }
   .divider { border: none; border-top: 1px solid var(--border); margin: 0; position: relative; z-index: 1; }
+
+  /* ── Platform selector ── */
+  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+  .platform-card { background: var(--bg); border: 1.5px solid var(--border-bright); border-radius: 10px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; user-select: none; }
+  .platform-card:hover { border-color: var(--green); background: var(--green-pale); }
+  .platform-card.selected { border-color: var(--green); background: var(--green-pale); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  .platform-card.selected .platform-name { color: var(--green-dark); font-weight: 600; }
+  .platform-icon { font-size: 1.6rem; margin-bottom: 0.4rem; display: block; }
+  .platform-name { font-size: 0.85rem; font-weight: 500; color: var(--text); display: block; margin-bottom: 0.2rem; }
+  .platform-hint { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--text-dim); display: block; }
+  .platform-badge { display: inline-block; font-size: 0.62rem; font-family: 'DM Mono', monospace; padding: 1px 6px; border-radius: 3px; background: var(--green-pale); color: var(--green-dark); border: 1px solid var(--border-bright); margin-top: 4px; }
+  .platform-badge.soon { background: #fff7ed; color: #c2410c; border-color: rgba(194,65,12,0.2); }
+
+  /* ── Request Form ── */
+  .form-input, .form-select, .form-textarea { width: 100%; background: var(--bg); border: 1px solid var(--border-bright); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.9rem; font-family: 'Outfit', sans-serif; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
+  .form-label { display: block; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .form-row { margin-bottom: 1rem; }
+  .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-submit { width: 100%; background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 0.9rem; font-size: 1rem; font-family: 'Outfit', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 12px rgba(37,99,235,0.25); }
+  .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
     .arch-grid, .omics-grid { grid-template-columns: 1fr; }
     .hero-stats { gap: 1.5rem; } footer { flex-direction: column; align-items: flex-start; }
     .cta-box { padding: 2.5rem 1.5rem; } section { padding: 4rem 1.5rem; }
+    .form-grid2 { grid-template-columns: 1fr; }
+    .platform-grid { grid-template-columns: 1fr; }
   }
- <!-- =============================================
-     ADD THESE STYLES inside your existing <style> block
-     ============================================= -->
-<!--
-  .omics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .hidden-card { display: none; }
-  .show-more-row { display: flex; justify-content: center; margin-top: 1.5rem; }
-  .show-more-btn {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--green-dark);
-    background: var(--green-pale);
-    border: 1px solid var(--border-bright);
-    border-radius: 6px;
-    padding: 0.5rem 1.4rem;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-  .show-more-btn:hover { background: var(--green); color: #fff; }
--->
-
 </style>
 </head>
 <body>
@@ -128,11 +136,12 @@ x<!DOCTYPE html>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#omics">Omics</a></li>
+    <li><a href="#requirements">Install</a></li>
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank">Demo</a></li>
-    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="nav-cta">Request Access</a></li>
+    <li><a href="#request" class="nav-cta">Request Access</a></li>
   </ul>
 </nav>
 
@@ -143,14 +152,14 @@ x<!DOCTYPE html>
   <p style="max-width:650px;margin:0 auto 2.5rem;color:var(--text-muted);font-weight:400;">Modern bioinformatics workflows are fragmented, slow, and difficult to reproduce across environments.</p>
   <p style="max-width:650px;margin:0 auto 3rem;color:var(--green-dark);font-weight:500;">OmniBioAI automates end-to-end multi-omics analysis with reproducible, production-grade pipelines powered by AI reasoning.</p>
   <div class="hero-actions">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="btn-primary">↗ Request Access</a>
+    <a href="#request" class="btn-primary">↗ Request Access</a>
     <a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank" class="btn-secondary">Watch Demo</a>
   </div>
   <div class="hero-stats">
     <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Bioinformatics pipelines</span></div>
     <div class="stat"><span class="stat-num">300+</span><span class="stat-label">Integrated analysis tools</span></div>
     <div class="stat"><span class="stat-num">100+</span><span class="stat-label">Plugins</span></div>
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Servers</span></div>
+    <div class="stat"><span class="stat-num">15</span><span class="stat-label">Platform services</span></div>
   </div>
 </div>
 
@@ -190,142 +199,27 @@ x<!DOCTYPE html>
   <span class="section-tag">Multi-omics coverage</span>
   <h2 class="section-title">Every modality,<br>one platform</h2>
   <p class="section-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
-
   <div class="omics-grid">
-
-    <!-- Featured 6 (always visible) -->
-    <div class="omics-card">
-      <span class="omics-label">scRNA-seq</span>
-      <div class="omics-title">Single-cell transcriptomics</div>
-      <p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p>
-    </div>
-
-    <div class="omics-card">
-      <span class="omics-label">WGS / WES</span>
-      <div class="omics-title">Whole exome & genome</div>
-      <p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p>
-    </div>
-
-    <div class="omics-card">
-      <span class="omics-label">Proteomics</span>
-      <div class="omics-title">Protein expression analysis</div>
-      <p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p>
-    </div>
-    <div class="omics-card">
-      <span class="omics-label">Drug discovery</span>
-      <div class="omics-title">GNN-based target identification</div>
-      <p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p>
-    </div>
-
-    <div class="omics-card">
-      <span class="omics-label">Clinical</span>
-      <div class="omics-title">Translational pipelines</div>
-      <p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p>
-    </div>
-
-    <!-- Extra 10 (hidden by default) -->
-    <div class="omics-card hidden-card">
-      <span class="omics-label">ATAC-seq</span>
-      <div class="omics-title">Chromatin accessibility</div>
-      <p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">ChIP-seq</span>
-      <div class="omics-title">Protein-DNA interactions</div>
-      <p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">circRNA</span>
-      <div class="omics-title">Circular RNA analysis</div>
-      <p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">RNA-seq</span>
-      <div class="omics-title">Bulk transcriptomics</div>
-      <p class="omics-desc">Alignment, quantification, differential expression, and pathway analysis for bulk RNA sequencing.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">Spatial</span>
-      <div class="omics-title">Spatial transcriptomics</div>
-      <p class="omics-desc">Spatially resolved gene expression mapping and cell-type deconvolution across tissue sections.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">Spatial single-cell</span>
-      <div class="omics-title">Spatial + single-cell integration</div>
-      <p class="omics-desc">Joint analysis of spatial context and single-cell resolution for deep tissue-level insights.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">SV calling</span>
-      <div class="omics-title">Structural variant detection</div>
-      <p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">Variant calling</span>
-      <div class="omics-title">SNP & indel detection</div>
-      <p class="omics-desc">Germline and somatic variant calling with population-level filtering and clinical annotation.</p>
-    </div>
-
-    <div class="omics-card hidden-card">
-      <span class="omics-label">Epigenomics</span>
-      <div class="omics-title">Multi-layer epigenome analysis</div>
-      <p class="omics-desc">Integrative analysis of histone marks, accessibility, and methylation for regulatory landscape mapping.</p>
-    </div>
-
-     <div class="omics-card hidden-card">
-       <span class="omics-label">Multi-omics</span>
-       <div class="omics-title">Integrated multi-modal analysis</div>
-       <p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p>
-     </div>
-     <div class="omics-card hidden-card">
-      <span class="omics-label">Methylation</span>
-      <div class="omics-title">Epigenome methylation pipeline</div>
-      <p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p>
-    </div>
-    <div class="omics-card hidden-card">
-     <span class="omics-label">Single-cell multiomics</span>
-     <div class="omics-title">Multi-modal single-cell pipeline</div>
-     <p class="omics-desc">Integration of RNA + ATAC + protein (CITE-seq / multiome) using Seurat/Scanpy.</p>
-   </div> 
-   <div class="omics-card hidden-card">
-    <span class="omics-label">variant_ml</span>
-    <div class="omics-title">Variant prioritization ML pipeline</div>
-    <p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p>
+    <div class="omics-card"><span class="omics-label">scRNA-seq</span><div class="omics-title">Single-cell transcriptomics</div><p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p></div>
+    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome & genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
+    <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
+    <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
+    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">ATAC-seq</span><div class="omics-title">Chromatin accessibility</div><p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">ChIP-seq</span><div class="omics-title">Protein-DNA interactions</div><p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">circRNA</span><div class="omics-title">Circular RNA analysis</div><p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">RNA-seq</span><div class="omics-title">Bulk transcriptomics</div><p class="omics-desc">Alignment, quantification, differential expression, and pathway analysis for bulk RNA sequencing.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Spatial</span><div class="omics-title">Spatial transcriptomics</div><p class="omics-desc">Spatially resolved gene expression mapping and cell-type deconvolution across tissue sections.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Spatial single-cell</span><div class="omics-title">Spatial + single-cell integration</div><p class="omics-desc">Joint analysis of spatial context and single-cell resolution for deep tissue-level insights.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">SV calling</span><div class="omics-title">Structural variant detection</div><p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome methylation pipeline</div><p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal analysis</div><p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing & screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">variant_ml</span><div class="omics-title">Variant prioritization ML</div><p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p></div>
   </div>
-  <div class="omics-card hidden-card">
-    <span class="omics-label">crispr_ml</span>
-    <div class="omics-title">CRISPR guide efficiency prediction</div>
-    <p class="omics-desc">Deep learning model predicting CRISPR gRNA efficiency and off-target effects.</p>
-  </div>
-  <div class="omics-card hidden-card">
-    <span class="omics-label">CRISPR</span>
-    <div class="omics-title">Genome editing & screen analysis</div>
-    <p class="omics-desc">
-      CRISPR screen analysis including guide RNA QC, alignment, indel detection, editing efficiency scoring, and functional gene knock-out enrichment using nf-core style reproducible workflows.
-    </p>
-  </div>
-  <div class="omics-card hidden-card">
-    <span class="omics-label">bio_kg</span>
-    <div class="omics-title">Biological knowledge graph pipeline</div>
-    <p class="omics-desc">Graph-based gene-disease-drug network construction with reasoning and hypothesis generation.</p>
-  </div>
-    
-   
-  </div>
-
-  <!-- Show more toggle -->
   <div class="show-more-row">
-    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">
-      Show all pipelines (+10)
-    </button>
+    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">Show all pipelines (+10)</button>
   </div>
-
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
     <span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span>
@@ -338,10 +232,28 @@ x<!DOCTYPE html>
   </div>
 </section>
 
+<hr class="divider">
 
-
-
-
+<section id="requirements">
+  <span class="section-tag">System Requirements</span>
+  <h2 class="section-title">What you need<br>to get started</h2>
+  <p class="section-sub">OmniBioAI Studio runs on any modern Linux or macOS machine with Docker installed. One download, no command line needed.</p>
+  <div class="features-grid" style="margin-bottom:2.5rem;">
+    <div class="feature-card"><div class="feature-icon">💾</div><div class="feature-title">Memory</div><p class="feature-desc"><strong>Minimum:</strong> 16 GB RAM<br><strong>Recommended:</strong> 32 GB RAM<br><strong>With local LLM:</strong> 64 GB RAM</p></div>
+    <div class="feature-card"><div class="feature-icon">💿</div><div class="feature-title">Storage</div><p class="feature-desc"><strong>AppImage installer:</strong> 78 MB<br><strong>Docker images:</strong> ~10 GB (one-time)<br><strong>Data + work dirs:</strong> 50–200 GB</p></div>
+    <div class="feature-card"><div class="feature-icon">🖥️</div><div class="feature-title">Operating System</div><p class="feature-desc"><strong>Linux:</strong> Ubuntu 20.04+ (AppImage)<br><strong>macOS:</strong> 12+ (DMG — coming soon)<br><strong>Windows:</strong> WSL2 + Docker</p></div>
+    <div class="feature-card"><div class="feature-icon">🐳</div><div class="feature-title">Docker</div><p class="feature-desc">Docker Engine 24+ or Docker Desktop<br>Docker Compose v2 (included)<br><strong>No other dependencies required</strong></p></div>
+    <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">GPU (Optional)</div><p class="feature-desc">NVIDIA GPU + nvidia-container-toolkit<br>Required only for local LLM inference<br>Cloud API (Claude/GPT) works without GPU</p></div>
+    <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title">Network</div><p class="feature-desc">Internet required for first boot only<br>~10 GB pulled from ghcr.io automatically<br><strong>Fully offline after first run</strong></p></div>
+  </div>
+  <div style="max-width:560px;margin:0 auto;background:var(--bg2);border:1.5px solid var(--border-bright);border-radius:16px;padding:2.5rem;box-shadow:var(--shadow);text-align:center;">
+    <div style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--green-dark);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">● Private Beta · v0.1.0-beta.1</div>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:0.5rem;">Access requires approval</h3>
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7;">Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.</p>
+    <a href="#request" class="btn-primary" style="display:inline-flex;">↗ Request Beta Access</a>
+    <p style="margin-top:1rem;font-size:0.72rem;color:var(--text-dim);font-family:'DM Mono',monospace;">Linux AppImage · macOS DMG · Requires Docker</p>
+  </div>
+</section>
 
 <hr class="divider">
 
@@ -409,34 +321,137 @@ x<!DOCTYPE html>
 
 <hr class="divider">
 
+<!-- REQUEST ACCESS FORM -->
+<section id="request" style="max-width:680px;">
+  <span class="section-tag">Beta Access</span>
+  <h2 class="section-title">Request access</h2>
+  <p class="section-sub">Select your platform — approved researchers receive the correct installer and onboarding guide within 1–2 business days.</p>
+
+  <div style="background:var(--bg2);border:1.5px solid var(--border-bright);border-radius:16px;padding:2.5rem;box-shadow:0 8px 40px rgba(37,99,235,0.08);">
+
+    <form id="access-form" onsubmit="submitForm(event)">
+
+      <!-- Platform selector -->
+      <div class="form-row">
+        <label class="form-label">Your Operating System *</label>
+        <div class="platform-grid">
+          <div class="platform-card" id="platform-linux" onclick="selectPlatform('linux')">
+            <span class="platform-icon">🐧</span>
+            <span class="platform-name">Linux</span>
+            <span class="platform-hint">Ubuntu / Debian / RHEL</span>
+            <span class="platform-badge">AppImage · 78 MB</span>
+          </div>
+          <div class="platform-card" id="platform-mac" onclick="selectPlatform('mac')">
+            <span class="platform-icon">🍎</span>
+            <span class="platform-name">macOS</span>
+            <span class="platform-hint">Apple Silicon or Intel</span>
+            <span class="platform-badge soon">DMG · Coming soon</span>
+          </div>
+          <div class="platform-card" id="platform-windows" onclick="selectPlatform('windows')">
+            <span class="platform-icon">🪟</span>
+            <span class="platform-name">Windows</span>
+            <span class="platform-hint">WSL2 required</span>
+            <span class="platform-badge soon">EXE · Coming soon</span>
+          </div>
+        </div>
+        <input type="hidden" name="platform" id="platform-value" required>
+        <div id="platform-error" style="display:none;font-size:0.75rem;color:#dc2626;font-family:'DM Mono',monospace;margin-top:0.4rem;">Please select your operating system</div>
+      </div>
+
+      <div class="form-grid2">
+        <div>
+          <label class="form-label">First Name *</label>
+          <input type="text" name="first_name" required placeholder="Jane" class="form-input">
+        </div>
+        <div>
+          <label class="form-label">Last Name *</label>
+          <input type="text" name="last_name" required placeholder="Smith" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Institutional Email *</label>
+        <input type="email" name="email" required placeholder="jane@university.edu" class="form-input">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Institution / Organization *</label>
+        <input type="text" name="institution" required placeholder="Stanford University" class="form-input">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Role *</label>
+        <select name="role" required class="form-select">
+          <option value="">Select your role...</option>
+          <option>Principal Investigator</option>
+          <option>Postdoctoral Researcher</option>
+          <option>PhD Student</option>
+          <option>Bioinformatics Engineer</option>
+          <option>Computational Biologist</option>
+          <option>Data Scientist</option>
+          <option>Clinical Researcher</option>
+          <option>Industry Scientist</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Primary Use Case *</label>
+        <select name="use_case" required class="form-select">
+          <option value="">Select use case...</option>
+          <option>Single-cell RNA-seq analysis</option>
+          <option>Whole genome / exome sequencing</option>
+          <option>Bulk RNA-seq</option>
+          <option>Multi-omics integration</option>
+          <option>Drug target discovery</option>
+          <option>Clinical genomics</option>
+          <option>HPC workflow automation</option>
+          <option>Cloud-based genomics</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Tell us about your research</label>
+        <textarea name="research" rows="3" placeholder="Briefly describe your research and how you plan to use OmniBioAI..." class="form-textarea" style="resize:vertical;"></textarea>
+      </div>
+
+      <button type="submit" id="submit-btn" class="form-submit">
+        Request Access →
+      </button>
+
+    </form>
+
+    <!-- Success state -->
+    <div id="form-success" style="display:none;text-align:center;padding:2rem 0;">
+      <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+      <h3 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:0.5rem;">Request received!</h3>
+      <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;line-height:1.7;max-width:400px;margin:0 auto 1rem;">
+        We'll review your application and send the <strong id="success-platform-label">installer</strong> download link to your email within 1–2 business days.
+      </p>
+      <div id="success-platform-badge" style="display:inline-block;font-family:'DM Mono',monospace;font-size:0.78rem;padding:6px 14px;border-radius:20px;background:var(--green-pale);color:var(--green-dark);border:1px solid var(--border-bright);"></div>
+    </div>
+
+    <p style="margin-top:1.5rem;font-size:0.72rem;color:var(--text-dim);font-family:'DM Mono',monospace;text-align:center;">
+      Your information is never shared or sold.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
 <div class="cta-section">
   <div class="cta-box">
     <h2>Ready to accelerate<br>your research?</h2>
     <p>Join the private beta of OmniBioAI. Run reproducible multi-omics workflows, integrate genomic datasets, and accelerate discovery — without infrastructure setup.</p>
     <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--text-dim);">Built by Manish Kumar — 18+ years in bioinformatics & AI systems</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLkCq3N3bKbsbOkxdbzFo2R9Jnh6QhZsnVN7cV4TfyPTm8NQ/viewform" target="_blank" class="btn-primary">↗ Request Beta Access</a>
-      <a href="mailto:mandecent.gupta@gmail.com" class="btn-secondary">✉ Contact</a>
+      <a href="#request" class="btn-primary">↗ Request Beta Access</a>
+      <a href="mailto:manish@omnibioai.org" class="btn-secondary">✉ Contact</a>
     </div>
   </div>
 </div>
-<!-- =============================================
-     ADD THIS SCRIPT before your closing </body> tag
-     ============================================= -->
-<script>
-  var omicsExpanded = false;
-  function toggleOmics() {
-    omicsExpanded = !omicsExpanded;
-    var hiddenCards = document.querySelectorAll('#omics .hidden-card');
-    var btn = document.getElementById('omics-toggle');
-    hiddenCards.forEach(function(card) {
-      card.style.display = omicsExpanded ? 'block' : 'none';
-    });
-    btn.textContent = omicsExpanded
-      ? 'Show fewer pipelines'
-      : 'Show all pipelines (+10)';
-  }
-</script>
+
 <footer>
   <div class="footer-left">© 2026 OmniBioAI · omnibioai.org · Open Source</div>
   <ul class="footer-links">
@@ -445,5 +460,94 @@ x<!DOCTYPE html>
     <li><a href="mailto:manish@omnibioai.org">Contact</a></li>
   </ul>
 </footer>
+
+<script>
+  // ── Omics toggle ──
+  var omicsExpanded = false;
+  function toggleOmics() {
+    omicsExpanded = !omicsExpanded;
+    document.querySelectorAll('#omics .hidden-card').forEach(function(card) {
+      card.style.display = omicsExpanded ? 'block' : 'none';
+    });
+    document.getElementById('omics-toggle').textContent = omicsExpanded
+      ? 'Show fewer pipelines' : 'Show all pipelines (+10)';
+  }
+
+  // ── Platform selector ──
+  var selectedPlatform = '';
+
+  const PLATFORM_LABELS = {
+    linux:   'Linux AppImage (78 MB)',
+    mac:     'macOS DMG (coming soon)',
+    windows: 'Windows Installer (coming soon)'
+  };
+
+  function selectPlatform(platform) {
+    selectedPlatform = platform;
+    document.getElementById('platform-value').value = platform;
+    document.getElementById('platform-error').style.display = 'none';
+    ['linux','mac','windows'].forEach(function(p) {
+      document.getElementById('platform-' + p).classList.toggle('selected', p === platform);
+    });
+  }
+
+  // Auto-detect OS on page load
+  (function detectOS() {
+    var ua = navigator.userAgent.toLowerCase();
+    var platform = navigator.platform.toLowerCase();
+    if (platform.includes('mac') || ua.includes('mac')) {
+      selectPlatform('mac');
+    } else if (platform.includes('win') || ua.includes('win')) {
+      selectPlatform('windows');
+    } else {
+      selectPlatform('linux');
+    }
+  })();
+
+  // ── Request form ──
+  const WORKER_URL = 'https://beta-requests.mandecent-gupta.workers.dev';
+
+  async function submitForm(e) {
+    e.preventDefault();
+
+    // Validate platform
+    if (!selectedPlatform) {
+      document.getElementById('platform-error').style.display = 'block';
+      document.getElementById('platform-linux').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    const form = document.getElementById('access-form');
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.platform = selectedPlatform;
+
+    try {
+      const res = await fetch(WORKER_URL + '/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        document.getElementById('success-platform-label').textContent =
+          selectedPlatform === 'linux' ? 'Linux AppImage' :
+          selectedPlatform === 'mac'   ? 'macOS DMG' : 'Windows installer';
+        document.getElementById('success-platform-badge').textContent =
+          PLATFORM_LABELS[selectedPlatform];
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(err) {
+      btn.textContent = 'Request Access →';
+      btn.disabled = false;
+      alert('Something went wrong. Please email manish@omnibioai.org');
+    }
+  }
+</script>
 </body>
 </html>
