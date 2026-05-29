@@ -3,206 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OmniBioAI — Open-Source AI Bioinformatics Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>OmniBioAI — AI Bioinformatics Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f6f8ff; --bg2: #ffffff; --bg3: #eef2ff;
-    --green: #2563eb; --green-light: #3b82f6; --green-dark: #1e40af; --green-pale: #e0e7ff;
-    --text: #0b1220; --text-muted: #475569; --text-dim: #94a3b8;
-    --border: rgba(37,99,235,0.15); --border-bright: rgba(37,99,235,0.30);
-    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(37,99,235,0.08);
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: radial-gradient(circle, rgba(37,99,235,0.1) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none; z-index: 0; }
-  .pub-link { display: inline-block; margin-top: 0.4rem; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--green); text-decoration: none; }
-  .pub-link:hover { color: var(--green-dark); text-decoration: underline; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 3rem; background: rgba(247,250,248,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .nav-logo-text { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; color: var(--green-dark); letter-spacing: -0.02em; }
-  .nav-logo-text span { color: var(--text-dim); font-weight: 400; }
-  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--green); }
-  .nav-cta { background: var(--green) !important; color: #fff !important; padding: 0.45rem 1.2rem; border-radius: 6px; font-weight: 500 !important; }
-  .nav-cta:hover { background: var(--green-dark) !important; }
-  .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; z-index: 1; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.78rem; font-family: 'DM Mono', monospace; color: var(--green-dark); margin-bottom: 2rem; letter-spacing: 0.05em; }
-  .badge-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.8); } }
-  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem,6vw,5rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; max-width: 900px; }
-  .hero h1 em { font-style: italic; color: var(--green); }
-  .hero-sub { font-size: clamp(1rem,2vw,1.15rem); color: var(--text-muted); max-width: 560px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--green); color: #fff; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 1rem; transition: all 0.2s; border: 1.5px solid var(--green); box-shadow: 0 2px 12px rgba(37,99,235,0.25); cursor: pointer; font-family: 'Outfit', sans-serif; }
-  .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); transform: translateY(-1px); }
-  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: var(--bg2); color: var(--text-muted); padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 400; font-size: 1rem; transition: all 0.2s; border: 1.5px solid var(--border-bright); box-shadow: var(--shadow); }
-  .btn-secondary:hover { color: var(--green); border-color: var(--green); transform: translateY(-1px); }
-  .hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center; padding-top: 2.5rem; border-top: 1px solid var(--border); }
-  .stat { text-align: center; }
-  .stat-num { font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 500; color: var(--green); display: block; }
-  .stat-label { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
-  section { position: relative; z-index: 1; padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-  .section-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); line-height: 1.2; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-  .section-sub { color: var(--text-muted); font-size: 1rem; max-width: 560px; margin-bottom: 3rem; font-weight: 300; line-height: 1.8; }
-  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
-  .feature-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: all 0.2s; box-shadow: var(--shadow); }
-  .feature-card:hover { border-color: var(--green-light); transform: translateY(-2px); box-shadow: 0 4px 24px rgba(37,99,235,0.12); }
-  .feature-icon { width: 42px; height: 42px; border: 1.5px solid var(--border-bright); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; font-size: 1rem; color: var(--green); background: var(--green-pale); }
-  .feature-title { font-size: 0.98rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .feature-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
-  .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-  .arch-diagram { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; font-family: 'DM Mono', monospace; font-size: 0.78rem; box-shadow: var(--shadow); }
-  .arch-layer { border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 1rem; margin-bottom: 0.5rem; color: var(--text-muted); display: flex; align-items: center; gap: 10px; transition: all 0.2s; background: var(--bg); }
-  .arch-layer:hover { border-color: var(--green-light); color: var(--green-dark); background: var(--green-pale); }
-  .arch-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-  .arch-connector { text-align: center; color: var(--text-dim); font-size: 0.7rem; margin: -0.1rem 0; padding-left: 1.5rem; }
-  .omics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-  .hidden-card { display: none; }
-  .show-more-row { display: flex; justify-content: center; margin-top: 1.5rem; }
-  .show-more-btn { font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500; color: var(--green-dark); background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 6px; padding: 0.5rem 1.4rem; cursor: pointer; transition: background 0.2s, color 0.2s; }
-  .show-more-btn:hover { background: var(--green); color: #fff; }
-  .omics-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.2s; box-shadow: var(--shadow); }
-  .omics-card:hover { border-color: var(--green-light); transform: translateY(-2px); }
-  .omics-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
-  .omics-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.4rem; }
-  .omics-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; line-height: 1.65; }
-  .pub-list { display: flex; flex-direction: column; gap: 0.75rem; }
-  .pub-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1.5rem; box-shadow: var(--shadow); transition: border-color 0.2s; }
-  .pub-card:hover { border-color: var(--green-light); }
-  .pub-year { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green-dark); flex-shrink: 0; margin-top: 3px; background: var(--green-pale); padding: 0.2rem 0.5rem; border-radius: 4px; }
-  .pub-title { font-size: 0.92rem; font-weight: 500; margin-bottom: 0.25rem; line-height: 1.5; }
-  .pub-journal { font-size: 0.78rem; color: var(--text-dim); font-family: 'DM Mono', monospace; }
-  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--green-dark); background: var(--green-pale); border: 1px solid var(--border-bright); border-radius: 4px; padding: 0.25rem 0.6rem; }
-  .cta-section { text-align: center; padding: 6rem 2rem; position: relative; z-index: 1; }
-  .cta-box { max-width: 680px; margin: 0 auto; background: var(--bg2); border: 1.5px solid var(--border-bright); border-radius: 20px; padding: 4rem 3rem; box-shadow: 0 8px 40px rgba(37,99,235,0.1); }
-  .cta-box h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.2; }
-  .cta-box p { color: var(--text-muted); margin-bottom: 2rem; font-weight: 300; }
-  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--bg2); }
-  .footer-left { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-dim); }
-  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-  .footer-links a { font-size: 0.82rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--green); }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0; position: relative; z-index: 1; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04080f;
+  --bg2:#080e1a;
+  --bg3:#0c1422;
+  --surface:#0f1d2e;
+  --surface2:#162336;
+  --accent:#00d4aa;
+  --accent2:#0098ff;
+  --accent3:#7c3aed;
+  --text:#e8f0fe;
+  --text-muted:#7a9bbf;
+  --text-dim:#3d5a78;
+  --border:rgba(0,212,170,0.12);
+  --border2:rgba(0,212,170,0.25);
+  --border3:rgba(0,152,255,0.18);
+  --glow:0 0 40px rgba(0,212,170,0.08);
+  --glow2:0 0 60px rgba(0,152,255,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
 
-  /* ── Platform selector ── */
-  .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
-  .platform-card { background: var(--bg); border: 1.5px solid var(--border-bright); border-radius: 10px; padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s; user-select: none; }
-  .platform-card:hover { border-color: var(--green); background: var(--green-pale); }
-  .platform-card.selected { border-color: var(--green); background: var(--green-pale); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-  .platform-card.selected .platform-name { color: var(--green-dark); font-weight: 600; }
-  .platform-icon { font-size: 1.6rem; margin-bottom: 0.4rem; display: block; }
-  .platform-name { font-size: 0.85rem; font-weight: 500; color: var(--text); display: block; margin-bottom: 0.2rem; }
-  .platform-hint { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--text-dim); display: block; }
-  .platform-badge { display: inline-block; font-size: 0.62rem; font-family: 'DM Mono', monospace; padding: 1px 6px; border-radius: 3px; background: var(--green-pale); color: var(--green-dark); border: 1px solid var(--border-bright); margin-top: 4px; }
-  .platform-badge.soon { background: #fff7ed; color: #c2410c; border-color: rgba(194,65,12,0.2); }
+/* ── Noise overlay ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
 
-  /* ── Request Form ── */
-  .form-input, .form-select, .form-textarea { width: 100%; background: var(--bg); border: 1px solid var(--border-bright); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.9rem; font-family: 'Outfit', sans-serif; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
-  .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
-  .form-label { display: block; font-size: 0.72rem; font-family: 'DM Mono', monospace; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
-  .form-row { margin-bottom: 1rem; }
-  .form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .form-submit { width: 100%; background: var(--green); color: #fff; border: none; border-radius: 8px; padding: 0.9rem; font-size: 1rem; font-family: 'Outfit', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 12px rgba(37,99,235,0.25); }
-  .form-submit:hover { background: var(--green-dark); transform: translateY(-1px); }
-  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+/* ── Grid bg ── */
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
-    .arch-grid, .omics-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.5rem; } footer { flex-direction: column; align-items: flex-start; }
-    .cta-box { padding: 2.5rem 1.5rem; } section { padding: 4rem 1.5rem; }
-    .form-grid2 { grid-template-columns: 1fr; }
-    .platform-grid { grid-template-columns: 1fr; }
-  }
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(4,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo svg{filter:drop-shadow(0 0 8px rgba(0,212,170,0.5))}
+.nav-wordmark{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:500;color:var(--accent);letter-spacing:0.02em}
+.nav-wordmark em{color:var(--text-dim);font-style:normal;font-weight:300}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
+.nav-cta:hover{background:rgba(0,212,170,0.1)!important;box-shadow:0 0 20px rgba(0,212,170,0.15)!important}
+
+/* ── Hero ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;overflow:hidden}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(0,212,170,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;top:30%;left:30%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,152,255,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:2px;padding:0.3rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:2rem;letter-spacing:0.08em;background:rgba(0,212,170,0.05)}
+.badge-dot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6.5vw,5.5rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:880px}
+.hero h1 .line1{display:block;color:var(--text)}
+.hero h1 .line2{display:block;font-style:italic;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:540px;margin-bottom:3rem;font-weight:300;line-height:1.85}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:5rem}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04080f;padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;letter-spacing:0.02em;font-family:'Space Grotesk',sans-serif;border:none;cursor:pointer}
+.btn-primary:hover{filter:brightness(1.1);box-shadow:0 0 30px rgba(0,212,170,0.3);transform:translateY(-1px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-muted);padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:400;font-size:0.9rem;transition:all 0.2s;border:1px solid var(--border2)}
+.btn-secondary:hover{color:var(--text);border-color:rgba(0,212,170,0.5)}
+
+/* ── Stats ticker ── */
+.stats-row{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--border);border-radius:4px;overflow:hidden;width:100%;max-width:800px}
+.stat-item{flex:1;min-width:130px;padding:1.2rem 1.5rem;border-right:1px solid var(--border);position:relative;text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:500;color:var(--accent);display:block;line-height:1}
+.stat-label{font-size:0.68rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;display:block}
+
+/* ── Sections ── */
+section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 auto}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;display:block;opacity:0.9}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;margin-bottom:0.75rem;letter-spacing:-0.01em}
+.sec-sub{color:var(--text-muted);font-size:0.97rem;max-width:520px;margin-bottom:3.5rem;font-weight:300;line-height:1.85}
+
+/* ── Divider ── */
+.divider{border:none;border-top:1px solid var(--border);margin:0;position:relative;z-index:1}
+
+/* ── Feature cards ── */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border)}
+.feature-card{background:var(--bg2);padding:2rem;transition:all 0.2s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,170,0.03),transparent);opacity:0;transition:opacity 0.3s}
+.feature-card:hover::before{opacity:1}
+.feature-card:hover{background:var(--surface)}
+.f-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;border:1px solid var(--border2);color:var(--accent);font-size:1rem;background:rgba(0,212,170,0.05);border-radius:3px}
+.f-title{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
+.f-desc{font-size:0.82rem;color:var(--text-muted);line-height:1.8;font-weight:300}
+
+/* ── Omics grid ── */
+.omics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1px}
+.omics-card{background:var(--bg2);padding:1.5rem;transition:background 0.2s;cursor:default}
+.omics-card:hover{background:var(--surface)}
+.omics-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem;display:block}
+.omics-title{font-size:0.88rem;font-weight:600;margin-bottom:0.35rem;color:var(--text)}
+.omics-desc{font-size:0.77rem;color:var(--text-muted);font-weight:300;line-height:1.65}
+.hidden-card{display:none}
+.show-more-row{display:flex;justify-content:center;margin-top:2rem}
+.show-more-btn{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);background:transparent;border:1px solid var(--border2);border-radius:3px;padding:0.5rem 1.4rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.06em}
+.show-more-btn:hover{background:rgba(0,212,170,0.08)}
+
+/* ── Tags ── */
+.tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.05em}
+
+/* ── Architecture ── */
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem}
+.arch-layer{border:1px solid var(--border);padding:0.65rem 1rem;margin-bottom:2px;color:var(--text-muted);display:flex;align-items:center;gap:10px;transition:all 0.2s;background:var(--bg)}
+.arch-layer:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.03);box-shadow:inset 3px 0 0 var(--accent)}
+.arch-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 6px var(--accent)}
+.arch-conn{text-align:center;color:var(--text-dim);font-size:0.62rem;padding:3px 0 3px 20px;opacity:0.6}
+
+/* ── Publications ── */
+.pub-list{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.pub-card{background:var(--bg2);border:none;padding:1.75rem 2rem;display:flex;align-items:flex-start;gap:2rem;transition:background 0.2s}
+.pub-card:hover{background:var(--surface)}
+.pub-year{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);flex-shrink:0;margin-top:4px;background:rgba(0,212,170,0.08);padding:0.2rem 0.55rem;border:1px solid var(--border2);border-radius:2px}
+.pub-title{font-size:0.9rem;font-weight:500;margin-bottom:0.3rem;line-height:1.5;color:var(--text)}
+.pub-journal{font-size:0.73rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.pub-link{display:inline-block;margin-top:0.4rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--accent);text-decoration:none;transition:opacity 0.2s}
+.pub-link:hover{opacity:0.7}
+
+/* ── Requirements ── */
+.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-bottom:3rem}
+.req-card{background:var(--bg2);padding:1.75rem;transition:background 0.2s}
+.req-card:hover{background:var(--surface)}
+.req-icon{font-size:1.1rem;margin-bottom:1rem;display:block}
+.req-title{font-size:0.88rem;font-weight:600;margin-bottom:0.75rem;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em}
+.req-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.85;font-weight:300}
+.req-desc strong{color:var(--text);font-weight:500}
+
+/* ── Download ── */
+.dl-section-title{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);margin-bottom:0.1rem}
+.dl-card{background:var(--bg2);padding:1.75rem;text-align:center;transition:background 0.2s}
+.dl-card:hover{background:var(--surface)}
+.dl-icon{color:var(--accent);font-size:1.4rem;margin-bottom:1rem;display:block}
+.dl-title{font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
+.dl-desc{font-size:0.77rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.7;font-weight:300}
+.dl-cmd{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);margin-top:0.5rem}
+.dl-os-block{margin-bottom:2.5rem}
+
+/* ── CTA / Form ── */
+.cta-wrap{max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:3.5rem;box-shadow:var(--glow),var(--glow2)}
+.cta-wrap h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:0.75rem;line-height:1.2}
+.cta-wrap>p{color:var(--text-muted);margin-bottom:2rem;font-weight:300;font-size:0.9rem}
+.form-label{display:block;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:0.7rem 1rem;font-size:0.88rem;font-family:'Space Grotesk',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,170,0.08)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-dim)}
+.form-row{margin-bottom:1rem}
+.form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-submit{width:100%;background:var(--accent);color:#04080f;border:none;border-radius:2px;padding:0.85rem;font-size:0.9rem;font-family:'Space Grotesk',sans-serif;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
+.form-submit:hover{filter:brightness(1.1);box-shadow:0 0 25px rgba(0,212,170,0.25);transform:translateY(-1px)}
+.form-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.form-select option{background:var(--bg3)}
+
+/* ── Platform cards ── */
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1rem}
+.platform-card{background:var(--bg);border:none;padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;user-select:none}
+.platform-card:hover{background:var(--surface)}
+.platform-card.selected{background:rgba(0,212,170,0.07);box-shadow:inset 0 0 0 1px var(--accent)}
+.platform-card.selected .platform-name{color:var(--accent)}
+.platform-icon{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:0.35rem;color:var(--accent);opacity:0.7}
+.platform-card.selected .platform-icon{opacity:1}
+.platform-name{font-size:0.82rem;font-weight:500;color:var(--text-muted);margin-bottom:0.2rem;display:block}
+.platform-hint{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);display:block}
+.platform-badge{display:inline-block;font-size:0.58rem;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:2px;background:rgba(0,212,170,0.08);color:var(--accent);border:1px solid var(--border2);margin-top:4px}
+.platform-badge.soon{background:rgba(255,165,0,0.06);color:#e09a28;border-color:rgba(255,165,0,0.2)}
+
+/* ── Footer ── */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+
+/* ── Toast ── */
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--accent);color:#04080f;font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:600;padding:0.75rem 1.5rem;border-radius:3px;z-index:999;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
+#toast.show{opacity:1;transform:translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .arch-grid,.omics-grid,.form-grid2,.platform-grid{grid-template-columns:1fr}
+  section{padding:4rem 1.5rem}
+  .cta-wrap{padding:2rem 1.5rem}
+  footer{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
 
+<!-- ── Toast ── -->
+<div id="toast">Access request submitted ✓</div>
+
+<!-- ── Nav ── -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#2563eb" stroke-width="1.5" fill="rgba(37,99,235,0.06)"/>
-      <circle cx="20" cy="20" r="5" fill="rgba(37,99,235,0.25)" stroke="#2563eb" stroke-width="1"/>
-      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round"/>
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.06)"/>
+      <circle cx="20" cy="20" r="5" fill="rgba(0,212,170,0.2)" stroke="#00d4aa" stroke-width="1"/>
+      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
     </svg>
-    <span class="nav-logo-text">OmniBioAI <span>/ beta</span></span>
+    <span class="nav-wordmark">OmniBioAI <em>/ beta</em></span>
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#omics">Omics</a></li>
     <li><a href="#requirements">Install</a></li>
+    <li><a href="#download">Download</a></li>
     <li><a href="#architecture">Architecture</a></li>
-    <li><a href="#publications">Publications</a></li>
+    <li><a href="#publications">Papers</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank">Demo</a></li>
+    <li><a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank">Demo ↗</a></li>
     <li><a href="#request" class="nav-cta">Request Access</a></li>
   </ul>
 </nav>
 
+<!-- ── Hero ── -->
 <div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
   <div class="hero-badge"><div class="badge-dot"></div>Private beta — now accepting researchers</div>
-  <h1>The <em>AI-native</em> platform<br>for multi-omics research</h1>
+  <h1>
+    <span class="line1">The platform for</span>
+    <span class="line2">multi-omics research</span>
+  </h1>
   <p class="hero-sub">OmniBioAI unifies reproducible multi-omics analysis, agentic AI reasoning, and enterprise-grade infrastructure — across local, HPC, and cloud environments.</p>
-  <p style="max-width:650px;margin:0 auto 2.5rem;color:var(--text-muted);font-weight:400;">Modern bioinformatics workflows are fragmented, slow, and difficult to reproduce across environments.</p>
-  <p style="max-width:650px;margin:0 auto 3rem;color:var(--green-dark);font-weight:500;">OmniBioAI automates end-to-end multi-omics analysis with reproducible, production-grade pipelines powered by AI reasoning.</p>
   <div class="hero-actions">
     <a href="#request" class="btn-primary">↗ Request Access</a>
-    <a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank" class="btn-secondary">Watch Demo</a>
+    <a href="https://www.youtube.com/watch?v=oZa-iJcv5bE" target="_blank" class="btn-secondary">▶ Watch Demo</a>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Bioinformatics pipelines</span></div>
-    <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Integrated analysis tools</span></div>
-    <div class="stat"><span class="stat-num">125+</span><span class="stat-label">Plugins</span></div>
-    <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Agentic pipelines</span></div>
-    <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Platform services</span></div>
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Pipelines</span></div>
+    <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Integrated tools</span></div>
+    <div class="stat-item"><span class="stat-num">125+</span><span class="stat-label">Plugins</span></div>
+    <div class="stat-item"><span class="stat-num">10+</span><span class="stat-label">Agentic flows</span></div>
+    <div class="stat-item"><span class="stat-num">20+</span><span class="stat-label">Services</span></div>
   </div>
 </div>
 
 <hr class="divider">
 
+<!-- ── Features ── -->
 <section id="features">
-  <span class="section-tag">Core capabilities</span>
-  <h2 class="section-title">Built for real science,<br>not demos</h2>
-  <p class="section-sub">Every component is designed with clinical-grade reliability and reproducibility at its core.</p>
+  <span class="sec-tag">// Core capabilities</span>
+  <h2 class="sec-title">Built for real science,<br>not demos</h2>
+  <p class="sec-sub">Every component is designed with clinical-grade reliability and reproducibility at its core.</p>
   <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon">⬡</div><div class="feature-title">Agentic AI reasoning</div><p class="feature-desc">LangGraph-based orchestration with RAG-powered assistants using Hugging Face and Ollama — bridging deterministic bio-computation with explainable AI interpretation.</p></div>
-    <div class="feature-card"><div class="feature-icon">◈</div><div class="feature-title">Workflow agnostic</div><p class="feature-desc">Native support for WDL, Nextflow, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p></div>
-    <div class="feature-card"><div class="feature-icon">◎</div><div class="feature-title">GPU-accelerated stack</div><p class="feature-desc">Optimized on NVIDIA PyTorch with CUDA on DGX Spark. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics.</p></div>
-    <div class="feature-card"><div class="feature-icon">⬕</div><div class="feature-title">End-to-end provenance</div><p class="feature-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.</p></div>
-    <div class="feature-card"><div class="feature-icon">◇</div><div class="feature-title">Reliability-first design</div><p class="feature-desc">98% average test coverage across 11 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p></div>
-    <div class="feature-card"><div class="feature-icon">⬡</div><div class="feature-title">Plugin ecosystem</div><p class="feature-desc">Extensible plugin architecture with OnboardAI documentation browser. 30,000+ lines of living documentation updated after every commit.</p></div>
-  </div>
-</section>
-
-<section id="extensibility">
-  <span class="section-tag">Extensibility</span>
-  <h2 class="section-title">Built to integrate,<br>extend, and scale</h2>
-  <p class="section-sub">OmniBioAI is designed as a modular platform for advanced users who need custom workflows, reproducibility, and integration across research environments.</p>
-  <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon">⚙</div><div class="feature-title">Modular pipeline system</div><p class="feature-desc">Each bioinformatics workflow is modular, allowing researchers to customize, extend, or replace analysis steps without breaking reproducibility.</p></div>
-    <div class="feature-card"><div class="feature-icon">🔗</div><div class="feature-title">Seamless integration</div><p class="feature-desc">Integrates with existing tools and environments including Python, R, Nextflow, WDL, and HPC systems for flexible deployment.</p></div>
-    <div class="feature-card"><div class="feature-icon">☁</div><div class="feature-title">Cloud & HPC ready</div><p class="feature-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS, Azure, and GCP with identical execution logic.</p></div>
-    <div class="feature-card"><div class="feature-icon">🧬</div><div class="feature-title">Reproducible by design</div><p class="feature-desc">Every execution is tracked with full provenance, ensuring reproducibility from raw data to final biological insight.</p></div>
-    <div class="feature-card"><div class="feature-icon">🧠</div><div class="feature-title">AI-assisted analysis layer</div><p class="feature-desc">LLM-powered reasoning assists in interpreting multi-omics outputs, summarizing results, and generating biologically meaningful insights to guide downstream analysis decisions.</p></div>
-    <div class="feature-card"><div class="feature-icon">🤖</div><div class="feature-title">Agentic workflow orchestration</div><p class="feature-desc">LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines, enabling multi-step reasoning across tools, datasets, and analysis stages.</p></div>
+    <div class="feature-card">
+      <div class="f-icon">⬡</div>
+      <div class="f-title">Agentic AI reasoning</div>
+      <p class="f-desc">LangGraph-based orchestration with RAG-powered assistants using Hugging Face and Ollama — bridging deterministic bio-computation with explainable AI interpretation.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">◈</div>
+      <div class="f-title">Workflow agnostic</div>
+      <p class="f-desc">Native support for WDL, Nextflow, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">◎</div>
+      <div class="f-title">GPU-accelerated stack</div>
+      <p class="f-desc">Optimized on NVIDIA PyTorch with CUDA on DGX Spark. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">⬕</div>
+      <div class="f-title">End-to-end provenance</div>
+      <p class="f-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">◇</div>
+      <div class="f-title">Reliability-first design</div>
+      <p class="f-desc">98% average test coverage across 11 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">⬡</div>
+      <div class="f-title">Plugin ecosystem</div>
+      <p class="f-desc">Extensible plugin architecture with OnboardAI documentation browser. 30,000+ lines of living documentation updated after every commit.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">⚙</div>
+      <div class="f-title">Modular pipeline system</div>
+      <p class="f-desc">Each bioinformatics workflow is modular, allowing researchers to customize, extend, or replace analysis steps without breaking reproducibility.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">☁</div>
+      <div class="f-title">Cloud &amp; HPC ready</div>
+      <p class="f-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS, Azure, and GCP with identical execution logic.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">🤖</div>
+      <div class="f-title">Agentic workflow orchestration</div>
+      <p class="f-desc">LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines, enabling multi-step reasoning across tools, datasets, and analysis stages.</p>
+    </div>
   </div>
 </section>
 
 <hr class="divider">
 
+<!-- ── Omics ── -->
 <section id="omics">
-  <span class="section-tag">Multi-omics coverage</span>
-  <h2 class="section-title">Every modality,<br>one platform</h2>
-  <p class="section-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
+  <span class="sec-tag">// Multi-omics coverage</span>
+  <h2 class="sec-title">Every modality,<br>one platform</h2>
+  <p class="sec-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
   <div class="omics-grid">
     <div class="omics-card"><span class="omics-label">scRNA-seq</span><div class="omics-title">Single-cell transcriptomics</div><p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p></div>
-    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome & genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
+    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome &amp; genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
     <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
     <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
     <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
@@ -215,11 +322,11 @@
     <div class="omics-card hidden-card"><span class="omics-label">SV calling</span><div class="omics-title">Structural variant detection</div><p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome methylation pipeline</div><p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal analysis</div><p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing & screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing &amp; screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">variant_ml</span><div class="omics-title">Variant prioritization ML</div><p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p></div>
   </div>
   <div class="show-more-row">
-    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">Show all pipelines (+10)</button>
+    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+10)</button>
   </div>
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
@@ -235,63 +342,187 @@
 
 <hr class="divider">
 
+<!-- ── Requirements ── -->
 <section id="requirements">
-  <span class="section-tag">System Requirements</span>
-  <h2 class="section-title">What you need<br>to get started</h2>
-  <p class="section-sub">OmniBioAI Studio runs on any modern Linux or macOS machine with Docker installed. One download, no command line needed.</p>
-  <div class="features-grid" style="margin-bottom:2.5rem;">
-    <div class="feature-card"><div class="feature-icon">💾</div><div class="feature-title">Memory</div><p class="feature-desc"><strong>Minimum:</strong> 16 GB RAM<br><strong>Recommended:</strong> 32 GB RAM<br><strong>With local LLM:</strong> 64 GB RAM</p></div>
-    <div class="feature-card"><div class="feature-icon">💿</div><div class="feature-title">Storage</div><p class="feature-desc"><strong>AppImage installer:</strong> 78 MB<br><strong>Docker images:</strong> ~10 GB (one-time)<br><strong>Data + work dirs:</strong> 50–200 GB</p></div>
-    <div class="feature-card"><div class="feature-icon">🖥️</div><div class="feature-title">Operating System</div><p class="feature-desc"><strong>Linux:</strong> Ubuntu 20.04+ (AppImage)<br><strong>macOS:</strong> 12+ (DMG — coming soon)<br><strong>Windows:</strong> WSL2 + Docker</p></div>
-    <div class="feature-card"><div class="feature-icon">🐳</div><div class="feature-title">Docker</div><p class="feature-desc">Docker Engine 24+ or Docker Desktop<br>Docker Compose v2 (included)<br><strong>No other dependencies required</strong></p></div>
-    <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">GPU (Optional)</div><p class="feature-desc">NVIDIA GPU + nvidia-container-toolkit<br>Required only for local LLM inference<br>Cloud API (Claude/GPT) works without GPU</p></div>
-    <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title">Network</div><p class="feature-desc">Internet required for first boot only<br>~10 GB pulled from ghcr.io automatically<br><strong>Fully offline after first run</strong></p></div>
+  <span class="sec-tag">// System requirements</span>
+  <h2 class="sec-title">What you need<br>to get started</h2>
+  <p class="sec-sub">OmniBioAI Studio runs on any modern Linux or macOS machine with Docker installed. One download, no command line needed.</p>
+  <div class="req-grid">
+    <div class="req-card">
+      <span class="req-icon">💾</span>
+      <div class="req-title">Memory</div>
+      <p class="req-desc"><strong>Minimum:</strong> 16 GB RAM<br><strong>Recommended:</strong> 32 GB RAM<br><strong>With local LLM:</strong> 64 GB RAM</p>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">💿</span>
+      <div class="req-title">Storage</div>
+      <p class="req-desc"><strong>AppImage / DMG:</strong> ~84 MB<br><strong>Docker images:</strong> ~5 GB (one-time pull)<br><strong>Data + work dirs:</strong> 50–200 GB</p>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">🖥️</span>
+      <div class="req-title">Operating System</div>
+      <p class="req-desc"><strong>Linux:</strong> Ubuntu 20.04+ (AppImage)<br><strong>macOS:</strong> 12+ Apple Silicon + Intel<br><strong>Windows:</strong> WSL2 + Docker</p>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">🐳</span>
+      <div class="req-title">Docker</div>
+      <p class="req-desc">Docker Engine 24+ or Docker Desktop<br>Docker Compose v2 (included)<br><strong>No other dependencies required</strong></p>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">⚡</span>
+      <div class="req-title">GPU (Optional)</div>
+      <p class="req-desc">NVIDIA GPU + nvidia-container-toolkit<br>Required only for local LLM inference<br>Cloud API (Claude/GPT) works without</p>
+    </div>
+    <div class="req-card">
+      <span class="req-icon">🌐</span>
+      <div class="req-title">Network</div>
+      <p class="req-desc">Internet required for first boot only<br>~10 GB pulled from ghcr.io automatically<br><strong>Fully offline after first run</strong></p>
+    </div>
   </div>
-  <div style="max-width:560px;margin:0 auto;background:var(--bg2);border:1.5px solid var(--border-bright);border-radius:16px;padding:2.5rem;box-shadow:var(--shadow);text-align:center;">
-    <div style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--green-dark);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">● Private Beta · v0.1.0-beta.1</div>
-    <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:0.5rem;">Access requires approval</h3>
-    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7;">Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.</p>
-    <a href="#request" class="btn-primary" style="display:inline-flex;">↗ Request Beta Access</a>
-    <p style="margin-top:1rem;font-size:0.72rem;color:var(--text-dim);font-family:'DM Mono',monospace;">Linux AppImage · macOS DMG · Requires Docker</p>
+
+  <div style="max-width:520px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;text-align:center;box-shadow:var(--glow)">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem">● Private Beta · v0.2.0-beta</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.5rem">Access requires approval</h3>
+    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7">Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.</p>
+    <a href="#request" class="btn-primary" style="display:inline-flex">↗ Request Beta Access</a>
+    <p style="margin-top:0.75rem;font-size:0.67rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim)">License key included · 30-day free trial</p>
   </div>
 </section>
 
 <hr class="divider">
 
+<!-- ── Download ── -->
+<section id="download">
+  <span class="sec-tag">// Downloads</span>
+  <h2 class="sec-title">OmniBioAI Studio<br><span style="font-size:0.7em;opacity:0.7">v0.2.0-beta</span></h2>
+  <p class="sec-sub">Choose your platform and architecture. All installers include a 30-day free trial license.</p>
+
+  <!-- macOS -->
+  <div class="dl-os-block">
+    <div class="dl-section-title">
+      <svg viewBox="0 0 170 170" width="14" height="14" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg>
+      macOS
+    </div>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <span class="dl-icon">🍎</span>
+        <div class="dl-title">Apple Silicon</div>
+        <p class="dl-desc">M1 / M2 / M3 / M4<br>Native ARM64 build</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/download/v0.2.0-beta/OmniBioAI.Studio-0.2.0-arm64.dmg" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DMG · 84 MB</a>
+      </div>
+      <div class="dl-card">
+        <span class="dl-icon">💻</span>
+        <div class="dl-title">Intel Architecture</div>
+        <p class="dl-desc">Legacy Intel Mac<br>Native x86_64 build</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/download/v0.2.0-beta/OmniBioAI.Studio-0.2.0.dmg" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DMG · 86 MB</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linux x86 -->
+  <div class="dl-os-block">
+    <div class="dl-section-title">🐧 Linux x86_64 (Intel / AMD)</div>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">AppImage</div>
+        <p class="dl-desc">Any Linux distro<br>Ubuntu 20.04+</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/download/v0.2.0-beta/OmniBioAI.Studio-0.2.0.AppImage" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ AppImage · 84 MB</a>
+      </div>
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">DEB Package</div>
+        <p class="dl-desc">Ubuntu / Debian / Mint<br>amd64</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/latest" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~85 MB</a>
+        <div class="dl-cmd">sudo dpkg -i omnibioai_*.deb</div>
+      </div>
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">RPM Package</div>
+        <p class="dl-desc">RHEL / Fedora / CentOS<br>x86_64</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/latest" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~85 MB</a>
+        <div class="dl-cmd">sudo rpm -i omnibioai-*.rpm</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linux ARM64 -->
+  <div class="dl-os-block">
+    <div class="dl-section-title">🦾 Linux ARM64 (DGX / Graviton / Raspberry Pi)</div>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">AppImage ARM64</div>
+        <p class="dl-desc">Any ARM64 Linux<br>aarch64</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/latest" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ AppImage · ~80 MB</a>
+        <div class="dl-cmd">chmod +x *.AppImage && ./OmniBioAI*.AppImage</div>
+      </div>
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">DEB ARM64</div>
+        <p class="dl-desc">Ubuntu / Debian ARM64<br>aarch64</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/latest" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~85 MB</a>
+        <div class="dl-cmd">sudo dpkg -i omnibioai_*arm64.deb</div>
+      </div>
+      <div class="dl-card">
+        <span class="dl-icon">📦</span>
+        <div class="dl-title">RPM ARM64</div>
+        <p class="dl-desc">RHEL / Fedora ARM64<br>aarch64</p>
+        <a href="https://github.com/man4ish/omnibioai-studio/releases/latest" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~85 MB</a>
+        <div class="dl-cmd">sudo rpm -i omnibioai-*.aarch64.rpm</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Windows -->
+  <div class="dl-os-block">
+    <div class="dl-section-title">🪟 Windows (WSL2)</div>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <span class="dl-icon">🪟</span>
+        <div class="dl-title">Windows Installer</div>
+        <p class="dl-desc">Windows 10 / 11 x64<br>Requires WSL2 Enabled</p>
+        <a href="#request" class="btn-secondary" style="justify-content:center;font-size:0.82rem">Join Waitlist →</a>
+        <div class="dl-cmd" style="color:#e09a28">Available June 1, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Architecture ── -->
 <section id="architecture">
-  <span class="section-tag">System architecture</span>
+  <span class="sec-tag">// System architecture</span>
+  <h2 class="sec-title">Clinical-grade design</h2>
+  <p class="sec-sub">A containerized, microservices-led environment built for massive scale, traceability, and high performance.</p>
   <div class="arch-grid">
     <div>
-      <h2 class="section-title">Enterprise infrastructure,<br>open source</h2>
-      <p class="section-sub">OmniBioAI solves the reproducibility crisis in bioinformatics by combining distributed systems engineering with large language models.</p>
-      <p style="color:var(--text-muted);font-size:0.9rem;font-weight:300;line-height:1.85;">The platform runs identically across local workstations, HPC clusters (Slurm/LSF), and cloud environments (AWS/Azure/GCP) — eliminating the "works on my machine" problem that plagues computational biology.</p>
+      <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;color:var(--text)">Engineered for absolute provenance</h3>
+      <p style="color:var(--text-muted);font-weight:300;margin-bottom:1.25rem;font-size:0.9rem;line-height:1.85">OmniBioAI Studio separates user experience orchestration from heavy-lifting workflow engines. It executes multi-omics routines natively, passing biological insights directly into automated reporting and visualization pipelines.</p>
+      <p style="color:var(--text-muted);font-weight:300;font-size:0.9rem;line-height:1.85">With strict isolation across its core service layers, researchers can safely deploy pipelines locally or easily burst to Slurm or cloud systems without code modifications.</p>
     </div>
     <div class="arch-diagram">
-      <div class="arch-layer"><div class="arch-dot"></div>Cloudflare — global edge + DDoS</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>OmniBioAI Workbench — Django + Celery</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>Tool Execution Service (TES)</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>RAG Assistant — Ollama + HuggingFace</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>Model Registry — versioning + provenance</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>LIMS-X — sample & metadata tracking</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>Control Center — health + telemetry</div>
-      <div class="arch-connector">↓</div>
-      <div class="arch-layer"><div class="arch-dot"></div>Local / HPC Slurm / Cloud AWS · Azure · GCP</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>OmniBioAI Studio UI (Desktop Frontend)</span></div>
+      <div class="arch-conn">│ Handshake (sub-3ms latency)</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>Agentic AI Orchestration (LangGraph / Ollama / HF)</span></div>
+      <div class="arch-conn">│ Orchestration &amp; data mapping</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>BioFlow Runtime Engine (Nextflow / WDL / Snakemake)</span></div>
+      <div class="arch-conn">│ Tracking &amp; provenance link</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>LIMS-X Metadata &amp; Sample Tracking System</span></div>
+      <div class="arch-conn">│ Infrastructure layer</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>GPU Accelerated Stack (CUDA / NVIDIA DGX Spark)</span></div>
     </div>
   </div>
 </section>
 
 <hr class="divider">
 
+<!-- ── Publications ── -->
 <section id="publications">
-  <span class="section-tag">Research</span>
-  <h2 class="section-title">Peer-reviewed publications</h2>
-  <p class="section-sub">Built by researchers, for researchers — grounded in published science across genomics and precision medicine.</p>
+  <span class="sec-tag">// Academic presence</span>
+  <h2 class="sec-title">Peer-reviewed research</h2>
+  <p class="sec-sub">Methods developed and powered by OmniBioAI platform architectures across transcriptomics and proteomics.</p>
   <div class="pub-list">
     <div class="pub-card">
       <div class="pub-year">2025</div>
@@ -322,17 +553,40 @@
 
 <hr class="divider">
 
-<!-- REQUEST ACCESS FORM -->
-<section id="request" style="max-width:680px;">
-  <span class="section-tag">Beta Access</span>
-  <h2 class="section-title">Request access</h2>
-  <p class="section-sub">Select your platform — approved researchers receive the correct installer and onboarding guide within 1–2 business days.</p>
-
-  <div style="background:var(--bg2);border:1.5px solid var(--border-bright);border-radius:16px;padding:2.5rem;box-shadow:0 8px 40px rgba(37,99,235,0.08);">
-
-    <form id="access-form" onsubmit="submitForm(event)">
-
-      <!-- Platform selector -->
+<!-- ── Request ── -->
+<section id="request" style="max-width:680px">
+  <div class="cta-wrap">
+    <span class="sec-tag">// Apply for private beta</span>
+    <h2>Request Access</h2>
+    <p>Get access to OmniBioAI Studio v0.2.0-beta. Accelerate your multi-omics data integration with robust, explainable AI workflows.</p>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-grid2">
+        <div class="form-row">
+          <label class="form-label">Full Name *</label>
+          <input type="text" class="form-input" placeholder="Dr. Alex Carter" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Institutional Email *</label>
+          <input type="email" class="form-input" placeholder="alex.carter@university.edu" required>
+        </div>
+      </div>
+      <div class="form-grid2">
+        <div class="form-row">
+          <label class="form-label">Organization / Lab *</label>
+          <input type="text" class="form-input" placeholder="Center for Genomic Medicine" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Primary Research Area *</label>
+          <select class="form-select" required>
+            <option value="" disabled selected>Select modality...</option>
+            <option value="scrna">Single-Cell Transcriptomics</option>
+            <option value="wgs">WGS / Exome Variant Analysis</option>
+            <option value="proteomics">Proteomics &amp; Mass Spec</option>
+            <option value="drug_discovery">Target Identification / GNNs</option>
+            <option value="other">Other Multi-Modal Research</option>
+          </select>
+        </div>
+      </div>
       <div class="form-row">
         <label class="form-label">Your Operating System *</label>
         <div class="platform-grid">
@@ -346,7 +600,7 @@
             <span class="platform-icon">🍎</span>
             <span class="platform-name">macOS</span>
             <span class="platform-hint">Apple Silicon or Intel</span>
-            <span class="platform-badge soon">DMG · Coming soon</span>
+            <span class="platform-badge">DMG · 84 MB</span>
           </div>
           <div class="platform-card" id="platform-windows" onclick="selectPlatform('windows')">
             <span class="platform-icon">🪟</span>
@@ -355,200 +609,60 @@
             <span class="platform-badge soon">EXE · Coming soon</span>
           </div>
         </div>
-        <input type="hidden" name="platform" id="platform-value" required>
-        <div id="platform-error" style="display:none;font-size:0.75rem;color:#dc2626;font-family:'DM Mono',monospace;margin-top:0.4rem;">Please select your operating system</div>
+        <input type="hidden" name="platform" id="platform-value">
+        <div id="platform-error" style="display:none;font-size:0.72rem;color:#e24b4a;font-family:'JetBrains Mono',monospace;margin-top:0.4rem">Please select your operating system</div>
       </div>
-
-      <div class="form-grid2">
-        <div>
-          <label class="form-label">First Name *</label>
-          <input type="text" name="first_name" required placeholder="Jane" class="form-input">
-        </div>
-        <div>
-          <label class="form-label">Last Name *</label>
-          <input type="text" name="last_name" required placeholder="Smith" class="form-input">
-        </div>
-      </div>
-
       <div class="form-row">
-        <label class="form-label">Institutional Email *</label>
-        <input type="email" name="email" required placeholder="jane@university.edu" class="form-input">
+        <label class="form-label">Intended Analysis / Pipelines *</label>
+        <textarea class="form-textarea" rows="3" placeholder="Briefly describe your computational workflows or pipeline orchestration goals..." required></textarea>
       </div>
-
-      <div class="form-row">
-        <label class="form-label">Institution / Organization *</label>
-        <input type="text" name="institution" required placeholder="Stanford University" class="form-input">
-      </div>
-
-      <div class="form-row">
-        <label class="form-label">Role *</label>
-        <select name="role" required class="form-select">
-          <option value="">Select your role...</option>
-          <option>Principal Investigator</option>
-          <option>Postdoctoral Researcher</option>
-          <option>PhD Student</option>
-          <option>Bioinformatics Engineer</option>
-          <option>Computational Biologist</option>
-          <option>Data Scientist</option>
-          <option>Clinical Researcher</option>
-          <option>Industry Scientist</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <label class="form-label">Primary Use Case *</label>
-        <select name="use_case" required class="form-select">
-          <option value="">Select use case...</option>
-          <option>Single-cell RNA-seq analysis</option>
-          <option>Whole genome / exome sequencing</option>
-          <option>Bulk RNA-seq</option>
-          <option>Multi-omics integration</option>
-          <option>Drug target discovery</option>
-          <option>Clinical genomics</option>
-          <option>HPC workflow automation</option>
-          <option>Cloud-based genomics</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <label class="form-label">Tell us about your research</label>
-        <textarea name="research" rows="3" placeholder="Briefly describe your research and how you plan to use OmniBioAI..." class="form-textarea" style="resize:vertical;"></textarea>
-      </div>
-
-      <button type="submit" id="submit-btn" class="form-submit">
-        Request Access →
-      </button>
-
+      <button type="submit" class="form-submit" id="submit-btn">Submit Request</button>
     </form>
-
-    <!-- Success state -->
-    <div id="form-success" style="display:none;text-align:center;padding:2rem 0;">
-      <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-      <h3 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:0.5rem;">Request received!</h3>
-      <p style="font-size:0.9rem;color:var(--text-muted);font-weight:300;line-height:1.7;max-width:400px;margin:0 auto 1rem;">
-        We'll review your application and send the <strong id="success-platform-label">installer</strong> download link to your email within 1–2 business days.
-      </p>
-      <div id="success-platform-badge" style="display:inline-block;font-family:'DM Mono',monospace;font-size:0.78rem;padding:6px 14px;border-radius:20px;background:var(--green-pale);color:var(--green-dark);border:1px solid var(--border-bright);"></div>
-    </div>
-
-    <p style="margin-top:1.5rem;font-size:0.72rem;color:var(--text-dim);font-family:'DM Mono',monospace;text-align:center;">
-      Your information is never shared or sold.
-    </p>
   </div>
 </section>
 
-<hr class="divider">
-
-<div class="cta-section">
-  <div class="cta-box">
-    <h2>Ready to accelerate<br>your research?</h2>
-    <p>Join the private beta of OmniBioAI. Run reproducible multi-omics workflows, integrate genomic datasets, and accelerate discovery — without infrastructure setup.</p>
-    <p style="margin-top:0.8rem;font-size:0.85rem;color:var(--text-dim);">Built by Manish Kumar — 18+ years in bioinformatics & AI systems</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;">
-      <a href="#request" class="btn-primary">↗ Request Beta Access</a>
-      <a href="mailto:manish@omnibioai.org" class="btn-secondary">✉ Contact</a>
-    </div>
-  </div>
-</div>
-
+<!-- ── Footer ── -->
 <footer>
-  <div class="footer-left">© 2026 OmniBioAI · omnibioai.org · Open Source</div>
+  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.</div>
   <ul class="footer-links">
-    <li><a href="https://github.com/man4ish/omnibioai" target="_blank">GitHub</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#omics">Omics</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#download">Download</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="mailto:manish@omnibioai.org">Contact</a></li>
   </ul>
 </footer>
 
 <script>
-  // ── Omics toggle ──
-  var omicsExpanded = false;
-  function toggleOmics() {
-    omicsExpanded = !omicsExpanded;
-    document.querySelectorAll('#omics .hidden-card').forEach(function(card) {
-      card.style.display = omicsExpanded ? 'block' : 'none';
-    });
-    document.getElementById('omics-toggle').textContent = omicsExpanded
-      ? 'Show fewer pipelines' : 'Show all pipelines (+10)';
+function selectPlatform(p){
+  document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
+  var el=document.getElementById('platform-'+p);
+  if(el){el.classList.add('selected');document.getElementById('platform-value').value=p;document.getElementById('platform-error').style.display='none'}
+}
+function toggleOmics(){
+  var cards=document.querySelectorAll('.omics-card.hidden-card');
+  var btn=document.getElementById('omics-toggle');
+  var showing=cards[0]&&cards[0].style.display==='block';
+  cards.forEach(c=>c.style.display=showing?'none':'block');
+  btn.textContent=showing?'SHOW ALL PIPELINES (+10)':'HIDE EXTRA PIPELINES';
+}
+function handleSubmit(e){
+  e.preventDefault();
+  if(!document.getElementById('platform-value').value){
+    document.getElementById('platform-error').style.display='block';return;
   }
-
-  // ── Platform selector ──
-  var selectedPlatform = '';
-
-  const PLATFORM_LABELS = {
-    linux:   'Linux AppImage (78 MB)',
-    mac:     'macOS DMG (coming soon)',
-    windows: 'Windows Installer (coming soon)'
-  };
-
-  function selectPlatform(platform) {
-    selectedPlatform = platform;
-    document.getElementById('platform-value').value = platform;
-    document.getElementById('platform-error').style.display = 'none';
-    ['linux','mac','windows'].forEach(function(p) {
-      document.getElementById('platform-' + p).classList.toggle('selected', p === platform);
-    });
-  }
-
-  // Auto-detect OS on page load
-  (function detectOS() {
-    var ua = navigator.userAgent.toLowerCase();
-    var platform = navigator.platform.toLowerCase();
-    if (platform.includes('mac') || ua.includes('mac')) {
-      selectPlatform('mac');
-    } else if (platform.includes('win') || ua.includes('win')) {
-      selectPlatform('windows');
-    } else {
-      selectPlatform('linux');
-    }
-  })();
-
-  // ── Request form ──
-  const WORKER_URL = 'https://beta-requests.mandecent-gupta.workers.dev';
-
-  async function submitForm(e) {
-    e.preventDefault();
-
-    // Validate platform
-    if (!selectedPlatform) {
-      document.getElementById('platform-error').style.display = 'block';
-      document.getElementById('platform-linux').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Submitting...';
-    btn.disabled = true;
-
-    const form = document.getElementById('access-form');
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.platform = selectedPlatform;
-
-    try {
-      const res = await fetch(WORKER_URL + '/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-        document.getElementById('success-platform-label').textContent =
-          selectedPlatform === 'linux' ? 'Linux AppImage' :
-          selectedPlatform === 'mac'   ? 'macOS DMG' : 'Windows installer';
-        document.getElementById('success-platform-badge').textContent =
-          PLATFORM_LABELS[selectedPlatform];
-      } else {
-        throw new Error('Server error');
-      }
-    } catch(err) {
-      btn.textContent = 'Request Access →';
-      btn.disabled = false;
-      alert('Something went wrong. Please email manish@omnibioai.org');
-    }
-  }
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='Sending...';
+  setTimeout(function(){
+    btn.textContent='Request Submitted ✓';
+    var t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show')},3000);
+  },900);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.omics-card.hidden-card').forEach(c=>c.style.display='none');
+});
 </script>
 </body>
 </html>
