@@ -9,7 +9,7 @@ Official marketing and download landing page for [OmniBioAI Studio](https://gith
 A self-contained static site (zero build step, zero dependencies) that serves as the public face of OmniBioAI Studio. It covers:
 
 - Platform overview and feature highlights
-- Multi-omics pipeline coverage (16 modalities)
+- Multi-omics pipeline coverage (20+ modalities)
 - System requirements and installation instructions
 - Download links for all release artifacts (macOS DMG, Linux AppImage/DEB/RPM, Windows EXE)
 - Architecture overview
@@ -17,6 +17,18 @@ A self-contained static site (zero build step, zero dependencies) that serves as
 - Beta access request form
 
 **Live site:** deploy any of the three HTML files directly — no bundler, no framework, no Node.js required.
+
+---
+
+## Screenshots
+
+| Architecture | Health Status |
+|---|---|
+| ![Architecture](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/architecture.png) | ![Health](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/health.png) |
+
+| Code Coverage | Tool Images |
+|---|---|
+| ![Coverage](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/coverage.png) | ![Tools](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/tool-images.png) |
 
 ---
 
@@ -51,18 +63,21 @@ Download URLs are hardcoded in `index.html` under the `#download` section. When 
 
 ```
 Current pattern:
-https://github.com/man4ish/omnibioai-studio/releases/download/v0.2.0-beta/<artifact>
+https://github.com/man4ish/omnibioai-studio/releases/download/v0.3.0-beta/<artifact>
 
 Artifacts to update:
-- OmniBioAI.Studio-<version>-arm64.dmg       ← macOS Apple Silicon
-- OmniBioAI.Studio-<version>.dmg              ← macOS Intel
-- OmniBioAI.Studio-<version>.AppImage         ← Linux x64
-- OmniBioAI.Studio-<version>-arm64.AppImage   ← Linux ARM64
-- omnibioai_<version>_amd64.deb               ← Debian/Ubuntu x64
-- omnibioai-<version>.x86_64.rpm              ← RHEL/Fedora x64
+- OmniBioAI Studio-0.3.0-beta-arm64.dmg          ← macOS Apple Silicon
+- OmniBioAI Studio-0.3.0-beta.dmg                ← macOS Intel
+- OmniBioAI Studio-0.3.0-beta.AppImage           ← Linux x64
+- OmniBioAI Studio-0.3.0-beta-arm64.AppImage     ← Linux ARM64
+- omnibioai-studio_0.3.0-beta_amd64.deb          ← Debian/Ubuntu x64
+- omnibioai-studio_0.3.0-beta_arm64.deb          ← Debian/Ubuntu ARM64
+- omnibioai-studio-0.3.0-beta.x86_64.rpm         ← RHEL/Fedora x64
+- omnibioai-studio-0.3.0-beta.aarch64.rpm        ← RHEL/Fedora ARM64
+- OmniBioAI Studio Setup 0.3.0-beta.exe          ← Windows x64
 ```
 
-Also update the version badge in the hero section (`v0.2.0-beta`) and the requirements section.
+Also update the version badge in the hero section (`v0.3.0-beta`) and the requirements section.
 
 ---
 
@@ -115,12 +130,15 @@ No build process, no environment variables, no server-side rendering.
 
 This repo should be updated alongside [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) releases. The typical release checklist:
 
-- [ ] Update version string (`v0.2.0-beta` → new version) in hero badge, requirements section, download section
+- [ ] Update version string (`v0.3.0-beta` → new version) in hero badge, requirements section, download section
 - [ ] Update all download URLs to point to new release tag
 - [ ] Update hero stats if plugin/pipeline counts have changed
 - [ ] Update publications section if new papers are out
 - [ ] Test all download links resolve correctly
 - [ ] Deploy
+
+> 💡 Tip: Claude Code can automate this entire checklist.
+> Run `claude` in this repo and paste the new version + artifact filenames.
 
 ---
 
@@ -130,6 +148,8 @@ This repo should be updated alongside [omnibioai-studio](https://github.com/man4
 |---|---|
 | [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) | Electron + React + Vite desktop app |
 | [omnibioai](https://github.com/man4ish/omnibioai) | Django backend — 150+ plugin bioinformatics platform |
+| [omnibioai-workflow-bundles](https://github.com/man4ish/omnibioai-workflow-bundles) | 600+ bioinformatics pipeline bundles |
+| [omnibioai-landing](https://github.com/man4ish/omnibioai-landing) | This landing page |
 
 ---
 
