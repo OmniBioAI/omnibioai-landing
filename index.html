@@ -239,7 +239,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="stat-item"><span class="stat-num">600+</span><span class="stat-label">Pipelines</span></div>
     <div class="stat-item"><span class="stat-num">1000+</span><span class="stat-label">Integrated tools</span></div>
     <div class="stat-item"><span class="stat-num">200+</span><span class="stat-label">Plugins</span></div>
-    <div class="stat-item"><span class="stat-num">10+</span><span class="stat-label">Agentic flows</span></div>
+    <div class="stat-item"><span class="stat-num">12+</span><span class="stat-label">Agentic flows</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-label">Services</span></div>
   </div>
 </div>
@@ -324,9 +324,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal analysis</div><p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing &amp; screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">variant_ml</span><div class="omics-title">Variant prioritization ML</div><p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">LONG-READ</span><div class="omics-title">Long-read sequencing</div><p class="omics-desc">Nanopore and PacBio long-read alignment, assembly, methylation and isoform analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">MICROBIOME</span><div class="omics-title">Metagenomics</div><p class="omics-desc">Shotgun metagenomic profiling, taxonomic classification, functional annotation and diversity analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">EPIGENOMICS</span><div class="omics-title">Epigenome analysis</div><p class="omics-desc">ChIP-seq, ATAC-seq, methylation and chromatin accessibility across the full epigenome.</p></div>
   </div>
   <div class="show-more-row">
-    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+10)</button>
+    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+13)</button>
   </div>
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
@@ -653,7 +656,7 @@ function toggleOmics(){
   var btn=document.getElementById('omics-toggle');
   var showing=cards[0]&&cards[0].style.display==='block';
   cards.forEach(c=>c.style.display=showing?'none':'block');
-  btn.textContent=showing?'SHOW ALL PIPELINES (+10)':'HIDE EXTRA PIPELINES';
+  btn.textContent=showing?'SHOW ALL PIPELINES (+13)':'HIDE EXTRA PIPELINES';
 }
 function handleSubmit(e){
   e.preventDefault();
