@@ -574,30 +574,47 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <form onsubmit="handleSubmit(event)">
       <div class="form-grid2">
         <div class="form-row">
-          <label class="form-label">Full Name *</label>
-          <input type="text" class="form-input" placeholder="Dr. Alex Carter" required>
+          <label class="form-label">First Name *</label>
+          <input type="text" id="first-name" class="form-input" placeholder="Alex" required>
         </div>
         <div class="form-row">
-          <label class="form-label">Institutional Email *</label>
-          <input type="email" class="form-input" placeholder="alex.carter@university.edu" required>
+          <label class="form-label">Last Name *</label>
+          <input type="text" id="last-name" class="form-input" placeholder="Carter" required>
         </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Institutional Email *</label>
+        <input type="email" id="email" class="form-input" placeholder="alex.carter@university.edu" required>
       </div>
       <div class="form-grid2">
         <div class="form-row">
           <label class="form-label">Organization / Lab *</label>
-          <input type="text" class="form-input" placeholder="Center for Genomic Medicine" required>
+          <input type="text" id="institution" class="form-input" placeholder="Center for Genomic Medicine" required>
         </div>
         <div class="form-row">
-          <label class="form-label">Primary Research Area *</label>
-          <select class="form-select" required>
-            <option value="" disabled selected>Select modality...</option>
-            <option value="scrna">Single-Cell Transcriptomics</option>
-            <option value="wgs">WGS / Exome Variant Analysis</option>
-            <option value="proteomics">Proteomics &amp; Mass Spec</option>
-            <option value="drug_discovery">Target Identification / GNNs</option>
-            <option value="other">Other Multi-Modal Research</option>
+          <label class="form-label">Role *</label>
+          <select id="role" class="form-select" required>
+            <option value="" disabled selected>Select role...</option>
+            <option value="phd_student">PhD Student</option>
+            <option value="postdoc">Postdoctoral Researcher</option>
+            <option value="research_scientist">Research Scientist</option>
+            <option value="bioinformatician">Bioinformatician</option>
+            <option value="data_scientist">Data Scientist</option>
+            <option value="pi">Principal Investigator</option>
+            <option value="other">Other</option>
           </select>
         </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Primary Research Area *</label>
+        <select id="use-case" class="form-select" required>
+          <option value="" disabled selected>Select modality...</option>
+          <option value="scrna">Single-Cell Transcriptomics</option>
+          <option value="wgs">WGS / Exome Variant Analysis</option>
+          <option value="proteomics">Proteomics &amp; Mass Spec</option>
+          <option value="drug_discovery">Target Identification / GNNs</option>
+          <option value="other">Other Multi-Modal Research</option>
+        </select>
       </div>
       <div class="form-row">
         <label class="form-label">Your Operating System *</label>
@@ -618,7 +635,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
             <span class="platform-icon">🪟</span>
             <span class="platform-name">Windows</span>
             <span class="platform-hint">WSL2 required</span>
-            <span class="platform-badge soon">EXE · Coming soon</span>
+            <span class="platform-badge">EXE · ~90 MB</span>
           </div>
         </div>
         <input type="hidden" name="platform" id="platform-value">
@@ -626,9 +643,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       </div>
       <div class="form-row">
         <label class="form-label">Intended Analysis / Pipelines *</label>
-        <textarea class="form-textarea" rows="3" placeholder="Briefly describe your computational workflows or pipeline orchestration goals..." required></textarea>
+        <textarea id="research" class="form-textarea" rows="3" placeholder="Briefly describe your computational workflows or pipeline orchestration goals..." required></textarea>
       </div>
       <button type="submit" class="form-submit" id="submit-btn">Submit Request</button>
+      <div id="submit-error" style="display:none;font-size:0.72rem;color:#e24b4a;font-family:'JetBrains Mono',monospace;margin-top:0.5rem">Submission failed — please email manish@omnibioai.org</div>
     </form>
   </div>
 </section>
@@ -664,13 +682,35 @@ function handleSubmit(e){
     document.getElementById('platform-error').style.display='block';return;
   }
   var btn=document.getElementById('submit-btn');
+  var errEl=document.getElementById('submit-error');
   btn.disabled=true;btn.textContent='Sending...';
-  setTimeout(function(){
-    btn.textContent='Request Submitted ✓';
+  errEl.style.display='none';
+  var payload={
+    first_name:document.getElementById('first-name').value.trim().split(/\s+/)[0],
+    last_name:document.getElementById('last-name').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    institution:document.getElementById('institution').value.trim(),
+    role:document.getElementById('role').value,
+    platform:document.getElementById('platform-value').value,
+    use_case:document.getElementById('use-case').value,
+    research:document.getElementById('research').value.trim()
+  };
+  fetch('https://beta-requests.mandecent-gupta.workers.dev/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  }).then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    btn.textContent='✓ Submitted';
+    e.target.reset();
+    document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
     var t=document.getElementById('toast');
     t.classList.add('show');
     setTimeout(function(){t.classList.remove('show')},3000);
-  },900);
+  }).catch(function(){
+    btn.disabled=false;btn.textContent='Submit Request';
+    errEl.style.display='block';
+  });
 }
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.omics-card.hidden-card').forEach(c=>c.style.display='none');
