@@ -1,155 +1,182 @@
-# OmniBioAI Landing Page
+# OmniBioAI — Official Landing Page
 
-Official marketing and download landing page for [OmniBioAI Studio](https://github.com/man4ish/omnibioai-studio) — an AI-native, reproducible bioinformatics platform for multi-omics research.
+> Official landing page for **OmniBioAI Studio** — an AI-native, reproducible bioinformatics platform for multi-omics research and workflow automation.
 
----
-
-## What this repo is
-
-A self-contained static site (zero build step, zero dependencies) that serves as the public face of OmniBioAI Studio. It covers:
-
-- Platform overview and feature highlights
-- Multi-omics pipeline coverage (20+ modalities)
-- System requirements and installation instructions
-- Download links for all release artifacts (macOS DMG, Linux AppImage/DEB/RPM, Windows EXE)
-- Architecture overview
-- Peer-reviewed publications
-- Beta access request form
-
-**Live site:** deploy any of the three HTML files directly — no bundler, no framework, no Node.js required.
+🌐 **Live site:** [omnibioai.org](https://omnibioai.org)  
+📺 **Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=oZa-iJcv5bE)
 
 ---
 
-## Screenshots
+## Overview
 
-| Architecture | Health Status |
-|---|---|
-| ![Architecture](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/architecture.png) | ![Health](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/health.png) |
+This repository contains the static HTML/CSS/JS landing page for OmniBioAI Studio. The site is a single-page application with multiple sections covering features, supported omics modalities, system requirements, platform downloads, architecture, publications, and a private beta access request form.
 
-| Code Coverage | Tool Images |
-|---|---|
-| ![Coverage](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/coverage.png) | ![Tools](https://raw.githubusercontent.com/man4ish/omnibioai-studio/main/docs/screenshots/tool-images.png) |
+The site is built with vanilla HTML, CSS, and JavaScript — no build tools or frameworks required.
 
 ---
 
-## Files
+## Pages
 
-| File | Purpose |
-|---|---|
-| `index.html` | Main landing page — features, downloads, omics coverage, request form |
-| `about.html` | About page — team, mission, background |
-| `admin.html` | Internal admin/ops view |
+| File | Description |
+|------|-------------|
+| `index.html` | Main landing page (hero, features, omics, downloads, architecture, publications, beta form) |
+| `about.html` | About page |
+| `admin.html` | Beta access admin panel |
 
 ---
 
-## Local development
+## Platform Coverage
 
-No build step needed. Open directly in a browser:
+The download section provides installers for:
+
+**macOS**
+- Apple Silicon (ARM64) — DMG · 84 MB
+- Intel (x86_64) — DMG · 86 MB
+
+**Linux x86_64**
+- AppImage (any distro, Ubuntu 20.04+)
+- DEB package (Ubuntu / Debian / Mint)
+- RPM package (RHEL / Fedora / CentOS)
+
+**Linux ARM64** (NVIDIA DGX / AWS Graviton / Raspberry Pi)
+- AppImage ARM64
+- DEB ARM64
+- RPM ARM64
+
+**Windows**
+- WSL2-based installer (coming soon)
+
+All installers include a **30-day free trial license**. Access is gated behind a beta approval form.
+
+---
+
+## Key Platform Stats (v0.4.0-beta)
+
+| Metric | Value |
+|--------|-------|
+| Bioinformatics pipelines | 50+ |
+| Integrated analysis tools | 500+ |
+| Plugins | 125+ |
+| Agentic pipelines | 10+ |
+| Platform microservices | 20+ |
+
+---
+
+## System Requirements
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| RAM | 16 GB | 32 GB (64 GB with local LLM) |
+| Storage | ~5 GB (Docker images) + 50–200 GB data | — |
+| OS | Ubuntu 20.04+, macOS 12+, Windows 10/11 (WSL2) | — |
+| Docker | Engine 24+ or Docker Desktop | — |
+| GPU | Optional (NVIDIA + nvidia-container-toolkit for local LLM) | — |
+
+Fully offline after first boot. Internet required only for initial Docker image pull (~10 GB from ghcr.io).
+
+---
+
+## Supported Omics Modalities
+
+- Single-cell transcriptomics (scRNA-seq)
+- Whole exome & genome sequencing (WGS / WES)
+- Proteomics & mass spectrometry
+- ATAC-seq (chromatin accessibility)
+- ChIP-seq (protein-DNA interactions)
+- Bulk RNA-seq
+- Spatial transcriptomics
+- Spatial + single-cell integration
+- Structural variant (SV) calling
+- DNA methylation / bisulfite sequencing
+- Circular RNA (circRNA)
+- Multi-omics integration
+- CRISPR screen analysis
+- Variant prioritization ML
+- Drug discovery / GNN-based target identification
+- Clinical translational pipelines
+
+---
+
+## Technology Stack
+
+**Languages & Frameworks**
+`Python` · `R` · `JavaScript` · `FastAPI` · `Django` · `React`
+
+**Workflow Engines**
+`Nextflow` · `WDL` · `Snakemake` · `CWL`
+
+**Bioinformatics Tools**
+`GATK` · `Seurat` · `DESeq2`
+
+**AI / ML**
+`LangGraph` · `PyTorch` · `CUDA` · `HuggingFace` · `Ollama`
+
+**Infrastructure**
+`Docker` · `Kubernetes` · `Slurm` · `AWS` · `Azure` · `GCP`
+
+**Data & Messaging**
+`MySQL` · `Redis` · `Celery`
+
+---
+
+## Architecture
+
+```
+OmniBioAI Studio UI (Desktop Frontend)
+         │ Handshake (Sub-3ms Latency)
+Agentic AI Orchestration (LangGraph / Ollama / HuggingFace)
+         │ Orchestration & Data Mapping
+BioFlow Runtime Engine (Nextflow / WDL / Snakemake)
+         │ Tracking & Provenance Link
+LIMS-X Metadata & Sample Tracking System
+         │ Infrastructure Layer
+GPU Accelerated Stack (CUDA / NVIDIA DGX Spark)
+```
+
+---
+
+## Publications
+
+Selected peer-reviewed work powered by OmniBioAI platform methods:
+
+- **2025** — *Genetic mutations in lymphocytic variant of hypereosinophilic syndrome: study of five siblings* — Frontiers in Medicine  
+- **2018** — *Whole Exome Sequencing identifies common and rare variant Metabolic QTLs in a Middle Eastern Population* — Nature Communications  
+- **2015** — *MetaRNA-Seq: An Interactive Tool to Browse and Annotate Metadata from RNA-Seq Studies* — BioMed Research International
+
+---
+
+## Beta Access
+
+OmniBioAI Studio v0.4.0-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
+
+👉 [Request Access](https://omnibioai.org/#request)
+
+---
+
+## Development
+
+This is a static site — no build step required.
 
 ```bash
-# Option 1 — just open the file
-open index.html
+# Clone the repo
+git clone https://github.com/man4ish/omnibioai-landing.git
+cd omnibioai-landing
 
-# Option 2 — serve locally (avoids any browser file:// restrictions)
-python -m http.server 8080
-# then visit http://localhost:8080
+# Serve locally (any static server)
+python3 -m http.server 8080
+# or
+npx serve .
 ```
 
----
-
-## Updating download links
-
-Download URLs are hardcoded in `index.html` under the `#download` section. When a new release is tagged in [omnibioai-studio](https://github.com/man4ish/omnibioai-studio), update these links:
-
-```
-Current pattern:
-https://github.com/man4ish/omnibioai-studio/releases/download/v0.3.0-beta/<artifact>
-
-Artifacts to update:
-- OmniBioAI Studio-0.3.0-beta-arm64.dmg          ← macOS Apple Silicon
-- OmniBioAI Studio-0.3.0-beta.dmg                ← macOS Intel
-- OmniBioAI Studio-0.3.0-beta.AppImage           ← Linux x64
-- OmniBioAI Studio-0.3.0-beta-arm64.AppImage     ← Linux ARM64
-- omnibioai-studio_0.3.0-beta_amd64.deb          ← Debian/Ubuntu x64
-- omnibioai-studio_0.3.0-beta_arm64.deb          ← Debian/Ubuntu ARM64
-- omnibioai-studio-0.3.0-beta.x86_64.rpm         ← RHEL/Fedora x64
-- omnibioai-studio-0.3.0-beta.aarch64.rpm        ← RHEL/Fedora ARM64
-- OmniBioAI Studio Setup 0.3.0-beta.exe          ← Windows x64
-```
-
-Also update the version badge in the hero section (`v0.3.0-beta`) and the requirements section.
+Then open `http://localhost:8080` in your browser.
 
 ---
 
-## Updating the beta access form
+## Related Repositories
 
-The request form (`#request` section) currently submits with `onsubmit="return false;"` — it is a static placeholder. To wire it to a real backend:
-
-1. Replace `onsubmit="return false;"` with a `fetch()` POST to your endpoint
-2. Or point the form `action` at a service like Formspree, Netlify Forms, or your own Django endpoint
-3. Update the submit button handler to show a success/error state
-
----
-
-## Design system
-
-The site uses no external CSS frameworks. Styles are inline in each HTML file. Key design tokens (defined in `:root`):
-
-| Token | Value | Usage |
-|---|---|---|
-| `--green` | `#2563eb` | Primary brand color, buttons, accents |
-| `--bg` | `#f6f8ff` | Page background |
-| `--bg2` | `#ffffff` | Card backgrounds |
-| `--text` | `#0b1220` | Primary text |
-| `--text-muted` | `#475569` | Secondary text |
-
-Fonts loaded from Google Fonts: `DM Serif Display` (headings), `DM Mono` (code/labels), `Outfit` (body).
-
----
-
-## Deploying
-
-The site is pure static HTML — deploy anywhere:
-
-```bash
-# GitHub Pages (simplest)
-# Enable Pages in repo settings → deploy from main branch root
-
-# Netlify drag-and-drop
-# Drop the repo folder at app.netlify.com/drop
-
-# nginx (self-hosted)
-cp index.html about.html admin.html /var/www/html/
-```
-
-No build process, no environment variables, no server-side rendering.
-
----
-
-## Keeping in sync with releases
-
-This repo should be updated alongside [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) releases. The typical release checklist:
-
-- [ ] Update version string (`v0.3.0-beta` → new version) in hero badge, requirements section, download section
-- [ ] Update all download URLs to point to new release tag
-- [ ] Update hero stats if plugin/pipeline counts have changed
-- [ ] Update publications section if new papers are out
-- [ ] Test all download links resolve correctly
-- [ ] Deploy
-
-> 💡 Tip: Claude Code can automate this entire checklist.
-> Run `claude` in this repo and paste the new version + artifact filenames.
-
----
-
-## Related repositories
-
-| Repo | Purpose |
-|---|---|
-| [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) | Electron + React + Vite desktop app |
-| [omnibioai](https://github.com/man4ish/omnibioai) | Django backend — 150+ plugin bioinformatics platform |
-| [omnibioai-workflow-bundles](https://github.com/man4ish/omnibioai-workflow-bundles) | 600+ bioinformatics pipeline bundles |
-| [omnibioai-landing](https://github.com/man4ish/omnibioai-landing) | This landing page |
+| Repo | Description |
+|------|-------------|
+| [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) | Desktop application (Electron) — releases and installers |
 
 ---
 
