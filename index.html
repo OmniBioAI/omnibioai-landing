@@ -3,147 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OmniBioAI — The Biomedical AI Operating System</title>
-<meta name="description" content="OmniBioAI: 34M PubMed abstracts, 150 biomedical domains, 600+ workflow bundles. Local. Private. World-class biomedical AI.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<title>OmniBioAI — AI Bioinformatics Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0f1117;
-  --bg2:#13171f;
-  --bg3:#171c26;
-  --surface:#1a2030;
-  --accent:#00d4ff;
-  --accent2:#7c3aed;
-  --accent3:#00b8e0;
+  --bg:#04080f;
+  --bg2:#080e1a;
+  --bg3:#0c1422;
+  --surface:#0f1d2e;
+  --surface2:#162336;
+  --accent:#00d4aa;
+  --accent2:#0098ff;
+  --accent3:#7c3aed;
   --text:#e8f0fe;
   --text-muted:#7a9bbf;
   --text-dim:#3d5a78;
-  --border:rgba(0,212,255,0.1);
-  --border2:rgba(0,212,255,0.22);
-  --border3:rgba(124,58,237,0.2);
-  --glow:0 0 40px rgba(0,212,255,0.07);
-  --glow2:0 0 60px rgba(124,58,237,0.08);
+  --border:rgba(0,212,170,0.12);
+  --border2:rgba(0,212,170,0.25);
+  --border3:rgba(0,152,255,0.18);
+  --glow:0 0 40px rgba(0,212,170,0.08);
+  --glow2:0 0 60px rgba(0,152,255,0.1);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
 
 /* ── Noise overlay ── */
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
 
 /* ── Grid bg ── */
-body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
 
 /* ── Nav ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(15,17,23,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(4,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo svg{filter:drop-shadow(0 0 8px rgba(0,212,255,0.45))}
+.nav-logo svg{filter:drop-shadow(0 0 8px rgba(0,212,170,0.5))}
 .nav-wordmark{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:500;color:var(--accent);letter-spacing:0.02em}
 .nav-wordmark em{color:var(--text-dim);font-style:normal;font-weight:300}
 .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
 .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
 .nav-links a:hover{color:var(--accent)}
 .nav-cta{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
-.nav-cta:hover{background:rgba(0,212,255,0.1)!important;box-shadow:0 0 20px rgba(0,212,255,0.15)!important}
+.nav-cta:hover{background:rgba(0,212,170,0.1)!important;box-shadow:0 0 20px rgba(0,212,170,0.15)!important}
 
 /* ── Hero ── */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 5rem;overflow:hidden}
-.hero-glow{position:absolute;top:15%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(0,212,255,0.055) 0%,transparent 65%);pointer-events:none}
-.hero-glow2{position:absolute;top:35%;left:20%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(124,58,237,0.04) 0%,transparent 65%);pointer-events:none}
-.hero-glow3{position:absolute;top:40%;right:15%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,212,255,0.03) 0%,transparent 65%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:2px;padding:0.3rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:2rem;letter-spacing:0.08em;background:rgba(0,212,255,0.05)}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(0,212,170,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-glow2{position:absolute;top:30%;left:30%;width:400px;height:400px;background:radial-gradient(ellipse,rgba(0,152,255,0.05) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:2px;padding:0.3rem 0.9rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:2rem;letter-spacing:0.08em;background:rgba(0,212,170,0.05)}
 .badge-dot{width:5px;height:5px;background:var(--accent);border-radius:50%;animation:blink 1.4s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5.2rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:900px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6.5vw,5.5rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:880px}
 .hero h1 .line1{display:block;color:var(--text)}
 .hero h1 .line2{display:block;font-style:italic;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:560px;margin-bottom:0.6rem;font-weight:300;line-height:1.85}
-.hero-sub strong{color:var(--accent);font-weight:500}
-.hero-tagline{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--text-dim);margin-bottom:3rem;letter-spacing:0.06em}
+.hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:540px;margin-bottom:3rem;font-weight:300;line-height:1.85}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:5rem}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#0f1117;padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;letter-spacing:0.02em;font-family:'Inter',sans-serif;border:none;cursor:pointer}
-.btn-primary:hover{filter:brightness(1.1);box-shadow:0 0 30px rgba(0,212,255,0.3);transform:translateY(-1px)}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04080f;padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;letter-spacing:0.02em;font-family:'Space Grotesk',sans-serif;border:none;cursor:pointer}
+.btn-primary:hover{filter:brightness(1.1);box-shadow:0 0 30px rgba(0,212,170,0.3);transform:translateY(-1px)}
 .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-muted);padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:400;font-size:0.9rem;transition:all 0.2s;border:1px solid var(--border2)}
-.btn-secondary:hover{color:var(--text);border-color:rgba(0,212,255,0.5)}
+.btn-secondary:hover{color:var(--text);border-color:rgba(0,212,170,0.5)}
 
-/* ── Stats bar (hero) ── */
-.stats-row{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--border);border-radius:4px;overflow:hidden;width:100%;max-width:900px}
-.stat-item{flex:1;min-width:120px;padding:1.2rem 1.4rem;border-right:1px solid var(--border);position:relative;text-align:center}
+/* ── Stats ticker ── */
+.stats-row{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--border);border-radius:4px;overflow:hidden;width:100%;max-width:1000px}
+.stat-item{flex:1;min-width:120px;padding:1.2rem 1.5rem;border-right:1px solid var(--border);position:relative;text-align:center}
 .stat-item:last-child{border-right:none}
-.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.65rem;font-weight:500;color:var(--accent);display:block;line-height:1}
-.stat-label{font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;display:block}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:500;color:var(--accent);display:block;line-height:1}
+.stat-label{font-size:0.68rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.3rem;display:block}
 
 /* ── Sections ── */
-section{position:relative;z-index:1;padding:6rem 2rem;max-width:1200px;margin:0 auto}
+section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 auto}
 .sec-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;display:block;opacity:0.9}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.7rem);line-height:1.15;margin-bottom:0.75rem;letter-spacing:-0.01em}
-.sec-sub{color:var(--text-muted);font-size:0.95rem;max-width:540px;margin-bottom:3.5rem;font-weight:300;line-height:1.85}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;margin-bottom:0.75rem;letter-spacing:-0.01em}
+.sec-sub{color:var(--text-muted);font-size:0.97rem;max-width:520px;margin-bottom:3.5rem;font-weight:300;line-height:1.85}
 
 /* ── Divider ── */
 .divider{border:none;border-top:1px solid var(--border);margin:0;position:relative;z-index:1}
 
 /* ── RAG Pipeline ── */
-.pipeline-wrap{overflow-x:auto;padding-bottom:1rem}
-.pipeline{display:flex;align-items:center;gap:0;min-width:860px}
-.pipe-step{background:var(--bg2);border:1px solid var(--border);padding:1.1rem 1rem;text-align:center;flex:1;position:relative;transition:all 0.2s}
-.pipe-step:hover{border-color:var(--border2);background:var(--surface)}
-.pipe-step:first-child{border-radius:4px 0 0 4px}
-.pipe-step:last-child{border-radius:0 4px 4px 0}
-.pipe-num{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--accent);letter-spacing:0.1em;display:block;margin-bottom:0.4rem;opacity:0.7}
-.pipe-label{font-size:0.75rem;font-weight:600;color:var(--text);line-height:1.3;display:block}
-.pipe-arrow{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:1rem;opacity:0.4;flex-shrink:0;padding:0 0.1rem}
-.pipeline-desc{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);margin-top:2rem}
-.pdesc-card{background:var(--bg2);padding:1.25rem 1.5rem}
-.pdesc-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.35rem;display:block}
-.pdesc-text{font-size:0.78rem;color:var(--text-muted);font-weight:300;line-height:1.65}
-
-/* ── Platform modules ── */
-.platform-modules{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:0}
-.pm-card{background:var(--bg2);padding:2rem;transition:all 0.2s;position:relative;overflow:hidden}
-.pm-card::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:linear-gradient(180deg,var(--accent),var(--accent2));transition:height 0.3s}
-.pm-card:hover{background:var(--surface)}
-.pm-card:hover::after{height:100%}
-.pm-icon{font-size:1.5rem;margin-bottom:1rem;display:block}
-.pm-title{font-size:0.97rem;font-weight:600;margin-bottom:0.4rem;color:var(--text)}
-.pm-badge{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);background:rgba(0,212,255,0.07);border:1px solid var(--border2);border-radius:2px;padding:0.15rem 0.5rem;display:inline-block;margin-bottom:0.75rem;letter-spacing:0.05em}
-.pm-desc{font-size:0.8rem;color:var(--text-muted);font-weight:300;line-height:1.75}
-
-/* ── Genomes table ── */
-.genomes-table{width:100%;border-collapse:collapse;border:1px solid var(--border);font-size:0.82rem;margin-top:1rem}
-.genomes-table th{background:var(--bg2);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;font-weight:400}
-.genomes-table td{border:1px solid var(--border);padding:0.75rem 1rem;color:var(--text-muted);vertical-align:top}
-.genomes-table tr:hover td{background:var(--surface);color:var(--text)}
-.genome-species{font-weight:600;color:var(--text);font-size:0.85rem}
-.genome-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;background:rgba(0,212,255,0.07);border:1px solid var(--border2);border-radius:2px;padding:0.15rem 0.4rem;color:var(--accent);display:inline-block;margin:2px}
-.genome-tag.alt{background:rgba(124,58,237,0.07);border-color:rgba(124,58,237,0.25);color:#a78bfa}
-
-/* ── Tech stack ── */
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:1rem}
-.tech-group{background:var(--bg2);padding:1.5rem;transition:background 0.2s}
-.tech-group:hover{background:var(--surface)}
-.tech-group-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.9rem;display:block}
-.tech-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
-.tech-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-muted);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.03em;transition:all 0.15s}
-.tech-tag:hover{border-color:var(--border2);color:var(--accent)}
-
-/* ── Use cases ── */
-.use-cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
-.uc-card{background:var(--bg2);padding:2rem 2.25rem;transition:background 0.2s;position:relative}
-.uc-card:hover{background:var(--surface)}
-.uc-num{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:300;color:var(--border2);position:absolute;top:1.25rem;right:1.5rem;line-height:1}
-.uc-icon{font-size:1.4rem;margin-bottom:0.75rem;display:block}
-.uc-title{font-size:1rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
-.uc-desc{font-size:0.82rem;color:var(--text-muted);font-weight:300;line-height:1.8;margin-bottom:1rem}
-.uc-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
-.uc-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-dim);border:1px solid var(--border);border-radius:2px;padding:0.15rem 0.45rem}
+.rag-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.rag-pipeline{display:flex;flex-direction:column;gap:2px}
+.rag-step{display:flex;align-items:flex-start;gap:1rem;background:var(--bg2);border:1px solid var(--border);padding:0.85rem 1rem;transition:all 0.2s}
+.rag-step:hover{border-color:var(--border2);background:var(--surface);box-shadow:inset 3px 0 0 var(--accent)}
+.rag-step-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);background:rgba(0,212,170,0.08);border:1px solid var(--border2);border-radius:2px;padding:0.15rem 0.45rem;flex-shrink:0;margin-top:2px;letter-spacing:0.04em;min-width:28px;text-align:center}
+.rag-step-label{font-size:0.85rem;font-weight:600;color:var(--text);display:block;margin-bottom:0.15rem}
+.rag-step-desc{font-size:0.73rem;color:var(--text-muted);font-weight:300;line-height:1.55}
+.rag-connector{width:1px;height:10px;background:var(--border2);margin-left:calc(1rem + 14px + 0.45rem);opacity:0.5}
+.rag-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:2rem}
+.rag-stat-card{background:var(--bg2);padding:1.25rem 1.5rem;transition:background 0.2s}
+.rag-stat-card:hover{background:var(--surface)}
+.rag-stat-num{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block;line-height:1;margin-bottom:0.25rem}
+.rag-stat-label{font-size:0.73rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+.rag-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
+.rag-tag{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.04em}
+.rag-tag.hi{color:var(--accent);border-color:var(--border2);background:rgba(0,212,170,0.05)}
 
 /* ── Feature cards ── */
 .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border)}
 .feature-card{background:var(--bg2);padding:2rem;transition:all 0.2s;position:relative;overflow:hidden}
-.feature-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.03),transparent);opacity:0;transition:opacity 0.3s}
+.feature-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,170,0.03),transparent);opacity:0;transition:opacity 0.3s}
 .feature-card:hover::before{opacity:1}
 .feature-card:hover{background:var(--surface)}
-.f-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;border:1px solid var(--border2);color:var(--accent);font-size:1rem;background:rgba(0,212,255,0.05);border-radius:3px}
+.f-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;border:1px solid var(--border2);color:var(--accent);font-size:1rem;background:rgba(0,212,170,0.05);border-radius:3px}
 .f-title{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
 .f-desc{font-size:0.82rem;color:var(--text-muted);line-height:1.8;font-weight:300}
 
@@ -157,17 +117,30 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1200px;margin:0 
 .hidden-card{display:none}
 .show-more-row{display:flex;justify-content:center;margin-top:2rem}
 .show-more-btn{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);background:transparent;border:1px solid var(--border2);border-radius:3px;padding:0.5rem 1.4rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.06em}
-.show-more-btn:hover{background:rgba(0,212,255,0.08)}
+.show-more-btn:hover{background:rgba(0,212,170,0.08)}
 
 /* ── Tags ── */
 .tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem}
 .tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.05em}
 
+/* ── Genomes table ── */
+.genomes-wrap{overflow-x:auto}
+.genomes-table{width:100%;border-collapse:collapse;border:1px solid var(--border);font-size:0.82rem;min-width:720px}
+.genomes-table th{background:var(--bg2);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;font-weight:400}
+.genomes-table td{border:1px solid var(--border);padding:0.75rem 1rem;color:var(--text-muted);vertical-align:top;line-height:1.5}
+.genomes-table tr:hover td{background:var(--surface);color:var(--text)}
+.genome-species{font-weight:600;color:var(--text);font-size:0.83rem;display:block}
+.genome-common{font-size:0.75rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.genome-asm{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-muted)}
+.idx-badge{font-family:'JetBrains Mono',monospace;font-size:0.58rem;border-radius:2px;padding:0.12rem 0.4rem;display:inline-block;margin:2px 2px 2px 0;white-space:nowrap}
+.idx-on{background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);color:var(--accent)}
+.idx-soon{background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-dim)}
+
 /* ── Architecture ── */
 .arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .arch-diagram{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem}
 .arch-layer{border:1px solid var(--border);padding:0.65rem 1rem;margin-bottom:2px;color:var(--text-muted);display:flex;align-items:center;gap:10px;transition:all 0.2s;background:var(--bg)}
-.arch-layer:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,0.03);box-shadow:inset 3px 0 0 var(--accent)}
+.arch-layer:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.03);box-shadow:inset 3px 0 0 var(--accent)}
 .arch-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 6px var(--accent)}
 .arch-conn{text-align:center;color:var(--text-dim);font-size:0.62rem;padding:3px 0 3px 20px;opacity:0.6}
 
@@ -175,7 +148,7 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1200px;margin:0 
 .pub-list{display:flex;flex-direction:column;gap:1px;background:var(--border)}
 .pub-card{background:var(--bg2);border:none;padding:1.75rem 2rem;display:flex;align-items:flex-start;gap:2rem;transition:background 0.2s}
 .pub-card:hover{background:var(--surface)}
-.pub-year{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);flex-shrink:0;margin-top:4px;background:rgba(0,212,255,0.07);padding:0.2rem 0.55rem;border:1px solid var(--border2);border-radius:2px}
+.pub-year{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent);flex-shrink:0;margin-top:4px;background:rgba(0,212,170,0.08);padding:0.2rem 0.55rem;border:1px solid var(--border2);border-radius:2px}
 .pub-title{font-size:0.9rem;font-weight:500;margin-bottom:0.3rem;line-height:1.5;color:var(--text)}
 .pub-journal{font-size:0.73rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
 .pub-link{display:inline-block;margin-top:0.4rem;font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--accent);text-decoration:none;transition:opacity 0.2s}
@@ -202,44 +175,32 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1200px;margin:0 
 .dl-os-block{margin-bottom:2.5rem}
 
 /* ── CTA / Form ── */
-.cta-wrap{max-width:700px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:3.5rem;box-shadow:var(--glow),var(--glow2)}
+.cta-wrap{max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:3.5rem;box-shadow:var(--glow),var(--glow2)}
 .cta-wrap h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:0.75rem;line-height:1.2}
 .cta-wrap>p{color:var(--text-muted);margin-bottom:2rem;font-weight:300;font-size:0.9rem}
 .form-label{display:block;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem}
-.form-input,.form-select,.form-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:0.7rem 1rem;font-size:0.88rem;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,255,0.08)}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:0.7rem 1rem;font-size:0.88rem;font-family:'Space Grotesk',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,170,0.08)}
 .form-input::placeholder,.form-textarea::placeholder{color:var(--text-dim)}
 .form-row{margin-bottom:1rem}
 .form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-.form-submit{width:100%;background:var(--accent);color:#0f1117;border:none;border-radius:2px;padding:0.85rem;font-size:0.9rem;font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
-.form-submit:hover{filter:brightness(1.1);box-shadow:0 0 25px rgba(0,212,255,0.25);transform:translateY(-1px)}
+.form-submit{width:100%;background:var(--accent);color:#04080f;border:none;border-radius:2px;padding:0.85rem;font-size:0.9rem;font-family:'Space Grotesk',sans-serif;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em}
+.form-submit:hover{filter:brightness(1.1);box-shadow:0 0 25px rgba(0,212,170,0.25);transform:translateY(-1px)}
 .form-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 .form-select option{background:var(--bg3)}
 
-/* ── Platform OS cards ── */
+/* ── Platform cards ── */
 .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1rem}
 .platform-card{background:var(--bg);border:none;padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;user-select:none}
 .platform-card:hover{background:var(--surface)}
-.platform-card.selected{background:rgba(0,212,255,0.07);box-shadow:inset 0 0 0 1px var(--accent)}
+.platform-card.selected{background:rgba(0,212,170,0.07);box-shadow:inset 0 0 0 1px var(--accent)}
 .platform-card.selected .platform-name{color:var(--accent)}
 .platform-icon{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:0.35rem;color:var(--accent);opacity:0.7}
 .platform-card.selected .platform-icon{opacity:1}
 .platform-name{font-size:0.82rem;font-weight:500;color:var(--text-muted);margin-bottom:0.2rem;display:block}
 .platform-hint{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);display:block}
-.platform-badge{display:inline-block;font-size:0.58rem;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:2px;background:rgba(0,212,255,0.07);color:var(--accent);border:1px solid var(--border2);margin-top:4px}
-
-/* ── CTA banner ── */
-.cta-banner{background:linear-gradient(135deg,rgba(0,212,255,0.06) 0%,rgba(124,58,237,0.06) 100%);border:1px solid var(--border2);padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
-.cta-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent)}
-.cta-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:0.75rem;line-height:1.2}
-.cta-banner p{color:var(--text-muted);font-size:0.97rem;font-weight:300;max-width:520px;margin:0 auto 2.5rem;line-height:1.85}
-.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
-.email-capture{display:flex;gap:0;max-width:420px;margin:0 auto}
-.email-capture input{flex:1;background:var(--bg);border:1px solid var(--border2);border-right:none;border-radius:3px 0 0 3px;padding:0.75rem 1rem;font-size:0.85rem;font-family:'Inter',sans-serif;color:var(--text);outline:none}
-.email-capture input:focus{border-color:var(--accent)}
-.email-capture input::placeholder{color:var(--text-dim)}
-.email-capture button{background:var(--accent);color:#0f1117;border:none;border-radius:0 3px 3px 0;padding:0.75rem 1.4rem;font-weight:600;font-size:0.85rem;cursor:pointer;font-family:'Inter',sans-serif;transition:filter 0.2s;white-space:nowrap}
-.email-capture button:hover{filter:brightness(1.1)}
+.platform-badge{display:inline-block;font-size:0.58rem;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:2px;background:rgba(0,212,170,0.08);color:var(--accent);border:1px solid var(--border2);margin-top:4px}
+.platform-badge.soon{background:rgba(255,165,0,0.06);color:#e09a28;border-color:rgba(255,165,0,0.2)}
 
 /* ── Footer ── */
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
@@ -249,31 +210,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 .footer-links a:hover{color:var(--accent)}
 
 /* ── Toast ── */
-#toast{position:fixed;bottom:2rem;right:2rem;background:var(--accent);color:#0f1117;font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:600;padding:0.75rem 1.5rem;border-radius:3px;z-index:999;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
+#toast{position:fixed;bottom:2rem;right:2rem;background:var(--accent);color:#04080f;font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:600;padding:0.75rem 1.5rem;border-radius:3px;z-index:999;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
 #toast.show{opacity:1;transform:translateY(0)}
 
 /* ── Responsive ── */
-@media(max-width:1024px){
-  .tech-grid{grid-template-columns:repeat(2,1fr)}
-}
 @media(max-width:900px){
   nav{padding:0 1.5rem}
   .nav-links{display:none}
-  .arch-grid,.omics-grid,.form-grid2,.platform-grid,.use-cases-grid{grid-template-columns:1fr}
-  .platform-modules{grid-template-columns:1fr 1fr}
+  .arch-grid,.omics-grid,.form-grid2,.platform-grid,.rag-layout,.rag-stats-grid{grid-template-columns:1fr}
   section{padding:4rem 1.5rem}
   .cta-wrap{padding:2rem 1.5rem}
-  .cta-banner{padding:3rem 1.5rem}
   footer{flex-direction:column;align-items:flex-start}
-  .tech-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:640px){
-  .platform-modules{grid-template-columns:1fr}
-  .tech-grid{grid-template-columns:1fr}
-  .genomes-table{font-size:0.74rem}
-  .email-capture{flex-direction:column}
-  .email-capture input{border-right:1px solid var(--border2);border-radius:3px;margin-bottom:0.5rem}
-  .email-capture button{border-radius:3px}
 }
 </style>
 </head>
@@ -286,18 +233,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <nav>
   <a href="#" class="nav-logo">
     <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,0.06)"/>
-      <circle cx="20" cy="20" r="5" fill="rgba(0,212,255,0.18)" stroke="#00d4ff" stroke-width="1"/>
-      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#00d4ff" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.06)"/>
+      <circle cx="20" cy="20" r="5" fill="rgba(0,212,170,0.2)" stroke="#00d4aa" stroke-width="1"/>
+      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
     </svg>
     <span class="nav-wordmark">OmniBioAI <em>/ beta</em></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#pipeline">Pipeline</a></li>
-    <li><a href="#modules">Platform</a></li>
+    <li><a href="#literature-ai">Literature AI</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#omics">Omics</a></li>
     <li><a href="#genomes">Genomes</a></li>
-    <li><a href="#stack">Stack</a></li>
+    <li><a href="#requirements">Install</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#architecture">Architecture</a></li>
     <li><a href="#publications">Papers</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="https://www.youtube.com/watch?v=dM-2HYYO6uo" target="_blank">Demo ↗</a></li>
@@ -309,105 +258,140 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <div class="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
-  <div class="hero-glow3"></div>
   <div class="hero-badge"><div class="badge-dot"></div>Private beta — now accepting researchers</div>
   <h1>
-    <span class="line1">AI-Native Bioinformatics Platform for</span>
-    <span class="line2">Large-Scale Literature &amp; Multi-Omics</span>
+    <span class="line1">AI native platform for</span>
+    <span class="line2">multi-omics research</span>
   </h1>
-  <p class="hero-sub">Powered by PubMed. Enhanced by AI. <strong>Grounded in Evidence.</strong></p>
-  <p class="hero-tagline">600+ workflow bundles · 28 microservices · 9 reference organisms · 1 PetaFLOP AI compute</p>
+  <p class="hero-sub">OmniBioAI unifies reproducible multi-omics analysis, agentic AI reasoning, and enterprise-grade infrastructure — across local, HPC, and cloud environments.</p>
   <div class="hero-actions">
     <a href="#request" class="btn-primary">↗ Request Access</a>
     <a href="https://www.youtube.com/watch?v=dM-2HYYO6uo" target="_blank" class="btn-secondary">▶ Watch Demo</a>
   </div>
   <div class="stats-row">
-    <div class="stat-item"><span class="stat-num">34M</span><span class="stat-label">Abstracts</span></div>
+    <div class="stat-item"><span class="stat-num">34M+</span><span class="stat-label">Abstracts</span></div>
     <div class="stat-item"><span class="stat-num">150</span><span class="stat-label">Domains</span></div>
+    <div class="stat-item"><span class="stat-num">600+</span><span class="stat-label">Workflows</span></div>
+    <div class="stat-item"><span class="stat-num">1,000+</span><span class="stat-label">Tools</span></div>
+    <div class="stat-item"><span class="stat-num">28</span><span class="stat-label">Microservices</span></div>
     <div class="stat-item"><span class="stat-num">9</span><span class="stat-label">Organisms</span></div>
-    <div class="stat-item"><span class="stat-num">2.1M</span><span class="stat-label">Lines of Code</span></div>
   </div>
 </div>
 
 <hr class="divider">
 
-<!-- ── RAG Pipeline ── -->
-<section id="pipeline">
-  <span class="sec-tag">// 9-Stage RAG Pipeline</span>
-  <h2 class="sec-title">From query to<br>structured insight</h2>
-  <p class="sec-sub">OmniBioAI's literature AI runs a 9-stage retrieval-augmented generation pipeline over 34M PubMed abstracts — delivering cited, reproducible answers grounded in published science.</p>
-  <div class="pipeline-wrap">
-    <div class="pipeline">
-      <div class="pipe-step"><span class="pipe-num">01</span><span class="pipe-label">Query</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">02</span><span class="pipe-label">Query Expansion</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">03</span><span class="pipe-label">Hybrid Retrieval</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">04</span><span class="pipe-label">RRF Fusion</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">05</span><span class="pipe-label">Re-ranking</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">06</span><span class="pipe-label">Citation Scoring</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">07</span><span class="pipe-label">KG Enrichment</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">08</span><span class="pipe-label">LLM Reasoning</span></div>
-      <div class="pipe-arrow">›</div>
-      <div class="pipe-step"><span class="pipe-num">09</span><span class="pipe-label">Structured Output</span></div>
+<!-- ── Literature AI / RAG Pipeline ── -->
+<section id="literature-ai">
+  <span class="sec-tag">// Biomedical AI — Literature Intelligence</span>
+  <h2 class="sec-title">Powered by PubMed.<br>Enhanced by AI.</h2>
+  <p class="sec-sub">Grounded in Evidence. A 9-stage retrieval-augmented generation pipeline over 34M+ PubMed abstracts — delivering cited, reproducible answers grounded in published science.</p>
+  <div class="rag-layout">
+    <div class="rag-pipeline">
+      <div class="rag-step">
+        <span class="rag-step-num">01</span>
+        <div>
+          <span class="rag-step-label">User Query</span>
+          <span class="rag-step-desc">Natural language or structured biomedical question input</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">02</span>
+        <div>
+          <span class="rag-step-label">Query Expansion (LLM)</span>
+          <span class="rag-step-desc">Synonyms, MeSH terms, and related concepts added via LLM reformulation</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">03</span>
+        <div>
+          <span class="rag-step-label">Hybrid Retrieval (FAISS + BM25)</span>
+          <span class="rag-step-desc">Dense vector search (PubMedBERT embeddings) merged with sparse BM25 keyword retrieval</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">04</span>
+        <div>
+          <span class="rag-step-label">Reciprocal Rank Fusion (RRF)</span>
+          <span class="rag-step-desc">Dense and sparse result lists merged and re-scored by RRF for unified ranking</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">05</span>
+        <div>
+          <span class="rag-step-label">Cross-Encoder Re-ranking</span>
+          <span class="rag-step-desc">PubMedBERT cross-encoder re-scores top-k candidates for precision retrieval</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">06</span>
+        <div>
+          <span class="rag-step-label">Citation Confidence Scoring</span>
+          <span class="rag-step-desc">Papers weighted by citation impact, journal tier, recency, and domain relevance</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">07</span>
+        <div>
+          <span class="rag-step-label">Knowledge Graph Enrichment (Neo4j)</span>
+          <span class="rag-step-desc">Entity links — genes, diseases, drugs, pathways — resolved via Neo4j biomedical KG traversal</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">08</span>
+        <div>
+          <span class="rag-step-label">LLM Reasoning (DeepSeek-R1)</span>
+          <span class="rag-step-desc">Evidence chains synthesized with explicit chain-of-thought reasoning and full citation anchoring</span>
+        </div>
+      </div>
+      <div class="rag-connector"></div>
+      <div class="rag-step">
+        <span class="rag-step-num">09</span>
+        <div>
+          <span class="rag-step-label">Structured Output (PMIDs + Evidence + Entities)</span>
+          <span class="rag-step-desc">PMIDs + evidence snippets + named entities + confidence scores returned as structured JSON</span>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="pipeline-desc">
-    <div class="pdesc-card"><span class="pdesc-label">Retrieval</span><p class="pdesc-text">FAISS dense vector search + BM25 sparse retrieval merged via Reciprocal Rank Fusion over 34M indexed abstracts.</p></div>
-    <div class="pdesc-card"><span class="pdesc-label">Re-ranking</span><p class="pdesc-text">PubMedBERT cross-encoder re-scores top candidates. Citation impact and recency weighted by journal tier.</p></div>
-    <div class="pdesc-card"><span class="pdesc-label">KG Enrichment</span><p class="pdesc-text">Neo4j knowledge graph links entities — genes, diseases, drugs, pathways — for contextual graph traversal.</p></div>
-    <div class="pdesc-card"><span class="pdesc-label">LLM Reasoning</span><p class="pdesc-text">DeepSeek-R1 / Claude synthesizes evidence chains with explicit reasoning steps and full citation provenance.</p></div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ── Platform Modules ── -->
-<section id="modules">
-  <span class="sec-tag">// Platform modules</span>
-  <h2 class="sec-title">Six integrated<br>capability pillars</h2>
-  <p class="sec-sub">Every module runs locally, air-gapped, on your hardware. Zero data leaves your environment.</p>
-  <div class="platform-modules">
-    <div class="pm-card">
-      <span class="pm-icon">🔬</span>
-      <div class="pm-title">RAG / Literature AI</div>
-      <span class="pm-badge">34M abstracts · 150 domains</span>
-      <p class="pm-desc">Semantic search and agentic reasoning over the full PubMed corpus. Ask complex biomedical questions and receive cited, structured answers grounded in published science.</p>
-    </div>
-    <div class="pm-card">
-      <span class="pm-icon">⚡</span>
-      <div class="pm-title">Bioinformatics Pipelines</div>
-      <span class="pm-badge">600+ workflow bundles · 200+ modules</span>
-      <p class="pm-desc">WGS, WES, scRNA-seq, bulk RNA-seq, ATAC-seq, proteomics, methylation, long-read, spatial transcriptomics — all in Nextflow, WDL, and Snakemake.</p>
-    </div>
-    <div class="pm-card">
-      <span class="pm-icon">🧪</span>
-      <div class="pm-title">LIMS</div>
-      <span class="pm-badge">Full lab management</span>
-      <p class="pm-desc">Sample registration, experiment tracking, metadata management, and audit trails. End-to-end provenance from FASTQ to final report with LIMS-X integration.</p>
-    </div>
-    <div class="pm-card">
-      <span class="pm-icon">🤖</span>
-      <div class="pm-title">Multi-Agent Workflows</div>
-      <span class="pm-badge">LangGraph orchestration</span>
-      <p class="pm-desc">LangGraph-based agents that plan, execute, and adapt. Parallel pipeline dispatch, cross-tool reasoning, and self-healing workflow recovery with full trace logging.</p>
-    </div>
-    <div class="pm-card">
-      <span class="pm-icon">🧬</span>
-      <div class="pm-title">Reference Genomes</div>
-      <span class="pm-badge">9 species · GRCh38/37/T2T</span>
-      <p class="pm-desc">Pre-indexed reference genomes for human (GRCh38, GRCh37, T2T), mouse, rat, zebrafish, Drosophila, C. elegans, and yeast. Auto-downloaded on demand.</p>
-    </div>
-    <div class="pm-card">
-      <span class="pm-icon">🔒</span>
-      <div class="pm-title">Enterprise Security</div>
-      <span class="pm-badge">Zero-trust · Air-gapped</span>
-      <p class="pm-desc">Zero-trust architecture, end-to-end encryption, role-based access control, full audit logging. Designed for clinical and regulated research environments.</p>
+    <div>
+      <div class="rag-stats-grid">
+        <div class="rag-stat-card">
+          <span class="rag-stat-num">34M+</span>
+          <span class="rag-stat-label">PubMed abstracts indexed and searchable</span>
+        </div>
+        <div class="rag-stat-card">
+          <span class="rag-stat-num">150</span>
+          <span class="rag-stat-label">Biomedical domains covered</span>
+        </div>
+        <div class="rag-stat-card">
+          <span class="rag-stat-num">&lt;30s</span>
+          <span class="rag-stat-label">Query response time end-to-end</span>
+        </div>
+        <div class="rag-stat-card">
+          <span class="rag-stat-num">9-stage</span>
+          <span class="rag-stat-label">Pipeline with full citation provenance</span>
+        </div>
+      </div>
+      <div class="rag-tags">
+        <span class="rag-tag hi">PubMedBERT embeddings</span>
+        <span class="rag-tag hi">Neo4j knowledge graph</span>
+        <span class="rag-tag hi">Hybrid BM25 + FAISS</span>
+        <span class="rag-tag hi">DeepSeek-R1 reasoning</span>
+        <span class="rag-tag">Cross-encoder re-ranking</span>
+        <span class="rag-tag">Reciprocal Rank Fusion</span>
+        <span class="rag-tag">Citation confidence scoring</span>
+        <span class="rag-tag">MeSH query expansion</span>
+        <span class="rag-tag">Structured JSON output</span>
+        <span class="rag-tag">PMID-anchored evidence</span>
+        <span class="rag-tag">Named entity extraction</span>
+        <span class="rag-tag">Local · air-gapped · private</span>
+      </div>
     </div>
   </div>
 </section>
@@ -418,22 +402,22 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="features">
   <span class="sec-tag">// Core capabilities</span>
   <h2 class="sec-title">Built for real science,<br>not demos</h2>
-  <p class="sec-sub">Clinical-grade reliability and reproducibility across every component of the stack.</p>
+  <p class="sec-sub">Every component is designed with clinical-grade reliability and reproducibility at its core.</p>
   <div class="features-grid">
     <div class="feature-card">
       <div class="f-icon">⬡</div>
       <div class="f-title">Agentic AI reasoning</div>
-      <p class="f-desc">LangGraph-based orchestration with RAG-powered assistants using PubMedBERT, FAISS, and local LLMs — bridging deterministic bio-computation with explainable AI.</p>
+      <p class="f-desc">LangGraph-based orchestration with RAG-powered assistants using Hugging Face and Ollama — bridging deterministic bio-computation with explainable AI interpretation.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">◈</div>
       <div class="f-title">Workflow agnostic</div>
-      <p class="f-desc">Native support for Nextflow, WDL, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p>
+      <p class="f-desc">Native support for WDL, Nextflow, Snakemake, and CWL. Cloud-agnostic Tool Execution Service ensures 1:1 parity between local and massive-scale genomic execution.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">◎</div>
-      <div class="f-title">1 PetaFLOP AI compute</div>
-      <p class="f-desc">Optimized on NVIDIA DGX Spark with PyTorch CUDA. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics at scale.</p>
+      <div class="f-title">GPU-accelerated stack</div>
+      <p class="f-desc">Optimized on NVIDIA PyTorch with CUDA on DGX Spark. High-performance GNNs for drug discovery and deep learning for single-cell transcriptomics.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">⬕</div>
@@ -442,13 +426,28 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </div>
     <div class="feature-card">
       <div class="f-icon">◇</div>
-      <div class="f-title">98% test coverage</div>
-      <p class="f-desc">98% average test coverage across 28 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
+      <div class="f-title">Reliability-first design</div>
+      <p class="f-desc">98% average test coverage across 11 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">⬡</div>
-      <div class="f-title">Knowledge graph layer</div>
-      <p class="f-desc">Neo4j-backed biomedical knowledge graph linking genes, diseases, drugs, and pathways. Cross-entity reasoning that goes beyond keyword search.</p>
+      <div class="f-title">Plugin ecosystem</div>
+      <p class="f-desc">Extensible plugin architecture with OnboardAI documentation browser. 30,000+ lines of living documentation updated after every commit.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">⚙</div>
+      <div class="f-title">Modular pipeline system</div>
+      <p class="f-desc">Each bioinformatics workflow is modular, allowing researchers to customize, extend, or replace analysis steps without breaking reproducibility.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">☁</div>
+      <div class="f-title">Cloud &amp; HPC ready</div>
+      <p class="f-desc">Runs consistently across local machines, Slurm-based HPC clusters, and cloud platforms like AWS, Azure, and GCP with identical execution logic.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">🤖</div>
+      <div class="f-title">Agentic workflow orchestration</div>
+      <p class="f-desc">LangGraph-based agentic workflows dynamically plan, execute, and adapt bioinformatics pipelines, enabling multi-step reasoning across tools, datasets, and analysis stages.</p>
     </div>
   </div>
 </section>
@@ -467,18 +466,22 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
     <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
     <div class="omics-card"><span class="omics-label">ATAC-SEQ</span><div class="omics-title">Chromatin accessibility</div><p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">ChIP-seq</span><div class="omics-title">Protein-DNA interactions</div><p class="omics-desc">Histone modification and TF binding analysis with peak annotation and motif enrichment.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">ChIP-seq</span><div class="omics-title">Protein-DNA interactions</div><p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">circRNA</span><div class="omics-title">Circular RNA analysis</div><p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">RNA-seq</span><div class="omics-title">Bulk transcriptomics</div><p class="omics-desc">Alignment, quantification, differential expression, and pathway analysis for bulk RNA sequencing.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">Spatial</span><div class="omics-title">Spatial transcriptomics</div><p class="omics-desc">Spatially resolved gene expression mapping and cell-type deconvolution across tissue sections.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome methylation</div><p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Long-read</span><div class="omics-title">Nanopore &amp; PacBio</div><p class="omics-desc">Long-read alignment, assembly, methylation, and isoform analysis with full structural variant detection.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Microbiome</span><div class="omics-title">Metagenomics</div><p class="omics-desc">Shotgun metagenomic profiling, taxonomic classification, functional annotation and diversity analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal</div><p class="omics-desc">Cross-modality integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing screens</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Spatial single-cell</span><div class="omics-title">Spatial + single-cell integration</div><p class="omics-desc">Joint analysis of spatial context and single-cell resolution for deep tissue-level insights.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">SV calling</span><div class="omics-title">Structural variant detection</div><p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome methylation pipeline</div><p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal analysis</div><p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing &amp; screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">variant_ml</span><div class="omics-title">Variant prioritization ML</div><p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">LONG-READ</span><div class="omics-title">Long-read sequencing</div><p class="omics-desc">Nanopore and PacBio long-read alignment, assembly, methylation and isoform analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">MICROBIOME</span><div class="omics-title">Metagenomics</div><p class="omics-desc">Shotgun metagenomic profiling, taxonomic classification, functional annotation and diversity analysis.</p></div>
+    <div class="omics-card hidden-card"><span class="omics-label">EPIGENOMICS</span><div class="omics-title">Epigenome analysis</div><p class="omics-desc">ChIP-seq, ATAC-seq, methylation and chromatin accessibility across the full epigenome.</p></div>
   </div>
   <div class="show-more-row">
-    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+9)</button>
+    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+13)</button>
   </div>
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
@@ -487,8 +490,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
     <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span>
     <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span>
-    <span class="tag">MySQL</span><span class="tag">FAISS</span><span class="tag">Neo4j</span>
-    <span class="tag">PubMedBERT</span><span class="tag">DeepSeek-R1</span>
+    <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
+    <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span>
   </div>
 </section>
 
@@ -497,276 +500,156 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <!-- ── Reference Genomes ── -->
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
-  <h2 class="sec-title">9 species,<br>pre-indexed and ready</h2>
-  <p class="sec-sub">Reference genomes are pre-indexed with STAR, BWA, Bowtie2, and Bismark. Downloaded and cached automatically on first pipeline run.</p>
-  <table class="genomes-table">
-    <thead>
-      <tr>
-        <th>Species</th>
-        <th>Common Name</th>
-        <th>Assemblies</th>
-        <th>Annotations</th>
-        <th>Use Cases</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="genome-species">Homo sapiens</span></td>
-        <td>Human</td>
-        <td>
-          <span class="genome-tag">GRCh38</span>
-          <span class="genome-tag">GRCh37</span>
-          <span class="genome-tag alt">T2T-CHM13</span>
-        </td>
-        <td>GENCODE v44, Ensembl 110, RefSeq</td>
-        <td>WGS, WES, scRNA, ATAC, clinical</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Mus musculus</span></td>
-        <td>Mouse</td>
-        <td>
-          <span class="genome-tag">GRCm39</span>
-          <span class="genome-tag">mm10</span>
-        </td>
-        <td>GENCODE M33, Ensembl 110</td>
-        <td>Drug discovery, knockout models</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Rattus norvegicus</span></td>
-        <td>Rat</td>
-        <td>
-          <span class="genome-tag">mRatBN7.2</span>
-        </td>
-        <td>Ensembl 110, RefSeq</td>
-        <td>Pharmacology, toxicology</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Danio rerio</span></td>
-        <td>Zebrafish</td>
-        <td>
-          <span class="genome-tag">GRCz11</span>
-        </td>
-        <td>Ensembl 110, ZFIN</td>
-        <td>Developmental biology, screens</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Drosophila melanogaster</span></td>
-        <td>Fruit Fly</td>
-        <td>
-          <span class="genome-tag">dm6</span>
-        </td>
-        <td>FlyBase r6.54, Ensembl</td>
-        <td>Genetics, CRISPR screens</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Saccharomyces cerevisiae</span></td>
-        <td>Yeast</td>
-        <td>
-          <span class="genome-tag">R64-1-1</span>
-          <span class="genome-tag alt">S288C</span>
-        </td>
-        <td>SGD, Ensembl Fungi</td>
-        <td>Yeast two-hybrid, metabolomics</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Caenorhabditis elegans</span></td>
-        <td>C. elegans</td>
-        <td>
-          <span class="genome-tag">WBcel235</span>
-        </td>
-        <td>WormBase WS290</td>
-        <td>Aging, longevity, RNAi screens</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Arabidopsis thaliana</span></td>
-        <td>Thale Cress</td>
-        <td>
-          <span class="genome-tag">TAIR10</span>
-        </td>
-        <td>TAIR 10.1, Ensembl Plants</td>
-        <td>Plant biology, epigenomics</td>
-      </tr>
-      <tr>
-        <td><span class="genome-species">Macaca mulatta</span></td>
-        <td>Rhesus Macaque</td>
-        <td>
-          <span class="genome-tag">Mmul_10</span>
-        </td>
-        <td>Ensembl 110, RefSeq</td>
-        <td>Primate translational research</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<hr class="divider">
-
-<!-- ── Tech Stack ── -->
-<section id="stack">
-  <span class="sec-tag">// Technology stack</span>
-  <h2 class="sec-title">2.1M lines of code,<br>28 microservices</h2>
-  <p class="sec-sub">Built from scratch as a production system — not a wrapper around existing tools. Every component chosen for clinical-grade reliability.</p>
-  <div class="tech-grid">
-    <div class="tech-group">
-      <span class="tech-group-label">AI / ML</span>
-      <div class="tech-tags">
-        <span class="tech-tag">PubMedBERT</span>
-        <span class="tech-tag">DeepSeek-R1</span>
-        <span class="tech-tag">FAISS</span>
-        <span class="tech-tag">LangGraph</span>
-        <span class="tech-tag">PyTorch</span>
-        <span class="tech-tag">Ollama</span>
-        <span class="tech-tag">HuggingFace</span>
-        <span class="tech-tag">Claude API</span>
-      </div>
-    </div>
-    <div class="tech-group">
-      <span class="tech-group-label">Data &amp; Knowledge</span>
-      <div class="tech-tags">
-        <span class="tech-tag">Neo4j</span>
-        <span class="tech-tag">MySQL</span>
-        <span class="tech-tag">Redis</span>
-        <span class="tech-tag">Celery</span>
-        <span class="tech-tag">BM25</span>
-        <span class="tech-tag">Elasticsearch</span>
-      </div>
-    </div>
-    <div class="tech-group">
-      <span class="tech-group-label">Pipelines &amp; Infra</span>
-      <div class="tech-tags">
-        <span class="tech-tag">Nextflow</span>
-        <span class="tech-tag">WDL</span>
-        <span class="tech-tag">Snakemake</span>
-        <span class="tech-tag">Docker</span>
-        <span class="tech-tag">Kubernetes</span>
-        <span class="tech-tag">Slurm</span>
-        <span class="tech-tag">NVIDIA DGX</span>
-        <span class="tech-tag">CUDA</span>
-      </div>
-    </div>
-    <div class="tech-group">
-      <span class="tech-group-label">Platform &amp; UI</span>
-      <div class="tech-tags">
-        <span class="tech-tag">Django</span>
-        <span class="tech-tag">FastAPI</span>
-        <span class="tech-tag">React</span>
-        <span class="tech-tag">Electron</span>
-        <span class="tech-tag">GATK</span>
-        <span class="tech-tag">Seurat</span>
-        <span class="tech-tag">DESeq2</span>
-        <span class="tech-tag">R</span>
-      </div>
-    </div>
+  <h2 class="sec-title">Reference Genomes</h2>
+  <p class="sec-sub">9 species, pre-indexed and ready. Reference genomes are pre-indexed with STAR, BWA, Bowtie2, and Bismark. Downloaded and cached automatically on first pipeline run.</p>
+  <div class="genomes-wrap">
+    <table class="genomes-table">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Common Name</th>
+          <th>Assemblies</th>
+          <th>Annotations</th>
+          <th>Use Cases</th>
+          <th>Indexes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="genome-species">Homo sapiens</span></td>
+          <td><span class="genome-common">Human</span></td>
+          <td><span class="genome-asm">GRCh38, GRCh37,<br>T2T-CHM13</span></td>
+          <td>GENCODE v44, Ensembl 110, RefSeq</td>
+          <td>WGS, WES, scRNA, ATAC, clinical</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-on">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Mus musculus</span></td>
+          <td><span class="genome-common">Mouse</span></td>
+          <td><span class="genome-asm">GRCm39, mm10</span></td>
+          <td>GENCODE M33, Ensembl 110</td>
+          <td>Drug discovery, knockout models</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-on">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Rattus norvegicus</span></td>
+          <td><span class="genome-common">Rat</span></td>
+          <td><span class="genome-asm">mRatBN7.2</span></td>
+          <td>Ensembl 110, RefSeq</td>
+          <td>Pharmacology, toxicology</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Danio rerio</span></td>
+          <td><span class="genome-common">Zebrafish</span></td>
+          <td><span class="genome-asm">GRCz11</span></td>
+          <td>Ensembl 110, ZFIN</td>
+          <td>Developmental biology, screens</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Drosophila melanogaster</span></td>
+          <td><span class="genome-common">Fruit Fly</span></td>
+          <td><span class="genome-asm">dm6</span></td>
+          <td>FlyBase r6.54, Ensembl</td>
+          <td>Genetics, CRISPR screens</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-soon">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Saccharomyces cerevisiae</span></td>
+          <td><span class="genome-common">Yeast</span></td>
+          <td><span class="genome-asm">R64-1-1, S288C</span></td>
+          <td>SGD, Ensembl Fungi</td>
+          <td>Yeast two-hybrid, metabolomics</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Caenorhabditis elegans</span></td>
+          <td><span class="genome-common">C. elegans</span></td>
+          <td><span class="genome-asm">WBcel235</span></td>
+          <td>WormBase WS290</td>
+          <td>Aging, longevity, RNAi screens</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Arabidopsis thaliana</span></td>
+          <td><span class="genome-common">Thale Cress</span></td>
+          <td><span class="genome-asm">TAIR10</span></td>
+          <td>TAIR 10.1, Ensembl Plants</td>
+          <td>Plant biology, epigenomics</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-on">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Macaca mulatta</span></td>
+          <td><span class="genome-common">Rhesus Macaque</span></td>
+          <td><span class="genome-asm">Mmul_10</span></td>
+          <td>Ensembl 110, RefSeq</td>
+          <td>Primate translational research</td>
+          <td>
+            <span class="idx-badge idx-on">STAR</span>
+            <span class="idx-badge idx-on">BWA</span>
+            <span class="idx-badge idx-on">Bowtie2</span>
+            <span class="idx-badge idx-soon">Salmon</span>
+            <span class="idx-badge idx-soon">CellRanger</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</section>
-
-<hr class="divider">
-
-<!-- ── Use Cases ── -->
-<section id="usecases">
-  <span class="sec-tag">// Use cases</span>
-  <h2 class="sec-title">Science that ships</h2>
-  <p class="sec-sub">Real workflows used by researchers across genomics, drug discovery, and translational medicine.</p>
-  <div class="use-cases-grid">
-    <div class="uc-card">
-      <span class="uc-num">01</span>
-      <span class="uc-icon">💊</span>
-      <div class="uc-title">Drug Discovery Literature Mining</div>
-      <p class="uc-desc">Query 34M PubMed abstracts to identify drug targets, mechanism-of-action evidence, and competitive landscape. GNN-based target-interaction prediction layered on top of literature signals.</p>
-      <div class="uc-tags">
-        <span class="uc-tag">RAG</span><span class="uc-tag">Neo4j KG</span><span class="uc-tag">GNN</span><span class="uc-tag">PubMedBERT</span>
-      </div>
+  <div style="display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)">
+      <span class="idx-badge idx-on" style="margin:0">STAR</span> Available
     </div>
-    <div class="uc-card">
-      <span class="uc-num">02</span>
-      <span class="uc-icon">🧫</span>
-      <div class="uc-title">Clinical Genomics Pipeline</div>
-      <p class="uc-desc">End-to-end WGS/WES variant calling from FASTQ → GATK → SnpEff → clinical report. Full LIMS integration with sample provenance and audit trails for regulated environments.</p>
-      <div class="uc-tags">
-        <span class="uc-tag">GATK</span><span class="uc-tag">SnpEff</span><span class="uc-tag">WES/WGS</span><span class="uc-tag">LIMS-X</span>
-      </div>
-    </div>
-    <div class="uc-card">
-      <span class="uc-num">03</span>
-      <span class="uc-icon">🔭</span>
-      <div class="uc-title">Multi-Omics Integration</div>
-      <p class="uc-desc">Joint analysis across scRNA-seq, ATAC-seq, proteomics, and methylation. Pathway-level synthesis with GSEA, ReactomePA, and gene regulatory network modeling.</p>
-      <div class="uc-tags">
-        <span class="uc-tag">scRNA-seq</span><span class="uc-tag">ATAC-seq</span><span class="uc-tag">Proteomics</span><span class="uc-tag">GSEA</span>
-      </div>
-    </div>
-    <div class="uc-card">
-      <span class="uc-num">04</span>
-      <span class="uc-icon">📊</span>
-      <div class="uc-title">Biomarker Discovery</div>
-      <p class="uc-desc">Cohort-level differential expression, ML-ranked variant prioritization, and plasma biomarker profiling. From patient data to publication-ready figures with full statistical reproducibility.</p>
-      <div class="uc-tags">
-        <span class="uc-tag">DESeq2</span><span class="uc-tag">ML ranking</span><span class="uc-tag">Cohort analysis</span><span class="uc-tag">Visualization</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ── Architecture ── -->
-<section id="architecture">
-  <span class="sec-tag">// System architecture</span>
-  <h2 class="sec-title">Clinical-grade design</h2>
-  <p class="sec-sub">28 containerized microservices. A layered architecture built for massive scale, traceability, and high performance.</p>
-  <div class="arch-grid">
-    <div>
-      <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;color:var(--text)">Engineered for absolute provenance</h3>
-      <p style="color:var(--text-muted);font-weight:300;margin-bottom:1.25rem;font-size:0.9rem;line-height:1.85">OmniBioAI Studio separates user experience orchestration from heavy-lifting workflow engines. It executes multi-omics routines natively, passing biological insights directly into automated reporting and visualization pipelines.</p>
-      <p style="color:var(--text-muted);font-weight:300;font-size:0.9rem;line-height:1.85">With strict isolation across its core service layers, researchers can safely deploy pipelines locally or easily burst to Slurm or cloud systems without code modifications.</p>
-    </div>
-    <div class="arch-diagram">
-      <div class="arch-layer"><div class="arch-dot"></div><span>OmniBioAI Studio UI (Electron Desktop)</span></div>
-      <div class="arch-conn">│ sub-3ms handshake</div>
-      <div class="arch-layer"><div class="arch-dot"></div><span>Agentic AI — LangGraph · PubMedBERT · DeepSeek-R1</span></div>
-      <div class="arch-conn">│ RAG pipeline (9 stages)</div>
-      <div class="arch-layer"><div class="arch-dot"></div><span>Literature AI — FAISS · Neo4j · BM25 (34M docs)</span></div>
-      <div class="arch-conn">│ workflow dispatch</div>
-      <div class="arch-layer"><div class="arch-dot"></div><span>BioFlow Runtime — Nextflow · WDL · Snakemake</span></div>
-      <div class="arch-conn">│ tracking &amp; provenance</div>
-      <div class="arch-layer"><div class="arch-dot"></div><span>LIMS-X Metadata · Django · FastAPI · Redis · MySQL</span></div>
-      <div class="arch-conn">│ compute layer</div>
-      <div class="arch-layer"><div class="arch-dot"></div><span>GPU Stack — CUDA · DGX Spark · 1 PetaFLOP</span></div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- ── Publications ── -->
-<section id="publications">
-  <span class="sec-tag">// Academic presence</span>
-  <h2 class="sec-title">Peer-reviewed research</h2>
-  <p class="sec-sub">Methods developed and powered by OmniBioAI platform architectures across transcriptomics and proteomics.</p>
-  <div class="pub-list">
-    <div class="pub-card">
-      <div class="pub-year">2025</div>
-      <div>
-        <div class="pub-title">Genetic mutations in lymphocytic variant of hypereosinophilic syndrome: study of five siblings</div>
-        <div class="pub-journal">Frontiers in Medicine · December 2025</div>
-        <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1679484/full" target="_blank" class="pub-link">↗ View paper</a>
-      </div>
-    </div>
-    <div class="pub-card">
-      <div class="pub-year">2018</div>
-      <div>
-        <div class="pub-title">Whole Exome Sequencing identifies common and rare variant Metabolic QTLs in a Middle Eastern Population</div>
-        <div class="pub-journal">Nature Communications · January 2018</div>
-        <a href="https://www.nature.com/articles/s41467-017-01972-9" target="_blank" class="pub-link">↗ View paper</a>
-      </div>
-    </div>
-    <div class="pub-card">
-      <div class="pub-year">2015</div>
-      <div>
-        <div class="pub-title">MetaRNA-Seq: An Interactive Tool to Browse and Annotate Metadata from RNA-Seq Studies</div>
-        <div class="pub-journal">BioMed Research International · August 2015</div>
-        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2015/318064" target="_blank" class="pub-link">↗ View paper</a>
-      </div>
+    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)">
+      <span class="idx-badge idx-soon" style="margin:0">CellRanger</span> Coming soon
     </div>
   </div>
 </section>
@@ -817,7 +700,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="req-card">
       <span class="req-icon">🧬</span>
       <div class="req-title">jq</div>
-      <p class="req-desc"><strong>Required:</strong> sudo apt install jq<br><strong>Or:</strong> brew install jq<br>Used for health checks and config</p>
+      <p class="req-desc"><strong>Required:</strong> sudo apt install jq<br><strong>Or:</strong> brew install jq<br>Used for health checks and config<br>Included in most Linux distros</p>
     </div>
   </div>
 
@@ -838,6 +721,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <h2 class="sec-title">OmniBioAI Studio<br><span style="font-size:0.7em;opacity:0.7">v0.4.0-beta</span></h2>
   <p class="sec-sub">Choose your platform and architecture. All installers include a 30-day free trial license.</p>
 
+  <!-- macOS -->
   <div class="dl-os-block">
     <div class="dl-section-title">
       <svg viewBox="0 0 170 170" width="14" height="14" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg>
@@ -859,6 +743,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </div>
   </div>
 
+  <!-- Linux x86 -->
   <div class="dl-os-block">
     <div class="dl-section-title">🐧 Linux x86_64 (Intel / AMD)</div>
     <div class="dl-grid">
@@ -885,6 +770,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </div>
   </div>
 
+  <!-- Linux ARM64 -->
   <div class="dl-os-block">
     <div class="dl-section-title">🦾 Linux ARM64 (DGX / Graviton / Raspberry Pi)</div>
     <div class="dl-grid">
@@ -912,6 +798,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </div>
   </div>
 
+  <!-- Windows -->
   <div class="dl-os-block">
     <div class="dl-section-title">🪟 Windows (WSL2)</div>
     <div class="dl-grid">
@@ -927,19 +814,62 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <hr class="divider">
 
-<!-- ── CTA Banner ── -->
-<section id="cta-banner" style="padding:5rem 2rem">
-  <div class="cta-banner">
-    <span class="sec-tag" style="display:block;text-align:center;margin-bottom:0.5rem">// Early access</span>
-    <h2>Built for Scientists.<br>Driven by AI.</h2>
-    <p>Join researchers using OmniBioAI to accelerate drug discovery, clinical genomics, and multi-omics analysis — on their own hardware, with full data privacy.</p>
-    <div class="cta-actions">
-      <a href="#request" class="btn-primary">↗ Request Early Access</a>
-      <a href="https://www.youtube.com/watch?v=dM-2HYYO6uo" target="_blank" class="btn-secondary">▶ Watch Demo</a>
+<!-- ── Architecture ── -->
+<section id="architecture">
+  <span class="sec-tag">// System architecture</span>
+  <h2 class="sec-title">Clinical-grade design</h2>
+  <p class="sec-sub">A containerized, microservices-led environment built for massive scale, traceability, and high performance.</p>
+  <div class="arch-grid">
+    <div>
+      <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:1rem;color:var(--text)">Engineered for absolute provenance</h3>
+      <p style="color:var(--text-muted);font-weight:300;margin-bottom:1.25rem;font-size:0.9rem;line-height:1.85">OmniBioAI Studio separates user experience orchestration from heavy-lifting workflow engines. It executes multi-omics routines natively, passing biological insights directly into automated reporting and visualization pipelines.</p>
+      <p style="color:var(--text-muted);font-weight:300;font-size:0.9rem;line-height:1.85">With strict isolation across its core service layers, researchers can safely deploy pipelines locally or easily burst to Slurm or cloud systems without code modifications.</p>
     </div>
-    <div class="email-capture">
-      <input type="email" id="quick-email" placeholder="your@institution.edu">
-      <button onclick="quickEmailSubmit()">Get Notified</button>
+    <div class="arch-diagram">
+      <div class="arch-layer"><div class="arch-dot"></div><span>OmniBioAI Studio UI (Desktop Frontend)</span></div>
+      <div class="arch-conn">│ Handshake (sub-3ms latency)</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>Agentic AI Orchestration (LangGraph / Ollama / HF)</span></div>
+      <div class="arch-conn">│ Orchestration &amp; data mapping</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>BioFlow Runtime Engine (Nextflow / WDL / Snakemake)</span></div>
+      <div class="arch-conn">│ Tracking &amp; provenance link</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>LIMS-X Metadata &amp; Sample Tracking System</span></div>
+      <div class="arch-conn">│ Infrastructure layer</div>
+      <div class="arch-layer"><div class="arch-dot"></div><span>GPU Accelerated Stack (CUDA / NVIDIA DGX Spark)</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Publications ── -->
+<section id="publications">
+  <span class="sec-tag">// Academic presence</span>
+  <h2 class="sec-title">Peer-reviewed research</h2>
+  <p class="sec-sub">Methods developed and powered by OmniBioAI platform architectures across transcriptomics and proteomics.</p>
+  <div class="pub-list">
+    <div class="pub-card">
+      <div class="pub-year">2025</div>
+      <div>
+        <div class="pub-title">Genetic mutations in lymphocytic variant of hypereosinophilic syndrome: study of five siblings</div>
+        <div class="pub-journal">Frontiers in Medicine · December 2025</div>
+        <a href="https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2025.1679484/full" target="_blank" class="pub-link">↗ View paper</a>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2018</div>
+      <div>
+        <div class="pub-title">Whole Exome Sequencing identifies common and rare variant Metabolic QTLs in a Middle Eastern Population</div>
+        <div class="pub-journal">Nature Communications · January 2018</div>
+        <a href="https://www.nature.com/articles/s41467-017-01972-9" target="_blank" class="pub-link">↗ View paper</a>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-year">2015</div>
+      <div>
+        <div class="pub-title">MetaRNA-Seq: An Interactive Tool to Browse and Annotate Metadata from RNA-Seq Studies</div>
+        <div class="pub-journal">BioMed Research International · August 2015</div>
+        <a href="https://onlinelibrary.wiley.com/doi/10.1155/2015/318064" target="_blank" class="pub-link">↗ View paper</a>
+      </div>
     </div>
   </div>
 </section>
@@ -947,7 +877,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <hr class="divider">
 
 <!-- ── Request ── -->
-<section id="request" style="max-width:700px">
+<section id="request" style="max-width:680px">
   <div class="cta-wrap">
     <span class="sec-tag">// Apply for private beta</span>
     <h2>Request Access</h2>
@@ -990,11 +920,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         <label class="form-label">Primary Research Area *</label>
         <select id="use-case" class="form-select" required>
           <option value="" disabled selected>Select modality...</option>
-          <option value="literature_ai">Literature AI / Drug Discovery</option>
           <option value="scrna">Single-Cell Transcriptomics</option>
           <option value="wgs">WGS / Exome Variant Analysis</option>
           <option value="proteomics">Proteomics &amp; Mass Spec</option>
-          <option value="multiomics">Multi-Omics Integration</option>
+          <option value="drug_discovery">Target Identification / GNNs</option>
           <option value="other">Other Multi-Modal Research</option>
         </select>
       </div>
@@ -1005,7 +934,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
             <span class="platform-icon">🐧</span>
             <span class="platform-name">Linux</span>
             <span class="platform-hint">Ubuntu / Debian / RHEL</span>
-            <span class="platform-badge">AppImage · 84 MB</span>
+            <span class="platform-badge">AppImage · 78 MB</span>
           </div>
           <div class="platform-card" id="platform-mac" onclick="selectPlatform('mac')">
             <span class="platform-icon">🍎</span>
@@ -1037,11 +966,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <footer>
   <div class="footer-left">© 2026 OmniBioAI. All rights reserved.</div>
   <ul class="footer-links">
-    <li><a href="#pipeline">Pipeline</a></li>
-    <li><a href="#modules">Platform</a></li>
+    <li><a href="#literature-ai">Literature AI</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#omics">Omics</a></li>
     <li><a href="#genomes">Genomes</a></li>
-    <li><a href="#stack">Stack</a></li>
+    <li><a href="#requirements">Requirements</a></li>
     <li><a href="#download">Download</a></li>
     <li><a href="about.html">About</a></li>
   </ul>
@@ -1058,16 +987,7 @@ function toggleOmics(){
   var btn=document.getElementById('omics-toggle');
   var showing=cards[0]&&cards[0].style.display==='block';
   cards.forEach(c=>c.style.display=showing?'none':'block');
-  btn.textContent=showing?'SHOW ALL PIPELINES (+9)':'HIDE EXTRA PIPELINES';
-}
-function quickEmailSubmit(){
-  var em=document.getElementById('quick-email');
-  if(!em||!em.value){return}
-  var t=document.getElementById('toast');
-  t.textContent='Thanks! We will be in touch.';
-  t.classList.add('show');
-  em.value='';
-  setTimeout(function(){t.classList.remove('show');t.textContent='Access request submitted ✓'},3000);
+  btn.textContent=showing?'SHOW ALL PIPELINES (+13)':'HIDE EXTRA PIPELINES';
 }
 function handleSubmit(e){
   e.preventDefault();
@@ -1079,7 +999,7 @@ function handleSubmit(e){
   btn.disabled=true;btn.textContent='Sending...';
   errEl.style.display='none';
   var payload={
-    first_name:document.getElementById('first-name').value.trim(),
+    first_name:document.getElementById('first-name').value.trim().split(/\s+/)[0],
     last_name:document.getElementById('last-name').value.trim(),
     email:document.getElementById('email').value.trim(),
     institution:document.getElementById('institution').value.trim(),
@@ -1098,7 +1018,6 @@ function handleSubmit(e){
     e.target.reset();
     document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
     var t=document.getElementById('toast');
-    t.textContent='Access request submitted ✓';
     t.classList.add('show');
     setTimeout(function(){t.classList.remove('show')},3000);
   }).catch(function(){
