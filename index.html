@@ -425,12 +425,17 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="feature-card">
       <div class="f-icon">⬕</div>
       <div class="f-title">End-to-end provenance</div>
-      <p class="f-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.<br><br>Lab Integrations:<br>· Benchling (samples, sequences, entities, notebooks)<br>· LIMS built-in<br>· ELN-ready export</p>
+      <p class="f-desc">Production-grade Model Registry and LIMS-X metadata system for total traceability — from raw FASTQ to drug-target intelligence and pathway enrichment.<br><br>Lab Integrations:<br>· Benchling (samples, sequences, entities, notebooks)<br>· REDCap (patient cohorts, clinical research data)<br>· LIMS built-in<br>· ELN-ready export</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">⬢</div>
       <div class="f-title">Benchling Integration</div>
       <p class="f-desc">Import samples, sequences and entities directly from Benchling. Export analysis results back as Benchling notebook entries and custom entities.</p>
+    </div>
+    <div class="feature-card">
+      <div class="f-icon">⬗</div>
+      <div class="f-title">REDCap Integration</div>
+      <p class="f-desc">Import patient cohorts and research data directly from REDCap. Export analysis results back to REDCap projects. Built for academic medical centers and clinical research workflows.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">◇</div>
@@ -482,7 +487,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome &amp; genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
     <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
     <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
-    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine.</p></div>
+    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine. REDCap cohort import → multi-omics analysis → results export back to REDCap.</p></div>
     <div class="omics-card"><span class="omics-label">ATAC-SEQ</span><div class="omics-title">Chromatin accessibility</div><p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">ChIP-seq</span><div class="omics-title">Protein-DNA interactions</div><p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p></div>
     <div class="omics-card hidden-card"><span class="omics-label">circRNA</span><div class="omics-title">Circular RNA analysis</div><p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p></div>
@@ -510,7 +515,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span>
     <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
     <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span><span class="tag">Sentry</span>
-    <span class="tag">Benchling</span>
+    <span class="tag">Benchling</span><span class="tag">REDCap</span>
   </div>
 </section>
 
