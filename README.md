@@ -30,8 +30,8 @@ The site is built with vanilla HTML, CSS, and JavaScript — no build tools or f
 The download section provides installers for:
 
 **macOS**
-- Apple Silicon (ARM64) — DMG · 84 MB
-- Intel (x86_64) — DMG · 86 MB
+- Apple Silicon (ARM64) — DMG · 101 MB
+- Intel (x86_64) — DMG · 105 MB
 
 **Linux x86_64**
 - AppImage (any distro, Ubuntu 20.04+)
@@ -44,7 +44,7 @@ The download section provides installers for:
 - RPM ARM64
 
 **Windows**
-- WSL2-based installer (coming soon)
+- Windows installer (NSIS EXE) — 95 MB
 
 All installers include a **30-day free trial license**. Access is gated behind a beta approval form.
 
