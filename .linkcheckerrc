@@ -1,0 +1,6 @@
+[filtering]
+# http-redirected: the download links redirect to signed, time-limited
+# GitHub release-asset URLs by design (large binaries) -- not a broken
+# link, just how GitHub Releases serves large assets. Every other
+# warning type stays active.
+ignorewarnings=http-redirected

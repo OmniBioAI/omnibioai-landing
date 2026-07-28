@@ -30,7 +30,7 @@ jobs:
                      "is not a \"background-clip\" value"
 
       - name: Check external links
-        run: linkchecker --check-extern index.html --ignore-url ".*#.*" --ignore-url "onlinelibrary\.wiley\.com"
+        run: linkchecker --check-extern index.html --ignore-url ".*#.*" --ignore-url "onlinelibrary\.wiley\.com" -f .linkcheckerrc
 
   deploy:
     name: Deploy to GitHub Pages
