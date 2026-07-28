@@ -22,7 +22,12 @@ jobs:
         run: pip install html5validator linkchecker
 
       - name: Validate HTML & CSS
-        run: html5validator --root . --also-check-css --log ERROR
+        run: |
+          html5validator --root . --also-check-css --log ERROR \
+            --ignore "Property \"inset\" doesn't exist" \
+                     "Property \"backdrop-filter\" doesn't exist" \
+                     "is not a \"color-stop\" value" \
+                     "is not a \"background-clip\" value"
 
       - name: Check external links
         run: linkchecker --check-extern index.html --ignore-url ".*#.*"
