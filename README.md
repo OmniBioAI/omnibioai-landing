@@ -44,21 +44,26 @@ The download section provides installers for:
 - RPM ARM64
 
 **Windows**
-- Windows installer (NSIS EXE) — 95 MB
+- Windows installer (NSIS EXE) — ~90 MB
 
 All installers include a **30-day free trial license**. Access is gated behind a beta approval form.
 
 ---
 
-## Key Platform Stats (v0.4.0-beta)
+## Key Platform Stats (v0.7.0-beta)
+
+Pulled directly from the live site's stat bar (`index.html`, verified
+2026-08-07) — this table previously named v0.4.0-beta and numbers from
+that era, several versions behind the site's actual current downloads:
 
 | Metric | Value |
 |--------|-------|
-| Bioinformatics pipelines | 50+ |
-| Integrated analysis tools | 500+ |
-| Plugins | 125+ |
+| Tools | 12,110+ |
+| Plugins | 225 |
+| Container images | 1,120+ |
 | Agentic pipelines | 10+ |
-| Platform microservices | 20+ |
+| Knowledge domains | 150+ |
+| Microservices | 28 |
 
 ---
 
@@ -147,7 +152,7 @@ Selected peer-reviewed work powered by OmniBioAI platform methods:
 
 ## Beta Access
 
-OmniBioAI Studio v0.4.0-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
+OmniBioAI Studio v0.7.0-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
 
 👉 [Request Access](https://omnibioai.org/#request)
 
@@ -159,7 +164,7 @@ This is a static site — no build step required.
 
 ```bash
 # Clone the repo
-git clone https://github.com/man4ish/omnibioai-landing.git
+git clone https://github.com/OmniBioAI/omnibioai-landing.git
 cd omnibioai-landing
 
 # Serve locally (any static server)
@@ -176,7 +181,7 @@ Then open `http://localhost:8080` in your browser.
 
 | Repo | Description |
 |------|-------------|
-| [omnibioai-studio](https://github.com/man4ish/omnibioai-studio) | Desktop application (Electron) — releases and installers |
+| [omnibioai-studio](https://github.com/OmniBioAI/omnibioai-studio) | Desktop application (Electron) — releases and installers |
 
 ---
 
