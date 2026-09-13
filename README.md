@@ -67,10 +67,10 @@ reports enabled plugins, and container availability varies by deployment.
 | Knowledge domains | 150+ |
 | Microservices | 40 services in the current Studio Compose stack |
 
-The Studio download links on this page currently target the private-beta
-`v0.7.0-beta` artifacts. A stable `v0.7.0` release also exists in the Studio
-repository; update the links and version labels together when switching the
-landing page to stable distribution.
+The Studio download links on this page currently target the `v0.7.1-beta`
+artifacts — the latest published release in the Studio repository. No stable
+(non-beta) `v0.7.1` release exists yet; update the links and version labels
+together when a stable release is cut.
 
 ---
 
@@ -159,7 +159,7 @@ Selected peer-reviewed work powered by OmniBioAI platform methods:
 
 ## Beta Access
 
-OmniBioAI Studio v0.7.0-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
+OmniBioAI Studio v0.7.1-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
 
 👉 [Request Access](https://omnibioai.org/#request)
 
