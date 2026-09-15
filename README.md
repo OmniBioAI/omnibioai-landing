@@ -3,7 +3,7 @@
 > Official landing page for **OmniBioAI Studio** — an AI-native, reproducible bioinformatics platform for multi-omics research and workflow automation.
 
 🌐 **Live site:** [omnibioai.org](https://omnibioai.org)  
-📺 **Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=oZa-iJcv5bE)
+📺 **Demo:** [Watch on YouTube](https://www.youtube.com/watch?v=7REfKSw5qPg)
 
 ---
 
