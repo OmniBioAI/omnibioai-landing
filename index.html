@@ -6,6 +6,26 @@
 <title>OmniBioAI — AI Bioinformatics Platform</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
+.webstudio-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.webstudio-qr img {
+    width: 130px;
+    height: 130px;
+    display: block;
+    background: #fff;
+}
+
+.qr-label {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+}  
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#04080f;
@@ -273,6 +293,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <a href="#request" class="btn-primary">↗ Request Access</a>
     <a href="https://videos.omnibioai.org" target="_blank" class="btn-secondary">▶ Watch Demo</a>
     <a href="https://webstudio.omnibioai.org" target="_blank" class="btn-secondary">🌐 Try Web App</a>
+  </div>
+  <div class="webstudio-qr">
+    <img
+        src="assets/Qq9neU2wKLVn93n_OmniBioAI%20Studio.svg"
+        alt="QR code for OmniBioAI Studio"
+    >
+    <div class="qr-label">Scan to open Web Studio</div>
   </div>
   <div class="stats-row">
     <div class="stat-item"><span class="stat-num">12,000+</span><span class="stat-label">TES tool definitions</span></div>
