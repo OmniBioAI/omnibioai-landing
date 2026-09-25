@@ -428,114 +428,104 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="literature-ai">
   <span class="sec-tag">// Biomedical AI — Literature Intelligence</span>
   <h2 class="sec-title">Powered by PubMed.<br>Enhanced by AI.</h2>
-  <p class="sec-sub">Grounded in Evidence. A 9-stage retrieval-augmented generation pipeline over 28M+ PubMed abstracts — delivering cited, reproducible answers grounded in published science.</p>
+  <p class="sec-sub">Grounded in evidence. Retrieval-augmented generation over 28.1M PubMed abstracts, running on your own hardware with Llama 3, and every answer cites the PubMed IDs it came from.</p>
   <div class="rag-layout">
     <div class="rag-pipeline">
       <div class="rag-step">
         <span class="rag-step-num">01</span>
         <div>
-          <span class="rag-step-label">User Query</span>
-          <span class="rag-step-desc">Natural language or structured biomedical question input</span>
+          <span class="rag-step-label">Question</span>
+          <span class="rag-step-desc">A natural-language biomedical question, optionally scoped to one research domain</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">02</span>
         <div>
-          <span class="rag-step-label">Query Expansion (LLM)</span>
-          <span class="rag-step-desc">Synonyms, MeSH terms, and related concepts added via LLM reformulation</span>
+          <span class="rag-step-label">Query expansion (LLM)</span>
+          <span class="rag-step-desc">The question is rewritten into related variants so relevant papers are not missed on wording alone</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">03</span>
         <div>
-          <span class="rag-step-label">Hybrid Retrieval (FAISS + BM25)</span>
-          <span class="rag-step-desc">Dense vector search (PubMedBERT embeddings) merged with sparse BM25 keyword retrieval</span>
+          <span class="rag-step-label">Vector search (FAISS)</span>
+          <span class="rag-step-desc">Each variant is embedded with mxbai-embed-large (1024-d) and matched against per-domain FAISS indexes; hits are merged by PMID</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">04</span>
         <div>
-          <span class="rag-step-label">Reciprocal Rank Fusion (RRF)</span>
-          <span class="rag-step-desc">Dense and sparse result lists merged and re-scored by RRF for unified ranking</span>
+          <span class="rag-step-label">Hybrid keyword search (BM25)</span>
+          <span class="rag-step-desc">Within a named domain, BM25 keyword results are fused with the vector results</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">05</span>
         <div>
-          <span class="rag-step-label">Cross-Encoder Re-ranking</span>
-          <span class="rag-step-desc">PubMedBERT cross-encoder re-scores top-k candidates for precision retrieval</span>
+          <span class="rag-step-label">Re-ranking</span>
+          <span class="rag-step-desc">Candidate abstracts are re-scored so the most relevant evidence reaches the model</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">06</span>
         <div>
-          <span class="rag-step-label">Citation Confidence Scoring</span>
-          <span class="rag-step-desc">Papers weighted by citation impact, journal tier, recency, and domain relevance</span>
+          <span class="rag-step-label">Knowledge graph enrichment (Neo4j)</span>
+          <span class="rag-step-desc">Optional graph lookup adds linked biomedical entities as context</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">07</span>
         <div>
-          <span class="rag-step-label">Knowledge Graph Enrichment (Neo4j)</span>
-          <span class="rag-step-desc">Entity links — genes, diseases, drugs, pathways — resolved via Neo4j biomedical KG traversal</span>
+          <span class="rag-step-label">Answer generation (Llama 3)</span>
+          <span class="rag-step-desc">Llama 3 runs locally through Ollama and writes the answer from the retrieved abstracts only</span>
         </div>
       </div>
       <div class="rag-connector"></div>
       <div class="rag-step">
         <span class="rag-step-num">08</span>
         <div>
-          <span class="rag-step-label">LLM Reasoning (DeepSeek-R1)</span>
-          <span class="rag-step-desc">Evidence chains synthesized with explicit chain-of-thought reasoning and full citation anchoring</span>
-        </div>
-      </div>
-      <div class="rag-connector"></div>
-      <div class="rag-step">
-        <span class="rag-step-num">09</span>
-        <div>
-          <span class="rag-step-label">Structured Output (PMIDs + Evidence + Entities)</span>
-          <span class="rag-step-desc">PMIDs + evidence snippets + named entities + confidence scores returned as structured JSON</span>
+          <span class="rag-step-label">PMID citations</span>
+          <span class="rag-step-desc">Every passage carries its PubMed ID, so each claim can be traced back to the paper</span>
         </div>
       </div>
     </div>
     <div>
       <div class="rag-stats-grid">
         <div class="rag-stat-card">
-          <span class="rag-stat-num">28M</span>
-          <span class="rag-stat-label">PubMed abstracts indexed and searchable</span>
+          <span class="rag-stat-num">28.1M</span>
+          <span class="rag-stat-label">Distinct PubMed abstracts stored locally</span>
         </div>
         <div class="rag-stat-card">
-          <span class="rag-stat-num">150+</span>
-          <span class="rag-stat-label">Biomedical domains covered</span>
+          <span class="rag-stat-num">282</span>
+          <span class="rag-stat-label">Indexed domains: 150 research topics + 132 general-corpus shards</span>
         </div>
         <div class="rag-stat-card">
-          <span class="rag-stat-num">&lt;30s</span>
-          <span class="rag-stat-label">Query response time end-to-end</span>
+          <span class="rag-stat-num">1024-d</span>
+          <span class="rag-stat-label">mxbai-embed-large vectors, one per abstract</span>
         </div>
         <div class="rag-stat-card">
-          <span class="rag-stat-num">9-stage</span>
-          <span class="rag-stat-label">Pipeline with full citation provenance</span>
+          <span class="rag-stat-num">Local</span>
+          <span class="rag-stat-label">Llama 3 via Ollama: questions and data stay on your server</span>
         </div>
       </div>
       <div class="rag-tags">
-        <span class="rag-tag hi">PubMedBERT embeddings</span>
+        <span class="rag-tag hi">Llama 3 via Ollama</span>
+        <span class="rag-tag hi">mxbai-embed-large</span>
+        <span class="rag-tag hi">FAISS + BM25 hybrid</span>
         <span class="rag-tag hi">Neo4j knowledge graph</span>
-        <span class="rag-tag hi">Hybrid BM25 + FAISS</span>
-        <span class="rag-tag hi">DeepSeek-R1 reasoning</span>
-        <span class="rag-tag">Cross-encoder re-ranking</span>
-        <span class="rag-tag">Reciprocal Rank Fusion</span>
-        <span class="rag-tag">Citation confidence scoring</span>
-        <span class="rag-tag">MeSH query expansion</span>
-        <span class="rag-tag">Structured JSON output</span>
-        <span class="rag-tag">PMID-anchored evidence</span>
-        <span class="rag-tag">Named entity extraction</span>
-        <span class="rag-tag">Local · air-gapped · private</span>
+        <span class="rag-tag">LLM query expansion</span>
+        <span class="rag-tag">Re-ranking</span>
+        <span class="rag-tag">PMID-cited answers</span>
+        <span class="rag-tag">Per-domain indexes</span>
+        <span class="rag-tag">Runs locally · private</span>
       </div>
+      <p class="genome-note">Indexes are being re-embedded to 1024 dimensions; a domain becomes queryable as its index is rebuilt. <a href="https://control.omnibioai.org/overview" target="_blank">Live re-indexing progress ↗</a> · <a href="https://docs.omnibioai.org/biomedical-knowledge/rag-architecture/" target="_blank">How the pipeline works ↗</a></p>
     </div>
   </div>
 </section>
