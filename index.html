@@ -154,6 +154,29 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .int-card:hover .int-name{color:var(--accent)}
 .int-desc{display:block;font-size:0.74rem;color:var(--text-muted);font-weight:300;line-height:1.55}
 
+/* ── Catalogs ── */
+section.cat-section{padding-top:4rem;padding-bottom:4rem}
+.cat-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin-bottom:1.5rem}
+.cat-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.15;letter-spacing:-0.01em}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);padding:1px 0 0 1px}
+.cat-tile{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border);margin:-1px 0 0 -1px;padding:1.1rem 1.2rem;text-decoration:none;transition:background 0.2s}
+.cat-tile:hover{background:var(--surface)}
+.cat-tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cat-num{font-family:'JetBrains Mono',monospace;font-size:1.45rem;font-weight:500;color:var(--accent);line-height:1}
+.cat-label{font-size:0.82rem;font-weight:600;color:var(--text);margin:0.45rem 0 0.25rem;line-height:1.3}
+.cat-tile:hover .cat-label{color:var(--accent)}
+.cat-detail{font-size:0.72rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+.cat-bar{display:flex;gap:2px;height:5px;margin:0.55rem 0 0.35rem;border-radius:2px;overflow:hidden}
+.cat-bar-seg{min-width:4px}
+.cat-seg-0{background:var(--accent)}
+.cat-seg-1{background:var(--accent2)}
+.cat-seg-2{background:#a78bfa}
+.cat-seg-3{background:#e09a28}
+.cat-legend{display:block;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.02em}
+.cat-note{margin-top:0.9rem;font-size:0.72rem;color:var(--text-dim);font-weight:300;line-height:1.6;max-width:760px}
+.cat-note a{color:var(--accent);text-decoration:none}
+.cat-note a:hover{text-decoration:underline}
+
 /* ── Omics grid ── */
 .omics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1px}
 .omics-card{background:var(--bg2);padding:1.5rem;transition:background 0.2s;cursor:default}
@@ -275,11 +298,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   .nav-cta{display:block!important;text-align:center;margin-top:0.75rem;padding:0.6rem 1.1rem!important}
 }
 @media(max-width:1000px){
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
   .stats-row{grid-template-columns:repeat(3,1fr);max-width:560px}
 }
 @media(max-width:600px){
   .webstudio-qr{display:none}
   .int-grid{grid-template-columns:1fr 1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
   .int-card::after{display:none}
   .int-name{font-size:0.8rem;padding-right:0}
@@ -326,6 +351,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <li class="nav-more" id="nav-more">
       <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-more-menu">More <span aria-hidden="true">▾</span></button>
       <ul class="nav-more-menu" id="nav-more-menu">
+        <li><a href="#catalogs">Catalogs</a></li>
         <li><a href="#genomes">Genomes</a></li>
         <li><a href="#requirements">Install</a></li>
         <li><a href="#architecture">Architecture</a></li>
@@ -716,6 +742,27 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <a class="int-card" href="https://docs.omnibioai.org/integrations/details/vault/" target="_blank"><span class="int-name">HashiCorp Vault</span><span class="int-desc">Health, mounts and seal status</span></a>
     </div>
   </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── Catalogs ── -->
+<section id="catalogs" class="cat-section">
+  <div class="cat-head">
+    <div>
+      <span class="sec-tag">// Catalogs</span>
+      <h2 class="cat-title">What's in the platform</h2>
+    </div>
+    <a href="https://docs.omnibioai.org/catalogs/" target="_blank" class="int-docs-link">All catalogs in the docs ↗</a>
+  </div>
+  <div class="cat-grid">
+    <a class="cat-tile" href="https://docs.omnibioai.org/workflows-catalog/" target="_blank"><span class="cat-num">1000+</span><span class="cat-label">Workflows</span><span class="cat-detail">In 100+ domains<span class="cat-bar" role="img" aria-label="Engine mix in the docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1"><span class="cat-bar-seg cat-seg-0" style="flex:861" title="Nextflow: 861"></span><span class="cat-bar-seg cat-seg-1" style="flex:5" title="WDL: 5"></span><span class="cat-bar-seg cat-seg-2" style="flex:2" title="Snakemake: 2"></span><span class="cat-bar-seg cat-seg-3" style="flex:1" title="CWL: 1"></span></span><span class="cat-legend">Engine mix in docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1</span></span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/plugins/" target="_blank"><span class="cat-num">501</span><span class="cat-label">Workbench plugins</span><span class="cat-detail">Across 22 categories, including 66 integrations</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/tools/" target="_blank"><span class="cat-num">12,276</span><span class="cat-label">TES tool definitions</span><span class="cat-detail">8 execution backends · 9,061 auto-imported and not yet verified</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank"><span class="cat-num">130</span><span class="cat-label">Reference database plugins</span><span class="cat-detail">90 implemented · 40 scaffolded</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/api-reference/" target="_blank"><span class="cat-num">219</span><span class="cat-label">API routes</span><span class="cat-detail">Found in source across 8 services · 109 documented publicly</span></a>
+  </div>
+  <p class="cat-note">Plugin, tool, reference database and API counts are read from the documentation's generated catalogs (19 Sep 2026). They describe what is registered or configured in source, not that every entry has been tested or deployed. <a href="https://docs.omnibioai.org/quality-and-trust/" target="_blank">How to read these figures ↗</a></p>
 </section>
 
 <hr class="divider">
