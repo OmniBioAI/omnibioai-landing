@@ -117,7 +117,7 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .rag-tag.hi{color:var(--accent);border-color:var(--border2);background:rgba(0,212,170,0.05)}
 
 /* ── Feature cards ── */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1px;background:var(--border)}
 .feature-card{background:var(--bg2);padding:2rem;transition:all 0.2s;position:relative;overflow:hidden}
 .feature-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,170,0.03),transparent);opacity:0;transition:opacity 0.3s}
 .feature-card:hover::before{opacity:1}
@@ -335,7 +335,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 }
 @media(max-width:900px){
   nav{padding:0 1.5rem}
-  .arch-grid,.omics-grid,.form-grid2,.platform-grid,.rag-layout,.rag-stats-grid{grid-template-columns:1fr}
+  .arch-grid,.omics-grid,.form-grid2,.platform-grid,.rag-layout,.rag-stats-grid{grid-template-columns:minmax(0,1fr)}
   section{padding:4rem 1.5rem}
   .cta-wrap{padding:2rem 1.5rem}
   footer{flex-direction:column;align-items:flex-start}
@@ -1065,20 +1065,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <p style="color:var(--text-muted);font-weight:300;margin-bottom:1.25rem;font-size:0.9rem;line-height:1.85">OmniBioAI Studio separates user experience orchestration from heavy-lifting workflow engines. It executes multi-omics routines natively, passing biological insights directly into automated reporting and visualization pipelines.</p>
       <p style="color:var(--text-muted);font-weight:300;font-size:0.9rem;line-height:1.85">With strict isolation across its core service layers, researchers can safely deploy pipelines locally or easily burst to Slurm or cloud systems without code modifications.</p>
       <a href="https://control.omnibioai.org" target="_blank" class="btn-secondary" style="margin-top:1.5rem;display:inline-flex">↗ See live architecture & health</a>
-      <div style="display:flex;gap:1px;background:var(--border);margin-top:2rem">
-        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
+      <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--border);margin-top:2rem">
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
           <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">5M+</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Lines of code</span>
         </div>
-        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
           <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">97%</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Avg test coverage</span>
         </div>
-        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
           <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">33</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Repos · all clean</span>
         </div>
-        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
+        <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
           <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">65K+</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Automated tests</span>
         </div>
