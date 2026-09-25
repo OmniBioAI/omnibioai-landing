@@ -153,6 +153,9 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .int-name{display:block;font-size:0.86rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;padding-right:1rem}
 .int-card:hover .int-name{color:var(--accent)}
 .int-desc{display:block;font-size:0.74rem;color:var(--text-muted);font-weight:300;line-height:1.55}
+.int-tag{display:inline-block;vertical-align:middle;font-family:'JetBrains Mono',monospace;font-size:0.58rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--border2);border-radius:3px;padding:0.05rem 0.35rem;margin-left:0.3rem}
+.int-card-scaffold .int-name{color:var(--text-muted)}
+.int-note{font-size:0.74rem;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:0.5rem;max-width:760px}
 
 /* ── Catalogs ── */
 section.cat-section{padding-top:4rem;padding-bottom:4rem}
@@ -371,6 +374,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-more-menu">More <span aria-hidden="true">▾</span></button>
       <ul class="nav-more-menu" id="nav-more-menu">
         <li><a href="#catalogs">Catalogs</a></li>
+        <li><a href="#reference-databases">Reference DBs</a></li>
         <li><a href="#genomes">Genomes</a></li>
         <li><a href="#requirements">Install</a></li>
         <li><a href="#architecture">Architecture</a></li>
@@ -751,6 +755,204 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <a class="int-card" href="https://docs.omnibioai.org/integrations/details/vault/" target="_blank"><span class="int-name">HashiCorp Vault</span><span class="int-desc">Health, mounts and seal status</span></a>
     </div>
   </div>
+</section>
+
+<section id="reference-databases">
+  <span class="sec-tag">// Biomedical reference databases</span>
+  <h2 class="sec-title">Reference knowledge,<br>one query away</h2>
+  <p class="sec-sub">Reference-database plugins give scientists and AI agents read-only access to the genomic, clinical, protein, chemical and ontology resources that analyses depend on, from variant interpretation to target discovery.</p>
+  <div class="int-summary">
+    <span class="int-total"><strong>130</strong> reference databases across <strong>9</strong> categories · 90 implemented · 40 scaffolded</span>
+    <a href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
+  </div>
+  <div class="int-filters" role="group" aria-label="Filter reference databases by category">
+    <button type="button" class="int-filter" data-group="all" aria-pressed="true">All <span>130</span></button>
+    <button type="button" class="int-filter" data-group="genes-variants" aria-pressed="false">Genes, Variants &amp; Clinical Genetics <span>40</span></button>
+    <button type="button" class="int-filter" data-group="expression-omics" aria-pressed="false">Expression, Omics &amp; Cohorts <span>19</span></button>
+    <button type="button" class="int-filter" data-group="proteins-structure" aria-pressed="false">Proteins, Structure &amp; Interactions <span>18</span></button>
+    <button type="button" class="int-filter" data-group="drugs-chemistry" aria-pressed="false">Drugs, Chemistry &amp; Metabolomics <span>20</span></button>
+    <button type="button" class="int-filter" data-group="ontologies-phenotype" aria-pressed="false">Ontologies, Disease &amp; Phenotype <span>12</span></button>
+    <button type="button" class="int-filter" data-group="model-organisms" aria-pressed="false">Model Organisms <span>7</span></button>
+    <button type="button" class="int-filter" data-group="regulation-ncrna" aria-pressed="false">Non-coding RNA &amp; Regulation <span>6</span></button>
+    <button type="button" class="int-filter" data-group="pathways" aria-pressed="false">Pathways <span>6</span></button>
+    <button type="button" class="int-filter" data-group="cross-domain" aria-pressed="false">Clinical Trials &amp; Models <span>2</span></button>
+  </div>
+  <div class="int-group" data-group="genes-variants">
+    <div class="int-group-head"><h3 class="int-group-title">Genes, Variants &amp; Clinical Genetics</h3><span class="int-group-count">40</span><p class="int-group-sub">Gene nomenclature and annotation, population and structural variation, and clinical-genetics evidence.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">1000 Genomes / IGSR</span><span class="int-desc">Population samples, data collections and files</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">ClinGen</span><span class="int-desc">Gene–disease validity and dosage sensitivity</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">ClinVar</span><span class="int-desc">Clinical significance of human variants</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">COSMIC</span><span class="int-desc">Cancer Gene Census via licensed downloads</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">dbNSFP</span><span class="int-desc">Functional predictions for missense variants</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">dbSNP</span><span class="int-desc">rsIDs, alleles and genomic placements</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">dbVar</span><span class="int-desc">NCBI structural-variation studies and variants</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">DECIPHER</span><span class="int-desc">Interface metadata and connectivity only</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">DGV</span><span class="int-desc">Structural variants from validated local snapshots</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">Ensembl</span><span class="int-desc">Genes, transcripts, sequences, variants and homology</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">Gene2Phenotype</span><span class="int-desc">Curated gene–disease panels from EMBL-EBI</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">Genomics England PanelApp</span><span class="int-desc">Expert-reviewed diagnostic gene panels</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">gnomAD</span><span class="int-desc">Population allele frequencies and gene constraint</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">GWAS Catalog</span><span class="int-desc">Studies, traits and reported associations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">HGMD</span><span class="int-desc">Licensed clinical variants via a local or gateway provider</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">HGNC</span><span class="int-desc">Approved human gene symbols and names</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">MARRVEL</span><span class="int-desc">Rare-variant evidence across model organisms</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">NCBI Entrez</span><span class="int-desc">Gene, protein, nucleotide and taxonomy search</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">OMIM</span><span class="int-desc">Mendelian genes, disorders and inheritance</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">PharmGKB</span><span class="int-desc">Pharmacogenomic annotations via ClinPGx</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">PharmVar</span><span class="int-desc">Pharmacogene star alleles and haplotypes</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">PheGenI</span><span class="int-desc">Phenotype–genotype associations from NCBI</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">SNPedia</span><span class="int-desc">Community variant and genotype annotations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">UCSC Genome Browser</span><span class="int-desc">Genome databases, tracks and region data</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">CIViC <span class="int-tag">scaffold</span></span><span class="int-desc">Clinical interpretation of cancer variants</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">Clinvitae <span class="int-tag">scaffold</span></span><span class="int-desc">Aggregated clinical variant reports</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">CPIC <span class="int-tag">scaffold</span></span><span class="int-desc">Pharmacogenomic prescribing guidelines</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">GeneCards <span class="int-tag">scaffold</span></span><span class="int-desc">Integrated human gene summaries</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">GeneReviews <span class="int-tag">scaffold</span></span><span class="int-desc">Expert-authored disease reviews</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">GWAS Summary Statistics <span class="int-tag">scaffold</span></span><span class="int-desc">Full summary statistics for GWAS</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">LOVD <span class="int-tag">scaffold</span></span><span class="int-desc">Locus-specific variant databases</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">Mastermind <span class="int-tag">scaffold</span></span><span class="int-desc">Variant evidence from the literature</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">MaveDB <span class="int-tag">scaffold</span></span><span class="int-desc">Multiplexed assays of variant effect</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">MedGen <span class="int-tag">scaffold</span></span><span class="int-desc">NCBI medical genetics concepts</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">NCBI Gene <span class="int-tag">scaffold</span></span><span class="int-desc">Gene records and annotation</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">OncoKB <span class="int-tag">scaffold</span></span><span class="int-desc">Precision-oncology variant knowledge</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">RefSeq <span class="int-tag">scaffold</span></span><span class="int-desc">NCBI reference sequences</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">TOPMed <span class="int-tag">scaffold</span></span><span class="int-desc">Deep-sequencing variant frequencies</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">VarCards <span class="int-tag">scaffold</span></span><span class="int-desc">Integrated coding-variant annotation</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40" target="_blank"><span class="int-name">VarSome <span class="int-tag">scaffold</span></span><span class="int-desc">Variant classification and annotation</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="expression-omics">
+    <div class="int-group-head"><h3 class="int-group-title">Expression, Omics &amp; Cohorts</h3><span class="int-group-count">19</span><p class="int-group-sub">Sequencing archives, expression atlases, samples, cell lines and cancer cohorts.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">ArrayExpress</span><span class="int-desc">Functional-genomics experiments from EMBL-EBI</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">Cellosaurus</span><span class="int-desc">Cell-line identity, origin and hierarchy</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">EBI BioSamples</span><span class="int-desc">Cross-repository sample registry</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">ENA</span><span class="int-desc">Sequencing studies, samples, runs and analyses</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">Expression Atlas</span><span class="int-desc">Baseline and differential expression across species</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">GTEx</span><span class="int-desc">Tissue expression and eQTLs from the GTEx Portal</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">ICGC</span><span class="int-desc">Release 28 open-access cancer donor data</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">LINCS / iLINCS</span><span class="int-desc">L1000 perturbation-response signatures</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">NCBI GEO</span><span class="int-desc">Expression series, datasets, platforms and samples</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">NCBI SRA</span><span class="int-desc">Sequence Read Archive studies, runs and samples</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">PanglaoDB</span><span class="int-desc">Single-cell cell-type marker genes</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">All of Us <span class="int-tag">scaffold</span></span><span class="int-desc">Controlled-access research cohort</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">cBioPortal <span class="int-tag">scaffold</span></span><span class="int-desc">Cancer genomics studies and alterations</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">CCLE <span class="int-tag">scaffold</span></span><span class="int-desc">Cancer cell-line omics profiles</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">dbGaP <span class="int-tag">scaffold</span></span><span class="int-desc">Controlled-access genotype–phenotype studies</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">DepMap <span class="int-tag">scaffold</span></span><span class="int-desc">Cancer dependency and CRISPR screens</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">EGA <span class="int-tag">scaffold</span></span><span class="int-desc">Controlled-access genome–phenome archive</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">TCGA <span class="int-tag">scaffold</span></span><span class="int-desc">The Cancer Genome Atlas cohorts</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19" target="_blank"><span class="int-name">UK Biobank <span class="int-tag">scaffold</span></span><span class="int-desc">Controlled-access population cohort</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="proteins-structure">
+    <div class="int-group-head"><h3 class="int-group-title">Proteins, Structure &amp; Interactions</h3><span class="int-group-count">18</span><p class="int-group-sub">Protein knowledgebases, families, 3D structures, orthology, proteomics and interaction networks.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">BioGRID</span><span class="int-desc">Curated protein and genetic interactions</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">CellChat</span><span class="int-desc">Ligand–receptor pairs from pinned CellChatDB</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">DIP</span><span class="int-desc">Availability status only; host unreachable</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">eggNOG</span><span class="int-desc">Orthologous groups and functional annotation</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">Human Protein Atlas</span><span class="int-desc">RNA and protein expression by tissue and cell</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">IntAct</span><span class="int-desc">Molecular interactions and Complex Portal</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">InterPro</span><span class="int-desc">Protein families, domains and signatures</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">OrthoDB</span><span class="int-desc">Hierarchical orthologous gene groups</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">PDB-REDO</span><span class="int-desc">Re-refined crystallographic structures</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">PDBe</span><span class="int-desc">Structure entries, molecules and residues</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">PDBsum</span><span class="int-desc">Availability status only; service offline</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">Pfam</span><span class="int-desc">Protein families and clans via InterPro</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">PRIDE Archive</span><span class="int-desc">Proteomics datasets and files</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">ProteomeXchange</span><span class="int-desc">Cross-repository proteomics datasets and spectra</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">RCSB PDB</span><span class="int-desc">Structures, entities, assemblies and ligands</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">STRING</span><span class="int-desc">Protein–protein interaction networks</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">UniProt</span><span class="int-desc">Protein sequences, function and annotation</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18" target="_blank"><span class="int-name">PANTHER <span class="int-tag">scaffold</span></span><span class="int-desc">Gene families, function and pathways</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="drugs-chemistry">
+    <div class="int-group-head"><h3 class="int-group-title">Drugs, Chemistry &amp; Metabolomics</h3><span class="int-group-count">20</span><p class="int-group-sub">Drugs and targets, chemical compounds, enzymes, lipids, metabolomics and toxicogenomics.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">BRENDA</span><span class="int-desc">Enzyme kinetics, reactions and inhibitors</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">CTD</span><span class="int-desc">Chemical–gene–disease relationships, indexed locally</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">DrugBank</span><span class="int-desc">Licensed drug, product and interaction lookup</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">DrugCentral</span><span class="int-desc">Approved drugs, targets and indications</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">Guide to PHARMACOLOGY</span><span class="int-desc">Drug targets and their ligands</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">HMDB</span><span class="int-desc">Availability status only; access is gated</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">LIPID MAPS</span><span class="int-desc">Lipid structures and classification</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">MassBank</span><span class="int-desc">Mass-spectrometry reference spectra</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">MetaboLights</span><span class="int-desc">Metabolomics studies, assays and protocols</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">OpenFDA</span><span class="int-desc">Adverse events, labels, recalls and NDC</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">PubChem</span><span class="int-desc">Compounds, substances and bioassays</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">SwissLipids</span><span class="int-desc">Curated lipid structures and metabolism</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">BindingDB <span class="int-tag">scaffold</span></span><span class="int-desc">Measured protein–ligand binding affinities</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">ChEBI <span class="int-tag">scaffold</span></span><span class="int-desc">Chemical entities of biological interest</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">DGIdb <span class="int-tag">scaffold</span></span><span class="int-desc">Drug–gene interactions and druggability</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">Drugs@FDA <span class="int-tag">scaffold</span></span><span class="int-desc">FDA-approved drug products and applications</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">Pharos <span class="int-tag">scaffold</span></span><span class="int-desc">Illuminating the Druggable Genome targets</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">RxNorm <span class="int-tag">scaffold</span></span><span class="int-desc">Normalized clinical drug names</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">SIDER <span class="int-tag">scaffold</span></span><span class="int-desc">Marketed drug side effects</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20" target="_blank"><span class="int-name">T3DB <span class="int-tag">scaffold</span></span><span class="int-desc">Toxins and their targets</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="ontologies-phenotype">
+    <div class="int-group-head"><h3 class="int-group-title">Ontologies, Disease &amp; Phenotype</h3><span class="int-group-count">12</span><p class="int-group-sub">Biomedical ontologies, phenotype vocabularies and gene–disease association resources.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">BioPortal</span><span class="int-desc">Search across hundreds of biomedical ontologies</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Cell Ontology</span><span class="int-desc">Cell-type terms via EBI OLS</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">DISEASES</span><span class="int-desc">Scored gene–disease associations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">DisGeNET</span><span class="int-desc">Gene–disease and variant–disease associations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Gene Ontology</span><span class="int-desc">GO terms, hierarchy and annotations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Human Phenotype Ontology</span><span class="int-desc">Phenotype terms and disease annotations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Monarch Initiative</span><span class="int-desc">Cross-species biomedical knowledge graph</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Open Targets</span><span class="int-desc">Target–disease evidence and prioritisation</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Orphanet</span><span class="int-desc">Rare diseases, genes and epidemiology</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Disease Ontology <span class="int-tag">scaffold</span></span><span class="int-desc">Human disease terms and hierarchy</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Mondo <span class="int-tag">scaffold</span></span><span class="int-desc">Unified disease ontology</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12" target="_blank"><span class="int-name">Orphadata <span class="int-tag">scaffold</span></span><span class="int-desc">Orphanet rare-disease data products</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="model-organisms">
+    <div class="int-group-head"><h3 class="int-group-title">Model Organisms</h3><span class="int-group-count">7</span><p class="int-group-sub">Model-organism databases for fly, mouse, rat, yeast, plant, worm and zebrafish.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">FlyBase</span><span class="int-desc">Drosophila genes and annotation</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">MGI</span><span class="int-desc">Laboratory mouse genes, alleles and phenotypes</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">Rat Genome Database</span><span class="int-desc">Rat genes, alleles and orthologs</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">SGD</span><span class="int-desc">Yeast loci, GO and phenotype annotations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">TAIR via ThaleMine</span><span class="int-desc">Arabidopsis gene curation and GO annotations</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">WormBase</span><span class="int-desc">C. elegans genes and annotation</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7" target="_blank"><span class="int-name">ZFIN</span><span class="int-desc">Zebrafish genes from official daily files</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="regulation-ncrna">
+    <div class="int-group-head"><h3 class="int-group-title">Non-coding RNA &amp; Regulation</h3><span class="int-group-count">6</span><p class="int-group-sub">Regulatory elements, transcription-factor binding profiles and non-coding RNA.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">ENCODE</span><span class="int-desc">Experiments, biosamples and regulatory files</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">JASPAR</span><span class="int-desc">Transcription-factor binding profiles</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">miRBase</span><span class="int-desc">Mature and precursor miRNA sequences</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">Rfam</span><span class="int-desc">Non-coding RNA families and clans</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">TargetScan</span><span class="int-desc">miRNA target-site predictions, indexed locally</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6" target="_blank"><span class="int-name">dbMTS <span class="int-tag">scaffold</span></span><span class="int-desc">Variants in miRNA target sites</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="pathways">
+    <div class="int-group-head"><h3 class="int-group-title">Pathways</h3><span class="int-group-count">6</span><p class="int-group-sub">Curated pathway and metabolic-network knowledgebases.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">KEGG</span><span class="int-desc">Pathways, orthology, enzymes and compounds</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">MetaCyc</span><span class="int-desc">Metabolic pathways, reactions and compounds</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">Reactome</span><span class="int-desc">Pathways, reactions and gene mapping</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">BioCyc <span class="int-tag">scaffold</span></span><span class="int-desc">Pathway/genome databases</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">MSigDB <span class="int-tag">scaffold</span></span><span class="int-desc">Annotated gene-set collections</span></a>
+      <a class="int-card int-card-scaffold" href="https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6" target="_blank"><span class="int-name">WikiPathways <span class="int-tag">scaffold</span></span><span class="int-desc">Community-curated pathways</span></a>
+    </div>
+  </div>
+  <div class="int-group" data-group="cross-domain">
+    <div class="int-group-head"><h3 class="int-group-title">Clinical Trials &amp; Models</h3><span class="int-group-count">2</span><p class="int-group-sub">Resources that span domains: clinical-trial registries and biomolecular AI models.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#other--cross-domain-2" target="_blank"><span class="int-name">ClinicalTrials.gov</span><span class="int-desc">Trial registry search via the v2 API</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/reference-data/database-catalog/#other--cross-domain-2" target="_blank"><span class="int-name">NVIDIA BioNeMo</span><span class="int-desc">Open biomolecular models and recipes</span></a>
+    </div>
+  </div>
+  <p class="int-note">Entries tagged <span class="int-tag">scaffold</span> are registered but not yet connected to their upstream resource; the other 90 call it in source. A few connectors report availability status only, where the upstream offers no usable API. Licensed resources (for example COSMIC, DrugBank, HGMD) need your own licence and credentials. Counts are from the docs catalog generated 2026-09-19; no entry is asserted as deployed or operationally verified.</p>
 </section>
 
 <hr class="divider">
@@ -1246,11 +1448,11 @@ function selectPlatform(p){
 function platformKey(e,p){
   if(e.key==='Enter'||e.key===' '){e.preventDefault();selectPlatform(p)}
 }
-function filterIntegrations(group){
-  document.querySelectorAll('.int-filter').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.group===group)});
-  document.querySelectorAll('.int-group').forEach(function(g){g.hidden=group!=='all'&&g.dataset.group!==group});
+function filterIntegrations(section,group){
+  section.querySelectorAll('.int-filter').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.group===group)});
+  section.querySelectorAll('.int-group').forEach(function(g){g.hidden=group!=='all'&&g.dataset.group!==group});
 }
-document.querySelectorAll('.int-filter').forEach(function(b){b.addEventListener('click',function(){filterIntegrations(b.dataset.group)})});
+document.querySelectorAll('.int-filter').forEach(function(b){b.addEventListener('click',function(){filterIntegrations(b.closest('section'),b.dataset.group)})});
 function handleSubmit(e){
   e.preventDefault();
   if(!document.getElementById('platform-value').value){
