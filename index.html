@@ -126,6 +126,34 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .f-title{font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
 .f-desc{font-size:0.82rem;color:var(--text-muted);line-height:1.8;font-weight:300}
 
+/* ── Integrations ── */
+.int-summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin:-1.5rem 0 1.5rem}
+.int-total{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-muted);letter-spacing:0.03em}
+.int-total strong{color:var(--accent);font-weight:500}
+.int-docs-link{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);text-decoration:none;letter-spacing:0.03em}
+.int-docs-link:hover{text-decoration:underline}
+.int-filters{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:2.5rem}
+.int-filter{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.03em;color:var(--text-muted);background:transparent;border:1px solid var(--border);border-radius:3px;padding:0.35rem 0.7rem;cursor:pointer;transition:all 0.2s}
+.int-filter span{color:var(--text-dim);margin-left:0.2rem}
+.int-filter:hover{border-color:var(--border2);color:var(--text)}
+.int-filter[aria-pressed="true"]{background:rgba(0,212,170,0.1);border-color:var(--accent);color:var(--accent)}
+.int-filter[aria-pressed="true"] span{color:var(--accent);opacity:0.7}
+.int-filter:focus-visible,.int-card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.int-group{margin-bottom:2.25rem}
+.int-group[hidden]{display:none}
+.int-group-head{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:0.6rem;margin-bottom:0.85rem}
+.int-group-title{font-size:0.95rem;font-weight:600;color:var(--text)}
+.int-group-count{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent)}
+.int-group-sub{grid-column:1/-1;font-size:0.77rem;color:var(--text-dim);font-weight:300;line-height:1.6}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));padding:1px 0 0 1px}
+.int-card{display:block;background:var(--bg2);border:1px solid var(--border);margin:-1px 0 0 -1px;padding:0.9rem 1.1rem;text-decoration:none;transition:background 0.2s;position:relative}
+.int-card:hover{background:var(--surface)}
+.int-card::after{content:'↗';position:absolute;top:0.85rem;right:0.9rem;font-size:0.72rem;color:var(--text-dim);opacity:0;transition:opacity 0.2s}
+.int-card:hover::after{opacity:1;color:var(--accent)}
+.int-name{display:block;font-size:0.86rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;padding-right:1rem}
+.int-card:hover .int-name{color:var(--accent)}
+.int-desc{display:block;font-size:0.74rem;color:var(--text-muted);font-weight:300;line-height:1.55}
+
 /* ── Omics grid ── */
 .omics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1px}
 .omics-card{background:var(--bg2);padding:1.5rem;transition:background 0.2s;cursor:default}
@@ -225,7 +253,7 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 /* ── Footer ── */
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
 .footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
-.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links{display:flex;flex-wrap:wrap;gap:0.6rem 1.5rem;list-style:none}
 .footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
 .footer-links a:hover{color:var(--accent)}
 
@@ -251,6 +279,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 }
 @media(max-width:600px){
   .webstudio-qr{display:none}
+  .int-grid{grid-template-columns:1fr 1fr}
+  .int-card{padding:0.75rem 0.8rem}
+  .int-card::after{display:none}
+  .int-name{font-size:0.8rem;padding-right:0}
+  .int-desc{font-size:0.7rem;line-height:1.45}
+  .int-group-sub{display:none}
+  .int-summary{margin-top:-1.75rem}
+  .int-filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -1.5rem 2rem;padding:0 1.5rem 0.4rem}
+  .int-filter{white-space:nowrap;flex-shrink:0}
 }
 @media(max-width:900px){
   nav{padding:0 1.5rem}
@@ -548,252 +585,135 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <!-- ── Enterprise Integrations ── -->
 <section id="enterprise-integrations">
-  <span class="sec-tag">// Enterprise & scientific workflow integrations</span>
-
-  <h2 class="sec-title">
-    Scientific work,<br>
-    connected across your stack
-  </h2>
-
-  <p class="sec-sub">
-    OmniBioAI's agentic workflows connect research, data, compute, MLOps,
-    cloud infrastructure, and enterprise systems — allowing scientists and
-    AI agents to work across the tools your organization already uses,
-    without leaving the platform.
-  </p>
-
-  <div class="features-grid">
-
-    <div class="feature-card">
-      <div class="f-icon">🎫</div>
-      <div class="f-title">ServiceNow Integration</div>
-      <p class="f-desc">
-        Search, view, create, update, and comment on ServiceNow incidents
-        via OAuth 2.0 client credentials — manage IT service tickets
-        directly from OmniBioAI.
-      </p>
+  <span class="sec-tag">// Enterprise &amp; scientific workflow integrations</span>
+  <h2 class="sec-title">Scientific work,<br>connected across your stack</h2>
+  <p class="sec-sub">OmniBioAI's agentic workflows connect research, data, compute, MLOps, cloud infrastructure, and enterprise systems — so scientists and AI agents can work across the tools your organization already uses, without leaving the platform.</p>
+  <div class="int-summary">
+    <span class="int-total"><strong>67</strong> integrations across <strong>9</strong> categories</span>
+    <a href="https://docs.omnibioai.org/integrations/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
+  </div>
+  <div class="int-filters" role="group" aria-label="Filter integrations by category">
+    <button type="button" class="int-filter" data-group="all" aria-pressed="true">All <span>67</span></button>
+    <button type="button" class="int-filter" data-group="genomics-platforms" aria-pressed="false">Genomics &amp; Bio Platforms <span>9</span></button>
+    <button type="button" class="int-filter" data-group="workflow-compute" aria-pressed="false">Workflow, Orchestration &amp; Compute <span>10</span></button>
+    <button type="button" class="int-filter" data-group="cloud-storage" aria-pressed="false">Cloud Storage &amp; Data Transfer <span>11</span></button>
+    <button type="button" class="int-filter" data-group="data-platforms" aria-pressed="false">Data Warehouses &amp; Analytics <span>4</span></button>
+    <button type="button" class="int-filter" data-group="ml-tracking" aria-pressed="false">ML &amp; Experiment Tracking <span>4</span></button>
+    <button type="button" class="int-filter" data-group="lims-eln-biobank" aria-pressed="false">LIMS, ELN &amp; Biobank <span>7</span></button>
+    <button type="button" class="int-filter" data-group="data-repositories" aria-pressed="false">Data Repositories &amp; Metadata <span>4</span></button>
+    <button type="button" class="int-filter" data-group="cicd-containers" aria-pressed="false">CI/CD, Source Control &amp; Containers <span>10</span></button>
+    <button type="button" class="int-filter" data-group="collaboration-ops" aria-pressed="false">Collaboration, ITSM &amp; Operations <span>8</span></button>
+  </div>
+  <div class="int-group" data-group="genomics-platforms">
+    <div class="int-group-head"><h3 class="int-group-title">Genomics &amp; Bio Platforms</h3><span class="int-group-count">9</span><p class="int-group-sub">Sequencing, cloud-genomics and bioinformatics platforms, plus GA4GH interoperability.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/aws-healthomics/" target="_blank"><span class="int-name">AWS HealthOmics</span><span class="int-desc">Sequence stores, workflows and policy-gated workflow runs</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/basespace/" target="_blank"><span class="int-name">Illumina BaseSpace</span><span class="int-desc">Sequencing projects, runs, samples, files and analyses</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/illumina-ica/" target="_blank"><span class="int-name">Illumina Connected Analytics</span><span class="int-desc">ICA projects, data, pipelines and analyses</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/dnanexus/" target="_blank"><span class="int-name">DNAnexus</span><span class="int-desc">Genomics cloud projects, files, workflows and executions</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/terra/" target="_blank"><span class="int-name">Terra</span><span class="int-desc">Workspaces, WDL workflows, data tables and outputs</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/seven-bridges/" target="_blank"><span class="int-name">Seven Bridges</span><span class="int-desc">Projects, files, workflows, tasks and provenance</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/seqera-platform/" target="_blank"><span class="int-name">Seqera Platform</span><span class="int-desc">Nextflow Tower pipeline discovery and run monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/galaxy/" target="_blank"><span class="int-name">Galaxy</span><span class="int-desc">Workflows, histories, datasets, tools and jobs</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/ga4gh-interoperability/" target="_blank"><span class="int-name">GA4GH Interoperability</span><span class="int-desc">Refget and DRS access plus VRS allele construction</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🪟</div>
-      <div class="f-title">Microsoft Graph Integration</div>
-      <p class="f-desc">
-        Access Entra ID users and groups, SharePoint sites and document
-        libraries, Outlook mailbox data, and Teams and channel listings
-        through admin-approved Microsoft Graph access.
-      </p>
+  </div>
+  <div class="int-group" data-group="workflow-compute">
+    <div class="int-group-head"><h3 class="int-group-title">Workflow, Orchestration &amp; Compute</h3><span class="int-group-count">10</span><p class="int-group-sub">Workflow engines, pipeline orchestrators, cluster schedulers and notebook environments.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/airflow/" target="_blank"><span class="int-name">Apache Airflow</span><span class="int-desc">DAG discovery, triggering, monitoring and task logs</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/argo-workflows/" target="_blank"><span class="int-name">Argo Workflows</span><span class="int-desc">Workflow discovery, metadata and manifest submission</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/cromwell/" target="_blank"><span class="int-name">Cromwell</span><span class="int-desc">WDL/CWL workflow submission and monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/dagster/" target="_blank"><span class="int-name">Dagster</span><span class="int-desc">Repositories, runs, assets and health</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/prefect/" target="_blank"><span class="int-name">Prefect</span><span class="int-desc">Deployments, flows, runs and work pools</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/metaflow/" target="_blank"><span class="int-name">Metaflow</span><span class="int-desc">Flows, runs, steps and artifacts via the metadata service</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/kubernetes/" target="_blank"><span class="int-name">Kubernetes</span><span class="int-desc">Clusters, workloads, jobs and monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/slurm/" target="_blank"><span class="int-name">Slurm</span><span class="int-desc">HPC cluster, partition, node and job monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/knime/" target="_blank"><span class="int-name">KNIME</span><span class="int-desc">Workflow discovery, execution, results and provenance</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/jupyterhub/" target="_blank"><span class="int-name">JupyterHub</span><span class="int-desc">Institutional notebook servers, users and sessions</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">📋</div>
-      <div class="f-title">Jira Integration</div>
-      <p class="f-desc">
-        Search issues with JQL, create issues, add comments, and transition
-        workflow status directly from OmniBioAI.
-      </p>
+  </div>
+  <div class="int-group" data-group="cloud-storage">
+    <div class="int-group-head"><h3 class="int-group-title">Cloud Storage &amp; Data Transfer</h3><span class="int-group-count">11</span><p class="int-group-sub">Object storage, file sharing, private cloud and bulk research-data transfer.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/s3-integration/" target="_blank"><span class="int-name">AWS S3</span><span class="int-desc">Import datasets and export results to S3 buckets</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/azure-blob-storage/" target="_blank"><span class="int-name">Azure Blob Storage</span><span class="int-desc">Container and blob discovery and metadata</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/google-cloud-storage/" target="_blank"><span class="int-name">Google Cloud Storage</span><span class="int-desc">Bucket and object discovery and metadata</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/minio/" target="_blank"><span class="int-name">MinIO</span><span class="int-desc">Self-hosted S3-compatible buckets and objects</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/ceph/" target="_blank"><span class="int-name">Ceph</span><span class="int-desc">Cluster health, pools, block images and filesystems</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/openstack/" target="_blank"><span class="int-name">OpenStack</span><span class="int-desc">Projects, compute, volumes and identity</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/box/" target="_blank"><span class="int-name">Box</span><span class="int-desc">Search, transfer and organize research datasets</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/google-drive/" target="_blank"><span class="int-name">Google Drive</span><span class="int-desc">Research-file discovery, transfer and Shared Drives</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/nextcloud/" target="_blank"><span class="int-name">Nextcloud</span><span class="int-desc">Self-hosted research-file access and collaboration</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/globus/" target="_blank"><span class="int-name">Globus</span><span class="int-desc">Endpoint discovery and large research-data transfers</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/cloud-integration/" target="_blank"><span class="int-name">Cloud Integration</span><span class="int-desc">Unified provider → service → action cloud access</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">📚</div>
-      <div class="f-title">Confluence Integration</div>
-      <p class="f-desc">
-        Search and retrieve Confluence knowledge, create and update pages,
-        and manage scientific and technical documentation from OmniBioAI.
-      </p>
+  </div>
+  <div class="int-group" data-group="data-platforms">
+    <div class="int-group-head"><h3 class="int-group-title">Data Warehouses &amp; Analytics</h3><span class="int-group-count">4</span><p class="int-group-sub">Warehouse and lakehouse platforms and the tooling that models data inside them.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/databricks/" target="_blank"><span class="int-name">Databricks</span><span class="int-desc">Unity Catalog discovery and governed SQL access</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/snowflake/" target="_blank"><span class="int-name">Snowflake</span><span class="int-desc">Database, schema and table discovery and queries</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/bigquery/" target="_blank"><span class="int-name">Google BigQuery</span><span class="int-desc">Projects, datasets, tables and job metadata</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/dbt/" target="_blank"><span class="int-name">dbt</span><span class="int-desc">Models, sources, tests, jobs and lineage</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🧬</div>
-      <div class="f-title">AWS HealthOmics Integration</div>
-      <p class="f-desc">
-        Connect genomic analysis workflows with AWS HealthOmics, bringing
-        managed bioinformatics workflows and sequencing data processing
-        into OmniBioAI's agentic execution layer.
-      </p>
+  </div>
+  <div class="int-group" data-group="ml-tracking">
+    <div class="int-group-head"><h3 class="int-group-title">ML &amp; Experiment Tracking</h3><span class="int-group-count">4</span><p class="int-group-sub">Experiment tracking, model hubs and data/model versioning.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/mlflow/" target="_blank"><span class="int-name">MLflow</span><span class="int-desc">Experiments, runs, metrics and the model registry</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/wandb/" target="_blank"><span class="int-name">Weights &amp; Biases</span><span class="int-desc">Projects, runs, metrics and artifacts</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/hugging-face/" target="_blank"><span class="int-name">Hugging Face</span><span class="int-desc">Models, datasets, repositories and inference</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/dvc/" target="_blank"><span class="int-name">DVC</span><span class="int-desc">Versioned datasets, pipelines and experiments</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">☁️</div>
-      <div class="f-title">Cloud Integration</div>
-      <p class="f-desc">
-        Connect OmniBioAI agents with cloud infrastructure and services,
-        enabling secure interaction with cloud-native compute, storage,
-        and research environments.
-      </p>
+  </div>
+  <div class="int-group" data-group="lims-eln-biobank">
+    <div class="int-group-head"><h3 class="int-group-title">LIMS, ELN &amp; Biobank</h3><span class="int-group-count">7</span><p class="int-group-sub">Laboratory information management, electronic lab notebooks and biospecimen management.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/benchling/" target="_blank"><span class="int-name">Benchling</span><span class="int-desc">Import samples and sequences, export results</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/elabftw/" target="_blank"><span class="int-name">eLabFTW</span><span class="int-desc">Export results to the electronic lab notebook</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/labkey/" target="_blank"><span class="int-name">LabKey</span><span class="int-desc">Permission-aware discovery and controlled queries</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/lims-integration/" target="_blank"><span class="int-name">LIMS-X</span><span class="int-desc">External LIMS sample and project metadata</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/genologics-clarity/" target="_blank"><span class="int-name">Clarity LIMS</span><span class="int-desc">Samples, projects, containers and processes</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/openspecimen/" target="_blank"><span class="int-name">OpenSpecimen</span><span class="int-desc">Biobank participants, specimens and visits</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/redcap/" target="_blank"><span class="int-name">REDCap</span><span class="int-desc">Clinical research cohorts in, analysis results out</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🔬</div>
-      <div class="f-title">DNAnexus Integration</div>
-      <p class="f-desc">
-        Connect genomic and bioinformatics workflows with DNAnexus for
-        cloud-based data management, analysis, and scalable research
-        execution.
-      </p>
+  </div>
+  <div class="int-group" data-group="data-repositories">
+    <div class="int-group-head"><h3 class="int-group-title">Data Repositories &amp; Metadata</h3><span class="int-group-count">4</span><p class="int-group-sub">Research data repositories and data-catalog / metadata platforms.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/zenodo/" target="_blank"><span class="int-name">Zenodo</span><span class="int-desc">Publish results with a citable DOI</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/figshare/" target="_blank"><span class="int-name">Figshare</span><span class="int-desc">Research data repository access and publishing</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/synapse/" target="_blank"><span class="int-name">Synapse</span><span class="int-desc">Sage Bionetworks projects, files and tables</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/openmetadata/" target="_blank"><span class="int-name">OpenMetadata</span><span class="int-desc">Data catalog entities, lineage and metadata</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🧪</div>
-      <div class="f-title">Databricks Integration</div>
-      <p class="f-desc">
-        Connect AI agents to Databricks data and analytics environments,
-        enabling research data workflows, SQL analytics, and scalable
-        computational workloads.
-      </p>
+  </div>
+  <div class="int-group" data-group="cicd-containers">
+    <div class="int-group-head"><h3 class="int-group-title">CI/CD, Source Control &amp; Containers</h3><span class="int-group-count">10</span><p class="int-group-sub">Git hosting, build and pipeline systems, and container registries.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/git-hosting/" target="_blank"><span class="int-name">GitHub + GitLab</span><span class="int-desc">Repositories, code search, issues and pull requests</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/github-actions/" target="_blank"><span class="int-name">GitHub Actions</span><span class="int-desc">Workflow runs, jobs and CI/CD monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/gitlab/" target="_blank"><span class="int-name">GitLab</span><span class="int-desc">Projects, pipelines and CI/CD monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/jenkins/" target="_blank"><span class="int-name">Jenkins</span><span class="int-desc">Jobs, parameterized builds and console output</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/azure-devops/" target="_blank"><span class="int-name">Azure DevOps</span><span class="int-desc">Repos, work items, pipelines and builds</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/docker-hub/" target="_blank"><span class="int-name">Docker Hub</span><span class="int-desc">Repositories, tags, manifests and digests</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/ghcr/" target="_blank"><span class="int-name">GitHub Container Registry</span><span class="int-desc">Image tags and manifests on ghcr.io</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/quay/" target="_blank"><span class="int-name">Quay.io</span><span class="int-desc">Repositories, OCI manifests and multi-platform checks</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/harbor/" target="_blank"><span class="int-name">Harbor</span><span class="int-desc">Projects, repositories and replication</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/nvidia-ngc/" target="_blank"><span class="int-name">NVIDIA NGC</span><span class="int-desc">Catalog and artifact namespace discovery</span></a>
     </div>
-
-    <div class="feature-card">
-      <div class="f-icon">❄️</div>
-      <div class="f-title">Snowflake Integration</div>
-      <p class="f-desc">
-        Give OmniBioAI workflows controlled access to Snowflake data
-        platforms for querying, analytics, and data-driven scientific
-        workflows.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🐙</div>
-      <div class="f-title">Git Hosting Integration</div>
-      <p class="f-desc">
-        Connect agents with Git-based development environments to inspect
-        repositories, work with source code, and integrate software
-        development workflows into scientific automation.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">📈</div>
-      <div class="f-title">MLflow Integration</div>
-      <p class="f-desc">
-        Connect experiment tracking and machine-learning lifecycle
-        workflows with MLflow, allowing agents to work with experiments,
-        runs, metrics, parameters, and registered models.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">☸️</div>
-      <div class="f-title">Kubernetes Integration</div>
-      <p class="f-desc">
-        Bring Kubernetes-native compute and orchestration into OmniBioAI,
-        enabling agents to interact with scalable containerized workloads
-        and research infrastructure.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🤗</div>
-      <div class="f-title">Hugging Face Integration</div>
-      <p class="f-desc">
-        Connect OmniBioAI with the Hugging Face ecosystem for models,
-        datasets, repositories, and AI research workflows — bringing
-        modern machine-learning assets into agentic bioinformatics.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🌬️</div>
-      <div class="f-title">Apache Airflow Integration</div>
-      <p class="f-desc">
-        Connect agentic workflows with Apache Airflow for pipeline
-        orchestration, DAG management, monitoring, and automated
-        scientific data workflows.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🛠️</div>
-      <div class="f-title">dbt Integration</div>
-      <p class="f-desc">
-        Bring analytics engineering workflows into OmniBioAI with dbt,
-        enabling agents to work with data transformations, models,
-        documentation, and lineage.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🔷</div>
-      <div class="f-title">Azure DevOps Integration</div>
-      <p class="f-desc">
-        Connect software engineering and DevOps workflows with Azure
-        DevOps, including work items, repositories, pipelines, and
-        project automation.
-      </p>
-    </div>
-
-    <div class="feature-card">
-      <div class="f-icon">🌌</div>
-      <div class="f-title">Galaxy Integration</div>
-      <p class="f-desc">
-        Connect OmniBioAI agents with Galaxy for reproducible biomedical
-        analysis, workflow execution, tool discovery, and research
-        computing across Galaxy environments.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">🌍</div>
-      <div class="f-title">Terra Integration</div>
-      <p class="f-desc">
-        Connect OmniBioAI agents with Terra for cloud-based genomics and
-        biomedical research, enabling interaction with workspaces, datasets,
-        workflows, and scalable analysis environments.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">🧬</div>
-      <div class="f-title">Seven Bridges Integration</div>
-        <p class="f-desc">
-          Connect OmniBioAI agents with Seven Bridges for cloud-based genomic
-          data management, workflow execution, analysis monitoring, and
-          reproducible biomedical research.
-        </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">🧬</div>
-      <div class="f-title">Illumina BaseSpace Integration</div>
-      <p class="f-desc">
-        Connect sequencing projects, runs, samples, files, and analysis
-        workflows from Illumina BaseSpace with OmniBioAI's agentic research
-        and bioinformatics environment.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">🔗</div>
-      <div class="f-title">KNIME Integration</div>
-      <p class="f-desc">
-        Connect OmniBioAI with KNIME scientific and data workflows, enabling
-        agents to discover, execute, monitor, and capture provenance from
-        external analytical workflows.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">⬢</div>
-      <div class="f-title">Benchling Integration</div>
-      <p class="f-desc">
-        Import samples, sequences, and research entities directly from Benchling.
-        Export analysis results back as notebook entries and supported Benchling
-        entities, connecting laboratory R&D with computational workflows.
-      </p>
-    </div>
-    
-    <div class="feature-card">
-      <div class="f-icon">⬗</div>
-      <div class="f-title">REDCap Integration</div>
-      <p class="f-desc">
-        Import authorized research cohorts and study data from REDCap and
-        integrate analysis results back into REDCap projects. Designed for
-        academic medical centers and clinical research workflows.
-      </p>
-    </div>
-    <div class="feature-card">
-      <div class="f-icon">☁️</div>
-      <div class="f-title">AWS S3 Integration</div>
-      <p class="f-desc">
-        Import datasets from S3 and export analysis results back to object
-        storage. Supports AWS S3 and compatible storage platforms such as
-        self-hosted MinIO.
-      </p>
+  </div>
+  <div class="int-group" data-group="collaboration-ops">
+    <div class="int-group-head"><h3 class="int-group-title">Collaboration, ITSM &amp; Operations</h3><span class="int-group-count">8</span><p class="int-group-sub">Messaging, Microsoft 365, issue and incident management, monitoring and secrets health.</p></div>
+    <div class="int-grid">
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/slack/" target="_blank"><span class="int-name">Slack</span><span class="int-desc">Channels and users for agent collaboration</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/microsoft-teams/" target="_blank"><span class="int-name">Microsoft Teams</span><span class="int-desc">Channel notifications via incoming webhooks</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/microsoft-graph/" target="_blank"><span class="int-name">Microsoft Graph</span><span class="int-desc">Entra ID, SharePoint, Outlook and Teams</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/atlassian/" target="_blank"><span class="int-name">Jira + Confluence</span><span class="int-desc">Search, create and update issues and pages</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/servicenow/" target="_blank"><span class="int-name">ServiceNow</span><span class="int-desc">Search, create and update incidents</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/pagerduty/" target="_blank"><span class="int-name">PagerDuty</span><span class="int-desc">Incidents, services and on-call monitoring</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/prometheus-grafana/" target="_blank"><span class="int-name">Prometheus &amp; Grafana</span><span class="int-desc">Metrics queries, alerts and dashboards</span></a>
+      <a class="int-card" href="https://docs.omnibioai.org/integrations/details/vault/" target="_blank"><span class="int-name">HashiCorp Vault</span><span class="int-desc">Health, mounts and seal status</span></a>
     </div>
   </div>
 </section>
@@ -1397,6 +1317,11 @@ function selectPlatform(p){
 function platformKey(e,p){
   if(e.key==='Enter'||e.key===' '){e.preventDefault();selectPlatform(p)}
 }
+function filterIntegrations(group){
+  document.querySelectorAll('.int-filter').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.group===group)});
+  document.querySelectorAll('.int-group').forEach(function(g){g.hidden=group!=='all'&&g.dataset.group!==group});
+}
+document.querySelectorAll('.int-filter').forEach(function(b){b.addEventListener('click',function(){filterIntegrations(b.dataset.group)})});
 function toggleOmics(){
   var cards=document.querySelectorAll('.omics-card.hidden-card');
   var btn=document.getElementById('omics-toggle');
