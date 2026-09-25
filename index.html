@@ -179,15 +179,15 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 
 /* ── Omics grid ── */
 .omics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1px}
-.omics-card{background:var(--bg2);padding:1.5rem;transition:background 0.2s;cursor:default}
+.omics-card{background:var(--bg2);padding:1.25rem 1.4rem;transition:background 0.2s;cursor:default}
 .omics-card:hover{background:var(--surface)}
 .omics-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.4rem;display:block}
 .omics-title{font-size:0.88rem;font-weight:600;margin-bottom:0.35rem;color:var(--text)}
-.omics-desc{font-size:0.77rem;color:var(--text-muted);font-weight:300;line-height:1.65}
-.hidden-card{display:none}
-.show-more-row{display:flex;justify-content:center;margin-top:2rem}
-.show-more-btn{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);background:transparent;border:1px solid var(--border2);border-radius:3px;padding:0.5rem 1.4rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.06em}
-.show-more-btn:hover{background:rgba(0,212,170,0.08)}
+.omics-desc{font-size:0.77rem;color:var(--text-muted);font-weight:300;line-height:1.6}
+.omics-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.7rem}
+.omics-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.1rem 0.4rem;letter-spacing:0.02em;white-space:nowrap}
+.omics-card:hover .omics-tag{color:var(--text-muted)}
+.omics-more{margin-top:1rem}
 
 /* ── Tags ── */
 .tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem}
@@ -313,6 +313,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 @media(max-width:600px){
   .webstudio-qr{display:none}
   .int-grid{grid-template-columns:1fr 1fr}
+  .omics-desc{display:none}
+  .omics-card{padding:1rem 1.1rem}
+  .omics-title{margin-bottom:0}
   .dl-row{grid-template-columns:1fr;gap:0.7rem;padding:0.9rem 1rem}
   .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
@@ -781,31 +784,25 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="omics">
   <span class="sec-tag">// Multi-omics coverage</span>
   <h2 class="sec-title">Every modality,<br>one platform</h2>
-  <p class="sec-sub">From raw sequencing reads to biological insight — OmniBioAI covers the full spectrum of modern genomics.</p>
+  <p class="sec-sub">From raw sequencing reads to biological insight — 1000+ workflows across 100+ research domains, grouped here into the areas they serve.</p>
   <div class="omics-grid">
-    <div class="omics-card"><span class="omics-label">scRNA-seq</span><div class="omics-title">Single-cell transcriptomics</div><p class="omics-desc">QC, integration, clustering, trajectory inference, differential expression, TF network modeling, and pathway enrichment.</p></div>
-    <div class="omics-card"><span class="omics-label">WGS / WES</span><div class="omics-title">Whole exome &amp; genome</div><p class="omics-desc">GATK variant calling, SnpEff annotation, SKAT-O burden testing, NMF, and decile prioritization pipelines.</p></div>
-    <div class="omics-card"><span class="omics-label">Proteomics</span><div class="omics-title">Protein expression analysis</div><p class="omics-desc">LEV, SEV, and plasma sample analysis with GSEA, ssGSEA, GSVA, ReactomePA enrichment and volcano plots.</p></div>
-    <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">GNN-based target identification</div><p class="omics-desc">Graph neural networks for drug-target interaction prediction and pathway-level disease modeling.</p></div>
-    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Translational pipelines</div><p class="omics-desc">Patient cohort analysis, variant burden testing, and clinical report generation for precision medicine. REDCap cohort import → multi-omics analysis → results export back to REDCap.</p></div>
-    <div class="omics-card"><span class="omics-label">ATAC-SEQ</span><div class="omics-title">Chromatin accessibility</div><p class="omics-desc">Open chromatin profiling, peak calling, footprinting, and transcription factor binding site analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">ChIP-seq</span><div class="omics-title">Protein-DNA interactions</div><p class="omics-desc">Histone modification and transcription factor binding analysis with peak annotation and motif enrichment.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">circRNA</span><div class="omics-title">Circular RNA analysis</div><p class="omics-desc">Detection, quantification, and functional annotation of circular RNAs from RNA-seq data.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">RNA-seq</span><div class="omics-title">Bulk transcriptomics</div><p class="omics-desc">Alignment, quantification, differential expression, and pathway analysis for bulk RNA sequencing.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Spatial</span><div class="omics-title">Spatial transcriptomics</div><p class="omics-desc">Spatially resolved gene expression mapping and cell-type deconvolution across tissue sections.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Spatial single-cell</span><div class="omics-title">Spatial + single-cell integration</div><p class="omics-desc">Joint analysis of spatial context and single-cell resolution for deep tissue-level insights.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">SV calling</span><div class="omics-title">Structural variant detection</div><p class="omics-desc">Detection and annotation of large-scale genomic rearrangements including inversions, deletions, and translocations.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Methylation</span><div class="omics-title">Epigenome methylation pipeline</div><p class="omics-desc">Bisulfite sequencing → CpG calling → DMR detection → epigenetic age/biomarker analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Integrated multi-modal analysis</div><p class="omics-desc">Cross-modality data integration combining genomic, transcriptomic, and epigenomic layers for systems-level insights.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">CRISPR</span><div class="omics-title">Genome editing &amp; screen analysis</div><p class="omics-desc">CRISPR screen analysis including guide RNA QC, alignment, indel detection, and editing efficiency scoring.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">variant_ml</span><div class="omics-title">Variant prioritization ML</div><p class="omics-desc">Feature engineering + ML ranking of pathogenic variants using phenotype + genomic signals.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">LONG-READ</span><div class="omics-title">Long-read sequencing</div><p class="omics-desc">Nanopore and PacBio long-read alignment, assembly, methylation and isoform analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">MICROBIOME</span><div class="omics-title">Metagenomics</div><p class="omics-desc">Shotgun metagenomic profiling, taxonomic classification, functional annotation and diversity analysis.</p></div>
-    <div class="omics-card hidden-card"><span class="omics-label">EPIGENOMICS</span><div class="omics-title">Epigenome analysis</div><p class="omics-desc">ChIP-seq, ATAC-seq, methylation and chromatin accessibility across the full epigenome.</p></div>
+    <div class="omics-card"><span class="omics-label">Genomics</span><div class="omics-title">Genome &amp; variant analysis</div><p class="omics-desc">Germline variant calling, annotation and prioritisation, from exomes to assemblies.</p><div class="omics-tags"><span class="omics-tag">WGS</span><span class="omics-tag">WES</span><span class="omics-tag">SV calling</span><span class="omics-tag">ML variant prioritisation</span><span class="omics-tag">Genome assembly</span><span class="omics-tag">Pangenome</span><span class="omics-tag">Optical mapping</span><span class="omics-tag">Mitochondrial</span><span class="omics-tag">Telomere</span></div></div>
+    <div class="omics-card"><span class="omics-label">Long-read</span><div class="omics-title">Long-read sequencing</div><p class="omics-desc">Nanopore and PacBio alignment, assembly, methylation and isoform analysis.</p><div class="omics-tags"><span class="omics-tag">Nanopore</span><span class="omics-tag">PacBio</span><span class="omics-tag">Native methylation</span><span class="omics-tag">Isoforms</span></div></div>
+    <div class="omics-card"><span class="omics-label">Transcriptomics</span><div class="omics-title">Bulk &amp; specialised RNA</div><p class="omics-desc">Expression, splicing and RNA biology beyond standard RNA-seq.</p><div class="omics-tags"><span class="omics-tag">RNA-seq</span><span class="omics-tag">Long-read RNA</span><span class="omics-tag">miRNA</span><span class="omics-tag">lncRNA</span><span class="omics-tag">circRNA</span><span class="omics-tag">Ribo-seq</span><span class="omics-tag">RNA editing</span></div></div>
+    <div class="omics-card"><span class="omics-label">Single-cell</span><div class="omics-title">Single-cell &amp; multiome</div><p class="omics-desc">QC, integration, clustering, trajectories and multimodal single-cell assays.</p><div class="omics-tags"><span class="omics-tag">scRNA-seq</span><span class="omics-tag">Cell Ranger</span><span class="omics-tag">CITE-seq</span><span class="omics-tag">scATAC-seq</span><span class="omics-tag">Multiome / ArchR</span></div></div>
+    <div class="omics-card"><span class="omics-label">Spatial</span><div class="omics-title">Spatial omics</div><p class="omics-desc">Spatially resolved expression and protein maps with cell-type deconvolution.</p><div class="omics-tags"><span class="omics-tag">Visium / HD</span><span class="omics-tag">Xenium</span><span class="omics-tag">CODEX / PhenoCycler</span><span class="omics-tag">Spatial proteomics</span><span class="omics-tag">Spatial multi-omics</span></div></div>
+    <div class="omics-card"><span class="omics-label">Epigenomics</span><div class="omics-title">Functional genomics &amp; epigenomics</div><p class="omics-desc">Regulatory elements, chromatin state, 3D genome and CRISPR screens.</p><div class="omics-tags"><span class="omics-tag">ATAC-seq</span><span class="omics-tag">ChIP-seq</span><span class="omics-tag">Methylation</span><span class="omics-tag">Hi-C</span><span class="omics-tag">CRISPR screens</span><span class="omics-tag">Base editing</span></div></div>
+    <div class="omics-card"><span class="omics-label">Proteomics · Metabolomics</span><div class="omics-title">Proteomics &amp; metabolomics</div><p class="omics-desc">Mass-spec quantification, enrichment and metabolite profiling.</p><div class="omics-tags"><span class="omics-tag">Mass spec</span><span class="omics-tag">Proteogenomics</span><span class="omics-tag">Metabolomics</span><span class="omics-tag">Exposome</span><span class="omics-tag">GSEA / GSVA</span></div></div>
+    <div class="omics-card"><span class="omics-label">Multi-omics</span><div class="omics-title">Multi-omics integration</div><p class="omics-desc">Joint analysis across genomic, transcriptomic, epigenomic and proteomic layers.</p><div class="omics-tags"><span class="omics-tag">Multimodal integration</span><span class="omics-tag">Multi-omics QC</span><span class="omics-tag">Cross-layer methods</span></div></div>
+    <div class="omics-card"><span class="omics-label">Oncology</span><div class="omics-title">Cancer genomics</div><p class="omics-desc">Somatic mutations, tumour burden and liquid biopsy analysis.</p><div class="omics-tags"><span class="omics-tag">Somatic calling</span><span class="omics-tag">TMB / MSI</span><span class="omics-tag">ctDNA</span><span class="omics-tag">Fragmentomics</span></div></div>
+    <div class="omics-card"><span class="omics-label">Immunology</span><div class="omics-title">Immunology &amp; infectious disease</div><p class="omics-desc">Immune profiling, HLA and repertoire analysis, pathogens and vaccines.</p><div class="omics-tags"><span class="omics-tag">HLA typing</span><span class="omics-tag">VDJ repertoire</span><span class="omics-tag">Immune deconvolution</span><span class="omics-tag">Vaccine design</span><span class="omics-tag">Viral genomics</span></div></div>
+    <div class="omics-card"><span class="omics-label">Microbiome</span><div class="omics-title">Microbiome &amp; metagenomics</div><p class="omics-desc">Taxonomic and functional profiling, including host–microbe interactions.</p><div class="omics-tags"><span class="omics-tag">Shotgun metagenomics</span><span class="omics-tag">Taxonomic profiling</span><span class="omics-tag">Host–microbiome</span></div></div>
+    <div class="omics-card"><span class="omics-label">Clinical</span><div class="omics-title">Clinical &amp; translational</div><p class="omics-desc">Cohort analysis, clinical reporting and precision-medicine workflows, with REDCap import and export.</p><div class="omics-tags"><span class="omics-tag">Clinical reporting</span><span class="omics-tag">Pharmacogenomics</span><span class="omics-tag">Polygenic risk</span><span class="omics-tag">Clinical NLP</span><span class="omics-tag">Trial matching</span><span class="omics-tag">Transplant</span><span class="omics-tag">Reproductive</span></div></div>
+    <div class="omics-card"><span class="omics-label">Drug discovery</span><div class="omics-title">Drug discovery</div><p class="omics-desc">GNN-based target identification, drug response and repurposing.</p><div class="omics-tags"><span class="omics-tag">Target identification</span><span class="omics-tag">Drug repurposing</span><span class="omics-tag">Drug synergy</span><span class="omics-tag">Response prediction</span><span class="omics-tag">ADMET</span></div></div>
+    <div class="omics-card"><span class="omics-label">Population</span><div class="omics-title">Population &amp; specialised genomics</div><p class="omics-desc">Population, evolutionary and ancient genomes, plus neuro and aging studies.</p><div class="omics-tags"><span class="omics-tag">Population genetics</span><span class="omics-tag">Evolutionary</span><span class="omics-tag">Ancient DNA</span><span class="omics-tag">Forensics</span><span class="omics-tag">Neurogenomics</span><span class="omics-tag">Aging</span><span class="omics-tag">Emerging methods</span></div></div>
+    <div class="omics-card"><span class="omics-label">AI · Platform</span><div class="omics-title">AI models &amp; platform methods</div><p class="omics-desc">Foundation models, knowledge graphs and the tooling that keeps pipelines reproducible.</p><div class="omics-tags"><span class="omics-tag">scGPT / foundation models</span><span class="omics-tag">Biomedical knowledge graph</span><span class="omics-tag">Benchmarking</span><span class="omics-tag">Simulation</span><span class="omics-tag">Pipeline chaining</span><span class="omics-tag">Reference data</span></div></div>
   </div>
-  <div class="show-more-row">
-    <button class="show-more-btn" id="omics-toggle" onclick="toggleOmics()">SHOW ALL PIPELINES (+13)</button>
-  </div>
+  <p class="omics-more"><a href="https://docs.omnibioai.org/workflows-catalog/domains/" target="_blank" class="int-docs-link">Browse every workflow domain in the docs ↗</a></p>
   <div class="tags">
     <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
     <span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span>
@@ -1333,13 +1330,6 @@ function filterIntegrations(group){
   document.querySelectorAll('.int-group').forEach(function(g){g.hidden=group!=='all'&&g.dataset.group!==group});
 }
 document.querySelectorAll('.int-filter').forEach(function(b){b.addEventListener('click',function(){filterIntegrations(b.dataset.group)})});
-function toggleOmics(){
-  var cards=document.querySelectorAll('.omics-card.hidden-card');
-  var btn=document.getElementById('omics-toggle');
-  var showing=cards[0]&&cards[0].style.display==='block';
-  cards.forEach(c=>c.style.display=showing?'none':'block');
-  btn.textContent=showing?'SHOW ALL PIPELINES (+13)':'HIDE EXTRA PIPELINES';
-}
 function handleSubmit(e){
   e.preventDefault();
   if(!document.getElementById('platform-value').value){
@@ -1390,9 +1380,6 @@ function handleSubmit(e){
   document.addEventListener('click',function(e){if(!more.contains(e.target))setMore(false);if(!nav.contains(e.target))setMenu(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMore(false);setMenu(false)}});
 })();
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.omics-card.hidden-card').forEach(c=>c.style.display='none');
-});
 </script>
 </body>
 </html>
