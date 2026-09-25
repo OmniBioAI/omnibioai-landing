@@ -234,15 +234,24 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 .req-desc strong{color:var(--text);font-weight:500}
 
 /* ── Download ── */
-.dl-section-title{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
-.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);margin-bottom:0.1rem}
-.dl-card{background:var(--bg2);padding:1.75rem;text-align:center;transition:background 0.2s}
-.dl-card:hover{background:var(--surface)}
-.dl-icon{color:var(--accent);font-size:1.4rem;margin-bottom:1rem;display:block}
-.dl-title{font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;color:var(--text)}
-.dl-desc{font-size:0.77rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.7;font-weight:300}
-.dl-cmd{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);margin-top:0.5rem}
-.dl-os-block{margin-bottom:2.5rem}
+.dl-version{font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:500;letter-spacing:0.04em;color:var(--accent);border:1px solid var(--border2);background:rgba(0,212,170,0.06);border-radius:3px;padding:0.2rem 0.55rem;vertical-align:middle;margin-left:0.35rem;white-space:nowrap;display:inline-block}
+.dl-list{border:1px solid var(--border);background:var(--bg2)}
+.dl-row{display:grid;grid-template-columns:260px 1fr;align-items:center;gap:1rem;padding:0.95rem 1.25rem;border-top:1px solid var(--border)}
+.dl-row:first-child{border-top:none}
+.dl-os{display:flex;align-items:center;gap:0.75rem}
+.dl-os-icon{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid var(--border2);border-radius:3px;color:var(--accent);background:rgba(0,212,170,0.05);font-size:0.9rem;flex-shrink:0}
+.dl-os-name{display:block;font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3}
+.dl-os-hint{display:block;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.02em;line-height:1.4}
+.dl-btns{display:flex;flex-wrap:wrap;gap:0.5rem}
+.dl-btn{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.8rem;font-weight:600;color:#04080f;background:var(--accent);border-radius:3px;padding:0.45rem 0.9rem;text-decoration:none;transition:all 0.2s;white-space:nowrap}
+.dl-btn span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:500;opacity:0.7}
+.dl-btn:hover{filter:brightness(1.1);box-shadow:0 0 20px rgba(0,212,170,0.25)}
+.dl-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dl-foot{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin-top:0.9rem}
+.dl-cmds summary{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-muted);cursor:pointer;letter-spacing:0.03em}
+.dl-cmds summary:hover{color:var(--accent)}
+.dl-cmd-list{display:flex;flex-direction:column;gap:0.3rem;margin-top:0.6rem}
+.dl-cmd-list code{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);background:var(--bg);border:1px solid var(--border);border-radius:2px;padding:0.3rem 0.6rem}
 
 /* ── CTA / Form ── */
 .cta-wrap{max-width:680px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:3.5rem;box-shadow:var(--glow),var(--glow2)}
@@ -304,6 +313,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 @media(max-width:600px){
   .webstudio-qr{display:none}
   .int-grid{grid-template-columns:1fr 1fr}
+  .dl-row{grid-template-columns:1fr;gap:0.7rem;padding:0.9rem 1rem}
   .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
   .int-card::after{display:none}
@@ -1076,97 +1086,51 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <!-- ── Download ── -->
 <section id="download">
   <span class="sec-tag">// Downloads</span>
-  <h2 class="sec-title">OmniBioAI Studio<br><span style="font-size:0.7em;opacity:0.7">v0.7.1-beta</span></h2>
+  <h2 class="sec-title">OmniBioAI Studio <span class="dl-version">v0.7.1-beta</span></h2>
   <p class="sec-sub">Choose your platform and architecture. All installers include a 30-day free trial license.</p>
-
-  <!-- macOS -->
-  <div class="dl-os-block">
-    <div class="dl-section-title">
-      <svg viewBox="0 0 170 170" width="14" height="14" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg>
-      macOS
-    </div>
-    <div class="dl-grid">
-      <div class="dl-card">
-        <span class="dl-icon">🍎</span>
-        <div class="dl-title">Apple Silicon</div>
-        <p class="dl-desc">M1 / M2 / M3 / M4<br>Native ARM64 build</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1-arm64.dmg" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DMG · 102 MB</a>
-      </div>
-      <div class="dl-card">
-        <span class="dl-icon">💻</span>
-        <div class="dl-title">Intel Architecture</div>
-        <p class="dl-desc">Legacy Intel Mac<br>Native x86_64 build</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1.dmg" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DMG · 105 MB</a>
+  <div class="dl-list">
+    <div class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon"><svg viewBox="0 0 170 170" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg></span><span><span class="dl-os-name">macOS</span><span class="dl-os-hint">Apple Silicon or Intel</span></span></div>
+      <div class="dl-btns">
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1-arm64.dmg">↓ Apple Silicon · DMG <span>102 MB</span></a>
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1.dmg">↓ Intel · DMG <span>105 MB</span></a>
       </div>
     </div>
-  </div>
-
-  <!-- Linux x86 -->
-  <div class="dl-os-block">
-    <div class="dl-section-title">🐧 Linux x86_64 (Intel / AMD)</div>
-    <div class="dl-grid">
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">AppImage</div>
-        <p class="dl-desc">Any Linux distro<br>Ubuntu 20.04+</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1.AppImage" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ AppImage · 90 MB</a>
+    <div class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🐧</span><span><span class="dl-os-name">Linux x86_64</span><span class="dl-os-hint">Intel / AMD · Ubuntu 20.04+</span></span></div>
+      <div class="dl-btns">
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1.AppImage">↓ AppImage <span>90 MB</span></a>
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_amd64.deb">↓ DEB <span>~91 MB</span></a>
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.x86_64.rpm">↓ RPM <span>~81 MB</span></a>
       </div>
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">DEB Package</div>
-        <p class="dl-desc">Ubuntu / Debian / Mint<br>amd64</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_amd64.deb" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~91 MB</a>
-        <div class="dl-cmd">sudo dpkg -i omnibioai-studio_*amd64.deb</div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🦾</span><span><span class="dl-os-name">Linux ARM64</span><span class="dl-os-hint">DGX · Graviton · Raspberry Pi</span></span></div>
+      <div class="dl-btns">
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1-arm64.AppImage">↓ AppImage <span>~85 MB</span></a>
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_arm64.deb">↓ DEB <span>~86 MB</span></a>
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.aarch64.rpm">↓ RPM <span>~76 MB</span></a>
       </div>
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">RPM Package</div>
-        <p class="dl-desc">RHEL / Fedora / CentOS<br>x86_64</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.x86_64.rpm" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~81 MB</a>
-        <div class="dl-cmd">sudo rpm -i omnibioai-studio-*.x86_64.rpm</div>
+    </div>
+    <div class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🪟</span><span><span class="dl-os-name">Windows</span><span class="dl-os-hint">Windows 10 / 11 x64 · WSL2</span></span></div>
+      <div class="dl-btns">
+        <a class="dl-btn" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio.Setup.0.7.1.exe">↓ Installer · EXE <span>~104 MB</span></a>
       </div>
     </div>
   </div>
-
-  <!-- Linux ARM64 -->
-  <div class="dl-os-block">
-    <div class="dl-section-title">🦾 Linux ARM64 (DGX / Graviton / Raspberry Pi)</div>
-    <div class="dl-grid">
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">AppImage ARM64</div>
-        <p class="dl-desc">Any ARM64 Linux<br>aarch64</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio-0.7.1-arm64.AppImage" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ AppImage · ~85 MB</a>
-        <div class="dl-cmd">chmod +x *.AppImage && ./OmniBioAI*.AppImage</div>
+  <div class="dl-foot">
+    <details class="dl-cmds">
+      <summary>Linux install commands</summary>
+      <div class="dl-cmd-list">
+        <code>sudo dpkg -i omnibioai-studio_*amd64.deb</code>
+        <code>sudo rpm -i omnibioai-studio-*.x86_64.rpm</code>
+        <code>sudo dpkg -i omnibioai-studio_*arm64.deb</code>
+        <code>sudo rpm -i omnibioai-studio-*.aarch64.rpm</code>
+        <code>chmod +x *.AppImage &amp;&amp; ./OmniBioAI*.AppImage</code>
       </div>
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">DEB ARM64</div>
-        <p class="dl-desc">Ubuntu / Debian ARM64<br>aarch64</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_arm64.deb" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~86 MB</a>
-        <div class="dl-cmd">sudo dpkg -i omnibioai-studio_*arm64.deb</div>
-      </div>
-      <div class="dl-card">
-        <span class="dl-icon">📦</span>
-        <div class="dl-title">RPM ARM64</div>
-        <p class="dl-desc">RHEL / Fedora ARM64<br>aarch64</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.aarch64.rpm" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~76 MB</a>
-        <div class="dl-cmd">sudo rpm -i omnibioai-studio-*.aarch64.rpm</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Windows -->
-  <div class="dl-os-block">
-    <div class="dl-section-title">🪟 Windows (WSL2)</div>
-    <div class="dl-grid">
-      <div class="dl-card">
-        <span class="dl-icon">🪟</span>
-        <div class="dl-title">Windows Installer</div>
-        <p class="dl-desc">Windows 10 / 11 x64<br>Requires WSL2 Enabled</p>
-        <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/OmniBioAI.Studio.Setup.0.7.1.exe" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ EXE · ~104 MB</a>
-      </div>
-    </div>
+    </details>
+    <a href="https://github.com/OmniBioAI/omnibioai-studio/releases" target="_blank" class="int-docs-link">All releases on GitHub ↗</a>
   </div>
 </section>
 
