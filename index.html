@@ -1298,6 +1298,30 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <div class="arch-layer"><div class="arch-dot"></div><span>GPU Accelerated Stack (CUDA / NVIDIA DGX Spark)</span></div>
     </div>
   </div>
+  <!-- HIPAA / PHI -->
+  <div id="privacy" style="margin-top:3rem;border:1px solid var(--border);background:var(--bg2);padding:1.75rem 2rem;box-shadow:inset 3px 0 0 var(--accent)">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase">HIPAA-ready · PHI-capable</span>
+    <h3 style="font-size:1.1rem;font-weight:600;margin:0.6rem 0 0.9rem;color:var(--text)">PHI stays on your infrastructure</h3>
+    <p style="color:var(--text-muted);font-weight:300;font-size:0.9rem;line-height:1.85;margin-bottom:1.25rem">OmniBioAI Studio is built to work with protected health information (PHI) under HIPAA safeguards. It runs locally on your own machines, so sequencing data, clinical metadata and results never have to leave your environment. That makes it a fit for HIPAA-compliant deployments in hospitals, clinical labs and research institutions.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:1px;background:var(--border)">
+      <div style="background:var(--bg);padding:1rem 1.25rem;flex:1 1 200px">
+        <span style="font-size:0.85rem;font-weight:500;color:var(--text);display:block;margin-bottom:0.3rem">Local-first data</span>
+        <span style="font-size:0.78rem;color:var(--text-muted);line-height:1.6">PHI is stored and processed on your hardware, not ours.</span>
+      </div>
+      <div style="background:var(--bg);padding:1rem 1.25rem;flex:1 1 200px">
+        <span style="font-size:0.85rem;font-weight:500;color:var(--text);display:block;margin-bottom:0.3rem">On-device AI</span>
+        <span style="font-size:0.78rem;color:var(--text-muted);line-height:1.6">Local models via Ollama and Hugging Face keep prompts and data in-house.</span>
+      </div>
+      <div style="background:var(--bg);padding:1rem 1.25rem;flex:1 1 200px">
+        <span style="font-size:0.85rem;font-weight:500;color:var(--text);display:block;margin-bottom:0.3rem">Access control</span>
+        <span style="font-size:0.78rem;color:var(--text-muted);line-height:1.6">Zero-trust authentication with JWT and SSO identity providers.</span>
+      </div>
+      <div style="background:var(--bg);padding:1rem 1.25rem;flex:1 1 200px">
+        <span style="font-size:0.85rem;font-weight:500;color:var(--text);display:block;margin-bottom:0.3rem">Full audit trails</span>
+        <span style="font-size:0.78rem;color:var(--text-muted);line-height:1.6">Every access, annotation and pipeline run is logged for review.</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <hr class="divider">
