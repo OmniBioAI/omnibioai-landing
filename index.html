@@ -46,9 +46,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-wordmark{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:500;color:var(--accent);letter-spacing:0.02em}
 .nav-wordmark em{color:var(--text-dim);font-style:normal;font-weight:300}
 .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
-.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;font-weight:400}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;font-weight:400;white-space:nowrap}
+.nav-more{position:relative;display:flex;align-items:center;height:64px}
+.nav-more-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:0.82rem;letter-spacing:0.03em;color:var(--text-muted);transition:color 0.2s;white-space:nowrap}
+.nav-more-btn:hover,.nav-more.open .nav-more-btn{color:var(--accent)}
+.nav-more-menu{display:none;position:absolute;top:100%;right:-1rem;min-width:190px;list-style:none;background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:0.4rem 0;box-shadow:0 16px 40px rgba(0,0,0,0.55)}
+.nav-more:hover .nav-more-menu,.nav-more.open .nav-more-menu{display:block}
+.nav-more-menu a{display:block;padding:0.45rem 1.1rem}
+.nav-more-menu a:hover{background:rgba(0,212,170,0.06)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:0 9px;background:none;border:1px solid var(--border2);border-radius:4px;cursor:pointer}
+.nav-toggle span{display:block;height:1.5px;background:var(--accent);transition:transform 0.2s,opacity 0.2s}
+nav.open .nav-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+nav.open .nav-toggle span:nth-child(2){opacity:0}
+nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .nav-links a:hover{color:var(--accent)}
-.nav-cta{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
+.nav-cta{white-space:nowrap;background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
 .nav-cta:hover{background:rgba(0,212,170,0.1)!important;box-shadow:0 0 20px rgba(0,212,170,0.15)!important}
 
 /* ── Hero ── */
@@ -200,6 +212,7 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1rem}
 .platform-card{background:var(--bg);border:none;padding:1rem;text-align:center;cursor:pointer;transition:all 0.2s;user-select:none}
 .platform-card:hover{background:var(--surface)}
+.platform-card:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .platform-card.selected{background:rgba(0,212,170,0.07);box-shadow:inset 0 0 0 1px var(--accent)}
 .platform-card.selected .platform-name{color:var(--accent)}
 .platform-icon{display:flex;align-items:center;justify-content:center;height:24px;margin-bottom:0.35rem;color:var(--accent);opacity:0.7}
@@ -221,6 +234,18 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 #toast.show{opacity:1;transform:translateY(0)}
 
 /* ── Responsive ── */
+@media(max-width:1100px){
+  .nav-toggle{display:flex}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:0.5rem 1.5rem 1.25rem;background:var(--bg);border-bottom:1px solid var(--border);max-height:calc(100vh - 64px);overflow-y:auto}
+  nav.open .nav-links{display:flex}
+  .nav-links a{display:block;padding:0.6rem 0;font-size:0.9rem}
+  .nav-more{display:block;height:auto}
+  .nav-more-btn{display:none}
+  .nav-more-menu{display:block;position:static;min-width:0;background:none;border:none;box-shadow:none;padding:0}
+  .nav-more-menu a{padding:0.6rem 0}
+  .nav-more-menu a:hover{background:none}
+  .nav-cta{display:block!important;text-align:center;margin-top:0.75rem;padding:0.6rem 1.1rem!important}
+}
 @media(max-width:1000px){
   .stats-row{grid-template-columns:repeat(3,1fr);max-width:560px}
 }
@@ -229,7 +254,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 }
 @media(max-width:900px){
   nav{padding:0 1.5rem}
-  .nav-links{display:none}
   .arch-grid,.omics-grid,.form-grid2,.platform-grid,.rag-layout,.rag-stats-grid{grid-template-columns:1fr}
   section{padding:4rem 1.5rem}
   .cta-wrap{padding:2rem 1.5rem}
@@ -252,22 +276,30 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </svg>
     <span class="nav-wordmark">OmniBioAI <em>/ beta</em></span>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#literature-ai">Literature AI</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#enterprise-integrations">Integrations</a></li>
     <li><a href="#omics">Omics</a></li>
-    <li><a href="#genomes">Genomes</a></li>
-    <li><a href="#requirements">Install</a></li>
     <li><a href="#download">Download</a></li>
-    <li><a href="#architecture">Architecture</a></li>
-    <li><a href="#publications">Papers</a></li>
-    <li><a href="about.html">About</a></li>
     <li><a href="https://docs.omnibioai.org" target="_blank">Docs</a></li>
-    <li><a href="https://videos.omnibioai.org" target="_blank">Demo ↗</a></li>
-    <li><a href="https://discord.gg/Hu6vgfAFn" target="_blank">💬 Discord</a></li>
-    <li><a href="https://twitter.com/OmniBioAI" target="_blank">🐦 Twitter</a></li>
-    <li><a href="https://webstudio.omnibioai.org" target="_blank">🌐 Web App</a></li>
+    <li class="nav-more" id="nav-more">
+      <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-more-menu">More <span aria-hidden="true">▾</span></button>
+      <ul class="nav-more-menu" id="nav-more-menu">
+        <li><a href="#genomes">Genomes</a></li>
+        <li><a href="#requirements">Install</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#publications">Papers</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="https://videos.omnibioai.org" target="_blank">Demo ↗</a></li>
+        <li><a href="https://webstudio.omnibioai.org" target="_blank">🌐 Web App</a></li>
+        <li><a href="https://discord.gg/Hu6vgfAFn" target="_blank">💬 Discord</a></li>
+        <li><a href="https://twitter.com/OmniBioAI" target="_blank">🐦 Twitter</a></li>
+      </ul>
+    </li>
     <li><a href="#request" class="nav-cta">Request Access</a></li>
   </ul>
 </nav>
@@ -298,7 +330,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="stat-item"><span class="stat-num">12,000+</span><span class="stat-label">TES tool definitions</span></div>
     <div class="stat-item"><span class="stat-num">1000+</span><span class="stat-label">Workflows</span></div>
     <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Workbench plugins</span></div>
-    <div class="stat-item"><span class="stat-num">1,250+</span><span class="stat-label">Container baseline</span></div>
+    <div class="stat-item"><span class="stat-num">1,320+</span><span class="stat-label">Container baseline</span></div>
     <div class="stat-item"><span class="stat-num">40+</span><span class="stat-label">Agentic Pipelines/Plugins</span></div>
     <div class="stat-item"><span class="stat-num">28</span><span class="stat-label">Microservices</span></div>
     <div class="stat-item"><span class="stat-num">28M+</span><span class="stat-label">Abstracts</span></div>
@@ -462,12 +494,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="feature-card">
       <div class="f-icon">◇</div>
       <div class="f-title">Reliability-first design</div>
-      <p class="f-desc">90% average test coverage across 28 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
+      <p class="f-desc">97% average test coverage across 28 microservices. Sub-3ms latency for critical service handshakes. Built for clinical-grade stability from day one.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">⬡</div>
       <div class="f-title">Plugin ecosystem</div>
-      <p class="f-desc">Extensible plugin architecture with 351 enabled Workbench plugins and an OnboardAI documentation browser. Documentation and plugin inventories vary by repository release.</p>
+      <p class="f-desc">Extensible plugin architecture with 500+ Workbench plugins and an OnboardAI documentation browser. Documentation and plugin inventories vary by repository release.</p>
     </div>
     <div class="feature-card">
       <div class="f-icon">⚙</div>
@@ -818,7 +850,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
   <h2 class="sec-title">Reference Genomes</h2>
-  <p class="sec-sub">12 species, pre-indexed and ready. Reference genomes are pre-indexed with STAR, BWA, Bowtie2, and Bismark. Downloaded and cached automatically on first pipeline run.</p>
+  <p class="sec-sub">12 species, pre-indexed and ready. Reference genomes are pre-indexed with STAR, BWA, Bowtie2, and Salmon, plus CellRanger references for human and mouse. Downloaded and cached automatically on first pipeline run.</p>
   <div class="genomes-wrap">
     <table class="genomes-table">
       <thead>
@@ -1029,7 +1061,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="req-card">
       <span class="req-icon">💿</span>
       <div class="req-title">Storage</div>
-      <p class="req-desc"><strong>AppImage / DMG:</strong> ~84 MB<br><strong>Docker images:</strong> ~5 GB (one-time pull)<br><strong>Data + work dirs:</strong> 50–200 GB</p>
+      <p class="req-desc"><strong>Installer:</strong> ~75–105 MB<br><strong>Docker images:</strong> ~5 GB (one-time pull)<br><strong>Data + work dirs:</strong> 50–200 GB</p>
     </div>
     <div class="req-card">
       <span class="req-icon">🖥️</span>
@@ -1117,14 +1149,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         <div class="dl-title">DEB Package</div>
         <p class="dl-desc">Ubuntu / Debian / Mint<br>amd64</p>
         <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_amd64.deb" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~91 MB</a>
-        <div class="dl-cmd">sudo dpkg -i omnibioai_*.deb</div>
+        <div class="dl-cmd">sudo dpkg -i omnibioai-studio_*amd64.deb</div>
       </div>
       <div class="dl-card">
         <span class="dl-icon">📦</span>
         <div class="dl-title">RPM Package</div>
         <p class="dl-desc">RHEL / Fedora / CentOS<br>x86_64</p>
         <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.x86_64.rpm" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~81 MB</a>
-        <div class="dl-cmd">sudo rpm -i omnibioai-*.rpm</div>
+        <div class="dl-cmd">sudo rpm -i omnibioai-studio-*.x86_64.rpm</div>
       </div>
     </div>
   </div>
@@ -1145,14 +1177,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         <div class="dl-title">DEB ARM64</div>
         <p class="dl-desc">Ubuntu / Debian ARM64<br>aarch64</p>
         <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio_0.7.1_arm64.deb" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ DEB · ~86 MB</a>
-        <div class="dl-cmd">sudo dpkg -i omnibioai_*arm64.deb</div>
+        <div class="dl-cmd">sudo dpkg -i omnibioai-studio_*arm64.deb</div>
       </div>
       <div class="dl-card">
         <span class="dl-icon">📦</span>
         <div class="dl-title">RPM ARM64</div>
         <p class="dl-desc">RHEL / Fedora ARM64<br>aarch64</p>
         <a href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.7.1-beta/omnibioai-studio-0.7.1.aarch64.rpm" class="btn-primary" style="justify-content:center;font-size:0.82rem">↓ RPM · ~76 MB</a>
-        <div class="dl-cmd">sudo rpm -i omnibioai-*.aarch64.rpm</div>
+        <div class="dl-cmd">sudo rpm -i omnibioai-studio-*.aarch64.rpm</div>
       </div>
     </div>
   </div>
@@ -1190,7 +1222,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <span style="font-size:0.73rem;color:var(--text-muted)">Lines of code</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">95.2%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">97%</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Avg test coverage</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1;text-align:center">
@@ -1263,25 +1295,25 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <form onsubmit="handleSubmit(event)">
       <div class="form-grid2">
         <div class="form-row">
-          <label class="form-label">First Name *</label>
+          <label class="form-label" for="first-name">First Name *</label>
           <input type="text" id="first-name" class="form-input" placeholder="Alex" required>
         </div>
         <div class="form-row">
-          <label class="form-label">Last Name *</label>
+          <label class="form-label" for="last-name">Last Name *</label>
           <input type="text" id="last-name" class="form-input" placeholder="Carter" required>
         </div>
       </div>
       <div class="form-row">
-        <label class="form-label">Institutional Email *</label>
+        <label class="form-label" for="email">Institutional Email *</label>
         <input type="email" id="email" class="form-input" placeholder="alex.carter@university.edu" required>
       </div>
       <div class="form-grid2">
         <div class="form-row">
-          <label class="form-label">Organization / Lab *</label>
+          <label class="form-label" for="institution">Organization / Lab *</label>
           <input type="text" id="institution" class="form-input" placeholder="Center for Genomic Medicine" required>
         </div>
         <div class="form-row">
-          <label class="form-label">Role *</label>
+          <label class="form-label" for="role">Role *</label>
           <select id="role" class="form-select" required>
             <option value="" disabled selected>Select role...</option>
             <option value="phd_student">PhD Student</option>
@@ -1295,7 +1327,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         </div>
       </div>
       <div class="form-row">
-        <label class="form-label">Primary Research Area *</label>
+        <label class="form-label" for="use-case">Primary Research Area *</label>
         <select id="use-case" class="form-select" required>
           <option value="" disabled selected>Select modality...</option>
           <option value="scrna">Single-Cell Transcriptomics</option>
@@ -1306,32 +1338,32 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         </select>
       </div>
       <div class="form-row">
-        <label class="form-label">Your Operating System *</label>
-        <div class="platform-grid">
-          <div class="platform-card" id="platform-linux" onclick="selectPlatform('linux')">
+        <span class="form-label" id="platform-label">Your Operating System *</span>
+        <div class="platform-grid" role="radiogroup" aria-labelledby="platform-label" aria-required="true">
+          <div class="platform-card" id="platform-linux" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('linux')" onkeydown="platformKey(event,'linux')">
             <span class="platform-icon">🐧</span>
             <span class="platform-name">Linux</span>
             <span class="platform-hint">Ubuntu / Debian / RHEL</span>
-            <span class="platform-badge">AppImage · 78 MB</span>
+            <span class="platform-badge">AppImage · ~90 MB</span>
           </div>
-          <div class="platform-card" id="platform-mac" onclick="selectPlatform('mac')">
+          <div class="platform-card" id="platform-mac" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('mac')" onkeydown="platformKey(event,'mac')">
             <span class="platform-icon">🍎</span>
             <span class="platform-name">macOS</span>
             <span class="platform-hint">Apple Silicon or Intel</span>
-            <span class="platform-badge">DMG · 84 MB</span>
+            <span class="platform-badge">DMG · ~105 MB</span>
           </div>
-          <div class="platform-card" id="platform-windows" onclick="selectPlatform('windows')">
+          <div class="platform-card" id="platform-windows" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('windows')" onkeydown="platformKey(event,'windows')">
             <span class="platform-icon">🪟</span>
             <span class="platform-name">Windows</span>
             <span class="platform-hint">WSL2 required</span>
-            <span class="platform-badge">EXE · ~90 MB</span>
+            <span class="platform-badge">EXE · ~104 MB</span>
           </div>
         </div>
         <input type="hidden" name="platform" id="platform-value">
         <div id="platform-error" style="display:none;font-size:0.72rem;color:#e24b4a;font-family:'JetBrains Mono',monospace;margin-top:0.4rem">Please select your operating system</div>
       </div>
       <div class="form-row">
-        <label class="form-label">Intended Analysis / Pipelines *</label>
+        <label class="form-label" for="research">Intended Analysis / Pipelines *</label>
         <textarea id="research" class="form-textarea" rows="3" placeholder="Briefly describe your computational workflows or pipeline orchestration goals..." required></textarea>
       </div>
       <button type="submit" class="form-submit" id="submit-btn">Submit Request</button>
@@ -1358,9 +1390,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <script>
 function selectPlatform(p){
-  document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
+  document.querySelectorAll('.platform-card').forEach(c=>{c.classList.remove('selected');c.setAttribute('aria-checked','false')});
   var el=document.getElementById('platform-'+p);
-  if(el){el.classList.add('selected');document.getElementById('platform-value').value=p;document.getElementById('platform-error').style.display='none'}
+  if(el){el.classList.add('selected');el.setAttribute('aria-checked','true');document.getElementById('platform-value').value=p;document.getElementById('platform-error').style.display='none'}
+}
+function platformKey(e,p){
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();selectPlatform(p)}
 }
 function toggleOmics(){
   var cards=document.querySelectorAll('.omics-card.hidden-card');
@@ -1379,7 +1414,7 @@ function handleSubmit(e){
   btn.disabled=true;btn.textContent='Sending...';
   errEl.style.display='none';
   var payload={
-    first_name:document.getElementById('first-name').value.trim().split(/\s+/)[0],
+    first_name:document.getElementById('first-name').value.trim(),
     last_name:document.getElementById('last-name').value.trim(),
     email:document.getElementById('email').value.trim(),
     institution:document.getElementById('institution').value.trim(),
@@ -1396,7 +1431,8 @@ function handleSubmit(e){
     if(!r.ok) throw new Error('HTTP '+r.status);
     btn.textContent='✓ Submitted';
     e.target.reset();
-    document.querySelectorAll('.platform-card').forEach(c=>c.classList.remove('selected'));
+    document.querySelectorAll('.platform-card').forEach(c=>{c.classList.remove('selected');c.setAttribute('aria-checked','false')});
+    document.getElementById('platform-value').value='';
     var t=document.getElementById('toast');
     t.classList.add('show');
     setTimeout(function(){t.classList.remove('show')},3000);
@@ -1405,6 +1441,19 @@ function handleSubmit(e){
     errEl.style.display='block';
   });
 }
+(function(){
+  var nav=document.querySelector('nav');
+  var toggle=document.getElementById('nav-toggle');
+  var more=document.getElementById('nav-more');
+  var moreBtn=document.getElementById('nav-more-btn');
+  function setMenu(open){nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',open);toggle.setAttribute('aria-label',open?'Close menu':'Open menu')}
+  function setMore(open){more.classList.toggle('open',open);moreBtn.setAttribute('aria-expanded',open)}
+  toggle.addEventListener('click',function(){setMenu(!nav.classList.contains('open'))});
+  moreBtn.addEventListener('click',function(){setMore(!more.classList.contains('open'))});
+  document.getElementById('nav-links').addEventListener('click',function(e){if(e.target.closest('a')){setMenu(false);setMore(false)}});
+  document.addEventListener('click',function(e){if(!more.contains(e.target))setMore(false);if(!nav.contains(e.target))setMenu(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMore(false);setMenu(false)}});
+})();
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.omics-card.hidden-card').forEach(c=>c.style.display='none');
 });
