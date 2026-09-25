@@ -204,7 +204,13 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 .genome-asm{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-muted)}
 .idx-badge{font-family:'JetBrains Mono',monospace;font-size:0.58rem;border-radius:2px;padding:0.12rem 0.4rem;display:inline-block;margin:2px 2px 2px 0;white-space:nowrap}
 .idx-on{background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);color:var(--accent)}
-.idx-soon{background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-dim)}
+.idx-file{background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-muted)}
+.genome-legend{display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)}
+.genome-legend>span{display:flex;align-items:center;gap:6px}
+.genome-legend .idx-badge{margin:0}
+.genome-note{margin-top:0.75rem;font-size:0.75rem;color:var(--text-dim);font-weight:300}
+.genome-note a{color:var(--accent);text-decoration:none}
+.genome-note a:hover{text-decoration:underline}
 
 /* ── Architecture ── */
 .arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
@@ -824,7 +830,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
   <h2 class="sec-title">Reference Genomes</h2>
-  <p class="sec-sub">12 species, pre-indexed and ready. Reference genomes are pre-indexed with STAR, BWA, Bowtie2, and Salmon, plus CellRanger references for human and mouse. Downloaded and cached automatically on first pipeline run.</p>
+  <p class="sec-sub">12 species with genome sequence and gene annotation on disk, and transcript sequences for 11 of them. Prepared aligner indexes are ready for human (STAR, Cell Ranger) and mouse (Bowtie2, Cell Ranger).</p>
   <div class="genomes-wrap">
     <table class="genomes-table">
       <thead>
@@ -832,53 +838,35 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <th>Species</th>
           <th>Common Name</th>
           <th>Assemblies</th>
-          <th>Annotations</th>
+          <th>Annotation</th>
           <th>Use Cases</th>
-          <th>Indexes</th>
+          <th>On disk</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="genome-species">Homo sapiens</span></td>
           <td><span class="genome-common">Human</span></td>
-          <td><span class="genome-asm">GRCh38, GRCh37,<br>T2T-CHM13</span></td>
-          <td>GENCODE v44, Ensembl 110, RefSeq</td>
+          <td><span class="genome-asm">GRCh38 (hg38), hg19</span></td>
+          <td>GENCODE v44, v46</td>
           <td>WGS, WES, scRNA, ATAC, clinical</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-on">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">Cell Ranger</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Mus musculus</span></td>
           <td><span class="genome-common">Mouse</span></td>
           <td><span class="genome-asm">GRCm39, mm10</span></td>
-          <td>GENCODE M33, Ensembl 110</td>
+          <td>GENCODE vM33</td>
           <td>Drug discovery, knockout models</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-on">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Cell Ranger</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Rattus norvegicus</span></td>
           <td><span class="genome-common">Rat</span></td>
-          <td><span class="genome-asm">mRatBN7.2</span></td>
-          <td>Ensembl 110, RefSeq</td>
+          <td><span class="genome-asm">GRCr8</span></td>
+          <td>Ensembl 111</td>
           <td>Pharmacology, toxicology</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Pan troglodytes</span></td>
@@ -886,97 +874,55 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <td><span class="genome-asm">Pan_tro_3.0</span></td>
           <td>Ensembl 112</td>
           <td>Comparative genomics, evolution, primate research</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Macaca mulatta</span></td>
           <td><span class="genome-common">Rhesus Macaque</span></td>
           <td><span class="genome-asm">Mmul_10</span></td>
-          <td>Ensembl 110, RefSeq</td>
+          <td>Ensembl 112</td>
           <td>Primate translational research</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-soon">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Danio rerio</span></td>
           <td><span class="genome-common">Zebrafish</span></td>
           <td><span class="genome-asm">GRCz11</span></td>
-          <td>Ensembl 110, ZFIN</td>
+          <td>Ensembl 112</td>
           <td>Developmental biology, screens</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Drosophila melanogaster</span></td>
           <td><span class="genome-common">Fruit Fly</span></td>
-          <td><span class="genome-asm">dm6</span></td>
-          <td>FlyBase r6.54, Ensembl</td>
+          <td><span class="genome-asm">BDGP6</span></td>
+          <td>Ensembl 112</td>
           <td>Genetics, CRISPR screens</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-soon">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Saccharomyces cerevisiae</span></td>
           <td><span class="genome-common">Yeast</span></td>
-          <td><span class="genome-asm">R64-1-1, S288C</span></td>
-          <td>SGD, Ensembl Fungi</td>
+          <td><span class="genome-asm">R64-1-1</span></td>
+          <td>Ensembl 112</td>
           <td>Yeast two-hybrid, metabolomics</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Caenorhabditis elegans</span></td>
           <td><span class="genome-common">C. elegans</span></td>
           <td><span class="genome-asm">WBcel235</span></td>
-          <td>WormBase WS290, Ensembl 112</td>
+          <td>Ensembl 112</td>
           <td>Aging, longevity, RNAi screens, neuroscience</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Arabidopsis thaliana</span></td>
           <td><span class="genome-common">Thale Cress</span></td>
           <td><span class="genome-asm">TAIR10</span></td>
-          <td>TAIR 10.1, Ensembl Plants 59</td>
+          <td>Ensembl Plants 59</td>
           <td>Plant biology, epigenomics, stress response</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Sus scrofa</span></td>
@@ -984,13 +930,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <td><span class="genome-asm">Sscrofa11.1</span></td>
           <td>Ensembl 112</td>
           <td>Xenotransplantation, cardiovascular, metabolic disease</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Gallus gallus</span></td>
@@ -998,25 +938,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <td><span class="genome-asm">GRCg7b</span></td>
           <td>Ensembl 112</td>
           <td>Immunology, developmental biology, vaccine research</td>
-          <td>
-            <span class="idx-badge idx-on">STAR</span>
-            <span class="idx-badge idx-on">BWA</span>
-            <span class="idx-badge idx-on">Bowtie2</span>
-            <span class="idx-badge idx-on">Salmon</span>
-            <span class="idx-badge idx-soon">CellRanger</span>
-          </td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div style="display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap">
-    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)">
-      <span class="idx-badge idx-on" style="margin:0">STAR</span> Available
-    </div>
-    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)">
-      <span class="idx-badge idx-soon" style="margin:0">CellRanger</span> Coming soon
-    </div>
+  <div class="genome-legend">
+    <span><span class="idx-badge idx-on">STAR</span> Prepared index, ready to use</span>
+    <span><span class="idx-badge idx-file">GTF</span> Sequence or annotation file</span>
   </div>
+  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
 </section>
 
 <hr class="divider">
