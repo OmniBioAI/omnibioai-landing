@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — OmniBioAI</title>
+<meta name="description" content="The terms that govern use of OmniBioAI's website, hosted platform, API and Studio.">
+<meta property="og:title" content="Terms of Service — OmniBioAI">
+<meta property="og:description" content="The terms that govern use of OmniBioAI's website, hosted platform, API and Studio.">
+<meta property="og:url" content="https://omnibioai.org/terms.html">
+<link rel="canonical" href="https://omnibioai.org/terms.html">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04080f;
+  --bg2:#080e1a;
+  --bg3:#0c1422;
+  --surface:#0f1d2e;
+  --surface2:#162336;
+  --accent:#00d4aa;
+  --accent2:#0098ff;
+  --text:#e8f0fe;
+  --text-muted:#7a9bbf;
+  --text-dim:#3d5a78;
+  --border:rgba(0,212,170,0.12);
+  --border2:rgba(0,212,170,0.25);
+  --glow:0 0 40px rgba(0,212,170,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(4,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo svg{filter:drop-shadow(0 0 8px rgba(0,212,170,0.5))}
+.nav-wordmark{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:500;color:var(--accent);letter-spacing:0.02em}
+.nav-wordmark em{color:var(--text-dim);font-style:normal;font-weight:300}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
+.nav-cta:hover{background:rgba(0,212,170,0.1)!important}
+.page-wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:8rem 2rem 5rem}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;display:block}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:0.75rem}
+.effective{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-dim);margin-bottom:2rem;display:block}
+.lead{color:var(--text-muted);font-size:0.98rem;font-weight:300;line-height:1.9;margin-bottom:1.5rem}
+.toc{background:var(--bg2);border:1px solid var(--border);padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+.toc ol{margin-left:1.2rem;columns:2;column-gap:2rem}
+.toc li{font-size:0.82rem;margin-bottom:0.3rem}
+.toc a{color:var(--text-muted);text-decoration:none}
+.toc a:hover{color:var(--accent)}
+section{padding:1.75rem 0;border-top:1px solid var(--border);scroll-margin-top:80px}
+h2{font-family:'Playfair Display',serif;font-size:1.45rem;line-height:1.2;margin-bottom:0.9rem}
+h3{font-size:0.95rem;font-weight:600;margin:1.1rem 0 0.4rem}
+section p,section li{color:var(--text-muted);font-size:0.92rem;font-weight:300;line-height:1.85}
+section p{margin-bottom:0.8rem}
+section ul{margin:0 0 0.9rem 1.2rem}
+section li{margin-bottom:0.35rem}
+strong{color:var(--text);font-weight:500}
+a{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.5rem 0 1rem;font-size:0.84rem}
+th,td{text-align:left;vertical-align:top;padding:0.55rem 0.7rem;border:1px solid var(--border);color:var(--text-muted);font-weight:300}
+th{color:var(--text);font-weight:500;background:var(--bg2)}
+.note{border-left:2px solid var(--accent);padding:0.9rem 1.25rem;margin:1rem 0;background:rgba(0,212,170,0.04)}
+.note p{margin:0;color:var(--text)}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .toc ol{columns:1}
+  footer{flex-direction:column;align-items:flex-start}
+  .page-wrap{padding:6rem 1.25rem 3rem}
+  table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.06)"/>
+      <circle cx="20" cy="20" r="5" fill="rgba(0,212,170,0.2)" stroke="#00d4aa" stroke-width="1"/>
+      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-wordmark">OmniBioAI <em>/ beta</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html" class="active">Terms</a></li>
+    <li><a href="index.html#request" class="nav-cta">Request Access</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <span class="sec-tag">// Legal</span>
+  <h1>Terms of Service</h1>
+  <span class="effective">Effective 3 October 2026 · Last updated 3 October 2026</span>
+  <div class="toc">
+    <span class="sec-tag">Contents</span>
+    <ol>
+      <li><a href="#agreement">Agreement</a></li>
+      <li><a href="#beta">Beta services and trials</a></li>
+      <li><a href="#accounts">Accounts and API keys</a></li>
+      <li><a href="#use">Acceptable use</a></li>
+      <li><a href="#research">Research use only — not medical advice</a></li>
+      <li><a href="#fees">Fees and payment</a></li>
+      <li><a href="#content">Your content</a></li>
+      <li><a href="#third">Third-party services and data</a></li>
+      <li><a href="#ip">Our intellectual property</a></li>
+      <li><a href="#termination">Suspension and termination</a></li>
+      <li><a href="#disclaimers">Disclaimers</a></li>
+      <li><a href="#liability">Limitation of liability</a></li>
+      <li><a href="#indemnity">Indemnity</a></li>
+      <li><a href="#law">Governing law and disputes</a></li>
+      <li><a href="#general">General</a></li>
+    </ol>
+  </div>
+
+  <section id="agreement">
+    <h2>Agreement</h2>
+    <p class="lead">These terms govern your use of OmniBioAI's website, hosted platform (including webstudio.omnibioai.org and the OmniBioAI API), the OmniBioAI Studio desktop application and related documentation (the "Services"). By creating an account, using an API key, downloading Studio or otherwise using the Services, you agree to these terms and to our <a href="privacy.html">Privacy Policy</a>.</p>
+    <p>If you use the Services for an organization, you confirm you have authority to accept these terms for it, and "you" includes that organization. You must be at least 18 years old. A separate written agreement signed with us (for example an enterprise agreement or a business associate agreement) takes precedence over these terms where they conflict.</p>
+  </section>
+  <section id="beta">
+    <h2>Beta services and trials</h2>
+    <p>OmniBioAI is in beta. Features may change, be limited or be withdrawn, and may contain errors. Studio downloads include a 30-day trial licence. Beta and trial access may be granted, limited or ended at our discretion.</p>
+  </section>
+  <section id="accounts">
+    <h2>Accounts and API keys</h2>
+    <ul>
+      <li>Keep your credentials and API keys secret. You are responsible for activity under your account and for all usage made with your API keys, including charges, until you revoke a key.</li>
+      <li>Tell us promptly at the contact address below if you believe an account or key has been compromised.</li>
+      <li>Organization administrators can manage members, roles, keys and billing for their organization.</li>
+    </ul>
+  </section>
+  <section id="use">
+    <h2>Acceptable use</h2>
+    <p>You will not, and will not let others:</p>
+    <ul>
+      <li>use the Services unlawfully, or to infringe others' rights, including licence terms of third-party databases;</li>
+      <li>upload protected health information to our hosted services unless we have signed a business associate agreement with you;</li>
+      <li>attempt to breach, probe or disrupt the Services' security, or access accounts, data or organizations that are not yours;</li>
+      <li>circumvent rate limits, quotas, licence checks or billing, or share an API key outside the organization it was issued to;</li>
+      <li>resell, sublicense or provide the Services to third parties as a competing service, or scrape or bulk-export them, without our written permission;</li>
+      <li>use the Services to develop weapons or to cause harm, or to send malware or spam.</li>
+    </ul>
+    <p>We may suspend access that violates these rules or puts the Services or other users at risk.</p>
+  </section>
+  <section id="research">
+    <h2>Research use only — not medical advice</h2>
+    <div class="note"><p>The Services are research tools. They are not medical devices and are not intended to diagnose, treat or prevent disease or to guide patient care.</p></div>
+    <p>AI-generated answers, analyses and citations can be incomplete or wrong. Verify results, including cited sources, before relying on them, and apply your own professional judgment.</p>
+  </section>
+  <section id="fees">
+    <h2>Fees and payment</h2>
+    <ul>
+      <li><strong>Pricing.</strong> Paid features are charged as shown on our pricing page, in the product or in your order: for example per answer or query, per token for premium AI models, per seat, or as prepaid credits. Free tiers include a limited allowance; requests beyond it may be refused until you add a payment method or upgrade.</li>
+      <li><strong>Billing.</strong> Usage is measured by our systems and billed monthly in arrears unless your plan says otherwise. Payments are processed by Stripe under its terms. You authorize us to charge your payment method for fees incurred.</li>
+      <li><strong>Taxes.</strong> Fees exclude taxes, which you pay where applicable.</li>
+      <li><strong>Own provider keys.</strong> If you connect your own AI provider key, that provider bills you for its usage directly; our platform fees still apply.</li>
+      <li><strong>Non-payment.</strong> If a payment fails we may limit your account to free-tier access until it is resolved.</li>
+      <li><strong>Refunds.</strong> Fees and prepaid credits are non-refundable except where required by law or stated in your plan.</li>
+      <li><strong>Price changes.</strong> We will give at least 30 days' notice of price increases for paid plans.</li>
+    </ul>
+  </section>
+  <section id="content">
+    <h2>Your content</h2>
+    <p>You keep all rights in the data, files and questions you submit and in the results generated for you ("Your Content"). You give us a limited licence to host, process and transmit Your Content only to provide, secure and support the Services. We do not use Your Content to train machine-learning models.</p>
+    <p>You are responsible for having the rights and consents needed for Your Content.</p>
+  </section>
+  <section id="third">
+    <h2>Third-party services and data</h2>
+    <p>The Services connect to third-party services and data, such as PubMed/NCBI, reference databases, AI model providers, cloud platforms and lab systems. Your use of them is subject to their terms. Some reference databases (for example OMIM, COSMIC, DrugBank and OncoKB) require your own licence and credentials. We are not responsible for third-party services or their content.</p>
+  </section>
+  <section id="ip">
+    <h2>Our intellectual property</h2>
+    <p>The Services, including software, models we provide, documentation and branding, are owned by OmniBioAI or its licensors and are licensed to you, not sold, for use under these terms. Open-source components are licensed under their own licences, which govern your use of those components. If you send us feedback, we may use it without obligation to you.</p>
+  </section>
+  <section id="termination">
+    <h2>Suspension and termination</h2>
+    <p>You may stop using the Services and close your account at any time. We may suspend or end your access if you breach these terms, fail to pay, or create a security or legal risk, and we may discontinue a beta feature. On termination, unpaid fees become due; you can request an export of Your Content within 30 days, after which we may delete it as described in our Privacy Policy.</p>
+  </section>
+  <section id="disclaimers">
+    <h2>Disclaimers</h2>
+    <p>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE". TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY AND NON-INFRINGEMENT, AND WE DO NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE.</p>
+  </section>
+  <section id="liability">
+    <h2>Limitation of liability</h2>
+    <p>TO THE FULLEST EXTENT PERMITTED BY LAW, OMNIBIOAI WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, REVENUE, DATA OR GOODWILL. OUR TOTAL LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICES IS LIMITED TO THE GREATER OF THE AMOUNTS YOU PAID US FOR THE SERVICES IN THE 12 MONTHS BEFORE THE CLAIM AND US$100.</p>
+    <p>These limits do not apply where the law does not allow them.</p>
+  </section>
+  <section id="indemnity">
+    <h2>Indemnity</h2>
+    <p>You will defend and indemnify OmniBioAI against third-party claims arising from Your Content or from your use of the Services in breach of these terms or the law.</p>
+  </section>
+  <section id="law">
+    <h2>Governing law and disputes</h2>
+    <p>These terms are governed by the laws of the State of Kansas, USA, without regard to its conflict-of-law rules. Disputes will be resolved in the state or federal courts located in Kansas, and both parties consent to their jurisdiction. Nothing here limits mandatory consumer protections in your country of residence.</p>
+  </section>
+  <section id="general">
+    <h2>General</h2>
+    <p>We may update these terms; we will post the new version here and, for material changes, notify account holders before they take effect. Continued use after that means you accept the updated terms. If a provision is unenforceable, the rest remain in effect. You may not assign these terms without our consent. These terms and our Privacy Policy are the entire agreement between us about the Services, except for any separate signed agreement.</p>
+    <p>Contact: <a href="mailto:manish@omnibioai.org">manish@omnibioai.org</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="mailto:manish@omnibioai.org">Contact</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
