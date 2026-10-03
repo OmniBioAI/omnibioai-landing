@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — OmniBioAI</title>
+<meta name="description" content="How OmniBioAI collects, uses, shares and protects personal information.">
+<meta property="og:title" content="Privacy Policy — OmniBioAI">
+<meta property="og:description" content="How OmniBioAI collects, uses, shares and protects personal information.">
+<meta property="og:url" content="https://omnibioai.org/privacy.html">
+<link rel="canonical" href="https://omnibioai.org/privacy.html">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,700;1,700&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04080f;
+  --bg2:#080e1a;
+  --bg3:#0c1422;
+  --surface:#0f1d2e;
+  --surface2:#162336;
+  --accent:#00d4aa;
+  --accent2:#0098ff;
+  --text:#e8f0fe;
+  --text-muted:#7a9bbf;
+  --text-dim:#3d5a78;
+  --border:rgba(0,212,170,0.12);
+  --border2:rgba(0,212,170,0.25);
+  --glow:0 0 40px rgba(0,212,170,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(4,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo svg{filter:drop-shadow(0 0 8px rgba(0,212,170,0.5))}
+.nav-wordmark{font-family:'JetBrains Mono',monospace;font-size:0.95rem;font-weight:500;color:var(--accent);letter-spacing:0.02em}
+.nav-wordmark em{color:var(--text-dim);font-style:normal;font-weight:300}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
+.nav-cta:hover{background:rgba(0,212,170,0.1)!important}
+.page-wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:8rem 2rem 5rem}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;display:block}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:0.75rem}
+.effective{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-dim);margin-bottom:2rem;display:block}
+.lead{color:var(--text-muted);font-size:0.98rem;font-weight:300;line-height:1.9;margin-bottom:1.5rem}
+.toc{background:var(--bg2);border:1px solid var(--border);padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+.toc ol{margin-left:1.2rem;columns:2;column-gap:2rem}
+.toc li{font-size:0.82rem;margin-bottom:0.3rem}
+.toc a{color:var(--text-muted);text-decoration:none}
+.toc a:hover{color:var(--accent)}
+section{padding:1.75rem 0;border-top:1px solid var(--border);scroll-margin-top:80px}
+h2{font-family:'Playfair Display',serif;font-size:1.45rem;line-height:1.2;margin-bottom:0.9rem}
+h3{font-size:0.95rem;font-weight:600;margin:1.1rem 0 0.4rem}
+section p,section li{color:var(--text-muted);font-size:0.92rem;font-weight:300;line-height:1.85}
+section p{margin-bottom:0.8rem}
+section ul{margin:0 0 0.9rem 1.2rem}
+section li{margin-bottom:0.35rem}
+strong{color:var(--text);font-weight:500}
+a{color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.5rem 0 1rem;font-size:0.84rem}
+th,td{text-align:left;vertical-align:top;padding:0.55rem 0.7rem;border:1px solid var(--border);color:var(--text-muted);font-weight:300}
+th{color:var(--text);font-weight:500;background:var(--bg2)}
+.note{border-left:2px solid var(--accent);padding:0.9rem 1.25rem;margin:1rem 0;background:rgba(0,212,170,0.04)}
+.note p{margin:0;color:var(--text)}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
+.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .toc ol{columns:1}
+  footer{flex-direction:column;align-items:flex-start}
+  .page-wrap{padding:6rem 1.25rem 3rem}
+  table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4L34 12V28L20 36L6 28V12L20 4Z" stroke="#00d4aa" stroke-width="1.5" fill="rgba(0,212,170,0.06)"/>
+      <circle cx="20" cy="20" r="5" fill="rgba(0,212,170,0.2)" stroke="#00d4aa" stroke-width="1"/>
+      <path d="M20 15V9M20 31V25M15 20H9M31 20H25" stroke="#00d4aa" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-wordmark">OmniBioAI <em>/ beta</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="privacy.html" class="active">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="index.html#request" class="nav-cta">Request Access</a></li>
+  </ul>
+</nav>
+
+<main class="page-wrap">
+  <span class="sec-tag">// Legal</span>
+  <h1>Privacy Policy</h1>
+  <span class="effective">Effective 3 October 2026 · Last updated 3 October 2026</span>
+  <div class="toc">
+    <span class="sec-tag">Contents</span>
+    <ol>
+      <li><a href="#intro">Who we are</a></li>
+      <li><a href="#summary">The short version</a></li>
+      <li><a href="#collect">Information we collect</a></li>
+      <li><a href="#use">How we use information</a></li>
+      <li><a href="#share">Who we share it with</a></li>
+      <li><a href="#health">Health and research data</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#security">How we protect it</a></li>
+      <li><a href="#rights">Your rights and choices</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#children">Children</a></li>
+      <li><a href="#cookies">Cookies and local storage</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+    </ol>
+  </div>
+
+  <section id="intro">
+    <h2>Who we are</h2>
+    <p class="lead">This policy explains what personal information OmniBioAI collects, why, who it is shared with, how long it is kept and the choices you have. It covers this website (omnibioai.org), the hosted platform (including webstudio.omnibioai.org and the OmniBioAI API), the OmniBioAI Studio desktop application, and our documentation site.</p>
+    <p>"OmniBioAI", "we" and "us" mean the operator of these services, based in Kansas City, USA. You can reach us at <a href="mailto:manish@omnibioai.org">manish@omnibioai.org</a> for any privacy question or request.</p>
+  </section>
+  <section id="summary">
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>Studio is local-first.</strong> When you run OmniBioAI Studio on your own machine, your sequencing data, clinical metadata and results stay on your infrastructure. We do not receive them.</li>
+      <li><strong>We collect what we need to run the service:</strong> your account details, what you send to our hosted services, usage records for billing, and security logs.</li>
+      <li><strong>We never see your full card number.</strong> Payments are handled by Stripe.</li>
+      <li><strong>We do not sell your personal information</strong> and we do not use your content to train AI models.</li>
+      <li><strong>Do not send protected health information (PHI) to our hosted services</strong> unless we have signed a business associate agreement with you.</li>
+    </ul>
+  </section>
+  <section id="collect">
+    <h2>Information we collect</h2>
+    <h3>Information you give us</h3>
+    <ul>
+      <li><strong>Beta access requests:</strong> first and last name, institutional email, organization or lab, role, primary research area, operating system and a description of your intended analysis.</li>
+      <li><strong>Account information:</strong> email address, name, password (stored only as a salted hash), organization and team memberships and roles. If you sign in with Google, GitHub or Microsoft, we receive your basic profile (name, email and the provider's account identifier) from that provider.</li>
+      <li><strong>Billing information:</strong> billing contact, billing address and tax ID if you provide them. Card details are entered on Stripe's pages and stored by Stripe; we receive only a customer reference and limited card details such as brand, last four digits and expiry date.</li>
+      <li><strong>Content you submit to hosted services:</strong> questions sent to Literature AI and the API, files and data you upload, workflow parameters, chat messages and comments in shared workspaces.</li>
+      <li><strong>Support and feedback:</strong> emails, bug reports and community messages you send us.</li>
+    </ul>
+    <h3>Information collected automatically</h3>
+    <ul>
+      <li><strong>Usage records:</strong> which service you used, the resource and quantity (for example one answer or a number of tokens), time, organization and the API key used. We need these to bill you and to enforce plan limits.</li>
+      <li><strong>Security and audit logs:</strong> sign-ins, permission decisions, role and key changes, IP address, user agent and request identifiers. These protect your account and the platform.</li>
+      <li><strong>API keys:</strong> we store only a cryptographic hash and a short prefix of each key, never the key itself after it is shown to you once.</li>
+      <li><strong>Error reports:</strong> technical diagnostics when a service fails, which may include request metadata.</li>
+      <li><strong>Licence checks:</strong> the desktop application validates its licence key with our servers; this sends the licence key and basic technical information, not your research data.</li>
+      <li><strong>Website requests:</strong> our web host and font provider receive standard request data (such as IP address and browser type) when you load pages. This website does not use advertising or analytics trackers.</li>
+    </ul>
+  </section>
+  <section id="use">
+    <h2>How we use information</h2>
+    <table>
+      <thead><tr><th>Purpose</th><th>Information used</th><th>Legal basis (where GDPR/UK GDPR applies)</th></tr></thead>
+      <tbody>
+        <tr><td>Provide and operate the services, including answering your requests</td><td>Account, content, usage</td><td>Performance of our contract with you</td></tr>
+        <tr><td>Review beta access requests and onboard approved researchers</td><td>Beta request details</td><td>Steps taken at your request before a contract; legitimate interests</td></tr>
+        <tr><td>Bill usage, collect payments and keep financial records</td><td>Usage, billing</td><td>Contract; legal obligation</td></tr>
+        <tr><td>Secure accounts, detect abuse, enforce rate limits and keep audit trails</td><td>Security logs, usage, API key hashes</td><td>Legitimate interests; legal obligation</td></tr>
+        <tr><td>Fix errors and improve reliability and performance</td><td>Error reports, usage</td><td>Legitimate interests</td></tr>
+        <tr><td>Answer support requests and send service notices</td><td>Contact details, support messages</td><td>Contract; legitimate interests</td></tr>
+        <tr><td>Comply with law and respond to lawful requests</td><td>As required</td><td>Legal obligation</td></tr>
+      </tbody>
+    </table>
+    <p>We do not use your content to train machine-learning models, and we do not sell or rent personal information or share it for cross-context behavioral advertising.</p>
+  </section>
+  <section id="share">
+    <h2>Who we share it with</h2>
+    <p>We share personal information only with service providers that process it on our behalf under contract, or where you direct us to:</p>
+    <table>
+      <thead><tr><th>Recipient</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Stripe</td><td>Payment processing, invoicing and fraud prevention</td></tr>
+        <tr><td>Cloud and hosting providers (including Cloudflare and GitHub Pages)</td><td>Hosting the website, receiving beta requests, running the hosted platform, network security</td></tr>
+        <tr><td>Google, GitHub, Microsoft</td><td>Only if you choose to sign in with them</td></tr>
+        <tr><td>Error-tracking provider</td><td>Diagnosing service failures</td></tr>
+        <tr><td>Email provider</td><td>Sending service and support emails</td></tr>
+        <tr><td>AI model providers you enable (for example Anthropic or OpenAI)</td><td>Only when you or your organization choose a premium model or connect your own provider key; your request is then sent to that provider and handled under its terms</td></tr>
+        <tr><td>Your organization</td><td>Organization owners and administrators can see members, roles, API keys and usage for their organization</td></tr>
+      </tbody>
+    </table>
+    <p>We may also disclose information to comply with law or a valid legal process, to protect the rights, safety and security of our users and services, or as part of a merger, acquisition or sale of assets, in which case this policy continues to apply.</p>
+  </section>
+  <section id="health">
+    <h2>Health and research data</h2>
+    <div class="note"><p>OmniBioAI is built with HIPAA-aligned security controls, but this is not a certification, and our hosted services are not intended to receive protected health information (PHI) unless we have signed a business associate agreement (BAA) with you.</p></div>
+    <p>When you run OmniBioAI Studio on your own hardware, PHI and research data are stored and processed in your environment, and you are responsible for your own compliance program. Features that send data to an external service (such as a cloud AI model) are off unless enabled, and the platform screens outgoing requests for obvious sensitive data, but you remain responsible for what you choose to send.</p>
+  </section>
+  <section id="retention">
+    <h2>How long we keep it</h2>
+    <ul>
+      <li><strong>Account information:</strong> while your account is active, and deleted or anonymized within 90 days after you close it, except where we must keep it longer by law.</li>
+      <li><strong>Content on hosted services:</strong> until you delete it or close your account.</li>
+      <li><strong>Usage and billing records:</strong> as long as needed for billing and as required by tax and accounting law (typically seven years).</li>
+      <li><strong>Security audit logs:</strong> up to six years, consistent with our security and compliance retention policy, or longer if subject to a legal hold.</li>
+      <li><strong>Beta access requests:</strong> up to two years after your request, unless you become a customer.</li>
+    </ul>
+  </section>
+  <section id="security">
+    <h2>How we protect it</h2>
+    <p>Protections include encryption in transit, hashed passwords and API keys, short-lived access tokens, role-based access control scoped to your organization, multi-factor authentication options, least-privilege service credentials, and an append-only audit log of security-relevant events. No system is perfectly secure; if we learn of a breach affecting your personal information, we will notify you as required by law.</p>
+  </section>
+  <section id="rights">
+    <h2>Your rights and choices</h2>
+    <p>Depending on where you live, you may have the right to access, correct, delete or export your personal information, to object to or restrict certain processing, and to withdraw consent. California residents have the right to know, delete and correct personal information and to not be discriminated against for exercising these rights; we do not sell or share personal information as those terms are defined in California law.</p>
+    <p>To make a request, email <a href="mailto:manish@omnibioai.org">manish@omnibioai.org</a>. We will verify your identity and respond within the time the law requires (generally 30 to 45 days). You can also revoke API keys and manage sign-in methods in your account at any time. If you are in the EEA or UK, you may complain to your local data protection authority.</p>
+    <p>If your organization provides your account, it controls some of your information; we may direct your request to it.</p>
+  </section>
+  <section id="transfers">
+    <h2>International transfers</h2>
+    <p>We are based in the United States and our providers may process information in other countries. Where data protection law requires it, we rely on appropriate safeguards such as the European Commission's standard contractual clauses for transfers out of the EEA, UK or Switzerland.</p>
+  </section>
+  <section id="children">
+    <h2>Children</h2>
+    <p>Our services are for researchers and professionals and are not directed to children under 16. We do not knowingly collect their personal information; if you believe we have, contact us and we will delete it.</p>
+  </section>
+  <section id="cookies">
+    <h2>Cookies and local storage</h2>
+    <p>We use only cookies and browser storage needed to run the services: keeping you signed in, remembering preferences and protecting against abuse. We do not use advertising cookies. Blocking these may stop the hosted platform from working.</p>
+  </section>
+  <section id="changes">
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy. We will post the new version here with a new "last updated" date and, for material changes, notify account holders by email or in the product before they take effect.</p>
+    <p>Questions: <a href="mailto:manish@omnibioai.org">manish@omnibioai.org</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="terms.html">Terms of Service</a></li>
+    <li><a href="mailto:manish@omnibioai.org">Contact</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
