@@ -76,7 +76,8 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6.5vw,5.5rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:880px}
 .hero h1 .line1{display:block;color:var(--text)}
-.hero h1 .line2{display:block;font-style:italic;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .line2{display:block;font-style:italic;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:opacity 0.32s ease,transform 0.32s ease}
+.hero h1 .line2.fade{opacity:0;transform:translateY(8px)}
 .hero-sub{font-size:1.05rem;color:var(--text-muted);max-width:540px;margin-bottom:3rem;font-weight:300;line-height:1.85}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04080f;padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;letter-spacing:0.02em;font-family:'Space Grotesk',sans-serif;border:none;cursor:pointer}
@@ -92,6 +93,14 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 .metrics-link{margin-top:1.5rem;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);text-decoration:none;letter-spacing:0.04em;border:1px solid var(--border2);padding:0.5rem 1.2rem;border-radius:3px;background:rgba(0,212,170,0.04);transition:all 0.2s}
 .metrics-link:hover{background:rgba(0,212,170,0.1)}
 .metrics-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent)}
+
+/* ── Tag marquee ── */
+.tag-marquee{position:relative;width:100%;max-width:1120px;margin-top:2.75rem;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.tag-marquee-track{display:flex;gap:0.5rem;width:max-content;animation:tag-marquee-scroll 60s linear infinite}
+.tag-marquee:hover .tag-marquee-track{animation-play-state:paused}
+.marquee-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.3rem 0.7rem;letter-spacing:0.04em;white-space:nowrap;flex-shrink:0}
+@keyframes tag-marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.tag-marquee-track{animation:none}}
 
 /* ── Sections ── */
 section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 auto}
@@ -407,7 +416,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <div class="hero-badge"><div class="badge-dot"></div>Private beta — now accepting researchers</div>
   <h1>
     <span class="line1">AI native platform for</span>
-    <span class="line2">multi-omics research</span>
+    <span class="line2" id="hero-rotator">multi-omics research</span>
   </h1>
   <p class="hero-sub">OmniBioAI unifies reproducible multi-omics analysis, agentic AI reasoning, and enterprise-grade infrastructure — across local, HPC, and cloud environments.</p>
   <div class="hero-actions">
@@ -434,6 +443,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="stat-item"><span class="stat-num">12</span><span class="stat-label">Organisms</span></div>
   </div>
   <a href="https://control.omnibioai.org" target="_blank" class="metrics-link"><span class="metrics-dot"></span>Live platform metrics &amp; health →</a>
+  <div class="tag-marquee" aria-hidden="true">
+    <div class="tag-marquee-track" id="tag-marquee-track"></div>
+  </div>
 </div>
 
 <hr class="divider">
@@ -1546,6 +1558,93 @@ function handleSubmit(e){
   document.getElementById('nav-links').addEventListener('click',function(e){if(e.target.closest('a')){setMenu(false);setMore(false)}});
   document.addEventListener('click',function(e){if(!more.contains(e.target))setMore(false);if(!nav.contains(e.target))setMenu(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){setMore(false);setMenu(false)}});
+})();
+(function(){
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function parseStat(text){
+    var m=text.trim().match(/^([\d,]*\.?\d+)([A-Za-z%]*)(\+)?$/);
+    if(!m)return null;
+    var raw=m[1];
+    var hasComma=raw.indexOf(',')!==-1;
+    var decMatch=raw.match(/\.(\d+)$/);
+    var decimals=decMatch?decMatch[1].length:0;
+    var value=parseFloat(raw.replace(/,/g,''));
+    if(isNaN(value))return null;
+    return{value:value,decimals:decimals,suffix:m[2]||'',plus:!!m[3],hasComma:hasComma};
+  }
+  function formatStat(current,info){
+    var num=info.decimals>0?current.toFixed(info.decimals):String(Math.round(current));
+    if(info.hasComma){
+      var parts=num.split('.');
+      parts[0]=parseInt(parts[0],10).toLocaleString('en-US');
+      num=parts.join('.');
+    }
+    return num+info.suffix+(info.plus?'+':'');
+  }
+  function animateStat(el,info,delay){
+    var duration=1200,start=null;
+    setTimeout(function(){
+      function step(ts){
+        if(!start)start=ts;
+        var p=Math.min(1,(ts-start)/duration);
+        var eased=1-Math.pow(1-p,3);
+        el.textContent=formatStat(info.value*eased,info);
+        if(p<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    },delay);
+  }
+  var groups=document.querySelectorAll('.stats-row, .rag-stats-grid');
+  groups.forEach(function(group){
+    var items=Array.prototype.slice.call(group.querySelectorAll('.stat-num, .rag-stat-num'));
+    var parsed=items.map(function(el){return{el:el,info:parseStat(el.textContent)}}).filter(function(x){return x.info});
+    if(!parsed.length||reduceMotion)return;
+    parsed.forEach(function(x){x.el.textContent=formatStat(0,x.info)});
+    var done=false;
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting&&!done){
+          done=true;
+          parsed.forEach(function(x,i){animateStat(x.el,x.info,i*80)});
+          observer.unobserve(group);
+        }
+      });
+    },{threshold:0.3});
+    observer.observe(group);
+  });
+})();
+(function(){
+  var track=document.getElementById('tag-marquee-track');
+  if(!track)return;
+  var names=Array.prototype.map.call(document.querySelectorAll('#enterprise-integrations .int-name'),function(el){
+    return el.textContent.replace(/\s+/g,' ').trim();
+  }).filter(Boolean);
+  if(!names.length)return;
+  var frag=document.createDocumentFragment();
+  names.concat(names).forEach(function(name){
+    var span=document.createElement('span');
+    span.className='marquee-tag';
+    span.textContent=name;
+    frag.appendChild(span);
+  });
+  track.appendChild(frag);
+  track.style.animationDuration=Math.max(24,names.length*0.9)+'s';
+})();
+(function(){
+  var el=document.getElementById('hero-rotator');
+  if(!el)return;
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion)return;
+  var phrases=['multi-omics research','single-cell omics','proteomics & mass spec','variant interpretation','drug target discovery'];
+  var i=0;
+  setInterval(function(){
+    el.classList.add('fade');
+    setTimeout(function(){
+      i=(i+1)%phrases.length;
+      el.textContent=phrases[i];
+      el.classList.remove('fade');
+    },320);
+  },2600);
 })();
 </script>
 </body>
