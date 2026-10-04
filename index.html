@@ -94,6 +94,8 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 .live-ecosystem-stats[hidden]{display:none}
 .live-stat-num{color:var(--accent);font-weight:500}
 .live-stat-sep{opacity:0.5}
+.site-data-status{margin-top:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim)}
+.site-data-status[data-state="error"]{color:#d99a55}
 
 /* ── Tag marquee ── */
 .tag-marquee{position:relative;width:100%;max-width:1120px;margin-top:2.75rem;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -670,7 +672,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <h2 class="sec-title">Scientific work,<br>connected across your stack</h2>
   <p class="sec-sub">OmniBioAI's agentic workflows connect research, data, compute, MLOps, cloud infrastructure, and enterprise systems — so scientists and AI agents can work across the tools your organization already uses, without leaving the platform.</p>
   <div class="int-summary">
-    <span class="int-total"><strong>67</strong> integrations across <strong>9</strong> categories</span>
+    <span class="int-total"><strong data-site-stat="integrations">67</strong> integrations across <strong data-site-stat="integration_categories">9</strong> categories</span>
     <a href="https://docs.omnibioai.org/integrations/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
   </div>
   <div class="int-filters" role="group" aria-label="Filter integrations by category">
@@ -804,7 +806,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <h2 class="sec-title">Reference knowledge,<br>one query away</h2>
   <p class="sec-sub">Reference-database plugins give scientists and AI agents read-only access to the genomic, clinical, protein, chemical and ontology resources that analyses depend on, from variant interpretation to target discovery.</p>
   <div class="int-summary">
-    <span class="int-total"><strong>129</strong> reference databases across <strong>9</strong> categories · 126 implemented · 1 licence-required · 2 scaffolded</span>
+    <span class="int-total"><strong data-site-stat="reference_databases">129</strong> reference databases across <strong data-site-stat="integration_categories">9</strong> categories · 126 implemented · 1 licence-required · 2 scaffolded</span>
     <a href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
   </div>
   <div class="int-filters" role="group" aria-label="Filter reference databases by category">
@@ -1008,11 +1010,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <a href="https://docs.omnibioai.org/catalogs/" target="_blank" class="int-docs-link">All catalogs in the docs ↗</a>
   </div>
   <div class="cat-grid">
-    <a class="cat-tile" href="https://docs.omnibioai.org/workflows-catalog/" target="_blank"><span class="cat-num">1000+</span><span class="cat-label">Workflows</span><span class="cat-detail">869 in the docs catalog, across 102 domains<span class="cat-bar" role="img" aria-label="Engine mix in the docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1"><span class="cat-bar-seg cat-seg-0" style="flex:861" title="Nextflow: 861"></span><span class="cat-bar-seg cat-seg-1" style="flex:5" title="WDL: 5"></span><span class="cat-bar-seg cat-seg-2" style="flex:2" title="Snakemake: 2"></span><span class="cat-bar-seg cat-seg-3" style="flex:1" title="CWL: 1"></span></span><span class="cat-legend">Engine mix in docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1</span></span></a>
-    <a class="cat-tile" href="https://docs.omnibioai.org/plugins/" target="_blank"><span class="cat-num">501</span><span class="cat-label">Workbench plugins</span><span class="cat-detail">Across 22 categories, including 66 integrations</span></a>
-    <a class="cat-tile" href="https://docs.omnibioai.org/tools/" target="_blank"><span class="cat-num">12,276</span><span class="cat-label">TES tool definitions</span><span class="cat-detail">8 execution backends · 9,061 auto-imported and not yet verified</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/workflows-catalog/" target="_blank"><span class="cat-num" data-site-stat="workflows">1000+</span><span class="cat-label">Workflows</span><span class="cat-detail">869 in the docs catalog, across 102 domains<span class="cat-bar" role="img" aria-label="Engine mix in the docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1"><span class="cat-bar-seg cat-seg-0" style="flex:861" title="Nextflow: 861"></span><span class="cat-bar-seg cat-seg-1" style="flex:5" title="WDL: 5"></span><span class="cat-bar-seg cat-seg-2" style="flex:2" title="Snakemake: 2"></span><span class="cat-bar-seg cat-seg-3" style="flex:1" title="CWL: 1"></span></span><span class="cat-legend">Engine mix in docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1</span></span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/plugins/" target="_blank"><span class="cat-num" data-site-stat="plugins">501</span><span class="cat-label">Workbench plugins</span><span class="cat-detail">Across 22 categories, including 66 integrations</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/tools/" target="_blank"><span class="cat-num" data-site-stat="tes_tools">12,276</span><span class="cat-label">TES tool definitions</span><span class="cat-detail">8 execution backends · 9,061 auto-imported and not yet verified</span></a>
     <a class="cat-tile" href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank"><span class="cat-num" data-sync-target="reference-db-count">129</span><span class="cat-label">Reference database plugins</span><span class="cat-detail">126 implemented · 1 licence-required · 2 scaffolded</span></a>
-    <a class="cat-tile" href="https://docs.omnibioai.org/api-reference/" target="_blank"><span class="cat-num" data-sync-source="api-routes">219</span><span class="cat-label">API routes</span><span class="cat-detail">Found in source across 8 services · 109 documented publicly</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/api-reference/" target="_blank"><span class="cat-num" data-sync-source="api-routes" data-site-stat="api_routes">219</span><span class="cat-label">API routes</span><span class="cat-detail">Found in source across 8 services · 109 documented publicly</span></a>
   </div>
   <p class="cat-note">Plugin, tool, reference database and API counts are read from the documentation's generated catalogs (19 Sep 2026). They describe what is registered or configured in source, not that every entry has been tested or deployed. <a href="https://docs.omnibioai.org/quality-and-trust/" target="_blank">How to read these figures ↗</a></p>
 </section>
@@ -1315,15 +1317,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <span style="font-size:0.73rem;color:var(--text-muted)">Execution backends</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="api-routes">219</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="api-routes" data-site-stat="api_routes">219</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">API routes · 8 services</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="organisms">12</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="organisms" data-site-stat="organisms">12</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Organisms with references</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="literature-indexes">282</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="literature-indexes" data-site-stat="literature_indexes">282</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Literature indexes</span>
         </div>
       </div>
@@ -1498,7 +1500,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <!-- ── Footer ── -->
 <footer>
-  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.<span id="footer-updated" class="footer-updated"></span></div>
+  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.<span id="footer-updated" class="footer-updated"></span><span id="site-data-status" class="site-data-status" data-state="loading">Loading catalog data…</span></div>
   <ul class="footer-links">
     <li><a href="#literature-ai">Literature AI</a></li>
     <li><a href="#features">Features</a></li>
@@ -1517,6 +1519,43 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 </footer>
 
 <script>
+/* Keep catalog figures data-driven while retaining the server-rendered values
+   as an offline fallback. The JSON is one versioned source for all mirrored
+   counts on this page. */
+(function(){
+  var status=document.getElementById('site-data-status');
+  var cacheKey='omnibioai-site-data-v1';
+  function apply(data,state){
+    if(!data||!data.catalogs)return false;
+    Object.keys(data.catalogs).forEach(function(key){
+      document.querySelectorAll('[data-site-stat="'+key+'"]')
+        .forEach(function(el){el.textContent=String(data.catalogs[key])});
+    });
+    if(status){
+      var date=data.updated_at?' · updated '+data.updated_at:'';
+      status.textContent=(state==='cache'?'Catalog data from cache':'Catalog data live')+date;
+      status.setAttribute('data-state',state);
+    }
+    return true;
+  }
+  function readCache(){
+    try{return JSON.parse(localStorage.getItem(cacheKey)||'null')}catch(e){return null}
+  }
+  var cached=readCache();
+  if(cached)apply(cached,'cache');
+  var controller=window.AbortController?new AbortController():null;
+  var timer=controller?setTimeout(function(){controller.abort()},5000):null;
+  fetch('data/site-data.json',{cache:'no-cache',signal:controller&&controller.signal})
+    .then(function(r){if(!r.ok)throw new Error('catalog data unavailable');return r.json()})
+    .then(function(data){
+      if(!apply(data,'live'))throw new Error('invalid catalog data');
+      try{localStorage.setItem(cacheKey,JSON.stringify(data))}catch(e){}
+    })
+    .catch(function(){
+      if(status&&!cached){status.textContent='Catalog data unavailable · showing built-in values';status.setAttribute('data-state','error')}
+    })
+    .finally(function(){if(timer)clearTimeout(timer)});
+})();
 function selectPlatform(p){
   document.querySelectorAll('.platform-card').forEach(c=>{c.classList.remove('selected');c.setAttribute('aria-checked','false')});
   var el=document.getElementById('platform-'+p);
