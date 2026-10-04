@@ -160,7 +160,16 @@ section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 
 .int-group-count{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--accent)}
 .int-group-sub{grid-column:1/-1;font-size:0.77rem;color:var(--text-dim);font-weight:300;line-height:1.6}
 .int-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));padding:1px 0 0 1px}
+.int-grid.is-stack{display:block;padding:0;perspective:800px}
+.int-stack-pos{display:block;margin-top:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.04em}
 .int-card{display:block;background:var(--bg2);border:1px solid var(--border);margin:-1px 0 0 -1px;padding:0.9rem 1.1rem;text-decoration:none;transition:background 0.2s;position:relative}
+.int-grid.is-stack .int-card{position:absolute;top:0;left:0;right:0;margin:0;transition:transform 0.6s cubic-bezier(.4,0,.2,1),opacity 0.6s cubic-bezier(.4,0,.2,1);transform-origin:center top}
+.int-grid.is-stack .int-card.stk-0{z-index:4;opacity:1;transform:translateY(0) scale(1)}
+.int-grid.is-stack .int-card.stk-1{z-index:3;opacity:0.4;transform:translateY(8px) scale(0.96);pointer-events:none}
+.int-grid.is-stack .int-card.stk-2{z-index:2;opacity:0.18;transform:translateY(15px) scale(0.92);pointer-events:none}
+.int-grid.is-stack .int-card.stk-rest{z-index:1;opacity:0;transform:translateY(15px) scale(0.92);pointer-events:none}
+.int-grid.is-stack .int-card.stk-exit{z-index:5;opacity:0;transform:translateY(-8px) scale(0.97) rotateX(-75deg);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.int-grid.is-stack .int-card{transition:none}}
 .int-card:hover{background:var(--surface)}
 .int-card::after{content:'↗';position:absolute;top:0.85rem;right:0.9rem;font-size:0.72rem;color:var(--text-dim);opacity:0;transition:opacity 0.2s}
 .int-card:hover::after{opacity:1;color:var(--accent)}
@@ -1679,6 +1688,117 @@ function handleSubmit(e){
       animateNumber(elCoverage,data.ecosystem_coverage_percent,function(v){return v.toFixed(1)+'%'},1200);
     })
     .catch(function(){});
+})();
+(function(){
+  function syncCounts(sectionId){
+    var section=document.getElementById(sectionId);
+    if(!section)return;
+    var groups=Array.prototype.slice.call(section.querySelectorAll('.int-group'));
+    var total=0;
+    groups.forEach(function(group){
+      var n=group.querySelectorAll('.int-grid > .int-card').length;
+      total+=n;
+      var countEl=group.querySelector('.int-group-count');
+      if(countEl)countEl.textContent=n;
+      var key=group.getAttribute('data-group');
+      var filterSpan=section.querySelector('.int-filter[data-group="'+key+'"] span');
+      if(filterSpan)filterSpan.textContent=n;
+    });
+    var allSpan=section.querySelector('.int-filter[data-group="all"] span');
+    if(allSpan)allSpan.textContent=total;
+    var strongs=section.querySelectorAll('.int-total strong');
+    if(strongs[0])strongs[0].textContent=total;
+    if(strongs[1])strongs[1].textContent=groups.length;
+    return{total:total,cards:section.querySelectorAll('.int-card')};
+  }
+  syncCounts('enterprise-integrations');
+  var dbResult=syncCounts('reference-databases');
+  if(dbResult){
+    var scaffoldCount=0,licenceCount=0;
+    dbResult.cards.forEach(function(card){
+      if(!card.classList.contains('int-card-scaffold'))return;
+      var tag=card.querySelector('.int-tag');
+      var label=tag?tag.textContent.trim().toLowerCase():'';
+      if(label==='licence required')licenceCount++;
+      else if(label==='scaffold')scaffoldCount++;
+    });
+    var implementedCount=dbResult.total-scaffoldCount-licenceCount;
+    var totalEl=document.querySelector('#reference-databases .int-total');
+    if(totalEl){
+      var breakdown=implementedCount+' implemented · '+licenceCount+' licence-required · '+scaffoldCount+' scaffolded';
+      var lastStrong=totalEl.querySelectorAll('strong')[1];
+      if(lastStrong&&lastStrong.nextSibling){
+        lastStrong.nextSibling.textContent=' categories · '+breakdown;
+      }
+    }
+  }
+})();
+(function(){
+  function initStack(grid){
+    var cards=Array.prototype.slice.call(grid.children).filter(function(el){return el.classList.contains('int-card')});
+    if(cards.length<2)return;
+    grid.classList.add('is-stack');
+    var maxH=0;
+    cards.forEach(function(c){maxH=Math.max(maxH,c.offsetHeight)});
+    grid.style.height=maxH+'px';
+    var order=cards.slice();
+    var STK=['stk-0','stk-1','stk-2'];
+    function render(skip){
+      order.forEach(function(c,i){
+        if(c===skip)return;
+        c.classList.remove('stk-0','stk-1','stk-2','stk-rest','stk-exit');
+        c.classList.add(i<3?STK[i]:'stk-rest');
+        if(i===0){c.removeAttribute('tabindex');c.removeAttribute('aria-hidden')}
+        else{c.setAttribute('tabindex','-1');c.setAttribute('aria-hidden','true')}
+      });
+    }
+    render();
+    var posEl=document.createElement('span');
+    posEl.className='int-stack-pos';
+    posEl.setAttribute('aria-hidden','true');
+    grid.insertAdjacentElement('afterend',posEl);
+    var idx=0;
+    function updatePos(){posEl.textContent=(idx+1)+' / '+cards.length}
+    updatePos();
+    var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion)return;
+    var paused=false;
+    grid.addEventListener('mouseenter',function(){paused=true});
+    grid.addEventListener('mouseleave',function(){paused=false});
+    grid.addEventListener('focusin',function(){paused=true});
+    grid.addEventListener('focusout',function(){paused=false});
+    var visible=true;
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){visible=e.isIntersecting});
+    },{threshold:0.1});
+    observer.observe(grid);
+    setInterval(function(){
+      if(paused||!visible)return;
+      var exiting=order.shift();
+      order.push(exiting);
+      exiting.classList.remove('stk-0','stk-1','stk-2','stk-rest');
+      exiting.classList.add('stk-exit');
+      render(exiting);
+      idx=(idx+1)%cards.length;
+      updatePos();
+      setTimeout(function(){
+        exiting.classList.remove('stk-exit');
+        exiting.classList.add('stk-rest');
+        exiting.setAttribute('tabindex','-1');
+        exiting.setAttribute('aria-hidden','true');
+      },650);
+    },3400);
+    var resizeTimer=null;
+    window.addEventListener('resize',function(){
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(function(){
+        var h=0;
+        cards.forEach(function(c){h=Math.max(h,c.offsetHeight)});
+        grid.style.height=h+'px';
+      },200);
+    });
+  }
+  document.querySelectorAll('#enterprise-integrations .int-grid, #reference-databases .int-grid').forEach(initStack);
 })();
 </script>
 </body>
