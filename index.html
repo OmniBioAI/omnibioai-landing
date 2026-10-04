@@ -90,6 +90,10 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 .metrics-link{margin-top:1.5rem;display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--accent);text-decoration:none;letter-spacing:0.04em;border:1px solid var(--border2);padding:0.5rem 1.2rem;border-radius:3px;background:rgba(0,212,170,0.04);transition:all 0.2s}
 .metrics-link:hover{background:rgba(0,212,170,0.1)}
 .metrics-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent)}
+.live-ecosystem-stats{margin-top:0.85rem;display:flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);letter-spacing:0.02em}
+.live-ecosystem-stats[hidden]{display:none}
+.live-stat-num{color:var(--accent);font-weight:500}
+.live-stat-sep{opacity:0.5}
 
 /* ── Tag marquee ── */
 .tag-marquee{position:relative;width:100%;max-width:1120px;margin-top:2.75rem;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -436,6 +440,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="stat-item"><span class="stat-num">12</span><span class="stat-label">Organisms</span></div>
   </div>
   <a href="https://control.omnibioai.org" target="_blank" class="metrics-link"><span class="metrics-dot"></span>Live platform metrics &amp; health →</a>
+  <div class="live-ecosystem-stats" id="live-ecosystem-stats" hidden>
+    <span><strong class="live-stat-num" id="live-stat-lines">—</strong> lines of code</span>
+    <span class="live-stat-sep">·</span>
+    <span><strong class="live-stat-num" id="live-stat-repos">—</strong> repos</span>
+    <span class="live-stat-sep">·</span>
+    <span><strong class="live-stat-num" id="live-stat-coverage">—</strong> test coverage</span>
+  </div>
   <div class="tag-marquee" aria-hidden="true">
     <div class="tag-marquee-track" id="tag-marquee-track"></div>
   </div>
@@ -1638,6 +1649,36 @@ function handleSubmit(e){
       el.classList.remove('fade');
     },320);
   },2600);
+})();
+(function(){
+  var wrap=document.getElementById('live-ecosystem-stats');
+  var elLines=document.getElementById('live-stat-lines');
+  var elRepos=document.getElementById('live-stat-repos');
+  var elCoverage=document.getElementById('live-stat-coverage');
+  if(!wrap||!elLines||!elRepos||!elCoverage)return;
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateNumber(el,target,format,duration){
+    if(reduceMotion){el.textContent=format(target);return}
+    var start=null;
+    function step(ts){
+      if(!start)start=ts;
+      var p=Math.min(1,(ts-start)/duration);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=format(target*eased);
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  fetch('https://control.omnibioai.org/report/public-stats')
+    .then(function(r){if(!r.ok)throw new Error('bad status');return r.json()})
+    .then(function(data){
+      if(typeof data.total_lines!=='number'||typeof data.repos_measured!=='number'||typeof data.ecosystem_coverage_percent!=='number')return;
+      wrap.hidden=false;
+      animateNumber(elLines,data.total_lines,function(v){return (v/1e6).toFixed(1)+'M+'},1200);
+      animateNumber(elRepos,data.repos_measured,function(v){return Math.round(v).toString()},900);
+      animateNumber(elCoverage,data.ecosystem_coverage_percent,function(v){return v.toFixed(1)+'%'},1200);
+    })
+    .catch(function(){});
 })();
 </script>
 </body>
