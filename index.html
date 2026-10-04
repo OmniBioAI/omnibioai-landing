@@ -96,6 +96,10 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 .live-stat-sep{opacity:0.5}
 .site-data-status{margin-top:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim)}
 .site-data-status[data-state="error"]{color:#d99a55}
+.reveal-on-scroll{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal-on-scroll.is-visible{opacity:1;transform:none}
+.live-stat-num.updated{animation:metric-update .7s ease-out}
+@keyframes metric-update{0%{text-shadow:0 0 0 transparent}45%{text-shadow:0 0 16px rgba(0,212,170,.8)}100%{text-shadow:0 0 0 transparent}}
 
 /* ── Tag marquee ── */
 .tag-marquee{position:relative;width:100%;max-width:1120px;margin-top:2.75rem;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -104,6 +108,7 @@ nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45de
 .marquee-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.3rem 0.7rem;letter-spacing:0.04em;white-space:nowrap;flex-shrink:0}
 @keyframes tag-marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.tag-marquee-track{animation:none}}
+@media(prefers-reduced-motion:reduce){.reveal-on-scroll{opacity:1;transform:none;transition:none}.live-stat-num.updated{animation:none}}
 
 /* ── Sections ── */
 section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 auto}
@@ -1523,6 +1528,25 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
    as an offline fallback. The JSON is one versioned source for all mirrored
    counts on this page. */
 (function(){
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sections=document.querySelectorAll('section');
+  if(reduceMotion||!('IntersectionObserver' in window)){
+    Array.prototype.forEach.call(sections,function(section){section.classList.add('is-visible')});
+    return;
+  }
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting)return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -8%'});
+  Array.prototype.forEach.call(sections,function(section){
+    section.classList.add('reveal-on-scroll');
+    observer.observe(section);
+  });
+})();
+(function(){
   var status=document.getElementById('site-data-status');
   var cacheKey='omnibioai-site-data-v1';
   function apply(data,state){
@@ -1689,6 +1713,11 @@ function handleSubmit(e){
   });
   track.appendChild(frag);
   track.style.animationDuration=Math.max(24,names.length*0.9)+'s';
+  var marquee=track.parentElement;
+  function pause(){track.style.animationPlayState='paused'}
+  function resume(){track.style.animationPlayState=''}
+  marquee.addEventListener('focusin',pause);
+  marquee.addEventListener('focusout',resume);
 })();
 (function(){
   var el=document.getElementById('hero-rotator');
@@ -1704,7 +1733,7 @@ function handleSubmit(e){
       el.textContent=phrases[i];
       el.classList.remove('fade');
     },320);
-  },2600);
+  },3600);
 })();
 (function(){
   var wrap=document.getElementById('live-ecosystem-stats');
@@ -1714,14 +1743,19 @@ function handleSubmit(e){
   if(!wrap||!elLines||!elRepos||!elCoverage)return;
   var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function animateNumber(el,target,format,duration){
-    if(reduceMotion){el.textContent=format(target);return}
+    function markUpdated(){
+      el.classList.remove('updated');
+      void el.offsetWidth;
+      el.classList.add('updated');
+    }
+    if(reduceMotion){el.textContent=format(target);markUpdated();return}
     var start=null;
     function step(ts){
       if(!start)start=ts;
       var p=Math.min(1,(ts-start)/duration);
       var eased=1-Math.pow(1-p,3);
       el.textContent=format(target*eased);
-      if(p<1)requestAnimationFrame(step);
+      if(p<1)requestAnimationFrame(step);else markUpdated();
     }
     requestAnimationFrame(step);
   }
