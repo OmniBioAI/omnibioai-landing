@@ -267,6 +267,9 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 
 /* ── Download ── */
 .dl-version{font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:500;letter-spacing:0.04em;color:var(--accent);border:1px solid var(--border2);background:rgba(0,212,170,0.06);border-radius:3px;padding:0.2rem 0.55rem;vertical-align:middle;margin-left:0.35rem;white-space:nowrap;display:inline-block}
+.gh-stars{font-family:'JetBrains Mono',monospace;font-size:0.8rem;font-weight:500;letter-spacing:0.02em;color:var(--text-muted);border:1px solid var(--border);border-radius:3px;padding:0.2rem 0.55rem;vertical-align:middle;margin-left:0.35rem;white-space:nowrap;display:inline-block;text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.gh-stars:hover{border-color:var(--border2);color:var(--accent)}
+.gh-stars[hidden]{display:none}
 .dl-list{border:1px solid var(--border);background:var(--bg2)}
 .dl-row{display:grid;grid-template-columns:260px 1fr;align-items:center;gap:1rem;padding:0.95rem 1.25rem;border-top:1px solid var(--border)}
 .dl-row:first-child{border-top:none}
@@ -320,6 +323,7 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 /* ── Footer ── */
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
 .footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
+.footer-updated:not(:empty)::before{content:' · '}
 .footer-links{display:flex;flex-wrap:wrap;gap:0.6rem 1.5rem;list-style:none}
 .footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
 .footer-links a:hover{color:var(--accent)}
@@ -544,7 +548,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <span class="rag-stat-label">Distinct PubMed abstracts stored locally</span>
         </div>
         <div class="rag-stat-card">
-          <span class="rag-stat-num">282</span>
+          <span class="rag-stat-num" data-sync-source="literature-indexes" data-value="282">282</span>
           <span class="rag-stat-label">Indexed domains: 150 research topics + 132 general-corpus shards</span>
         </div>
         <div class="rag-stat-card">
@@ -1007,8 +1011,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <a class="cat-tile" href="https://docs.omnibioai.org/workflows-catalog/" target="_blank"><span class="cat-num">1000+</span><span class="cat-label">Workflows</span><span class="cat-detail">869 in the docs catalog, across 102 domains<span class="cat-bar" role="img" aria-label="Engine mix in the docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1"><span class="cat-bar-seg cat-seg-0" style="flex:861" title="Nextflow: 861"></span><span class="cat-bar-seg cat-seg-1" style="flex:5" title="WDL: 5"></span><span class="cat-bar-seg cat-seg-2" style="flex:2" title="Snakemake: 2"></span><span class="cat-bar-seg cat-seg-3" style="flex:1" title="CWL: 1"></span></span><span class="cat-legend">Engine mix in docs catalog: Nextflow 861 · WDL 5 · Snakemake 2 · CWL 1</span></span></a>
     <a class="cat-tile" href="https://docs.omnibioai.org/plugins/" target="_blank"><span class="cat-num">501</span><span class="cat-label">Workbench plugins</span><span class="cat-detail">Across 22 categories, including 66 integrations</span></a>
     <a class="cat-tile" href="https://docs.omnibioai.org/tools/" target="_blank"><span class="cat-num">12,276</span><span class="cat-label">TES tool definitions</span><span class="cat-detail">8 execution backends · 9,061 auto-imported and not yet verified</span></a>
-    <a class="cat-tile" href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank"><span class="cat-num">129</span><span class="cat-label">Reference database plugins</span><span class="cat-detail">126 implemented · 1 licence-required · 2 scaffolded</span></a>
-    <a class="cat-tile" href="https://docs.omnibioai.org/api-reference/" target="_blank"><span class="cat-num">219</span><span class="cat-label">API routes</span><span class="cat-detail">Found in source across 8 services · 109 documented publicly</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank"><span class="cat-num" data-sync-target="reference-db-count">129</span><span class="cat-label">Reference database plugins</span><span class="cat-detail">126 implemented · 1 licence-required · 2 scaffolded</span></a>
+    <a class="cat-tile" href="https://docs.omnibioai.org/api-reference/" target="_blank"><span class="cat-num" data-sync-source="api-routes">219</span><span class="cat-label">API routes</span><span class="cat-detail">Found in source across 8 services · 109 documented publicly</span></a>
   </div>
   <p class="cat-note">Plugin, tool, reference database and API counts are read from the documentation's generated catalogs (19 Sep 2026). They describe what is registered or configured in source, not that every entry has been tested or deployed. <a href="https://docs.omnibioai.org/quality-and-trust/" target="_blank">How to read these figures ↗</a></p>
 </section>
@@ -1243,7 +1247,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <!-- ── Download ── -->
 <section id="download">
   <span class="sec-tag">// Downloads</span>
-  <h2 class="sec-title">OmniBioAI Studio <span class="dl-version">v0.8.0-beta</span></h2>
+  <h2 class="sec-title">OmniBioAI Studio <span class="dl-version">v0.8.0-beta</span> <a href="https://github.com/OmniBioAI/omnibioai-studio" target="_blank" class="gh-stars" id="gh-stars" hidden>★ <span id="gh-stars-count">0</span></a></h2>
   <p class="sec-sub">Choose your platform and architecture. All installers include a 30-day free trial license.</p>
   <div class="dl-list">
     <div class="dl-row">
@@ -1311,15 +1315,15 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <span style="font-size:0.73rem;color:var(--text-muted)">Execution backends</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">219</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="api-routes">219</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">API routes · 8 services</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">12</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="organisms">12</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Organisms with references</span>
         </div>
         <div style="background:var(--bg2);padding:1.25rem 1.5rem;flex:1 1 120px;text-align:center">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block">282</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:500;color:var(--accent);display:block" data-sync-target="literature-indexes">282</span>
           <span style="font-size:0.73rem;color:var(--text-muted)">Literature indexes</span>
         </div>
       </div>
@@ -1494,7 +1498,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <!-- ── Footer ── -->
 <footer>
-  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.</div>
+  <div class="footer-left">© 2026 OmniBioAI. All rights reserved.<span id="footer-updated" class="footer-updated"></span></div>
   <ul class="footer-links">
     <li><a href="#literature-ai">Literature AI</a></li>
     <li><a href="#features">Features</a></li>
@@ -1857,6 +1861,60 @@ function handleSubmit(e){
         infoEl.innerHTML='Released '+dateStr+' · <strong>'+totalDownloads.toLocaleString('en-US')+'</strong> downloads across all platforms · <a href="https://github.com/OmniBioAI/omnibioai-studio/releases" target="_blank" style="color:inherit;text-decoration:underline">release notes ↗</a>';
         infoEl.hidden=false;
       }
+    })
+    .catch(function(){});
+})();
+(function(){
+  function setTarget(key,value){
+    if(value==null||value==='')return;
+    document.querySelectorAll('[data-sync-target="'+key+'"]').forEach(function(el){
+      el.textContent=value;
+    });
+  }
+  // Organisms: count the real genome table rows instead of hand-typing the
+  // number a second time -- same "derive from the DOM, don't duplicate"
+  // approach as the integration/database counts.
+  var genomeRows=document.querySelectorAll('#genomes .genomes-table tbody tr');
+  if(genomeRows.length)setTarget('organisms',genomeRows.length);
+  // API routes: catalogs' tile is the source (has the fuller "8 services /
+  // 109 documented" context); architecture's tile mirrors it.
+  var apiRoutesSource=document.querySelector('[data-sync-source="api-routes"]');
+  if(apiRoutesSource)setTarget('api-routes',apiRoutesSource.textContent.trim());
+  // Literature indexes: read the RAG stat's data-value, not its live text --
+  // that span is still being animated (count-up) by an earlier script when
+  // this runs, so its textContent is mid-animation, not the final number.
+  var litSource=document.querySelector('[data-sync-source="literature-indexes"]');
+  if(litSource)setTarget('literature-indexes',litSource.getAttribute('data-value'));
+  // Reference database count: the reference-databases section already
+  // computes its own total live, from its actual card count (see the
+  // syncCounts IIFE above, which runs before this one) -- catalogs' tile
+  // mirrors that instead of carrying an independent hardcoded 129.
+  var refDbSource=document.querySelector('#reference-databases .int-total strong');
+  if(refDbSource)setTarget('reference-db-count',refDbSource.textContent.trim());
+})();
+(function(){
+  var badge=document.getElementById('gh-stars');
+  var countEl=document.getElementById('gh-stars-count');
+  if(!badge||!countEl)return;
+  fetch('https://api.github.com/repos/OmniBioAI/omnibioai-studio')
+    .then(function(r){if(!r.ok)throw new Error('bad status');return r.json()})
+    .then(function(repo){
+      if(typeof repo.stargazers_count!=='number')return;
+      countEl.textContent=repo.stargazers_count.toLocaleString('en-US');
+      badge.hidden=false;
+    })
+    .catch(function(){});
+})();
+(function(){
+  var el=document.getElementById('footer-updated');
+  if(!el)return;
+  fetch('https://api.github.com/repos/OmniBioAI/omnibioai-landing/commits/main')
+    .then(function(r){if(!r.ok)throw new Error('bad status');return r.json()})
+    .then(function(commit){
+      var dateStr=commit&&commit.commit&&commit.commit.committer&&commit.commit.committer.date;
+      if(!dateStr)return;
+      var d=new Date(dateStr);
+      el.textContent='Last updated '+d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
     })
     .catch(function(){});
 })();
