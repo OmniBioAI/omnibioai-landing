@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-04",
+  "catalogs": {
+    "workflows": "1000+",
+    "plugins": "501",
+    "tes_tools": "12,276",
+    "reference_databases": "129",
+    "api_routes": "219",
+    "organisms": "12",
+    "literature_indexes": "282",
+    "integrations": "67",
+    "integration_categories": "9"
+  }
+}
