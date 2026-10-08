@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OmniBioAI · Admin · Beta Requests</title>
+<link rel="icon" type="image/svg+xml" href="assets/omnibioai-mark.svg">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +26,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 /* ── Login ── */
 #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center}
 .login-box{background:var(--bg2);border:1px solid rgba(0,212,170,0.2);padding:3rem;width:100%;max-width:400px;text-align:center;box-shadow:0 0 60px rgba(0,212,170,0.06)}
-.login-logo{width:48px;height:48px;background:var(--accent-pale);border:1px solid rgba(0,212,170,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.4rem}
+.login-logo{display:block;width:48px;height:48px;margin:0 auto 1.5rem;filter:drop-shadow(0 0 12px rgba(0,212,170,0.25))}
 .login-box h2{font-family:var(--serif);font-size:1.6rem;margin-bottom:0.5rem}
 .login-box p{font-size:0.82rem;color:var(--muted);margin-bottom:2rem;font-family:var(--mono)}
 .login-input{width:100%;background:var(--bg3);border:1px solid var(--border2);padding:0.8rem 1rem;font-size:0.9rem;font-family:var(--mono);color:var(--text);outline:none;margin-bottom:1rem;transition:border-color 0.2s}
@@ -40,7 +41,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 /* ── Topbar ── */
 .topbar{height:56px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:100}
 .topbar-left{display:flex;align-items:center;gap:10px}
-.topbar-logo{font-family:var(--mono);font-size:0.9rem;color:var(--accent);font-weight:500}
+.topbar-logo{display:block;width:auto;height:22px;filter:drop-shadow(0 0 8px rgba(0,212,170,0.25))}
 .topbar-sep{color:var(--dim);font-size:0.8rem}
 .topbar-title{font-family:var(--mono);font-size:0.78rem;color:var(--muted)}
 .topbar-right{display:flex;align-items:center;gap:1rem}
@@ -156,7 +157,7 @@ tr:hover td{background:rgba(0,212,170,0.02)}
 <!-- ── Login ── -->
 <div id="login-screen">
   <div class="login-box">
-    <div class="login-logo">⬡</div>
+    <img class="login-logo" src="assets/omnibioai-mark.svg" alt="OmniBioAI">
     <h2>Admin Access</h2>
     <p>omnibioai.org / admin</p>
     <input type="password" class="login-input" id="admin-password"
@@ -171,7 +172,7 @@ tr:hover td{background:rgba(0,212,170,0.02)}
 <div id="app">
   <div class="topbar">
     <div class="topbar-left">
-      <span class="topbar-logo">OmniBioAI</span>
+      <img class="topbar-logo" src="assets/omnibioai-logo.svg" alt="OmniBioAI">
       <span class="topbar-sep">/</span>
       <span class="topbar-title">Beta Admin</span>
     </div>
