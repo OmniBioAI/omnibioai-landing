@@ -284,6 +284,11 @@ tr:hover td{background:rgba(0,212,170,0.02)}
 const WORKER_URL='https://beta-requests.mandecent-gupta.workers.dev';
 function getAdminKey(){return sessionStorage.getItem('admin_key')||''}
 let allRequests=[];
+let busyIds=new Set();
+// Applicant fields come from a public form: never render them as HTML.
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+const STATUSES=['pending','approved','rejected'];
+function safeStatus(s){return STATUSES.includes(s)?s:'pending'}
 let currentView='all';
 
 function login(){
@@ -377,19 +382,22 @@ function renderTable(rows){
   }
   tbody.innerHTML=rows.map(r=>{
     const date=new Date(r.submitted_at).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+    const st=safeStatus(r.status);
+    const id=esc(r.id);
+    const busy=busyIds.has(r.id)?'disabled':'';
     return `<tr>
-      <td><div class="td-name">${r.first_name} ${r.last_name}</div></td>
-      <td><div class="td-email">${r.email}</div></td>
-      <td style="font-size:0.82rem;color:var(--muted)">${r.institution}</td>
-      <td style="font-size:0.78rem;color:var(--muted)">${r.role}</td>
-      <td style="font-size:0.78rem;color:var(--muted);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.use_case}</td>
-      <td><div class="td-date">${date}</div></td>
-      <td><span class="pill ${r.status}"><span class="pill-dot"></span>${r.status}</span></td>
+      <td><div class="td-name">${esc(r.first_name)} ${esc(r.last_name)}</div></td>
+      <td><div class="td-email">${esc(r.email)}</div></td>
+      <td style="font-size:0.82rem;color:var(--muted)">${esc(r.institution)}</td>
+      <td style="font-size:0.78rem;color:var(--muted)">${esc(r.role)}</td>
+      <td style="font-size:0.78rem;color:var(--muted);max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(r.use_case)}</td>
+      <td><div class="td-date">${esc(date)}</div></td>
+      <td><span class="pill ${st}"><span class="pill-dot"></span>${st}</span></td>
       <td><div class="actions">
-        <button class="btn btn-ghost btn-sm" onclick="openDrawer('${r.id}')">View</button>
-        ${r.status==='pending'?`
-        <button class="btn btn-green btn-sm" onclick="approve('${r.id}')">✓</button>
-        <button class="btn btn-red btn-sm" onclick="reject('${r.id}')">✕</button>
+        <button class="btn btn-ghost btn-sm" data-id="${id}" onclick="openDrawer(this.dataset.id)">View</button>
+        ${st==='pending'?`
+        <button class="btn btn-green btn-sm" ${busy} data-id="${id}" onclick="approve(this.dataset.id)">✓</button>
+        <button class="btn btn-red btn-sm" ${busy} data-id="${id}" onclick="reject(this.dataset.id)">✕</button>
         `:''}
       </div></td>
     </tr>`;
@@ -416,19 +424,21 @@ function openDrawer(id){
   document.getElementById('drawer-research').textContent=r.research||'—';
   document.getElementById('drawer-date').textContent=new Date(r.submitted_at).toLocaleString();
   document.getElementById('drawer-note').value=r.note||'';
+  const st=safeStatus(r.status);
   document.getElementById('drawer-status-wrap').innerHTML=
-    `<span class="pill ${r.status}"><span class="pill-dot"></span>${r.status}</span>`;
+    `<span class="pill ${st}"><span class="pill-dot"></span>${st}</span>`;
   const actions=document.getElementById('drawer-actions');
-  if(r.status==='pending'){
+  const sid=esc(r.id);
+  if(st==='pending'){
     actions.innerHTML=`
-      <button class="btn btn-green" style="flex:1" onclick="approve('${id}',true)">✓ Approve & Send Email</button>
-      <button class="btn btn-red" onclick="reject('${id}',true)">✕ Reject</button>`;
-  } else if(r.status==='approved'){
-    actions.innerHTML=`
-      <button class="btn btn-ghost" onclick="resendEmail('${id}')">✉ Resend Email</button>
-      <button class="btn btn-red" onclick="reject('${id}',true)">Revoke Access</button>`;
+      <button class="btn btn-green" style="flex:1" data-id="${sid}" onclick="approve(this.dataset.id,true)">✓ Approve & Send Email</button>
+      <button class="btn btn-red" data-id="${sid}" onclick="reject(this.dataset.id,true)">✕ Reject</button>`;
   } else {
-    actions.innerHTML=`<button class="btn btn-green" style="flex:1" onclick="approve('${id}',true)">↩ Re-approve</button>`;
+    // The worker only processes pending requests. Resend, revoke and
+    // re-approve need worker support before they can be offered here.
+    actions.innerHTML=`<div class="drawer-label">${st==='approved'
+      ?'Approved. To revoke, revoke the license key in the Admin Console.'
+      :'Rejected. The applicant can submit a new request.'}</div>`;
   }
   document.getElementById('drawer-overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
@@ -439,50 +449,65 @@ function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
 }
 
+async function updateRequest(id,body){
+  const res=await fetch(`${WORKER_URL}/admin/requests/${encodeURIComponent(id)}`,{
+    method:'PATCH',
+    headers:{'Content-Type':'application/json','X-Admin-Key':getAdminKey()},
+    body:JSON.stringify(body)
+  });
+  let data={};
+  try{data=await res.json()}catch(e){}
+  if(res.status===401){logout();throw new Error('Session expired. Sign in again.')}
+  if(!res.ok||data.success===false){
+    throw new Error(data.error||`Request failed (HTTP ${res.status})`);
+  }
+  return data;
+}
+
 async function approve(id,fromDrawer=false){
-  const note=fromDrawer?document.getElementById('drawer-note').value:'';
   const r=allRequests.find(x=>x.id===id);
-  if(!r)return;
-  r.status='approved';r.note=note;
+  if(!r||busyIds.has(id))return;
+  const note=fromDrawer?document.getElementById('drawer-note').value:'';
+  busyIds.add(id);renderAll();
+  toast(`Approving ${r.first_name} ${r.last_name}…`,'⏳');
   try{
-    await fetch(`${WORKER_URL}/admin/requests/${id}`,{
-      method:'PATCH',
-      headers:{'Content-Type':'application/json','X-Admin-Key':getAdminKey()},
-      body:JSON.stringify({status:'approved',note})
-    });
-  }catch(e){}
-  renderAll();
-  if(fromDrawer)closeDrawer();
-  toast(`✅ ${r.first_name} ${r.last_name} approved — email sent`,'✅');
+    await updateRequest(id,{status:'approved',note});
+    if(fromDrawer)closeDrawer();
+    toast(`${r.first_name} ${r.last_name} approved, email sent`,'✅');
+  }catch(e){
+    toast(`Not approved: ${e.message}`,'⚠️');
+  }finally{
+    busyIds.delete(id);
+    await loadRequests();
+  }
 }
 
 async function reject(id,fromDrawer=false){
   const r=allRequests.find(x=>x.id===id);
-  if(!r)return;
+  if(!r||busyIds.has(id))return;
   if(!confirm(`Reject request from ${r.first_name} ${r.last_name}?`))return;
-  r.status='rejected';
+  busyIds.add(id);renderAll();
   try{
-    await fetch(`${WORKER_URL}/admin/requests/${id}`,{
-      method:'PATCH',
-      headers:{'Content-Type':'application/json','X-Admin-Key':getAdminKey()},
-      body:JSON.stringify({status:'rejected'})
-    });
-  }catch(e){}
-  renderAll();
-  if(fromDrawer)closeDrawer();
-  toast('Request rejected','✕');
-}
-
-function resendEmail(id){
-  const r=allRequests.find(x=>x.id===id);
-  toast(`📧 Email resent to ${r.email}`,'📧');
+    await updateRequest(id,{status:'rejected'});
+    if(fromDrawer)closeDrawer();
+    toast('Request rejected','✕');
+  }catch(e){
+    toast(`Not rejected: ${e.message}`,'⚠️');
+  }finally{
+    busyIds.delete(id);
+    await loadRequests();
+  }
 }
 
 function exportCSV(){
   const cols=['first_name','last_name','email','institution','role','use_case','status','submitted_at'];
   const rows=[cols.join(',')];
   allRequests.forEach(r=>{
-    rows.push(cols.map(c=>`"${(r[c]||'').replace(/"/g,'""')}"`).join(','));
+    rows.push(cols.map(c=>{
+      let v=String(r[c]||'');
+      if(/^[=+\-@\t\r]/.test(v))v="'"+v; // block formula injection in Excel/Sheets
+      return `"${v.replace(/"/g,'""')}"`;
+    }).join(','));
   });
   const blob=new Blob([rows.join('\n')],{type:'text/csv'});
   const a=document.createElement('a');
@@ -499,7 +524,7 @@ function toast(msg,icon='✅'){
   document.getElementById('toast-icon').textContent=icon;
   el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>el.classList.remove('show'),3000);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),icon==='⚠️'?8000:3000);
 }
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
