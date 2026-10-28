@@ -285,10 +285,19 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 .dl-os-name{display:block;font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3}
 .dl-os-hint{display:block;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--text-dim);letter-spacing:0.02em;line-height:1.4}
 .dl-btns{display:flex;flex-wrap:wrap;gap:0.5rem}
-.dl-btn{display:inline-flex;align-items:center;gap:0.45rem;font-size:0.8rem;font-weight:600;color:#04080f;background:var(--accent);border-radius:3px;padding:0.45rem 0.9rem;text-decoration:none;transition:all 0.2s;white-space:nowrap}
+.dl-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;gap:0.45rem;font-size:0.8rem;font-weight:600;color:#04080f;background:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:0.45rem 0.9rem;text-decoration:none;transition:all 0.2s;white-space:nowrap}
 .dl-btn span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:500;opacity:0.7}
 .dl-btn:hover{filter:brightness(1.1);box-shadow:0 0 20px rgba(0,212,170,0.25)}
 .dl-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dl-btn.outline{color:var(--accent);background:transparent}
+.dl-btn.outline:hover{background:rgba(0,212,170,0.08)}
+.dl-now{margin-bottom:1rem;padding:1.5rem;border:1px solid var(--border2);background:rgba(0,212,170,0.04)}
+.dl-now h3{margin-bottom:0.35rem;font-size:1rem;color:var(--text)}
+.dl-now p{margin-bottom:1rem;font-size:0.85rem;color:var(--text-muted);font-weight:300}
+.dl-list{list-style:none}
+.dl-status{justify-self:end;font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:600;color:#e9a23b;letter-spacing:0.02em;text-align:right}
+.dl-note{margin-top:1rem;font-size:0.82rem;color:var(--text-muted);line-height:1.7;font-weight:300}
+.dl-note a{color:var(--accent)}
 .dl-foot{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;margin-top:0.9rem}
 .dl-cmds summary{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-muted);cursor:pointer;letter-spacing:0.03em}
 .dl-cmds summary:hover{color:var(--accent)}
@@ -362,7 +371,6 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   .omics-desc{display:none}
   .omics-card{padding:1rem 1.1rem}
   .omics-title{margin-bottom:0}
-  .dl-row{grid-template-columns:1fr;gap:0.7rem;padding:0.9rem 1rem}
   .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
   .int-card::after{display:none}
@@ -372,6 +380,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   .int-summary{margin-top:-1.75rem}
   .int-filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -1.5rem 2rem;padding:0 1.5rem 0.4rem}
   .int-filter{white-space:nowrap;flex-shrink:0}
+}
+@media(max-width:640px){
+  .dl-row{grid-template-columns:1fr;gap:0.7rem;padding:0.9rem 1rem}
+  .dl-status{justify-self:start;text-align:left}
 }
 @media(max-width:900px){
   nav{padding:0 1.5rem}
@@ -401,7 +413,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <li><a href="#features">Features</a></li>
     <li><a href="#enterprise-integrations">Integrations</a></li>
     <li><a href="#omics">Omics</a></li>
-    <li><a href="#download">Download</a></li>
+    <li><a href="#download">Desktop apps</a></li>
     <li><a href="https://docs.omnibioai.org" target="_blank">Docs</a></li>
     <li class="nav-more" id="nav-more">
       <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" aria-controls="nav-more-menu">More <span aria-hidden="true">▾</span></button>
@@ -1192,7 +1204,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="requirements">
   <span class="sec-tag">// System requirements</span>
   <h2 class="sec-title">What you need<br>to get started</h2>
-  <p class="sec-sub">OmniBioAI Studio runs on any modern Linux or macOS machine with Docker installed. One download, no command line needed.</p>
+  <p class="sec-sub">Use OmniBioAI Studio in your browser today. For running it on your own machine (desktop apps, coming soon), this is what you’ll need.</p>
   <div class="req-grid">
     <div class="req-card">
       <span class="req-icon">💾</span>
@@ -1227,7 +1239,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div class="req-card">
       <span class="req-icon">🔑</span>
       <div class="req-title">License</div>
-      <p class="req-desc">30-day free trial included<br>License key with every download<br>7-day offline grace period<br>manish@omnibioai.org</p>
+      <p class="req-desc">30-day free trial included<br>License key with your beta access<br>7-day offline grace period<br>manish@omnibioai.org</p>
     </div>
     <div class="req-card">
       <span class="req-icon">🧬</span>
@@ -1239,7 +1251,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <div style="max-width:520px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;text-align:center;box-shadow:var(--glow)">
     <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem">● Private Beta · v0.8.0-beta</div>
     <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.5rem">Access requires approval</h3>
-    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7">Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.</p>
+    <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7">Approved researchers get web access and onboarding support within 1–2 business days. Desktop installers follow when they are ready.</p>
     <a href="#request" class="btn-primary" style="display:inline-flex">↗ Request Beta Access</a>
     <p style="margin-top:0.75rem;font-size:0.67rem;font-family:'JetBrains Mono',monospace;color:var(--text-dim)">License key included · 30-day free trial</p>
   </div>
@@ -1249,54 +1261,36 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 
 <!-- ── Download ── -->
 <section id="download">
-  <span class="sec-tag">// Downloads</span>
-  <h2 class="sec-title">OmniBioAI Studio <span class="dl-version">v0.8.0-beta</span> <a href="https://github.com/OmniBioAI/omnibioai-studio" target="_blank" class="gh-stars" id="gh-stars" hidden>★ <span id="gh-stars-count">0</span></a></h2>
-  <p class="sec-sub">Choose your platform and architecture. All installers include a 30-day free trial license.</p>
-  <div class="dl-list">
-    <div class="dl-row">
-      <div class="dl-os"><span class="dl-os-icon"><svg viewBox="0 0 170 170" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg></span><span><span class="dl-os-name">macOS</span><span class="dl-os-hint">Apple Silicon or Intel</span></span></div>
-      <div class="dl-btns">
-        <a class="dl-btn" data-asset="mac-arm64-dmg" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/OmniBioAI.Studio-0.8.0-arm64.dmg">↓ Apple Silicon · DMG <span>102 MB</span></a>
-        <a class="dl-btn" data-asset="mac-intel-dmg" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/OmniBioAI.Studio-0.8.0.dmg">↓ Intel · DMG <span>105 MB</span></a>
-      </div>
-    </div>
-    <div class="dl-row">
-      <div class="dl-os"><span class="dl-os-icon">🐧</span><span><span class="dl-os-name">Linux x86_64</span><span class="dl-os-hint">Intel / AMD · Ubuntu 20.04+</span></span></div>
-      <div class="dl-btns">
-        <a class="dl-btn" data-asset="linux-amd64-appimage" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/OmniBioAI.Studio-0.8.0.AppImage">↓ AppImage <span>90 MB</span></a>
-        <a class="dl-btn" data-asset="linux-amd64-deb" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/omnibioai-studio_0.8.0_amd64.deb">↓ DEB <span>~91 MB</span></a>
-        <a class="dl-btn" data-asset="linux-amd64-rpm" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/omnibioai-studio-0.8.0.x86_64.rpm">↓ RPM <span>~81 MB</span></a>
-      </div>
-    </div>
-    <div class="dl-row">
-      <div class="dl-os"><span class="dl-os-icon">🦾</span><span><span class="dl-os-name">Linux ARM64</span><span class="dl-os-hint">DGX · Graviton · Raspberry Pi</span></span></div>
-      <div class="dl-btns">
-        <a class="dl-btn" data-asset="linux-arm64-appimage" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/OmniBioAI.Studio-0.8.0-arm64.AppImage">↓ AppImage <span>~85 MB</span></a>
-        <a class="dl-btn" data-asset="linux-arm64-deb" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/omnibioai-studio_0.8.0_arm64.deb">↓ DEB <span>~86 MB</span></a>
-        <a class="dl-btn" data-asset="linux-arm64-rpm" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/omnibioai-studio-0.8.0.aarch64.rpm">↓ RPM <span>~76 MB</span></a>
-      </div>
-    </div>
-    <div class="dl-row">
-      <div class="dl-os"><span class="dl-os-icon">🪟</span><span><span class="dl-os-name">Windows</span><span class="dl-os-hint">Windows 10 / 11 x64 · WSL2</span></span></div>
-      <div class="dl-btns">
-        <a class="dl-btn" data-asset="windows-exe" href="https://github.com/OmniBioAI/omnibioai-studio/releases/download/v0.8.0-beta/OmniBioAI.Studio.Setup.0.8.0.exe">↓ Installer · EXE <span>~104 MB</span></a>
-      </div>
+  <span class="sec-tag">// Desktop apps</span>
+  <h2 class="sec-title">Desktop apps are <span class="dl-version">coming soon</span></h2>
+  <p class="sec-sub">The native installers for macOS, Linux and Windows are still in development. You don’t have to wait: OmniBioAI Studio runs in your browser today, with the same workspace and your data.</p>
+  <div class="dl-now">
+    <h3>OmniBioAI Studio on the web</h3>
+    <p>No installation, nothing to update. Sign in with your beta account.</p>
+    <div class="dl-btns">
+      <a class="dl-btn" href="https://webstudio.omnibioai.org" target="_blank" rel="noopener">Open the web app</a>
+      <a class="dl-btn outline" href="#request">Request beta access</a>
     </div>
   </div>
-  <div class="dl-foot">
-    <details class="dl-cmds">
-      <summary>Linux install commands</summary>
-      <div class="dl-cmd-list">
-        <code>sudo dpkg -i omnibioai-studio_*amd64.deb</code>
-        <code>sudo rpm -i omnibioai-studio-*.x86_64.rpm</code>
-        <code>sudo dpkg -i omnibioai-studio_*arm64.deb</code>
-        <code>sudo rpm -i omnibioai-studio-*.aarch64.rpm</code>
-        <code>chmod +x *.AppImage &amp;&amp; ./OmniBioAI*.AppImage</code>
-      </div>
-    </details>
-    <a href="https://github.com/OmniBioAI/omnibioai-studio/releases" target="_blank" class="int-docs-link">All releases on GitHub ↗</a>
-  </div>
-  <p class="dl-live-info" id="dl-live-info" hidden></p>
+  <ul class="dl-list" aria-label="Desktop app status by platform">
+    <li class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon"><svg viewBox="0 0 170 170" width="15" height="15" aria-hidden="true" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.13-1.92-14.38-6.15-3.61-2.92-7.46-7.58-11.56-13.98-4.43-6.9-8.18-15.21-11.26-24.93-3.08-9.73-4.62-19.19-4.62-28.4 0-14.43 3.65-26.04 10.96-34.82 7.31-8.78 16.3-13.19 26.98-13.24 4.75.12 9.87 1.39 15.37 3.79 5.51 2.4 9.17 3.6 11 3.6 1.45 0 5.09-1.2 10.91-3.6 5.83-2.4 10.74-3.57 14.75-3.52 11.28.14 20.37 4.34 27.27 12.61-9.95 6.14-14.82 14.65-14.62 25.53.25 8.44 3.34 15.42 9.26 20.93 5.92 5.51 12.98 8.6 21.19 9.27-2.12 6.57-4.64 12.75-7.57 18.56zM122.17 28.85c0-6.16-2.22-11.75-6.65-16.78-4.44-5.02-9.92-7.85-16.46-8.5-1.01 7.27 1.54 14.07 7.64 20.38 6.1 6.31 12.66 9.4 14.68 9.28.5-.8 1.12-2.26 1.79-4.38z"/></svg></span><span><span class="dl-os-name">macOS</span><span class="dl-os-hint">Apple Silicon and Intel · DMG</span></span></div>
+      <span class="dl-status">In development</span>
+    </li>
+    <li class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🐧</span><span><span class="dl-os-name">Linux x86_64</span><span class="dl-os-hint">Intel and AMD · AppImage, DEB and RPM</span></span></div>
+      <span class="dl-status">In development</span>
+    </li>
+    <li class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🦾</span><span><span class="dl-os-name">Linux ARM64</span><span class="dl-os-hint">DGX, Graviton and Raspberry Pi · AppImage, DEB and RPM</span></span></div>
+      <span class="dl-status">In development</span>
+    </li>
+    <li class="dl-row">
+      <div class="dl-os"><span class="dl-os-icon">🪟</span><span><span class="dl-os-name">Windows</span><span class="dl-os-hint">Windows 10 and 11 x64 · EXE</span></span></div>
+      <span class="dl-status">In development</span>
+    </li>
+  </ul>
+  <p class="dl-note">Want to know when your platform is ready? <a href="#request">Request beta access</a> and pick your operating system. We’ll email you the installer as soon as it’s available.</p>
 </section>
 
 <hr class="divider">
@@ -1470,19 +1464,19 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
             <span class="platform-icon">🐧</span>
             <span class="platform-name">Linux</span>
             <span class="platform-hint">Ubuntu / Debian / RHEL</span>
-            <span class="platform-badge">AppImage · ~90 MB</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
           </div>
           <div class="platform-card" id="platform-mac" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('mac')" onkeydown="platformKey(event,'mac')">
             <span class="platform-icon">🍎</span>
             <span class="platform-name">macOS</span>
             <span class="platform-hint">Apple Silicon or Intel</span>
-            <span class="platform-badge">DMG · ~105 MB</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
           </div>
           <div class="platform-card" id="platform-windows" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('windows')" onkeydown="platformKey(event,'windows')">
             <span class="platform-icon">🪟</span>
             <span class="platform-name">Windows</span>
             <span class="platform-hint">WSL2 required</span>
-            <span class="platform-badge">EXE · ~104 MB</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
           </div>
         </div>
         <input type="hidden" name="platform" id="platform-value">
@@ -1508,7 +1502,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <li><a href="#omics">Omics</a></li>
     <li><a href="#genomes">Genomes</a></li>
     <li><a href="#requirements">Requirements</a></li>
-    <li><a href="#download">Download</a></li>
+    <li><a href="#download">Desktop apps</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="https://docs.omnibioai.org/developer/" target="_blank">Developers</a></li>
     <li><a href="https://docs.omnibioai.org/api-reference/" target="_blank">API Reference</a></li>
@@ -1876,62 +1870,6 @@ function handleSubmit(e){
     });
   }
   document.querySelectorAll('#enterprise-integrations .int-grid, #reference-databases .int-grid').forEach(initStack);
-})();
-(function(){
-  var versionEl=document.querySelector('#download .dl-version');
-  var infoEl=document.getElementById('dl-live-info');
-  var buttons=document.querySelectorAll('#download .dl-btn[data-asset]');
-  if(!versionEl||!buttons.length)return;
-  function classify(name){
-    if(/-arm64\.dmg$/i.test(name))return'mac-arm64-dmg';
-    if(/\.dmg$/i.test(name))return'mac-intel-dmg';
-    if(/-arm64\.AppImage$/i.test(name))return'linux-arm64-appimage';
-    if(/\.AppImage$/i.test(name))return'linux-amd64-appimage';
-    if(/_amd64\.deb$/i.test(name))return'linux-amd64-deb';
-    if(/_arm64\.deb$/i.test(name))return'linux-arm64-deb';
-    if(/\.x86_64\.rpm$/i.test(name))return'linux-amd64-rpm';
-    if(/\.aarch64\.rpm$/i.test(name))return'linux-arm64-rpm';
-    if(/Setup.*\.exe$/i.test(name))return'windows-exe';
-    return null;
-  }
-  function formatSize(bytes){return(bytes/1e6).toFixed(1)+' MB'}
-  fetch('https://api.github.com/repos/OmniBioAI/omnibioai-studio/releases')
-    .then(function(r){if(!r.ok)throw new Error('bad status');return r.json()})
-    .then(function(releases){
-      if(!Array.isArray(releases)||!releases.length)return;
-      var rel=releases[0];
-      var assets=Array.isArray(rel.assets)?rel.assets:[];
-      if(!assets.length)return;
-      var byKey={};
-      var totalDownloads=0;
-      assets.forEach(function(a){
-        var key=classify(a.name);
-        if(key)byKey[key]=a;
-        totalDownloads+=a.download_count||0;
-      });
-      // Only commit to the live data once every button has a confirmed
-      // match -- a partial match would silently leave some rows on last
-      // release's (possibly wrong) size/href while others update, which
-      // is worse than just keeping everyone on the static fallback.
-      var allMatched=Array.prototype.every.call(buttons,function(btn){
-        return!!byKey[btn.getAttribute('data-asset')];
-      });
-      if(!allMatched)return;
-      versionEl.textContent=rel.tag_name;
-      buttons.forEach(function(btn){
-        var asset=byKey[btn.getAttribute('data-asset')];
-        btn.href=asset.browser_download_url;
-        var sizeEl=btn.querySelector('span');
-        if(sizeEl)sizeEl.textContent=formatSize(asset.size);
-      });
-      if(infoEl&&rel.published_at){
-        var d=new Date(rel.published_at);
-        var dateStr=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-        infoEl.innerHTML='Released '+dateStr+' · <strong>'+totalDownloads.toLocaleString('en-US')+'</strong> downloads across all platforms · <a href="https://github.com/OmniBioAI/omnibioai-studio/releases" target="_blank" style="color:inherit;text-decoration:underline">release notes ↗</a>';
-        infoEl.hidden=false;
-      }
-    })
-    .catch(function(){});
 })();
 (function(){
   function setTarget(key,value){
