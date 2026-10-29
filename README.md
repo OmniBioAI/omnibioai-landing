@@ -9,7 +9,7 @@
 
 ## Overview
 
-This repository contains the static HTML/CSS/JS landing page for OmniBioAI Studio. The site is a single-page application with multiple sections covering features, supported omics modalities, system requirements, platform downloads, architecture, publications, and a private beta access request form.
+This repository contains the static HTML/CSS/JS landing page for OmniBioAI Studio. The site is a single-page application with multiple sections covering features, supported omics modalities, system requirements (hidden until the desktop apps release), platform downloads, architecture, publications, and a private beta access request form.
 
 The site is built with vanilla HTML, CSS, and JavaScript — no build tools or frameworks required.
 
