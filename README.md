@@ -9,9 +9,7 @@
 
 ## Overview
 
-This repository contains the static HTML/CSS/JS landing page for OmniBioAI Studio. The site is a single-page application with multiple sections covering features, supported omics modalities, system requirements (hidden until the desktop apps release), platform downloads, architecture, publications, and a private beta access request form.
-
-The site is built with vanilla HTML, CSS, and JavaScript — no build tools or frameworks required.
+This repository contains the independently deployable OmniBioAI public website. It is built with React 18, strict TypeScript, and Vite 6, and statically prerenders every public route so meaningful content and metadata are available before JavaScript runs.
 
 ---
 
@@ -19,9 +17,13 @@ The site is built with vanilla HTML, CSS, and JavaScript — no build tools or f
 
 | File | Description |
 |------|-------------|
-| `index.html` | Main landing page (hero, features, omics, downloads, architecture, publications, beta form) |
-| `about.html` | About page |
-| `admin.html` | Beta access admin panel |
+| Route | Description |
+|------|-------------|
+| `/` and `/index.html` | Main landing page, product catalogs, publications, and beta form |
+| `/about` and `/about.html` | About and team page |
+| `/privacy` and `/privacy.html` | Privacy policy |
+| `/terms` and `/terms.html` | Terms of service |
+| `/admin` and `/admin.html` | No-index beta access admin panel |
 
 ---
 
@@ -167,20 +169,29 @@ OmniBioAI Studio v0.8.0-beta is in **private beta**. Researchers can apply via t
 
 ## Development
 
-This is a static site — no build step required.
+Node.js 20 or newer is required. Installation is reproducible from `package-lock.json`.
 
 ```bash
 # Clone the repo
 git clone https://github.com/OmniBioAI/omnibioai-landing.git
 cd omnibioai-landing
 
-# Serve locally (any static server)
-python3 -m http.server 8080
-# or
-npx serve .
+npm ci
+npm run dev
 ```
 
-Then open `http://localhost:8080` in your browser.
+For production acceptance:
+
+```bash
+npm run typecheck
+npm run lint
+npm test
+npm run build
+npm run test:e2e:install
+npm run test:e2e
+```
+
+The deployable static artifact is `dist/`. GitHub Actions publishes only that directory to the existing `gh-pages` branch.
 
 ---
 

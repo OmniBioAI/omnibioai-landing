@@ -8,36 +8,24 @@ on:
 
 jobs:
   validate:
-    name: HTML & Link Validation
+    name: Build and test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.x"
+          node-version: "22"
+          cache: npm
 
-      - name: Install validators
-        run: pip install html5validator linkchecker
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
 
-      - name: Validate HTML & CSS
-        run: |
-          html5validator --root . --also-check-css --log ERROR \
-            --ignore "Property \"inset\" doesn't exist" \
-                     "Property \"backdrop-filter\" doesn't exist" \
-                     "is not a \"color-stop\" value" \
-                     "is not a \"background-clip\" value"
-
-      - name: Check external links
-        run: |
-          # docs/control/webstudio/videos subdomains are down for the announced
-          # platform maintenance (see index.html maintenance-notice); don't block
-          # the landing-page deploy on that outage.
-          linkchecker --check-extern index.html --ignore-url ".*#.*" \
-            --ignore-url "onlinelibrary\.wiley\.com" \
-            --ignore-url "(docs|control|webstudio|videos)\.omnibioai\.org" \
-            -f .linkcheckerrc
+      - run: npm run test:e2e:install -- --with-deps
+      - run: npm run test:e2e
 
   deploy:
     name: Deploy to GitHub Pages
@@ -49,9 +37,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./dist
           publish_branch: gh-pages

@@ -1,0 +1,1098 @@
+{
+  "generatedFrom": "index.html@c171824a51ce565454872c771647b0c755fce80d",
+  "integrations": [
+    {
+      "key": "genomics-platforms",
+      "title": "Genomics & Bio Platforms",
+      "description": "Sequencing, cloud-genomics and bioinformatics platforms, plus GA4GH interoperability.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/aws-healthomics/",
+          "name": "AWS HealthOmics",
+          "description": "Sequence stores, workflows and policy-gated workflow runs"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/basespace/",
+          "name": "Illumina BaseSpace",
+          "description": "Sequencing projects, runs, samples, files and analyses"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/illumina-ica/",
+          "name": "Illumina Connected Analytics",
+          "description": "ICA projects, data, pipelines and analyses"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/dnanexus/",
+          "name": "DNAnexus",
+          "description": "Genomics cloud projects, files, workflows and executions"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/terra/",
+          "name": "Terra",
+          "description": "Workspaces, WDL workflows, data tables and outputs"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/seven-bridges/",
+          "name": "Seven Bridges",
+          "description": "Projects, files, workflows, tasks and provenance"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/seqera-platform/",
+          "name": "Seqera Platform",
+          "description": "Nextflow Tower pipeline discovery and run monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/galaxy/",
+          "name": "Galaxy",
+          "description": "Workflows, histories, datasets, tools and jobs"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/ga4gh-interoperability/",
+          "name": "GA4GH Interoperability",
+          "description": "Refget and DRS access plus VRS allele construction"
+        }
+      ]
+    },
+    {
+      "key": "workflow-compute",
+      "title": "Workflow, Orchestration & Compute",
+      "description": "Workflow engines, pipeline orchestrators, cluster schedulers and notebook environments.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/airflow/",
+          "name": "Apache Airflow",
+          "description": "DAG discovery, triggering, monitoring and task logs"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/argo-workflows/",
+          "name": "Argo Workflows",
+          "description": "Workflow discovery, metadata and manifest submission"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/cromwell/",
+          "name": "Cromwell",
+          "description": "WDL/CWL workflow submission and monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/dagster/",
+          "name": "Dagster",
+          "description": "Repositories, runs, assets and health"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/prefect/",
+          "name": "Prefect",
+          "description": "Deployments, flows, runs and work pools"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/metaflow/",
+          "name": "Metaflow",
+          "description": "Flows, runs, steps and artifacts via the metadata service"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/kubernetes/",
+          "name": "Kubernetes",
+          "description": "Clusters, workloads, jobs and monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/slurm/",
+          "name": "Slurm",
+          "description": "HPC cluster, partition, node and job monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/knime/",
+          "name": "KNIME",
+          "description": "Workflow discovery, execution, results and provenance"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/jupyterhub/",
+          "name": "JupyterHub",
+          "description": "Institutional notebook servers, users and sessions"
+        }
+      ]
+    },
+    {
+      "key": "cloud-storage",
+      "title": "Cloud Storage & Data Transfer",
+      "description": "Object storage, file sharing, private cloud and bulk research-data transfer.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/s3-integration/",
+          "name": "AWS S3",
+          "description": "Import datasets and export results to S3 buckets"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/azure-blob-storage/",
+          "name": "Azure Blob Storage",
+          "description": "Container and blob discovery and metadata"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/google-cloud-storage/",
+          "name": "Google Cloud Storage",
+          "description": "Bucket and object discovery and metadata"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/minio/",
+          "name": "MinIO",
+          "description": "Self-hosted S3-compatible buckets and objects"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/ceph/",
+          "name": "Ceph",
+          "description": "Cluster health, pools, block images and filesystems"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/openstack/",
+          "name": "OpenStack",
+          "description": "Projects, compute, volumes and identity"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/box/",
+          "name": "Box",
+          "description": "Search, transfer and organize research datasets"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/google-drive/",
+          "name": "Google Drive",
+          "description": "Research-file discovery, transfer and Shared Drives"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/nextcloud/",
+          "name": "Nextcloud",
+          "description": "Self-hosted research-file access and collaboration"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/globus/",
+          "name": "Globus",
+          "description": "Endpoint discovery and large research-data transfers"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/cloud-integration/",
+          "name": "Cloud Integration",
+          "description": "Unified provider → service → action cloud access"
+        }
+      ]
+    },
+    {
+      "key": "data-platforms",
+      "title": "Data Warehouses & Analytics",
+      "description": "Warehouse and lakehouse platforms and the tooling that models data inside them.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/databricks/",
+          "name": "Databricks",
+          "description": "Unity Catalog discovery and governed SQL access"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/snowflake/",
+          "name": "Snowflake",
+          "description": "Database, schema and table discovery and queries"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/bigquery/",
+          "name": "Google BigQuery",
+          "description": "Projects, datasets, tables and job metadata"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/dbt/",
+          "name": "dbt",
+          "description": "Models, sources, tests, jobs and lineage"
+        }
+      ]
+    },
+    {
+      "key": "ml-tracking",
+      "title": "ML & Experiment Tracking",
+      "description": "Experiment tracking, model hubs and data/model versioning.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/mlflow/",
+          "name": "MLflow",
+          "description": "Experiments, runs, metrics and the model registry"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/wandb/",
+          "name": "Weights & Biases",
+          "description": "Projects, runs, metrics and artifacts"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/hugging-face/",
+          "name": "Hugging Face",
+          "description": "Models, datasets, repositories and inference"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/dvc/",
+          "name": "DVC",
+          "description": "Versioned datasets, pipelines and experiments"
+        }
+      ]
+    },
+    {
+      "key": "lims-eln-biobank",
+      "title": "LIMS, ELN & Biobank",
+      "description": "Laboratory information management, electronic lab notebooks and biospecimen management.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/benchling/",
+          "name": "Benchling",
+          "description": "Import samples and sequences, export results"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/elabftw/",
+          "name": "eLabFTW",
+          "description": "Export results to the electronic lab notebook"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/labkey/",
+          "name": "LabKey",
+          "description": "Permission-aware discovery and controlled queries"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/lims-integration/",
+          "name": "LIMS-X",
+          "description": "External LIMS sample and project metadata"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/genologics-clarity/",
+          "name": "Clarity LIMS",
+          "description": "Samples, projects, containers and processes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/openspecimen/",
+          "name": "OpenSpecimen",
+          "description": "Biobank participants, specimens and visits"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/redcap/",
+          "name": "REDCap",
+          "description": "Clinical research cohorts in, analysis results out"
+        }
+      ]
+    },
+    {
+      "key": "data-repositories",
+      "title": "Data Repositories & Metadata",
+      "description": "Research data repositories and data-catalog / metadata platforms.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/zenodo/",
+          "name": "Zenodo",
+          "description": "Publish results with a citable DOI"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/figshare/",
+          "name": "Figshare",
+          "description": "Research data repository access and publishing"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/synapse/",
+          "name": "Synapse",
+          "description": "Sage Bionetworks projects, files and tables"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/openmetadata/",
+          "name": "OpenMetadata",
+          "description": "Data catalog entities, lineage and metadata"
+        }
+      ]
+    },
+    {
+      "key": "cicd-containers",
+      "title": "CI/CD, Source Control & Containers",
+      "description": "Git hosting, build and pipeline systems, and container registries.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/git-hosting/",
+          "name": "GitHub + GitLab",
+          "description": "Repositories, code search, issues and pull requests"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/github-actions/",
+          "name": "GitHub Actions",
+          "description": "Workflow runs, jobs and CI/CD monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/gitlab/",
+          "name": "GitLab",
+          "description": "Projects, pipelines and CI/CD monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/jenkins/",
+          "name": "Jenkins",
+          "description": "Jobs, parameterized builds and console output"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/azure-devops/",
+          "name": "Azure DevOps",
+          "description": "Repos, work items, pipelines and builds"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/docker-hub/",
+          "name": "Docker Hub",
+          "description": "Repositories, tags, manifests and digests"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/ghcr/",
+          "name": "GitHub Container Registry",
+          "description": "Image tags and manifests on ghcr.io"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/quay/",
+          "name": "Quay.io",
+          "description": "Repositories, OCI manifests and multi-platform checks"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/harbor/",
+          "name": "Harbor",
+          "description": "Projects, repositories and replication"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/nvidia-ngc/",
+          "name": "NVIDIA NGC",
+          "description": "Catalog and artifact namespace discovery"
+        }
+      ]
+    },
+    {
+      "key": "collaboration-ops",
+      "title": "Collaboration, ITSM & Operations",
+      "description": "Messaging, Microsoft 365, issue and incident management, monitoring and secrets health.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/slack/",
+          "name": "Slack",
+          "description": "Channels and users for agent collaboration"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/microsoft-teams/",
+          "name": "Microsoft Teams",
+          "description": "Channel notifications via incoming webhooks"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/microsoft-graph/",
+          "name": "Microsoft Graph",
+          "description": "Entra ID, SharePoint, Outlook and Teams"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/atlassian/",
+          "name": "Jira + Confluence",
+          "description": "Search, create and update issues and pages"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/servicenow/",
+          "name": "ServiceNow",
+          "description": "Search, create and update incidents"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/pagerduty/",
+          "name": "PagerDuty",
+          "description": "Incidents, services and on-call monitoring"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/prometheus-grafana/",
+          "name": "Prometheus & Grafana",
+          "description": "Metrics queries, alerts and dashboards"
+        },
+        {
+          "href": "https://docs.omnibioai.org/integrations/details/vault/",
+          "name": "HashiCorp Vault",
+          "description": "Health, mounts and seal status"
+        }
+      ]
+    }
+  ],
+  "referenceDatabases": [
+    {
+      "key": "genes-variants",
+      "title": "Genes, Variants & Clinical Genetics",
+      "description": "Gene nomenclature and annotation, population and structural variation, and clinical-genetics evidence.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "1000 Genomes / IGSR",
+          "description": "Population samples, data collections and files"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "CIViC",
+          "description": "Cancer variant evidence items and assertions"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "ClinGen",
+          "description": "Gene–disease validity and dosage sensitivity"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "ClinVar",
+          "description": "Clinical significance of human variants"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "COSMIC",
+          "description": "Cancer Gene Census via licensed downloads"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "CPIC",
+          "description": "Pharmacogenomic guidelines and dosing recommendations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "dbNSFP",
+          "description": "Functional predictions for missense variants"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "dbSNP",
+          "description": "rsIDs, alleles and genomic placements"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "dbVar",
+          "description": "NCBI structural-variation studies and variants"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "DECIPHER",
+          "description": "Interface metadata and connectivity only"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "DGV",
+          "description": "Structural variants from validated local snapshots"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "Ensembl",
+          "description": "Genes, transcripts, sequences, variants and homology"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "Gene2Phenotype",
+          "description": "Curated gene–disease panels from EMBL-EBI"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "GeneReviews",
+          "description": "Expert disease reviews by gene and OMIM"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "Genomics England PanelApp",
+          "description": "Expert-reviewed diagnostic gene panels"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "gnomAD",
+          "description": "Population allele frequencies and gene constraint"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "GWAS Catalog",
+          "description": "Studies, traits and reported associations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "HGMD",
+          "description": "Licensed clinical variants via a local or gateway provider"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "HGNC",
+          "description": "Approved human gene symbols and names"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "LOVD",
+          "description": "Locus-specific variant databases"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "MARRVEL",
+          "description": "Rare-variant evidence across model organisms"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "Mastermind",
+          "description": "Variant evidence from the literature"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "MaveDB",
+          "description": "Multiplexed assays of variant effect scores"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "MedGen",
+          "description": "Medical-genetics concepts, genes and features"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "NCBI Entrez",
+          "description": "Gene, protein, nucleotide and taxonomy search"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "OMIM",
+          "description": "Mendelian genes, disorders and inheritance"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "OncoKB",
+          "description": "Precision-oncology variant knowledge"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "PharmGKB",
+          "description": "Pharmacogenomic annotations via ClinPGx"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "PharmVar",
+          "description": "Pharmacogene star alleles and haplotypes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "PheGenI",
+          "description": "Phenotype–genotype associations from NCBI"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "SNPedia",
+          "description": "Community variant and genotype annotations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "TOPMed",
+          "description": "Deep-sequencing variant frequencies"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "UCSC Genome Browser",
+          "description": "Genome databases, tracks and region data"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "VarCards",
+          "description": "Availability status only; no data access"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+          "name": "VarSome",
+          "description": "Variant classification and annotation"
+        }
+      ]
+    },
+    {
+      "key": "expression-omics",
+      "title": "Expression, Omics & Cohorts",
+      "description": "Sequencing archives, expression atlases, samples, cell lines and cancer cohorts.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "All of Us",
+          "description": "Controlled-access research cohort"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "ArrayExpress",
+          "description": "Functional-genomics experiments from EMBL-EBI"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "cBioPortal",
+          "description": "Cancer genomics studies and mutations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "CCLE",
+          "description": "Cancer cell-line omics profiles"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "Cellosaurus",
+          "description": "Cell-line identity, origin and hierarchy"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "dbGaP",
+          "description": "Controlled-access genotype–phenotype studies"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "DepMap",
+          "description": "Cancer dependency and CRISPR screens"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "EBI BioSamples",
+          "description": "Cross-repository sample registry"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "EGA",
+          "description": "Controlled-access genome–phenome archive"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "ENA",
+          "description": "Sequencing studies, samples, runs and analyses"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "Expression Atlas",
+          "description": "Baseline and differential expression across species"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "GTEx",
+          "description": "Tissue expression and eQTLs from the GTEx Portal"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "ICGC",
+          "description": "Release 28 open-access cancer donor data"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "LINCS / iLINCS",
+          "description": "L1000 perturbation-response signatures"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "NCBI GEO",
+          "description": "Expression series, datasets, platforms and samples"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "NCBI SRA",
+          "description": "Sequence Read Archive studies, runs and samples"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "PanglaoDB",
+          "description": "Single-cell cell-type marker genes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "TCGA",
+          "description": "Open-access TCGA cases, files and mutations via GDC"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+          "name": "UK Biobank",
+          "description": "Controlled-access population cohort"
+        }
+      ]
+    },
+    {
+      "key": "proteins-structure",
+      "title": "Proteins, Structure & Interactions",
+      "description": "Protein knowledgebases, families, 3D structures, orthology, proteomics and interaction networks.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "BioGRID",
+          "description": "Curated protein and genetic interactions"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "CellChat",
+          "description": "Ligand–receptor pairs from pinned CellChatDB"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "DIP",
+          "description": "Availability status only; host unreachable"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "eggNOG",
+          "description": "Orthologous groups and functional annotation"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "Human Protein Atlas",
+          "description": "RNA and protein expression by tissue and cell"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "IntAct",
+          "description": "Molecular interactions and Complex Portal"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "InterPro",
+          "description": "Protein families, domains and signatures"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "OrthoDB",
+          "description": "Hierarchical orthologous gene groups"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "PANTHER",
+          "description": "Gene families, orthologs and enrichment"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "PDB-REDO",
+          "description": "Re-refined crystallographic structures"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "PDBe",
+          "description": "Structure entries, molecules and residues"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "PDBsum",
+          "description": "Availability status only; service offline"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "Pfam",
+          "description": "Protein families and clans via InterPro"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "PRIDE Archive",
+          "description": "Proteomics datasets and files"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "ProteomeXchange",
+          "description": "Cross-repository proteomics datasets and spectra"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "RCSB PDB",
+          "description": "Structures, entities, assemblies and ligands"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "STRING",
+          "description": "Protein–protein interaction networks"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+          "name": "UniProt",
+          "description": "Protein sequences, function and annotation"
+        }
+      ]
+    },
+    {
+      "key": "drugs-chemistry",
+      "title": "Drugs, Chemistry & Metabolomics",
+      "description": "Drugs and targets, chemical compounds, enzymes, lipids, metabolomics and toxicogenomics.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "BindingDB",
+          "description": "Measured protein–ligand binding affinities"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "BRENDA",
+          "description": "Enzyme kinetics, reactions and inhibitors"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "ChEBI",
+          "description": "Curated small molecules, structures and roles"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "CTD",
+          "description": "Chemical–gene–disease relationships, indexed locally"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "DGIdb",
+          "description": "Drug–gene interactions and druggable genes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "DrugBank",
+          "description": "Licensed drug, product and interaction lookup"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "DrugCentral",
+          "description": "Approved drugs, targets and indications"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "Drugs@FDA",
+          "description": "FDA drug applications, products and submissions"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "Guide to PHARMACOLOGY",
+          "description": "Drug targets and their ligands"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "HMDB",
+          "description": "Availability status only; access is gated"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "LIPID MAPS",
+          "description": "Lipid structures and classification"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "MassBank",
+          "description": "Mass-spectrometry reference spectra"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "MetaboLights",
+          "description": "Metabolomics studies, assays and protocols"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "OpenFDA",
+          "description": "Adverse events, labels, recalls and NDC"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "Pharos",
+          "description": "Drug targets by development level, ligands and diseases"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "PubChem",
+          "description": "Compounds, substances and bioassays"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "RxNorm",
+          "description": "Normalized drug names, NDCs and drug classes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "SIDER",
+          "description": "SIDER 4.1 drug-name search over operator-supplied release files"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "SwissLipids",
+          "description": "Curated lipid structures and metabolism"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+          "name": "T3DB",
+          "description": "Availability status only; no data access"
+        }
+      ]
+    },
+    {
+      "key": "ontologies-phenotype",
+      "title": "Ontologies, Disease & Phenotype",
+      "description": "Biomedical ontologies, phenotype vocabularies and gene–disease association resources.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "BioPortal",
+          "description": "Search across hundreds of biomedical ontologies"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Cell Ontology",
+          "description": "Cell-type terms via EBI OLS"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Disease Ontology",
+          "description": "Human disease terms and cross-references"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "DISEASES",
+          "description": "Scored gene–disease associations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "DisGeNET",
+          "description": "Gene–disease and variant–disease associations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Gene Ontology",
+          "description": "GO terms, hierarchy and annotations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Human Phenotype Ontology",
+          "description": "Phenotype terms and disease annotations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Monarch Initiative",
+          "description": "Cross-species biomedical knowledge graph"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Mondo",
+          "description": "Disease terms mapped to OMIM, Orphanet, DOID and ICD"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Open Targets",
+          "description": "Target–disease evidence and prioritisation"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+          "name": "Orphanet",
+          "description": "Rare diseases, genes and epidemiology"
+        }
+      ]
+    },
+    {
+      "key": "model-organisms",
+      "title": "Model Organisms",
+      "description": "Model-organism databases for fly, mouse, rat, yeast, plant, worm and zebrafish.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "FlyBase",
+          "description": "Drosophila genes and annotation"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "MGI",
+          "description": "Laboratory mouse genes, alleles and phenotypes"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "Rat Genome Database",
+          "description": "Rat genes, alleles and orthologs"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "SGD",
+          "description": "Yeast loci, GO and phenotype annotations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "TAIR via ThaleMine",
+          "description": "Arabidopsis gene curation and GO annotations"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "WormBase",
+          "description": "C. elegans genes and annotation"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+          "name": "ZFIN",
+          "description": "Zebrafish genes from official daily files"
+        }
+      ]
+    },
+    {
+      "key": "regulation-ncrna",
+      "title": "Non-coding RNA & Regulation",
+      "description": "Regulatory elements, transcription-factor binding profiles and non-coding RNA.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "dbMTS",
+          "description": "Availability status only; no data access"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "ENCODE",
+          "description": "Experiments, biosamples and regulatory files"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "JASPAR",
+          "description": "Transcription-factor binding profiles"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "miRBase",
+          "description": "Mature and precursor miRNA sequences"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "Rfam",
+          "description": "Non-coding RNA families and clans"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+          "name": "TargetScan",
+          "description": "miRNA target-site predictions, indexed locally"
+        }
+      ]
+    },
+    {
+      "key": "pathways",
+      "title": "Pathways",
+      "description": "Curated pathway and metabolic-network knowledgebases.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "BioCyc",
+          "description": "Pathway/genome databases"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "KEGG",
+          "description": "Pathways, orthology, enzymes and compounds"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "MetaCyc",
+          "description": "Metabolic pathways, reactions and compounds"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "MSigDB",
+          "description": "Annotated gene-set collections"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "Pathway Commons",
+          "description": "Integrated pathway and interaction data (BioPAX)"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "Reactome",
+          "description": "Pathways, reactions and gene mapping"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "Rhea",
+          "description": "Curated biochemical reactions (SIB)"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+          "name": "WikiPathways",
+          "description": "Community pathways with genes and metabolites"
+        }
+      ]
+    },
+    {
+      "key": "cross-domain",
+      "title": "Clinical Trials & Models",
+      "description": "Resources that span domains: clinical-trial registries and biomolecular AI models.",
+      "items": [
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#other--cross-domain-2",
+          "name": "ClinicalTrials.gov",
+          "description": "Trial registry search via the v2 API"
+        },
+        {
+          "href": "https://docs.omnibioai.org/reference-data/database-catalog/#other--cross-domain-2",
+          "name": "NVIDIA BioNeMo",
+          "description": "Open biomolecular models and recipes"
+        }
+      ]
+    }
+  ]
+}
