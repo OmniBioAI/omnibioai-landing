@@ -1,0 +1,31 @@
+name = "beta-requests"
+main = "worker.js"
+compatibility_date = "2026-05-10"
+compatibility_flags = []
+workers_dev = true
+preview_urls = false
+logpush = false
+keep_vars = true
+
+[vars]
+LICENSE_SERVER_URL = "https://webstudio.omnibioai.org/_svc/auth"
+
+[[kv_namespaces]]
+binding = "BETA_REQUESTS"
+id = "4fdd313dbc7e4a0eb9c2d9514869b919"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+redact_query_string = false
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+head_sampling_rate = 1
+persist = true
