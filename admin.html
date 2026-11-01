@@ -459,7 +459,9 @@ async function updateRequest(id,body){
   try{data=await res.json()}catch(e){}
   if(res.status===401){logout();throw new Error('Session expired. Sign in again.')}
   if(!res.ok||data.success===false){
-    throw new Error(data.error||`Request failed (HTTP ${res.status})`);
+    const detail = typeof data.detail==='string' && data.detail.trim()
+      ? `: ${data.detail}` : '';
+    throw new Error(`${data.error||`Request failed (HTTP ${res.status})`}${detail}`);
   }
   return data;
 }
