@@ -193,6 +193,12 @@ npm run test:e2e
 
 The deployable static artifact is `dist/`. GitHub Actions publishes only that directory to the existing `gh-pages` branch.
 
+## Beta approval release pairing
+
+The live beta-approval pair is `workers/beta-requests-live/` and the released root `admin.html`. Treat these as one tested release unit.
+
+The newer `workers/beta-requests/` and tracked `admin.html` in the local working branch are an undeployed pair. Test and release them together; do not publish either one independently.
+
 ---
 
 ## Related Repositories
