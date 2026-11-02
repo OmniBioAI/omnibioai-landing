@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-10-04",
+  "research_inquiry_url": "",
   "catalogs": {
     "workflows": "1000+",
     "plugins": "501",
@@ -11,5 +12,17 @@
     "literature_indexes": "282",
     "integrations": "67",
     "integration_categories": "9"
+  },
+  "research_inventory": {
+    "source_repositories": "33",
+    "codebase_lines": "3M+",
+    "automated_tests": "65,000+",
+    "platform_services": "28+",
+    "plugins": "500+",
+    "workflow_bundles": "1,000+",
+    "execution_tools": "12,000+",
+    "container_artifacts": "1,500+",
+    "pubmed_abstracts": "28M+",
+    "biomedical_vectors": "75M+"
   }
 }

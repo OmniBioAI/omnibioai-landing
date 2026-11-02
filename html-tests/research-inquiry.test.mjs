@@ -12,6 +12,14 @@ test('keeps the research inquiry integration framework-free', () => {
   assert.match(html, /fetch\(endpoint,/);
 });
 
+test('published site data ships with intake disabled and every inventory value', async () => {
+  const data = JSON.parse(await readFile(new URL('../data/site-data.json', import.meta.url), 'utf8'));
+  assert.equal(typeof data.research_inquiry_url, 'string');
+  for (const key of html.matchAll(/data-inventory="([a-z_]+)"/g)) {
+    assert.equal(typeof data.research_inventory[key[1]], 'string', `missing research_inventory.${key[1]}`);
+  }
+});
+
 test('only confirms a genuinely persisted submission', () => {
   assert.match(html, /response\.status===201&&body\.status==='received'/);
   assert.match(html, /typeof body\.inquiry_id==='string'/);
