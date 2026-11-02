@@ -9,7 +9,7 @@
 
 ## Overview
 
-This repository contains the independently deployable OmniBioAI public website. It is built with React 18, strict TypeScript, and Vite 6, and statically prerenders every public route so meaningful content and metadata are available before JavaScript runs.
+This repository contains the independently deployable OmniBioAI public website. The deployed site is maintained as standalone HTML, CSS, and browser JavaScript with no React, Node.js, package installation, or build step.
 
 ---
 
@@ -169,29 +169,13 @@ OmniBioAI Studio v0.8.0-beta is in **private beta**. Researchers can apply via t
 
 ## Development
 
-Node.js 20 or newer is required. Installation is reproducible from `package-lock.json`.
+No package installation or compilation is required. Edit the maintained root HTML files and assets directly. For a local browser preview, use any static file server, for example:
 
 ```bash
-# Clone the repo
-git clone https://github.com/OmniBioAI/omnibioai-landing.git
-cd omnibioai-landing
-
-npm ci
-npm run dev
+python3 -m http.server 8000
 ```
 
-For production acceptance:
-
-```bash
-npm run typecheck
-npm run lint
-npm test
-npm run build
-npm run test:e2e:install
-npm run test:e2e
-```
-
-The deployable static artifact is `dist/`. GitHub Actions publishes only that directory to the existing `gh-pages` branch.
+The deployable artifact is the reviewed static HTML, `assets/`, and public `data/` content in the repository root. Deployment remains an explicit operator action; this repository does not auto-deploy production changes.
 
 ## Beta approval release pairing
 
