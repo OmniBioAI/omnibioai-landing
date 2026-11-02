@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-10-04",
-  "research_inquiry_url": "",
+  "research_inquiry_url": "https://inquiries-staging.omnibioai.org/api/v1/research-inquiries",
   "catalogs": {
     "workflows": "1000+",
     "plugins": "501",
