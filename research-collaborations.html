@@ -14,8 +14,8 @@
 <meta property="og:url" content="https://omnibioai.org/research-collaborations">
 <meta property="og:image" content="https://omnibioai.org/assets/omnibioai-logo.svg">
 <meta name="twitter:card" content="summary">
-<!-- Set content to the approved API URL when the research-inquiry backend is available. -->
-<meta name="research-inquiry-endpoint" content="">
+<!-- Deployment rendering (or Vite) replaces this public URL placeholder; never insert secrets. -->
+<meta name="research-inquiry-endpoint" content="%VITE_RESEARCH_INQUIRY_URL%">
 <link rel="icon" type="image/svg+xml" href="assets/omnibioai-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -303,9 +303,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   var configState=document.getElementById('config-state');
   var endpoint=(document.querySelector('meta[name="research-inquiry-endpoint"]')||{}).content||'';
   endpoint=endpoint.trim();
+  if(endpoint.indexOf('%VITE_')===0)endpoint='';
   var configured=false;
   if(endpoint){
-    try{var parsedEndpoint=new URL(endpoint,window.location.origin);configured=parsedEndpoint.protocol==='https:'||(parsedEndpoint.protocol==='http:'&&['localhost','127.0.0.1'].indexOf(parsedEndpoint.hostname)!==-1);}catch(error){configured=false;}
+    try{var parsedEndpoint=new URL(endpoint,window.location.origin);configured=!parsedEndpoint.username&&!parsedEndpoint.password&&!parsedEndpoint.search&&!parsedEndpoint.hash&&parsedEndpoint.pathname==='/api/v1/research-inquiries'&&(parsedEndpoint.protocol==='https:'||(parsedEndpoint.protocol==='http:'&&['localhost','127.0.0.1'].indexOf(parsedEndpoint.hostname)!==-1));}catch(error){configured=false;}
   }
   if(configured){
     submitButton.disabled=false;
@@ -350,18 +351,21 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     if(!configured){status.dataset.state='error';status.textContent='Online submission is not configured. Please try again after the secure inquiry service is connected.';return;}
     var result=validate();if(!result.valid){status.dataset.state='error';status.textContent='Please correct the highlighted fields.';result.firstInvalid.focus();return;}
     submitButton.disabled=true;submitButton.textContent='Submitting…';status.dataset.state='loading';status.textContent='Securely submitting your inquiry…';
+    var controller=new AbortController();var timeout=window.setTimeout(function(){controller.abort();},15000);
     try{
-      var response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload()),credentials:'omit',referrerPolicy:'strict-origin-when-cross-origin'});
+      var response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload()),credentials:'omit',referrerPolicy:'no-referrer',redirect:'error',signal:controller.signal});
       var body={};try{body=await response.json();}catch(parseError){body={};}
-      if(response.status===201&&body.status==='received'&&typeof body.inquiry_id==='string'&&body.inquiry_id){
-        form.reset();status.dataset.state='success';status.textContent='Your collaboration inquiry has been received and durably recorded.';reference.textContent='Inquiry reference: '+body.inquiry_id;reference.hidden=false;submitButton.textContent='Inquiry Submitted';return;
+      if(response.status===201&&body.status==='received'&&typeof body.inquiry_id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.inquiry_id)&&typeof body.submitted_at==='string'&&!isNaN(Date.parse(body.submitted_at))){
+        form.reset();status.dataset.state='success';status.textContent='Your collaboration inquiry has been received.';reference.textContent='Inquiry reference: '+body.inquiry_id;reference.hidden=false;submitButton.textContent='Inquiry Submitted';return;
       }
       if(response.status===422&&body.field_errors&&typeof body.field_errors==='object'){
         Object.keys(body.field_errors).forEach(function(key){if(fields[key])setFieldError(fields[key].id,String(body.field_errors[key]));else if(key==='consent')setFieldError('consent',String(body.field_errors[key]));});status.dataset.state='error';status.textContent='Please correct the fields identified by the service.';
-      }else if(response.status===429){status.dataset.state='error';status.textContent='Too many attempts were received. Please wait before trying again.';}
+      }else if(response.status===409){status.dataset.state='error';status.textContent='A matching inquiry was already received recently. Please keep your existing reference or wait before submitting again.';}
+      else if(response.status===413){status.dataset.state='error';status.textContent='The inquiry is too large to submit. Shorten the text fields and try again.';}
+      else if(response.status===429){status.dataset.state='error';status.textContent='Too many attempts were received. Please wait before trying again.';}
       else{status.dataset.state='error';status.textContent='The inquiry could not be recorded. No confirmation has been issued; please try again later.';}
     }catch(error){status.dataset.state='error';status.textContent='The inquiry service could not be reached. No confirmation has been issued; check your connection and try again.';}
-    finally{if(status.dataset.state!=='success'){submitButton.disabled=false;submitButton.textContent='Submit Collaboration Inquiry';}}
+    finally{window.clearTimeout(timeout);if(status.dataset.state!=='success'){submitButton.disabled=false;submitButton.textContent='Submit Collaboration Inquiry';}}
   });
 })();
 </script>
