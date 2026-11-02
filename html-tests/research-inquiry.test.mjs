@@ -15,8 +15,9 @@ test('keeps the research inquiry integration framework-free', () => {
 test('published site data ships with intake disabled and every inventory value', async () => {
   const data = JSON.parse(await readFile(new URL('../data/site-data.json', import.meta.url), 'utf8'));
   assert.equal(typeof data.research_inquiry_url, 'string');
-  for (const key of html.matchAll(/data-inventory="([a-z_]+)"/g)) {
-    assert.equal(typeof data.research_inventory[key[1]], 'string', `missing research_inventory.${key[1]}`);
+  // Site data holds display strings rendered verbatim; the HTML fallbacks must match them exactly.
+  for (const [, key, fallback] of html.matchAll(/data-inventory="([a-z_]+)">([^<]*)</g)) {
+    assert.equal(data.research_inventory[key], fallback, `research_inventory.${key} differs from the HTML fallback`);
   }
 });
 

@@ -15,14 +15,14 @@
   },
   "research_inventory": {
     "source_repositories": "33",
-    "codebase_lines": "3M+",
+    "codebase_lines": "3M+ lines",
     "automated_tests": "65,000+",
     "platform_services": "28+",
     "plugins": "500+",
     "workflow_bundles": "1,000+",
     "execution_tools": "12,000+",
     "container_artifacts": "1,500+",
-    "pubmed_abstracts": "28M+",
-    "biomedical_vectors": "75M+"
+    "pubmed_abstracts": "28M+ unique abstracts",
+    "biomedical_vectors": "75M+ vectors"
   }
 }
