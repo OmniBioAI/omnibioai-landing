@@ -64,7 +64,7 @@ reports enabled plugins, and container availability varies by deployment.
 | TES tool definitions | 15,012 |
 | Workbench plugins | 351 |
 | Container inventory | Historical 1,120+ baseline; deployment-dependent |
-| Workflow bundles | 600+ |
+| Workflow bundles | 350+ |
 | Agentic pipelines | 10+ |
 | Knowledge domains | 150+ |
 | Microservices | 40 services in the current Studio Compose stack |
