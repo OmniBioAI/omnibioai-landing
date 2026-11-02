@@ -14,8 +14,6 @@
 <meta property="og:url" content="https://omnibioai.org/research-collaborations">
 <meta property="og:image" content="https://omnibioai.org/assets/omnibioai-logo.svg">
 <meta name="twitter:card" content="summary">
-<!-- Deployment rendering (or Vite) replaces this public URL placeholder; never insert secrets. -->
-<meta name="research-inquiry-endpoint" content="%VITE_RESEARCH_INQUIRY_URL%">
 <link rel="icon" type="image/svg+xml" href="assets/omnibioai-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -208,7 +206,16 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <table class="metrics-table">
             <thead><tr><th scope="col">Capability</th><th scope="col">Current reported scale</th></tr></thead>
             <tbody>
-              <tr><td>Source repositories</td><td>33</td></tr><tr><td>Codebase</td><td>3M+ lines</td></tr><tr><td>Automated tests</td><td>65,000+</td></tr><tr><td>Microservices/platform services</td><td>28+</td></tr><tr><td>Bioinformatics and AI/ML plugins</td><td>500+</td></tr><tr><td>Workflow bundles</td><td>1,000+</td></tr><tr><td>Execution/HPC/cloud tools</td><td>12,000+</td></tr><tr><td>Container artifacts</td><td>1,500+</td></tr><tr><td>PubMed corpus</td><td>28M+ unique abstracts</td></tr><tr><td>Biomedical vector index</td><td>75M+ vectors</td></tr>
+              <tr><td>Source repositories</td><td data-inventory="source_repositories">33</td></tr>
+              <tr><td>Codebase</td><td data-inventory="codebase_lines">3M+ lines</td></tr>
+              <tr><td>Automated tests</td><td data-inventory="automated_tests">65,000+</td></tr>
+              <tr><td>Microservices/platform services</td><td data-inventory="platform_services">28+</td></tr>
+              <tr><td>Bioinformatics and AI/ML plugins</td><td data-inventory="plugins">500+</td></tr>
+              <tr><td>Workflow bundles</td><td data-inventory="workflow_bundles">1,000+</td></tr>
+              <tr><td>Execution/HPC/cloud tools</td><td data-inventory="execution_tools">12,000+</td></tr>
+              <tr><td>Container artifacts</td><td data-inventory="container_artifacts">1,500+</td></tr>
+              <tr><td>PubMed corpus</td><td data-inventory="pubmed_abstracts">28M+ unique abstracts</td></tr>
+              <tr><td>Biomedical vector index</td><td data-inventory="biomedical_vectors">75M+ vectors</td></tr>
             </tbody>
           </table>
           <p class="qualification">Founder-provided inventory figures. Catalog presence does not mean every tool, plugin or workflow is deployed, operational or independently validated. These figures do not represent clinical validation, diagnostic accuracy, regulatory approval or compliance certification.</p>
@@ -306,20 +313,33 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   var reference=document.getElementById('inquiry-reference');
   var configState=document.getElementById('config-state');
   var fieldset=document.getElementById('inquiry-fieldset');
-  var endpoint=(document.querySelector('meta[name="research-inquiry-endpoint"]')||{}).content||'';
-  endpoint=endpoint.trim();
-  if(endpoint.indexOf('%VITE_')===0)endpoint='';
+  // Public, non-secret runtime configuration; the form stays disabled unless a safe endpoint is published.
+  var endpoint='';
   var configured=false;
-  if(endpoint){
-    try{var parsedEndpoint=new URL(endpoint,window.location.origin);configured=!parsedEndpoint.username&&!parsedEndpoint.password&&!parsedEndpoint.search&&!parsedEndpoint.hash&&parsedEndpoint.pathname==='/api/v1/research-inquiries'&&(parsedEndpoint.protocol==='https:'||(parsedEndpoint.protocol==='http:'&&['localhost','127.0.0.1'].indexOf(parsedEndpoint.hostname)!==-1));}catch(error){configured=false;}
+  function safeEndpoint(value){
+    if(typeof value!=='string'||!value.trim())return '';
+    try{var url=new URL(value.trim());}catch(error){return '';}
+    var loopback=url.protocol==='http:'&&['localhost','127.0.0.1'].indexOf(url.hostname)!==-1;
+    return (url.protocol==='https:'||loopback)&&!url.username&&!url.password&&!url.search&&!url.hash&&url.pathname==='/api/v1/research-inquiries'?url.href:'';
   }
-  if(configured){
-    fieldset.disabled=false;
-    submitButton.disabled=false;
-    configState.dataset.ready='true';
-    configState.textContent='Secure online submission is available.';
-    status.textContent='Required fields are marked with an asterisk.';
+  function applyInventory(inventory){
+    if(!inventory||typeof inventory!=='object')return;
+    document.querySelectorAll('[data-inventory]').forEach(function(cell){var value=inventory[cell.dataset.inventory];if(typeof value==='string'&&value.trim()&&value.length<=32)cell.textContent=value.trim();});
   }
+  var siteDataController=new AbortController();var siteDataTimer=window.setTimeout(function(){siteDataController.abort();},5000);
+  fetch('data/site-data.json',{cache:'no-cache',credentials:'same-origin',signal:siteDataController.signal})
+    .then(function(response){if(!response.ok)throw new Error('site data unavailable');return response.json();})
+    .then(function(data){
+      if(!data||typeof data!=='object')throw new Error('invalid site data');
+      applyInventory(data.research_inventory);
+      endpoint=safeEndpoint(data.research_inquiry_url);
+      if(!endpoint)return;
+      configured=true;fieldset.disabled=false;submitButton.disabled=false;
+      configState.dataset.ready='true';configState.textContent='Secure online submission is available.';
+      status.textContent='Required fields are marked with an asterisk.';
+    })
+    .catch(function(){/* Keep built-in inventory values and the disabled form. */})
+    .finally(function(){window.clearTimeout(siteDataTimer);});
 
   var fields={
     full_name:{id:'full-name',label:'Full name',max:120},institutional_email:{id:'email',label:'Institutional email',max:254,type:'email'},institution:{id:'institution',label:'Institution / Organization',max:200},department:{id:'department',label:'Department / Research Group',max:160},country:{id:'country',label:'Country',max:100},research_interest:{id:'research-interest',label:'Research interest area'},proposed_collaboration:{id:'proposed-collaboration',label:'Proposed collaboration',max:4000},potential_datasets:{id:'datasets',label:'Potential datasets',max:2500,optional:true},institutional_website:{id:'website',label:'Website',max:500,type:'url',optional:true},additional_information:{id:'additional',label:'Additional information',max:2500,optional:true}

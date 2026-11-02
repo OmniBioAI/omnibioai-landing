@@ -4,29 +4,36 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import test, { before, after } from 'node:test';
-import { renderResearchPage } from '../html-tools/render-research-page.mjs';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.RESEARCH_PLAYWRIGHT_MODULE || 'playwright');
 const html = await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8');
 const pageUrl = 'http://127.0.0.1:18763/research-collaborations';
+const siteDataUrl = 'http://127.0.0.1:18763/data/site-data.json';
 const endpoint = 'http://127.0.0.1:18764/api/v1/research-inquiries';
 const receipt = { status: 'received', inquiry_id: '00000000-0000-4000-8000-000000000001', submitted_at: '2026-11-02T12:00:00Z' };
 let browser;
 before(async () => { browser = await chromium.launch({ executablePath: process.env.RESEARCH_CHROMIUM_PATH }); });
 after(async () => { await browser?.close(); });
 
-async function open(t, responder, configured = true, viewport = { width: 1280, height: 900 }) {
+// configured: true uses the fixture endpoint, false publishes none, a string publishes that URL, null serves no site data.
+async function open(t, responder, configured = true, viewport = { width: 1280, height: 900 }, inventory = {}) {
   const page = await browser.newPage({ viewport });
   t.after(() => page.close());
   await page.route('**/*', async route => {
     if (route.request().url() === pageUrl) {
-      return route.fulfill({ contentType: 'text/html', body: renderResearchPage(html, configured ? endpoint : '') });
+      return route.fulfill({ contentType: 'text/html', body: html });
+    }
+    if (route.request().url() === siteDataUrl) {
+      if (configured === null) return route.fulfill({ status: 404, body: '' });
+      const url = typeof configured === 'string' ? configured : configured ? endpoint : '';
+      return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ research_inquiry_url: url, research_inventory: inventory }) });
     }
     if (route.request().url() === endpoint) return responder(route);
     return route.abort(); // No fonts, analytics, or external network in fixture tests.
   });
   await page.goto(pageUrl);
+  await page.waitForLoadState('networkidle');
   return page;
 }
 
@@ -55,6 +62,30 @@ test('unconfigured endpoint cannot send or confirm', async t => {
   await expectState(page, 'error');
   assert.equal(requests, 0);
   assert.equal(await page.locator('#inquiry-reference').isVisible(), false);
+});
+
+test('missing or unsafe published endpoints keep the form disabled', async t => {
+  for (const unsafe of [
+    null,
+    'http://api.example.test/api/v1/research-inquiries',
+    'https://token:secret@api.example.test/api/v1/research-inquiries',
+    'https://api.example.test/api/v1/research-inquiries?token=secret',
+    'https://api.example.test/api/v1/research-inquiries#token',
+    'https://api.example.test/admin',
+    '/api/v1/research-inquiries',
+  ]) {
+    const page = await open(t, () => {}, unsafe);
+    assert.equal(await page.locator('#submit-button').isDisabled(), true, String(unsafe));
+    assert.equal(await page.locator('#full-name').isDisabled(), true, String(unsafe));
+    assert.equal(await page.locator('#config-state').getAttribute('data-ready'), 'false');
+  }
+});
+
+test('inventory values come from site data with built-in fallbacks', async t => {
+  const page = await open(t, () => {}, false, undefined, { workflow_bundles: '350+', plugins: 42, codebase_lines: '' });
+  assert.equal(await page.locator('[data-inventory=workflow_bundles]').textContent(), '350+');
+  assert.equal(await page.locator('[data-inventory=plugins]').textContent(), '500+');
+  assert.equal(await page.locator('[data-inventory=codebase_lines]').textContent(), '3M+ lines');
 });
 
 test('required fields and consent prevent network submission', async t => {

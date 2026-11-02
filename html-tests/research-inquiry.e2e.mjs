@@ -6,7 +6,6 @@ import { createServer, request as httpRequest } from 'node:http';
 import { createRequire } from 'node:module';
 import { randomUUID } from 'node:crypto';
 import test, { before, after } from 'node:test';
-import { renderResearchPage } from '../html-tools/render-research-page.mjs';
 
 assert.equal(process.env.RESEARCH_E2E_DISPOSABLE, 'true', 'Explicit disposable-environment acknowledgement required');
 const gateway = new URL(process.env.RESEARCH_E2E_GATEWAY_URL);
@@ -19,7 +18,8 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.RESEARCH_PLAYWRIGHT_MODULE || 'playwright');
 const origin = 'http://127.0.0.1:18763';
 const endpoint = 'http://127.0.0.1:18764/api/v1/research-inquiries';
-const html = renderResearchPage(await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8'), endpoint);
+const html = await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8');
+const siteData = JSON.stringify({ research_inquiry_url: endpoint, research_inventory: {} });
 let pageServer, proxyServer, browser, receipt, payload, token;
 const listen = (server, port) => new Promise((resolve, reject) => {
   server.once('error', reject);
@@ -28,6 +28,10 @@ const listen = (server, port) => new Promise((resolve, reject) => {
 
 before(async () => {
   pageServer = createServer((req, res) => {
+    if (req.url === '/data/site-data.json') {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(siteData);
+    }
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end(html);
   });
