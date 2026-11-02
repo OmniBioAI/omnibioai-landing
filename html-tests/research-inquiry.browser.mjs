@@ -125,7 +125,6 @@ for (const [name, status, body] of [
   ['missing ID', 201, { status: 'received' }],
   ['invalid ID', 201, { ...receipt, inquiry_id: '<img src=x onerror=alert(1)>' }],
   ['missing timestamp', 201, { status: 'received', inquiry_id: receipt.inquiry_id }],
-  ['honeypot 204', 204, null],
   ['database failure', 503, { error: 'Unavailable' }],
   ['duplicate', 409, { error: 'Duplicate' }],
   ['too large', 413, { error: 'Too large' }],
@@ -150,6 +149,15 @@ test('validation response renders field error as text', async t => {
   await expectState(page, 'error');
   assert.equal(await page.locator('#email-error').textContent(), '<script>unsafe()</script>');
   assert.equal(await page.locator('#email-error script').count(), 0);
+});
+
+test('silent honeypot discard looks like success but issues no reference', async t => {
+  const page = await open(t, route => route.fulfill({ status: 204, body: '' }));
+  await submit(page);
+  await expectState(page, 'success');
+  assert.equal(await page.locator('#form-status').textContent(), 'Your collaboration inquiry has been received.');
+  assert.equal(await page.locator('#inquiry-reference').isVisible(), false);
+  assert.equal(await page.locator('#submit-button').isDisabled(), true);
 });
 
 test('network failure retains entered fields and no reference', async t => {

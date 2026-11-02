@@ -382,6 +382,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       if(response.status===201&&body.status==='received'&&typeof body.inquiry_id==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.inquiry_id)&&typeof body.submitted_at==='string'&&!isNaN(Date.parse(body.submitted_at))){
         form.reset();status.dataset.state='success';status.textContent='Your collaboration inquiry has been received.';reference.textContent='Inquiry reference: '+body.inquiry_id;reference.hidden=false;submitButton.textContent='Inquiry Submitted';return;
       }
+      // 204 is the service's silent discard (honeypot); look identical to success but issue no reference.
+      if(response.status===204){
+        form.reset();status.dataset.state='success';status.textContent='Your collaboration inquiry has been received.';submitButton.textContent='Inquiry Submitted';return;
+      }
       if(response.status===422&&body.field_errors&&typeof body.field_errors==='object'){
         var serverInvalid=null;Object.keys(body.field_errors).forEach(function(key){var id=fields[key]?fields[key].id:(key==='consent'?'consent':null);if(!id)return;setFieldError(id,String(body.field_errors[key]));if(!serverInvalid)serverInvalid=document.getElementById(id);});status.dataset.state='error';status.textContent='Please correct the fields identified by the service.';if(serverInvalid)serverInvalid.focus();
       }else if(response.status===409){status.dataset.state='error';status.textContent='A matching inquiry was already received recently. Please keep your existing reference or wait before submitting again.';}

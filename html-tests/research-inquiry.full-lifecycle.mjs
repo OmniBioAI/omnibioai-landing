@@ -148,7 +148,7 @@ test('browser institutional email validation reaches Auth and creates no receipt
   } finally { await page.close(); }
 });
 
-test('browser honeypot is discarded and never shows success', async () => {
+test('browser honeypot is discarded and shows success without a reference', async () => {
   const page = await openPage();
   try {
     await fill(page);
@@ -159,7 +159,7 @@ test('browser honeypot is discarded and never shows success', async () => {
     const response = await responsePromise;
     evidence.browser_statuses.honeypot = response.status();
     assert.equal(response.status(), 204);
-    await waitState(page, 'error');
+    await waitState(page, 'success');
     assert.equal(await page.locator('#inquiry-reference').isVisible(), false);
   } finally { await page.close(); }
 });
