@@ -25,6 +25,7 @@ Everything the site serves lives in `public/`; Cloudflare Pages publishes only t
 | `/privacy` | `public/privacy.html` | Privacy policy |
 | `/terms` | `public/terms.html` | Terms of service |
 | `/admin` | `public/admin.html` | Beta access admin panel (`noindex`, `no-store` via `public/_headers`) |
+| any unknown path | `public/404.html` | Not-found page, returned with status 404 (without it, Pages would serve the home page with 200) |
 
 `public/data/site-data.json` holds the catalog figures, the research inventory, and `research_inquiry_url`, the endpoint the inquiry form submits to. `public/_headers` sets the response headers.
 
