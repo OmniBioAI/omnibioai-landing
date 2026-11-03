@@ -120,7 +120,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .about-cta{background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-top:4rem;flex-wrap:wrap;box-shadow:var(--glow)}
 .about-cta-text h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.5rem}
 .about-cta-text p{color:var(--text-muted);font-size:0.88rem;font-weight:300}
+.cta-actions{display:flex;flex-direction:column;align-items:flex-start;gap:0.65rem}
 .cta-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.cta-email{font-size:0.72rem;color:var(--text-dim)}
+.cta-email a{color:var(--accent);text-decoration:none}
+.cta-email a:hover{text-decoration:underline}
 .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04080f;padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all 0.2s;font-family:'Space Grotesk',sans-serif;letter-spacing:0.02em}
 .btn-primary:hover{filter:brightness(1.1);box-shadow:0 0 25px rgba(0,212,170,0.25);transform:translateY(-1px)}
 .btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-muted);padding:0.8rem 1.8rem;border-radius:3px;text-decoration:none;font-weight:400;font-size:0.88rem;transition:all 0.2s;border:1px solid var(--border2)}
@@ -129,7 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 /* ── Footer ── */
 footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
 .footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
-.footer-links{display:flex;gap:1.5rem;list-style:none}
+.footer-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
 .footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
 .footer-links a:hover{color:var(--accent)}
 
@@ -550,6 +554,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
         </div>
       </div>
     </div>
+    <a href="research-collaborations.html#inquiry" class="pub-link">Working on related problems? Propose a research collaboration →</a>
   </div>
 
   <!-- ── CTA ── -->
@@ -558,9 +563,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <h3>Interested in collaborating?</h3>
       <p>Whether you're a researcher, institution, or biotech — I'd love to hear about your multi-omics challenges.</p>
     </div>
-    <div class="cta-btns">
-      <a href="index.html#request" class="btn-primary">↗ Request Beta Access</a>
-      <a href="mailto:manish@omnibioai.org" class="btn-secondary">✉ Get in touch</a>
+    <div class="cta-actions">
+      <div class="cta-btns">
+        <a href="research-collaborations.html#inquiry" class="btn-primary">Propose a collaboration</a>
+        <a href="index.html#request" class="btn-secondary">Request Beta Access</a>
+      </div>
+      <p class="cta-email">or email <a href="mailto:research@omnibioai.org">research@omnibioai.org</a></p>
     </div>
   </div>
 
