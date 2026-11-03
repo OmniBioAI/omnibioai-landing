@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const html = await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8');
+const html = await readFile(new URL('../public/research-collaborations.html', import.meta.url), 'utf8');
 
 test('keeps the research inquiry integration framework-free', () => {
   assert.match(html, /fetch\('data\/site-data\.json'/);
@@ -13,7 +13,7 @@ test('keeps the research inquiry integration framework-free', () => {
 });
 
 test('published site data ships with intake disabled and every inventory value', async () => {
-  const data = JSON.parse(await readFile(new URL('../data/site-data.json', import.meta.url), 'utf8'));
+  const data = JSON.parse(await readFile(new URL('../public/data/site-data.json', import.meta.url), 'utf8'));
   assert.equal(typeof data.research_inquiry_url, 'string');
   // Site data holds display strings rendered verbatim; the HTML fallbacks must match them exactly.
   for (const [, key, fallback] of html.matchAll(/data-inventory="([a-z_]+)">([^<]*)</g)) {

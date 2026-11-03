@@ -11,19 +11,22 @@
 
 This repository contains the independently deployable OmniBioAI public website. The deployed site is maintained as standalone HTML, CSS, and browser JavaScript with no React, Node.js, package installation, or build step.
 
+Everything the site serves lives in `public/`; Cloudflare Pages publishes only that directory. Tests, tooling, and documentation stay outside it and are never served.
+
 ---
 
 ## Pages
 
-| File | Description |
-|------|-------------|
-| Route | Description |
-|------|-------------|
-| `/` and `/index.html` | Main landing page, product catalogs, publications, and beta form |
-| `/about` and `/about.html` | About and team page |
-| `/privacy` and `/privacy.html` | Privacy policy |
-| `/terms` and `/terms.html` | Terms of service |
-| `/admin` and `/admin.html` | No-index beta access admin panel |
+| Route | File | Description |
+|-------|------|-------------|
+| `/` | `public/index.html` | Main landing page, product catalogs, publications, and beta form |
+| `/about` | `public/about.html` | About and team page |
+| `/research-collaborations` | `public/research-collaborations.html` | Research collaborations and inquiry form |
+| `/privacy` | `public/privacy.html` | Privacy policy |
+| `/terms` | `public/terms.html` | Terms of service |
+| `/admin` | `public/admin.html` | Beta access admin panel (`noindex`, `no-store` via `public/_headers`) |
+
+`public/data/site-data.json` holds the catalog figures, the research inventory, and `research_inquiry_url`, the endpoint the inquiry form submits to. `public/_headers` sets the response headers.
 
 ---
 
@@ -169,19 +172,26 @@ OmniBioAI Studio v0.8.0-beta is in **private beta**. Researchers can apply via t
 
 ## Development
 
-No package installation or compilation is required. Edit the maintained root HTML files and assets directly. For a local browser preview, use any static file server, for example:
+No package installation or compilation is required. Edit the files in `public/` directly. For a local browser preview, serve that directory with any static file server, for example:
 
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory public
 ```
 
-The deployable artifact is the reviewed static HTML, `assets/`, and public `data/` content in the repository root. Deployment remains an explicit operator action; this repository does not auto-deploy production changes.
+Cloudflare Pages (project `omnibioai-landing`) deploys through its Git integration with no build command and **build output directory `public`**. Every push to `main` deploys production; other branches get preview deployments.
+
+Research inquiry form tests (Node 22; the browser suite needs Playwright and Chromium):
+
+```bash
+node --test html-tests/research-inquiry.test.mjs
+RESEARCH_PLAYWRIGHT_MODULE=<playwright module> RESEARCH_CHROMIUM_PATH=<chromium> node --test html-tests/research-inquiry.browser.mjs
+```
 
 ## Beta approval release pairing
 
-The live beta-approval pair is `workers/beta-requests-live/` and the released root `admin.html`. Treat these as one tested release unit.
+The beta-request Worker source lives in the private `omnibioai-beta-worker` repository. The live pair is that repository's `live/` Worker and `public/admin.html`; treat them as one tested release unit. `admin-live/admin.html` is the preserved copy of the previously deployed admin page and is not published.
 
-The newer `workers/beta-requests/` and tracked `admin.html` in the local working branch are an undeployed pair. Test and release them together; do not publish either one independently.
+The newer, never-deployed Worker (`next/` in `omnibioai-beta-worker`) pairs with a newer admin page that is not committed here. Test and release them together; do not publish either one independently.
 
 ---
 
@@ -190,6 +200,8 @@ The newer `workers/beta-requests/` and tracked `admin.html` in the local working
 | Repo | Description |
 |------|-------------|
 | [omnibioai-studio](https://github.com/OmniBioAI/omnibioai-studio) | Desktop application (Electron) — releases and installers |
+| `omnibioai-research-inquiries` (private) | Cloudflare Worker behind the research inquiry form (`inquiries.omnibioai.org`) |
+| `omnibioai-beta-worker` (private) | Cloudflare Worker behind the beta access form and admin panel |
 
 ---
 

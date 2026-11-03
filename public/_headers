@@ -1,0 +1,18 @@
+# Cloudflare Pages response headers. This file is applied by Pages, not served.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Beta-request admin panel: never indexed or cached.
+/admin
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+/admin.html
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
+# Runtime configuration read by the pages; keep it fresh.
+/data/*
+  Cache-Control: no-cache

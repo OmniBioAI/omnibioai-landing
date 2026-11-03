@@ -7,7 +7,7 @@ import test, { before, after } from 'node:test';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.RESEARCH_PLAYWRIGHT_MODULE || 'playwright');
-const html = await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8');
+const html = await readFile(new URL('../public/research-collaborations.html', import.meta.url), 'utf8');
 const pageUrl = 'http://127.0.0.1:18763/research-collaborations';
 const siteDataUrl = 'http://127.0.0.1:18763/data/site-data.json';
 const endpoint = 'http://127.0.0.1:18764/api/v1/research-inquiries';

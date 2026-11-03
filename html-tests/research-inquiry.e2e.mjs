@@ -18,7 +18,7 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.RESEARCH_PLAYWRIGHT_MODULE || 'playwright');
 const origin = 'http://127.0.0.1:18763';
 const endpoint = 'http://127.0.0.1:18764/api/v1/research-inquiries';
-const html = await readFile(new URL('../research-collaborations.html', import.meta.url), 'utf8');
+const html = await readFile(new URL('../public/research-collaborations.html', import.meta.url), 'utf8');
 const siteData = JSON.stringify({ research_inquiry_url: endpoint, research_inventory: {} });
 let pageServer, proxyServer, browser, receipt, payload, token;
 const listen = (server, port) => new Promise((resolve, reject) => {
