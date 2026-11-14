@@ -9,9 +9,9 @@
 
 ## Overview
 
-This repository contains the independently deployable OmniBioAI public website. The deployed site is maintained as standalone HTML, CSS, and browser JavaScript with no React, Node.js, package installation, or build step.
+This repository contains the independently deployable OmniBioAI public website: static HTML, CSS, and browser JavaScript with no client framework.
 
-Everything the site serves lives in `public/`; Cloudflare Pages publishes only that directory. Tests, tooling, and documentation stay outside it and are never served.
+Everything the site serves lives in `public/`; Cloudflare Pages publishes only that directory. The landing page, `public/index.html`, is **generated** from `src/` by [Eleventy](https://www.11ty.dev/) and committed; every other page in `public/` is still edited by hand. Tests, tooling, and documentation stay outside `public/` and are never served.
 
 ---
 
@@ -19,7 +19,7 @@ Everything the site serves lives in `public/`; Cloudflare Pages publishes only t
 
 | Route | File | Description |
 |-------|------|-------------|
-| `/` | `public/index.html` | Main landing page, product catalogs, publications, and beta form |
+| `/` | `public/index.html` | Main landing page, product catalogs, publications, and beta form — **generated from `src/`, do not edit directly** (see [How to edit the site](#how-to-edit-the-site)) |
 | `/about` | `public/about.html` | About and team page |
 | `/research-collaborations` | `public/research-collaborations.html` | Research collaborations and inquiry form |
 | `/privacy` | `public/privacy.html` | Privacy policy |
@@ -171,15 +171,108 @@ OmniBioAI Studio v0.8.0-beta is in **private beta**. Researchers can apply via t
 
 ---
 
+## How to edit the site
+
+The landing page (`/`) is built from `src/` into `public/index.html`. **Never edit `public/index.html` by hand**: the next build overwrites it, and CI (`.github/workflows/build-check.yml`) fails when the committed file doesn't match what `src/` builds. The other pages (`about.html`, `research-collaborations.html`, `privacy.html`, `terms.html`, `404.html`, `admin.html`) are still plain HTML in `public/`, edited directly.
+
+### Build and preview locally
+
+Requires Node 18+ (CI uses 22).
+
+```bash
+npm install          # once
+npm run dev          # rebuild on save + live preview at http://localhost:8080
+npm run build        # one-off build → public/index.html
+npm run check        # build, then fail if public/index.html differs from git
+```
+
+Always commit the `src/` change **and** the rebuilt `public/index.html` together.
+
+### Where each section lives
+
+The page is `src/index.njk`, which includes the sections in order. The shared `<head>`, inlined CSS and inlined JS live in `src/_includes/layouts/base.njk`.
+
+| Section (anchor) | Markup | Data | Styles |
+|---|---|---|---|
+| Nav | `src/_includes/sections/nav.njk` | — | `03-nav.css` |
+| Hero + stats | `sections/hero.njk` | organisms count ← `genomes.json` | `01-webstudio-qr.css`, `04-hero.css` |
+| Literature AI (`#literature-ai`) | `sections/literature-ai.njk` | — | `06-literature-ai.css` |
+| Core capabilities (`#features`) | `sections/capabilities.njk` | — | `07-capabilities.css` |
+| Integrations (`#enterprise-integrations`) | `sections/integrations.njk` | `src/data/integrations.json` | `08-integrations.css` |
+| Reference databases (`#reference-databases`) | `sections/reference-dbs.njk` | `src/data/referenceDatabases.json` | `08-integrations.css` |
+| Catalogs (`#catalogs`) | `sections/catalogs.njk` | `src/data/catalogs.json` | `09-catalogs.css` |
+| Omics (`#omics`) | `sections/omics.njk` | `src/data/omics.json` | `10-omics.css` |
+| Reference genomes (`#genomes`) | `sections/genomes.njk` | `src/data/genomes.json` | `11-genomes.css` |
+| System requirements (hidden, HTML comment) | `sections/requirements.njk` | — | `13-requirements.css` |
+| Desktop apps (`#download`) | `sections/desktop-apps.njk` | — | `14-desktop-apps.css` |
+| Architecture + PHI (`#architecture`, `#privacy`) | `sections/architecture.njk` | organisms count ← `genomes.json` | `12-architecture.css` |
+| Request access form (`#request`) | `sections/request-access.njk`, `sections/toast.njk` | — | `15-request-access.css`, `17-toast.css` |
+| Footer | `sections/footer.njk` | — | `16-footer.css` |
+
+- **Styles**: `src/styles/NN-*.css`, and **scripts**: `src/scripts/NN-*.js`. The build inlines every file of each folder into the page's single `<style>` / `<script>`, in filename order, so the numeric prefix sets the cascade and execution order. `02-base.css` holds the colour tokens; `18-responsive.css` holds all media-query overrides (kept last so it wins). The scripts share one classic script scope, so the form's inline `onclick`/`onsubmit` handlers can call the functions they define.
+- The integration and reference-database sections share `src/_includes/partials/card-catalog.njk` (filter bar and card groups).
+- **Adding a new section**: create `src/_includes/sections/<name>.njk` (start it with a `<!-- ── Name ── -->` comment and a `<section id="…">`), include it at the right place in `src/index.njk`, and add `src/styles/NN-<name>.css` if needed. Pick a number that puts it before `18-responsive.css`.
+
+### Add an integration
+
+Add one object to the right group's `items` in `src/data/integrations.json`:
+
+```json
+{
+  "name": "Neptune",
+  "description": "Experiments, runs and metadata",
+  "url": "https://docs.omnibioai.org/integrations/details/neptune/"
+}
+```
+
+The card, the group count, the filter-button count and the "N integrations across M categories" total are all computed from the file. A new category is a new group object `{ "id", "title", "description", "items": [] }`. Its `id` becomes the filter's `data-group`.
+
+### Add a reference database
+
+Add one object to the right group's `items` in `src/data/referenceDatabases.json`:
+
+```json
+{"name": "NewDB", "description": "What it provides"}
+```
+
+Cards link to their group's `url` (the docs catalog anchor). Add `"status": "scaffold"` or `"status": "licence required"` for entries that are not connected yet. The implemented / licence-required / scaffolded breakdown and the totals are recomputed. The matching tile in `src/data/catalogs.json` ("Reference database plugins") is a hand-written figure, so update its `detail` text too.
+
+### Add a reference genome
+
+Append one object to `src/data/genomes.json`:
+
+```json
+{
+  "species": "Felis catus",
+  "commonName": "Cat",
+  "assemblies": "F.catus_Fca126",
+  "annotation": "Ensembl 116",
+  "useCases": "Comparative genomics",
+  "onDisk": [{"file": "Genome"}, {"file": "GTF"}, {"index": "BWA"}]
+}
+```
+
+`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat and the architecture tile all follow the number of entries. The rest of the intro sentence (transcripts and prepared indexes) is prose in `sections/genomes.njk`.
+
+### Catalog tiles and omics areas
+
+`src/data/catalogs.json` holds the five catalog tiles: `value`, `label`, `detail`, `url`, plus `attributes`, the `data-*` hooks the page scripts and `site-data.json` use to update the figure at runtime. Keep those hooks as they are. `src/data/omics.json` holds the omics cards: `label`, `title`, `description`, `tags`.
+
+### Runtime figures
+
+Elements with `data-site-stat="<key>"` are overwritten in the browser by `public/data/site-data.json` → `catalogs.<key>`. When you change a count in `src/` that has such a hook (integrations, reference databases, organisms, workflows, plugins, TES tools, API routes, literature indexes), update `site-data.json` too, or visitors will see the old figure once the JSON loads.
+
 ## Development
 
-No package installation or compilation is required. Edit the files in `public/` directly. For a local browser preview, serve that directory with any static file server, for example:
+Cloudflare Pages (project `omnibioai-landing`) deploys through its Git integration with no build command and **build output directory `public`**. Every push to `main` deploys production; other branches get preview deployments. Because the generated `public/index.html` is committed, nothing changes on the Pages side and no build runs there. `package.json` exists only for local and CI builds.
+
+For a quick preview without Node, serve `public/` with any static file server, for example:
 
 ```bash
 python3 -m http.server 8000 --directory public
 ```
 
-Cloudflare Pages (project `omnibioai-landing`) deploys through its Git integration with no build command and **build output directory `public`**. Every push to `main` deploys production; other branches get preview deployments.
+The `Sync Version` workflow rewrites release versions in both `src/_includes/sections/*.njk` and `public/index.html`, so the two stay identical.
 
 Research inquiry form tests (Node 22; the browser suite needs Playwright and Chromium):
 

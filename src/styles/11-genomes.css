@@ -1,0 +1,19 @@
+/* ── Genomes table ── */
+.genomes-wrap{overflow-x:auto}
+.genomes-table{width:100%;border-collapse:collapse;border:1px solid var(--border);font-size:0.82rem;min-width:720px}
+.genomes-table th{background:var(--bg2);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;font-weight:400}
+.genomes-table td{border:1px solid var(--border);padding:0.75rem 1rem;color:var(--text-muted);vertical-align:top;line-height:1.5}
+.genomes-table tr:hover td{background:var(--surface);color:var(--text)}
+.genome-species{font-weight:600;color:var(--text);font-size:0.83rem;display:block}
+.genome-common{font-size:0.75rem;color:var(--text-dim);font-family:'JetBrains Mono',monospace}
+.genome-asm{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-muted)}
+.idx-badge{font-family:'JetBrains Mono',monospace;font-size:0.58rem;border-radius:2px;padding:0.12rem 0.4rem;display:inline-block;margin:2px 2px 2px 0;white-space:nowrap}
+.idx-on{background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);color:var(--accent)}
+.idx-file{background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-muted)}
+.genome-legend{display:flex;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--text-dim)}
+.genome-legend>span{display:flex;align-items:center;gap:6px}
+.genome-legend .idx-badge{margin:0}
+.genome-note{margin-top:0.75rem;font-size:0.75rem;color:var(--text-dim);font-weight:300}
+.genome-note a{color:var(--accent);text-decoration:none}
+.genome-note a:hover{text-decoration:underline}
+

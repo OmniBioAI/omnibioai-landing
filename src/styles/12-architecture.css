@@ -1,0 +1,8 @@
+/* ── Architecture ── */
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.arch-diagram{background:var(--bg2);border:1px solid var(--border);padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem}
+.arch-layer{border:1px solid var(--border);padding:0.65rem 1rem;margin-bottom:2px;color:var(--text-muted);display:flex;align-items:center;gap:10px;transition:all 0.2s;background:var(--bg)}
+.arch-layer:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,212,170,0.03);box-shadow:inset 3px 0 0 var(--accent)}
+.arch-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 6px var(--accent)}
+.arch-conn{text-align:center;color:var(--text-dim);font-size:0.62rem;padding:3px 0 3px 20px;opacity:0.6}
+

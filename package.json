@@ -1,0 +1,17 @@
+{
+  "name": "omnibioai-landing",
+  "private": true,
+  "type": "module",
+  "description": "Source for the OmniBioAI landing page; builds public/index.html",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve --port=8080",
+    "check": "eleventy && git diff --exit-code -- public/index.html"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.8"
+  }
+}

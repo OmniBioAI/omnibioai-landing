@@ -1,0 +1,86 @@
+<!-- ── Request ── -->
+<section id="request" style="max-width:680px">
+  <div class="cta-wrap">
+    <span class="sec-tag">// Apply for private beta</span>
+    <h2>Request Access</h2>
+    <p>Get access to OmniBioAI Studio v0.8.2-beta. Accelerate your multi-omics data integration with robust, explainable AI workflows.</p>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-grid2">
+        <div class="form-row">
+          <label class="form-label" for="first-name">First Name *</label>
+          <input type="text" id="first-name" class="form-input" placeholder="Alex" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="last-name">Last Name *</label>
+          <input type="text" id="last-name" class="form-input" placeholder="Carter" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="email">Institutional Email *</label>
+        <input type="email" id="email" class="form-input" placeholder="alex.carter@university.edu" required>
+      </div>
+      <div class="form-grid2">
+        <div class="form-row">
+          <label class="form-label" for="institution">Organization / Lab *</label>
+          <input type="text" id="institution" class="form-input" placeholder="Center for Genomic Medicine" required>
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="role">Role *</label>
+          <select id="role" class="form-select" required>
+            <option value="" disabled selected>Select role...</option>
+            <option value="phd_student">PhD Student</option>
+            <option value="postdoc">Postdoctoral Researcher</option>
+            <option value="research_scientist">Research Scientist</option>
+            <option value="bioinformatician">Bioinformatician</option>
+            <option value="data_scientist">Data Scientist</option>
+            <option value="pi">Principal Investigator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="use-case">Primary Research Area *</label>
+        <select id="use-case" class="form-select" required>
+          <option value="" disabled selected>Select modality...</option>
+          <option value="scrna">Single-Cell Transcriptomics</option>
+          <option value="wgs">WGS / Exome Variant Analysis</option>
+          <option value="proteomics">Proteomics &amp; Mass Spec</option>
+          <option value="drug_discovery">Target Identification / GNNs</option>
+          <option value="other">Other Multi-Modal Research</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <span class="form-label" id="platform-label">Your Operating System *</span>
+        <div class="platform-grid" role="radiogroup" aria-labelledby="platform-label" aria-required="true">
+          <div class="platform-card" id="platform-linux" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('linux')" onkeydown="platformKey(event,'linux')">
+            <span class="platform-icon">🐧</span>
+            <span class="platform-name">Linux</span>
+            <span class="platform-hint">Ubuntu / Debian / RHEL</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
+          </div>
+          <div class="platform-card" id="platform-mac" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('mac')" onkeydown="platformKey(event,'mac')">
+            <span class="platform-icon">🍎</span>
+            <span class="platform-name">macOS</span>
+            <span class="platform-hint">Apple Silicon or Intel</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
+          </div>
+          <div class="platform-card" id="platform-windows" role="radio" aria-checked="false" tabindex="0" onclick="selectPlatform('windows')" onkeydown="platformKey(event,'windows')">
+            <span class="platform-icon">🪟</span>
+            <span class="platform-name">Windows</span>
+            <span class="platform-hint">WSL2 required</span>
+            <span class="platform-badge soon">Desktop app coming soon</span>
+          </div>
+        </div>
+        <input type="hidden" name="platform" id="platform-value">
+        <div id="platform-error" style="display:none;font-size:0.72rem;color:#e24b4a;font-family:'JetBrains Mono',monospace;margin-top:0.4rem">Please select your operating system</div>
+      </div>
+      <div class="form-row">
+        <label class="form-label" for="research">Intended Analysis / Pipelines *</label>
+        <textarea id="research" class="form-textarea" rows="3" placeholder="Briefly describe your computational workflows or pipeline orchestration goals..." required></textarea>
+      </div>
+      <p class="form-consent" style="font-size:0.72rem;color:var(--text-dim);margin:0 0 0.75rem;line-height:1.6">By submitting, you agree to our <a href="terms.html" style="color:var(--accent)">Terms of Service</a> and acknowledge our <a href="privacy.html" style="color:var(--accent)">Privacy Policy</a>, which explains how we use the details you provide to review your request.</p>
+      <button type="submit" class="form-submit" id="submit-btn">Submit Request</button>
+      <div id="submit-error" style="display:none;font-size:0.72rem;color:#e24b4a;font-family:'JetBrains Mono',monospace;margin-top:0.5rem">Submission failed — please email manish@omnibioai.org</div>
+    </form>
+  </div>
+</section>

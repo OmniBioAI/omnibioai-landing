@@ -1,0 +1,13 @@
+{% import "partials/card-catalog.njk" as catalog -%}
+<!-- ── Enterprise Integrations ── -->
+<section id="enterprise-integrations">
+  <span class="sec-tag">// Enterprise &amp; scientific workflow integrations</span>
+  <h2 class="sec-title">Scientific work,<br>connected across your stack</h2>
+  <p class="sec-sub">OmniBioAI's agentic workflows connect research, data, compute, MLOps, cloud infrastructure, and enterprise systems — so scientists and AI agents can work across the tools your organization already uses, without leaving the platform.</p>
+  <div class="int-summary">
+    <span class="int-total"><strong data-site-stat="integrations">{{ integrations | itemCount }}</strong> integrations across <strong data-site-stat="integration_categories">{{ integrations | length }}</strong> categories</span>
+    <a href="https://docs.omnibioai.org/integrations/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
+  </div>
+  {{ catalog.filters(integrations, "Filter integrations by category") }}
+{{- catalog.cardGroups(integrations) }}
+</section>

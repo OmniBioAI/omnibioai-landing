@@ -1,0 +1,24 @@
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:64px;background:rgba(4,8,15,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-logo-img{display:block;width:auto;height:22px;filter:drop-shadow(0 0 8px rgba(0,212,170,0.35))}
+.nav-version{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--text-dim);font-weight:300;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.03em;transition:color 0.2s;font-weight:400;white-space:nowrap}
+.nav-more{position:relative;display:flex;align-items:center;height:64px}
+.nav-more-btn{background:none;border:none;padding:0;cursor:pointer;font-family:inherit;font-size:0.82rem;letter-spacing:0.03em;color:var(--text-muted);transition:color 0.2s;white-space:nowrap}
+.nav-more-btn:hover,.nav-more.open .nav-more-btn{color:var(--accent)}
+.nav-more-menu{display:none;position:absolute;top:100%;right:-1rem;min-width:190px;list-style:none;background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:0.4rem 0;box-shadow:0 16px 40px rgba(0,0,0,0.55)}
+.nav-more:hover .nav-more-menu,.nav-more.open .nav-more-menu{display:block}
+.nav-more-menu a{display:block;padding:0.45rem 1.1rem}
+.nav-more-menu a:hover{background:rgba(0,212,170,0.06)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;padding:0 9px;background:none;border:1px solid var(--border2);border-radius:4px;cursor:pointer}
+.nav-toggle span{display:block;height:1.5px;background:var(--accent);transition:transform 0.2s,opacity 0.2s}
+nav.open .nav-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+nav.open .nav-toggle span:nth-child(2){opacity:0}
+nav.open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{white-space:nowrap;background:transparent!important;color:var(--accent)!important;border:1px solid var(--accent)!important;padding:0.4rem 1.1rem;border-radius:4px;font-size:0.82rem!important;transition:all 0.2s!important}
+.nav-cta:hover{background:rgba(0,212,170,0.1)!important;box-shadow:0 0 20px rgba(0,212,170,0.15)!important}
+
+

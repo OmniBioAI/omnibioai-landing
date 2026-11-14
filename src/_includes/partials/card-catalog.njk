@@ -1,0 +1,24 @@
+{#- Filter bar and card groups shared by the integrations and reference-database
+    sections. Each group is { id, title, description, url?, items: [...] };
+    an item links to its own url, or to the group's url when it has none. -#}
+{% macro filters(groups, label) -%}
+<div class="int-filters" role="group" aria-label="{{ label }}">
+    <button type="button" class="int-filter" data-group="all" aria-pressed="true">All <span>{{ groups | itemCount }}</span></button>
+{%- for group in groups %}
+    <button type="button" class="int-filter" data-group="{{ group.id }}" aria-pressed="false">{{ group.title }} <span>{{ group.items | length }}</span></button>
+{%- endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro cardGroups(groups) -%}
+{%- for group in groups %}
+  <div class="int-group" data-group="{{ group.id }}">
+    <div class="int-group-head"><h3 class="int-group-title">{{ group.title }}</h3><span class="int-group-count">{{ group.items | length }}</span><p class="int-group-sub">{{ group.description }}</p></div>
+    <div class="int-grid">
+{%- for item in group.items %}
+      <a class="int-card{% if item.status %} int-card-scaffold{% endif %}" href="{{ item.url or group.url }}" target="_blank"><span class="int-name">{{ item.name }}{% if item.status %} <span class="int-tag">{{ item.status }}</span>{% endif %}</span><span class="int-desc">{{ item.description }}</span></a>
+{%- endfor %}
+    </div>
+  </div>
+{%- endfor %}
+{%- endmacro %}

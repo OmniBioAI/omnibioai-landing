@@ -1,0 +1,37 @@
+<!-- ── Reference Genomes ── -->
+<section id="genomes">
+  <span class="sec-tag">// Reference genomes</span>
+  <h2 class="sec-title">Reference Genomes</h2>
+  <p class="sec-sub">{{ genomes | length }} species with genome sequence and gene annotation on disk, and transcript sequences for 11 of them. Prepared aligner indexes are ready for human (STAR, Cell Ranger) and mouse (Bowtie2, Cell Ranger).</p>
+  <div class="genomes-wrap">
+    <table class="genomes-table">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Common Name</th>
+          <th>Assemblies</th>
+          <th>Annotation</th>
+          <th>Use Cases</th>
+          <th>On disk</th>
+        </tr>
+      </thead>
+      <tbody>
+{%- for genome in genomes %}
+        <tr>
+          <td><span class="genome-species">{{ genome.species }}</span></td>
+          <td><span class="genome-common">{{ genome.commonName }}</span></td>
+          <td><span class="genome-asm">{{ genome.assemblies }}</span></td>
+          <td>{{ genome.annotation }}</td>
+          <td>{{ genome.useCases }}</td>
+          <td>{% for asset in genome.onDisk %}{% if asset.index %}<span class="idx-badge idx-on">{{ asset.index }}</span>{% else %}<span class="idx-badge idx-file">{{ asset.file }}</span>{% endif %}{% endfor %}</td>
+        </tr>
+{%- endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="genome-legend">
+    <span><span class="idx-badge idx-on">STAR</span> Prepared index, ready to use</span>
+    <span><span class="idx-badge idx-file">GTF</span> Sequence or annotation file</span>
+  </div>
+  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
+</section>

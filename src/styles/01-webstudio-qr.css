@@ -1,0 +1,5 @@
+.webstudio-qr{display:inline-flex;align-items:center;gap:1rem;margin-bottom:3.5rem;padding:0.6rem 1.25rem 0.6rem 0.6rem;border:1px solid var(--border);border-radius:6px;background:rgba(8,14,26,0.6);text-decoration:none;text-align:left;transition:border-color 0.2s}
+.webstudio-qr:hover{border-color:var(--border2)}
+.webstudio-qr img{width:84px;height:84px;display:block;padding:5px;background:#fff;border-radius:4px;flex-shrink:0}
+.qr-title{display:block;font-size:0.85rem;font-weight:500;color:var(--text)}
+.qr-label{display:block;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);letter-spacing:0.04em;margin-top:0.2rem}

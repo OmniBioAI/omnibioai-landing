@@ -1,0 +1,13 @@
+{% import "partials/card-catalog.njk" as catalog -%}
+<section id="reference-databases">
+  <span class="sec-tag">// Biomedical reference databases</span>
+  <h2 class="sec-title">Reference knowledge,<br>one query away</h2>
+  <p class="sec-sub">Reference-database plugins give scientists and AI agents read-only access to the genomic, clinical, protein, chemical and ontology resources that analyses depend on, from variant interpretation to target discovery.</p>
+  <div class="int-summary">
+    <span class="int-total"><strong data-site-stat="reference_databases">{{ referenceDatabases | itemCount }}</strong> reference databases across <strong data-site-stat="integration_categories">{{ referenceDatabases | length }}</strong> categories · {{ referenceDatabases | statusCount("implemented") }} implemented · {{ referenceDatabases | statusCount("licence required") }} licence-required · {{ referenceDatabases | statusCount("scaffold") }} scaffolded</span>
+    <a href="https://docs.omnibioai.org/reference-data/database-catalog/" target="_blank" class="int-docs-link">Browse the full catalog in the docs ↗</a>
+  </div>
+  {{ catalog.filters(referenceDatabases, "Filter reference databases by category") }}
+{{- catalog.cardGroups(referenceDatabases) }}
+  <p class="int-note">Entries tagged <span class="int-tag">scaffold</span> are registered but not yet connected to their upstream resource; <span class="int-tag">licence required</span> marks a resource whose terms or undocumented API rule out integration until a licence is arranged. The other {{ referenceDatabases | statusCount("implemented") }} are implemented in source; a few of them report availability status only, where the upstream offers no usable access. Licensed resources (for example COSMIC, DrugBank, OncoKB, VarSome, Mastermind, BioCyc) need your own licence and credentials. Counts reflect the Workbench plugin registry on 2026-09-26; no entry is asserted as deployed or operationally verified.</p>
+</section>

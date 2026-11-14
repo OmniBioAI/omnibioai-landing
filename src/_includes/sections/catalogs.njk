@@ -1,0 +1,22 @@
+<!-- ── Catalogs ── -->
+<section id="catalogs" class="cat-section">
+  <div class="cat-head">
+    <div>
+      <span class="sec-tag">// Catalogs</span>
+      <h2 class="cat-title">What's in the platform</h2>
+    </div>
+    <a href="https://docs.omnibioai.org/catalogs/" target="_blank" class="int-docs-link">All catalogs in the docs ↗</a>
+  </div>
+  <div class="cat-grid">
+{%- for tile in catalogs %}
+    <a class="cat-tile" href="{{ tile.url }}" target="_blank"><span class="cat-num"{% for name, value in tile.attributes %} {{ name }}="{{ value }}"{% endfor %}>{{ tile.value }}</span><span class="cat-label">{{ tile.label }}</span><span class="cat-detail">{{ tile.detail }}
+    {%- if tile.bar %}
+      {%- set mix %}{% for seg in tile.bar.segments %}{{ seg.label }} {{ seg.value }}{% if not loop.last %} · {% endif %}{% endfor %}{% endset -%}
+      <span class="cat-bar" role="img" aria-label="{{ tile.bar.label }}: {{ mix | safe }}">
+        {%- for seg in tile.bar.segments %}<span class="cat-bar-seg cat-seg-{{ loop.index0 }}" style="flex:{{ seg.value }}" title="{{ seg.label }}: {{ seg.value }}"></span>{% endfor -%}
+      </span><span class="cat-legend">{{ tile.bar.legend }}: {{ mix | safe }}</span>
+    {%- endif %}</span></a>
+{%- endfor %}
+  </div>
+  <p class="cat-note">Plugin, tool, reference database and API counts are read from the documentation's generated catalogs (19 Sep 2026). They describe what is registered or configured in source, not that every entry has been tested or deployed. <a href="https://docs.omnibioai.org/quality-and-trust/" target="_blank">How to read these figures ↗</a></p>
+</section>

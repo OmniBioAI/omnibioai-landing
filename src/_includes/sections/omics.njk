@@ -1,0 +1,25 @@
+<!-- ── Omics ── -->
+<section id="omics">
+  <span class="sec-tag">// Multi-omics coverage</span>
+  <h2 class="sec-title">Every modality,<br>one platform</h2>
+  <p class="sec-sub">From raw sequencing reads to biological insight — 1000+ workflows (869 registered in the docs catalog, across 102 research domains), grouped here into the areas they serve.</p>
+  <div class="omics-grid">
+{%- for area in omics %}
+    <div class="omics-card"><span class="omics-label">{{ area.label }}</span><div class="omics-title">{{ area.title }}</div><p class="omics-desc">{{ area.description }}</p><div class="omics-tags">{% for tag in area.tags %}<span class="omics-tag">{{ tag }}</span>{% endfor %}</div></div>
+{%- endfor %}
+  </div>
+  <p class="omics-more"><a href="https://docs.omnibioai.org/workflows-catalog/domains/" target="_blank" class="int-docs-link">Browse every workflow domain in the docs ↗</a></p>
+  <div class="tags">
+    <span class="tag">Python</span><span class="tag">R</span><span class="tag">Nextflow</span>
+    <span class="tag">WDL</span><span class="tag">Snakemake</span><span class="tag">CWL</span>
+    <span class="tag">GATK</span><span class="tag">Seurat</span><span class="tag">DESeq2</span>
+    <span class="tag">LangGraph</span><span class="tag">PyTorch</span><span class="tag">CUDA</span>
+    <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">FastAPI</span>
+    <span class="tag">Django</span><span class="tag">Celery</span><span class="tag">Redis</span>
+    <span class="tag">MySQL</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span>
+    <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span><span class="tag">Sentry</span>
+    <span class="tag">Benchling</span><span class="tag">REDCap</span><span class="tag">eLabFTW</span>
+    <span class="tag">AWS S3</span><span class="tag">Zenodo</span>
+    
+  </div>
+</section>
