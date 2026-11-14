@@ -216,7 +216,7 @@ The page is `src/index.njk`, which includes the sections in order. The shared `<
 
 ### Page title, description and share image
 
-`src/data/meta.json` holds the page `<title>`, meta description, canonical URL and share image. The base layout uses them for the `<title>`, `description`, Open Graph (`og:*`) and Twitter card (`twitter:*`) tags. The share image is `public/assets/og-image.png` (1200×630). Its source is `design/og-image.html`, and regeneration steps are in that file's header comment.
+`src/data/meta.json` holds the page `<title>`, meta description, page URL (`og:url`) and share image. The base layout uses them for the `<title>`, `description`, Open Graph (`og:*`) and Twitter card (`twitter:*`) tags. The share image is `public/assets/og-image.png` (1200×630). Its source is `design/og-image.html`, and regeneration steps are in that file's header comment.
 
 ### Add an integration
 
