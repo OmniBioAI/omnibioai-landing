@@ -1,0 +1,203 @@
+[
+  {
+    "id": "genes-variants",
+    "title": "Genes, Variants & Clinical Genetics",
+    "description": "Gene nomenclature and annotation, population and structural variation, and clinical-genetics evidence.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#genes-variants--clinical-genetics-40",
+    "items": [
+      {"name": "1000 Genomes / IGSR", "description": "Population samples, data collections and files"},
+      {"name": "CIViC", "description": "Cancer variant evidence items and assertions"},
+      {"name": "ClinGen", "description": "Gene–disease validity and dosage sensitivity"},
+      {"name": "ClinVar", "description": "Clinical significance of human variants"},
+      {"name": "COSMIC", "description": "Cancer Gene Census via licensed downloads"},
+      {"name": "CPIC", "description": "Pharmacogenomic guidelines and dosing recommendations"},
+      {"name": "dbNSFP", "description": "Functional predictions for missense variants"},
+      {"name": "dbSNP", "description": "rsIDs, alleles and genomic placements"},
+      {"name": "dbVar", "description": "NCBI structural-variation studies and variants"},
+      {"name": "DECIPHER", "description": "Interface metadata and connectivity only"},
+      {"name": "DGV", "description": "Structural variants from validated local snapshots"},
+      {"name": "Ensembl", "description": "Genes, transcripts, sequences, variants and homology"},
+      {"name": "Gene2Phenotype", "description": "Curated gene–disease panels from EMBL-EBI"},
+      {"name": "GeneReviews", "description": "Expert disease reviews by gene and OMIM"},
+      {"name": "Genomics England PanelApp", "description": "Expert-reviewed diagnostic gene panels"},
+      {"name": "gnomAD", "description": "Population allele frequencies and gene constraint"},
+      {"name": "GWAS Catalog", "description": "Studies, traits and reported associations"},
+      {"name": "HGMD", "description": "Licensed clinical variants via a local or gateway provider"},
+      {"name": "HGNC", "description": "Approved human gene symbols and names"},
+      {"name": "LOVD", "description": "Locus-specific variant databases"},
+      {"name": "MARRVEL", "description": "Rare-variant evidence across model organisms"},
+      {"name": "Mastermind", "description": "Variant evidence from the literature"},
+      {"name": "MaveDB", "description": "Multiplexed assays of variant effect scores"},
+      {"name": "MedGen", "description": "Medical-genetics concepts, genes and features"},
+      {"name": "NCBI Entrez", "description": "Gene, protein, nucleotide and taxonomy search"},
+      {"name": "OMIM", "description": "Mendelian genes, disorders and inheritance"},
+      {"name": "OncoKB", "description": "Precision-oncology variant knowledge"},
+      {"name": "PharmGKB", "description": "Pharmacogenomic annotations via ClinPGx"},
+      {"name": "PharmVar", "description": "Pharmacogene star alleles and haplotypes"},
+      {"name": "PheGenI", "description": "Phenotype–genotype associations from NCBI"},
+      {"name": "SNPedia", "description": "Community variant and genotype annotations"},
+      {"name": "TOPMed", "description": "Deep-sequencing variant frequencies"},
+      {"name": "UCSC Genome Browser", "description": "Genome databases, tracks and region data"},
+      {"name": "VarCards", "description": "Availability status only; no data access"},
+      {"name": "VarSome", "description": "Variant classification and annotation"},
+      {"name": "Clinvitae", "description": "Aggregated clinical variant reports", "status": "scaffold"},
+      {"name": "GeneCards", "description": "Commercial licence required; not connected", "status": "licence required"},
+      {"name": "GWAS Summary Statistics", "description": "Full summary statistics for GWAS", "status": "scaffold"}
+    ]
+  },
+  {
+    "id": "expression-omics",
+    "title": "Expression, Omics & Cohorts",
+    "description": "Sequencing archives, expression atlases, samples, cell lines and cancer cohorts.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#expression-omics--cohorts-19",
+    "items": [
+      {"name": "All of Us", "description": "Controlled-access research cohort"},
+      {"name": "ArrayExpress", "description": "Functional-genomics experiments from EMBL-EBI"},
+      {"name": "cBioPortal", "description": "Cancer genomics studies and mutations"},
+      {"name": "CCLE", "description": "Cancer cell-line omics profiles"},
+      {"name": "Cellosaurus", "description": "Cell-line identity, origin and hierarchy"},
+      {"name": "dbGaP", "description": "Controlled-access genotype–phenotype studies"},
+      {"name": "DepMap", "description": "Cancer dependency and CRISPR screens"},
+      {"name": "EBI BioSamples", "description": "Cross-repository sample registry"},
+      {"name": "EGA", "description": "Controlled-access genome–phenome archive"},
+      {"name": "ENA", "description": "Sequencing studies, samples, runs and analyses"},
+      {"name": "Expression Atlas", "description": "Baseline and differential expression across species"},
+      {"name": "GTEx", "description": "Tissue expression and eQTLs from the GTEx Portal"},
+      {"name": "ICGC", "description": "Release 28 open-access cancer donor data"},
+      {"name": "LINCS / iLINCS", "description": "L1000 perturbation-response signatures"},
+      {"name": "NCBI GEO", "description": "Expression series, datasets, platforms and samples"},
+      {"name": "NCBI SRA", "description": "Sequence Read Archive studies, runs and samples"},
+      {"name": "PanglaoDB", "description": "Single-cell cell-type marker genes"},
+      {"name": "TCGA", "description": "Open-access TCGA cases, files and mutations via GDC"},
+      {"name": "UK Biobank", "description": "Controlled-access population cohort"}
+    ]
+  },
+  {
+    "id": "proteins-structure",
+    "title": "Proteins, Structure & Interactions",
+    "description": "Protein knowledgebases, families, 3D structures, orthology, proteomics and interaction networks.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#proteins-structure--interactions-18",
+    "items": [
+      {"name": "BioGRID", "description": "Curated protein and genetic interactions"},
+      {"name": "CellChat", "description": "Ligand–receptor pairs from pinned CellChatDB"},
+      {"name": "DIP", "description": "Availability status only; host unreachable"},
+      {"name": "eggNOG", "description": "Orthologous groups and functional annotation"},
+      {"name": "Human Protein Atlas", "description": "RNA and protein expression by tissue and cell"},
+      {"name": "IntAct", "description": "Molecular interactions and Complex Portal"},
+      {"name": "InterPro", "description": "Protein families, domains and signatures"},
+      {"name": "OrthoDB", "description": "Hierarchical orthologous gene groups"},
+      {"name": "PANTHER", "description": "Gene families, orthologs and enrichment"},
+      {"name": "PDB-REDO", "description": "Re-refined crystallographic structures"},
+      {"name": "PDBe", "description": "Structure entries, molecules and residues"},
+      {"name": "PDBsum", "description": "Availability status only; service offline"},
+      {"name": "Pfam", "description": "Protein families and clans via InterPro"},
+      {"name": "PRIDE Archive", "description": "Proteomics datasets and files"},
+      {"name": "ProteomeXchange", "description": "Cross-repository proteomics datasets and spectra"},
+      {"name": "RCSB PDB", "description": "Structures, entities, assemblies and ligands"},
+      {"name": "STRING", "description": "Protein–protein interaction networks"},
+      {"name": "UniProt", "description": "Protein sequences, function and annotation"}
+    ]
+  },
+  {
+    "id": "drugs-chemistry",
+    "title": "Drugs, Chemistry & Metabolomics",
+    "description": "Drugs and targets, chemical compounds, enzymes, lipids, metabolomics and toxicogenomics.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#drugs-chemistry--metabolomics-20",
+    "items": [
+      {"name": "BindingDB", "description": "Measured protein–ligand binding affinities"},
+      {"name": "BRENDA", "description": "Enzyme kinetics, reactions and inhibitors"},
+      {"name": "ChEBI", "description": "Curated small molecules, structures and roles"},
+      {"name": "CTD", "description": "Chemical–gene–disease relationships, indexed locally"},
+      {"name": "DGIdb", "description": "Drug–gene interactions and druggable genes"},
+      {"name": "DrugBank", "description": "Licensed drug, product and interaction lookup"},
+      {"name": "DrugCentral", "description": "Approved drugs, targets and indications"},
+      {"name": "Drugs@FDA", "description": "FDA drug applications, products and submissions"},
+      {"name": "Guide to PHARMACOLOGY", "description": "Drug targets and their ligands"},
+      {"name": "HMDB", "description": "Availability status only; access is gated"},
+      {"name": "LIPID MAPS", "description": "Lipid structures and classification"},
+      {"name": "MassBank", "description": "Mass-spectrometry reference spectra"},
+      {"name": "MetaboLights", "description": "Metabolomics studies, assays and protocols"},
+      {"name": "OpenFDA", "description": "Adverse events, labels, recalls and NDC"},
+      {"name": "Pharos", "description": "Drug targets by development level, ligands and diseases"},
+      {"name": "PubChem", "description": "Compounds, substances and bioassays"},
+      {"name": "RxNorm", "description": "Normalized drug names, NDCs and drug classes"},
+      {"name": "SIDER", "description": "SIDER 4.1 drug-name search over operator-supplied release files"},
+      {"name": "SwissLipids", "description": "Curated lipid structures and metabolism"},
+      {"name": "T3DB", "description": "Availability status only; no data access"}
+    ]
+  },
+  {
+    "id": "ontologies-phenotype",
+    "title": "Ontologies, Disease & Phenotype",
+    "description": "Biomedical ontologies, phenotype vocabularies and gene–disease association resources.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#ontologies--phenotype-12",
+    "items": [
+      {"name": "BioPortal", "description": "Search across hundreds of biomedical ontologies"},
+      {"name": "Cell Ontology", "description": "Cell-type terms via EBI OLS"},
+      {"name": "Disease Ontology", "description": "Human disease terms and cross-references"},
+      {"name": "DISEASES", "description": "Scored gene–disease associations"},
+      {"name": "DisGeNET", "description": "Gene–disease and variant–disease associations"},
+      {"name": "Gene Ontology", "description": "GO terms, hierarchy and annotations"},
+      {"name": "Human Phenotype Ontology", "description": "Phenotype terms and disease annotations"},
+      {"name": "Monarch Initiative", "description": "Cross-species biomedical knowledge graph"},
+      {"name": "Mondo", "description": "Disease terms mapped to OMIM, Orphanet, DOID and ICD"},
+      {"name": "Open Targets", "description": "Target–disease evidence and prioritisation"},
+      {"name": "Orphanet", "description": "Rare diseases, genes and epidemiology"}
+    ]
+  },
+  {
+    "id": "model-organisms",
+    "title": "Model Organisms",
+    "description": "Model-organism databases for fly, mouse, rat, yeast, plant, worm and zebrafish.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#model-organisms-7",
+    "items": [
+      {"name": "FlyBase", "description": "Drosophila genes and annotation"},
+      {"name": "MGI", "description": "Laboratory mouse genes, alleles and phenotypes"},
+      {"name": "Rat Genome Database", "description": "Rat genes, alleles and orthologs"},
+      {"name": "SGD", "description": "Yeast loci, GO and phenotype annotations"},
+      {"name": "TAIR via ThaleMine", "description": "Arabidopsis gene curation and GO annotations"},
+      {"name": "WormBase", "description": "C. elegans genes and annotation"},
+      {"name": "ZFIN", "description": "Zebrafish genes from official daily files"}
+    ]
+  },
+  {
+    "id": "regulation-ncrna",
+    "title": "Non-coding RNA & Regulation",
+    "description": "Regulatory elements, transcription-factor binding profiles and non-coding RNA.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#non-coding-rna--regulation-6",
+    "items": [
+      {"name": "dbMTS", "description": "Availability status only; no data access"},
+      {"name": "ENCODE", "description": "Experiments, biosamples and regulatory files"},
+      {"name": "JASPAR", "description": "Transcription-factor binding profiles"},
+      {"name": "miRBase", "description": "Mature and precursor miRNA sequences"},
+      {"name": "Rfam", "description": "Non-coding RNA families and clans"},
+      {"name": "TargetScan", "description": "miRNA target-site predictions, indexed locally"}
+    ]
+  },
+  {
+    "id": "pathways",
+    "title": "Pathways",
+    "description": "Curated pathway and metabolic-network knowledgebases.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#pathways-6",
+    "items": [
+      {"name": "BioCyc", "description": "Pathway/genome databases"},
+      {"name": "KEGG", "description": "Pathways, orthology, enzymes and compounds"},
+      {"name": "MetaCyc", "description": "Metabolic pathways, reactions and compounds"},
+      {"name": "MSigDB", "description": "Annotated gene-set collections"},
+      {"name": "Pathway Commons", "description": "Integrated pathway and interaction data (BioPAX)"},
+      {"name": "Reactome", "description": "Pathways, reactions and gene mapping"},
+      {"name": "Rhea", "description": "Curated biochemical reactions (SIB)"},
+      {"name": "WikiPathways", "description": "Community pathways with genes and metabolites"}
+    ]
+  },
+  {
+    "id": "cross-domain",
+    "title": "Clinical Trials & Models",
+    "description": "Resources that span domains: clinical-trial registries and biomolecular AI models.",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/#other--cross-domain-2",
+    "items": [
+      {"name": "ClinicalTrials.gov", "description": "Trial registry search via the v2 API"},
+      {"name": "NVIDIA BioNeMo", "description": "Open biomolecular models and recipes"}
+    ]
+  }
+]

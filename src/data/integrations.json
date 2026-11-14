@@ -1,0 +1,400 @@
+[
+  {
+    "id": "genomics-platforms",
+    "title": "Genomics & Bio Platforms",
+    "description": "Sequencing, cloud-genomics and bioinformatics platforms, plus GA4GH interoperability.",
+    "items": [
+      {
+        "name": "AWS HealthOmics",
+        "description": "Sequence stores, workflows and policy-gated workflow runs",
+        "url": "https://docs.omnibioai.org/integrations/details/aws-healthomics/"
+      },
+      {
+        "name": "Illumina BaseSpace",
+        "description": "Sequencing projects, runs, samples, files and analyses",
+        "url": "https://docs.omnibioai.org/integrations/details/basespace/"
+      },
+      {
+        "name": "Illumina Connected Analytics",
+        "description": "ICA projects, data, pipelines and analyses",
+        "url": "https://docs.omnibioai.org/integrations/details/illumina-ica/"
+      },
+      {
+        "name": "DNAnexus",
+        "description": "Genomics cloud projects, files, workflows and executions",
+        "url": "https://docs.omnibioai.org/integrations/details/dnanexus/"
+      },
+      {
+        "name": "Terra",
+        "description": "Workspaces, WDL workflows, data tables and outputs",
+        "url": "https://docs.omnibioai.org/integrations/details/terra/"
+      },
+      {
+        "name": "Seven Bridges",
+        "description": "Projects, files, workflows, tasks and provenance",
+        "url": "https://docs.omnibioai.org/integrations/details/seven-bridges/"
+      },
+      {
+        "name": "Seqera Platform",
+        "description": "Nextflow Tower pipeline discovery and run monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/seqera-platform/"
+      },
+      {
+        "name": "Galaxy",
+        "description": "Workflows, histories, datasets, tools and jobs",
+        "url": "https://docs.omnibioai.org/integrations/details/galaxy/"
+      },
+      {
+        "name": "GA4GH Interoperability",
+        "description": "Refget and DRS access plus VRS allele construction",
+        "url": "https://docs.omnibioai.org/integrations/details/ga4gh-interoperability/"
+      }
+    ]
+  },
+  {
+    "id": "workflow-compute",
+    "title": "Workflow, Orchestration & Compute",
+    "description": "Workflow engines, pipeline orchestrators, cluster schedulers and notebook environments.",
+    "items": [
+      {
+        "name": "Apache Airflow",
+        "description": "DAG discovery, triggering, monitoring and task logs",
+        "url": "https://docs.omnibioai.org/integrations/details/airflow/"
+      },
+      {
+        "name": "Argo Workflows",
+        "description": "Workflow discovery, metadata and manifest submission",
+        "url": "https://docs.omnibioai.org/integrations/details/argo-workflows/"
+      },
+      {
+        "name": "Cromwell",
+        "description": "WDL/CWL workflow submission and monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/cromwell/"
+      },
+      {
+        "name": "Dagster",
+        "description": "Repositories, runs, assets and health",
+        "url": "https://docs.omnibioai.org/integrations/details/dagster/"
+      },
+      {
+        "name": "Prefect",
+        "description": "Deployments, flows, runs and work pools",
+        "url": "https://docs.omnibioai.org/integrations/details/prefect/"
+      },
+      {
+        "name": "Metaflow",
+        "description": "Flows, runs, steps and artifacts via the metadata service",
+        "url": "https://docs.omnibioai.org/integrations/details/metaflow/"
+      },
+      {
+        "name": "Kubernetes",
+        "description": "Clusters, workloads, jobs and monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/kubernetes/"
+      },
+      {
+        "name": "Slurm",
+        "description": "HPC cluster, partition, node and job monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/slurm/"
+      },
+      {
+        "name": "KNIME",
+        "description": "Workflow discovery, execution, results and provenance",
+        "url": "https://docs.omnibioai.org/integrations/details/knime/"
+      },
+      {
+        "name": "JupyterHub",
+        "description": "Institutional notebook servers, users and sessions",
+        "url": "https://docs.omnibioai.org/integrations/details/jupyterhub/"
+      }
+    ]
+  },
+  {
+    "id": "cloud-storage",
+    "title": "Cloud Storage & Data Transfer",
+    "description": "Object storage, file sharing, private cloud and bulk research-data transfer.",
+    "items": [
+      {
+        "name": "AWS S3",
+        "description": "Import datasets and export results to S3 buckets",
+        "url": "https://docs.omnibioai.org/integrations/details/s3-integration/"
+      },
+      {
+        "name": "Azure Blob Storage",
+        "description": "Container and blob discovery and metadata",
+        "url": "https://docs.omnibioai.org/integrations/details/azure-blob-storage/"
+      },
+      {
+        "name": "Google Cloud Storage",
+        "description": "Bucket and object discovery and metadata",
+        "url": "https://docs.omnibioai.org/integrations/details/google-cloud-storage/"
+      },
+      {
+        "name": "MinIO",
+        "description": "Self-hosted S3-compatible buckets and objects",
+        "url": "https://docs.omnibioai.org/integrations/details/minio/"
+      },
+      {
+        "name": "Ceph",
+        "description": "Cluster health, pools, block images and filesystems",
+        "url": "https://docs.omnibioai.org/integrations/details/ceph/"
+      },
+      {
+        "name": "OpenStack",
+        "description": "Projects, compute, volumes and identity",
+        "url": "https://docs.omnibioai.org/integrations/details/openstack/"
+      },
+      {
+        "name": "Box",
+        "description": "Search, transfer and organize research datasets",
+        "url": "https://docs.omnibioai.org/integrations/details/box/"
+      },
+      {
+        "name": "Google Drive",
+        "description": "Research-file discovery, transfer and Shared Drives",
+        "url": "https://docs.omnibioai.org/integrations/details/google-drive/"
+      },
+      {
+        "name": "Nextcloud",
+        "description": "Self-hosted research-file access and collaboration",
+        "url": "https://docs.omnibioai.org/integrations/details/nextcloud/"
+      },
+      {
+        "name": "Globus",
+        "description": "Endpoint discovery and large research-data transfers",
+        "url": "https://docs.omnibioai.org/integrations/details/globus/"
+      },
+      {
+        "name": "Cloud Integration",
+        "description": "Unified provider → service → action cloud access",
+        "url": "https://docs.omnibioai.org/integrations/details/cloud-integration/"
+      }
+    ]
+  },
+  {
+    "id": "data-platforms",
+    "title": "Data Warehouses & Analytics",
+    "description": "Warehouse and lakehouse platforms and the tooling that models data inside them.",
+    "items": [
+      {
+        "name": "Databricks",
+        "description": "Unity Catalog discovery and governed SQL access",
+        "url": "https://docs.omnibioai.org/integrations/details/databricks/"
+      },
+      {
+        "name": "Snowflake",
+        "description": "Database, schema and table discovery and queries",
+        "url": "https://docs.omnibioai.org/integrations/details/snowflake/"
+      },
+      {
+        "name": "Google BigQuery",
+        "description": "Projects, datasets, tables and job metadata",
+        "url": "https://docs.omnibioai.org/integrations/details/bigquery/"
+      },
+      {
+        "name": "dbt",
+        "description": "Models, sources, tests, jobs and lineage",
+        "url": "https://docs.omnibioai.org/integrations/details/dbt/"
+      }
+    ]
+  },
+  {
+    "id": "ml-tracking",
+    "title": "ML & Experiment Tracking",
+    "description": "Experiment tracking, model hubs and data/model versioning.",
+    "items": [
+      {
+        "name": "MLflow",
+        "description": "Experiments, runs, metrics and the model registry",
+        "url": "https://docs.omnibioai.org/integrations/details/mlflow/"
+      },
+      {
+        "name": "Weights & Biases",
+        "description": "Projects, runs, metrics and artifacts",
+        "url": "https://docs.omnibioai.org/integrations/details/wandb/"
+      },
+      {
+        "name": "Hugging Face",
+        "description": "Models, datasets, repositories and inference",
+        "url": "https://docs.omnibioai.org/integrations/details/hugging-face/"
+      },
+      {
+        "name": "DVC",
+        "description": "Versioned datasets, pipelines and experiments",
+        "url": "https://docs.omnibioai.org/integrations/details/dvc/"
+      }
+    ]
+  },
+  {
+    "id": "lims-eln-biobank",
+    "title": "LIMS, ELN & Biobank",
+    "description": "Laboratory information management, electronic lab notebooks and biospecimen management.",
+    "items": [
+      {
+        "name": "Benchling",
+        "description": "Import samples and sequences, export results",
+        "url": "https://docs.omnibioai.org/integrations/details/benchling/"
+      },
+      {
+        "name": "eLabFTW",
+        "description": "Export results to the electronic lab notebook",
+        "url": "https://docs.omnibioai.org/integrations/details/elabftw/"
+      },
+      {
+        "name": "LabKey",
+        "description": "Permission-aware discovery and controlled queries",
+        "url": "https://docs.omnibioai.org/integrations/details/labkey/"
+      },
+      {
+        "name": "LIMS-X",
+        "description": "External LIMS sample and project metadata",
+        "url": "https://docs.omnibioai.org/integrations/details/lims-integration/"
+      },
+      {
+        "name": "Clarity LIMS",
+        "description": "Samples, projects, containers and processes",
+        "url": "https://docs.omnibioai.org/integrations/details/genologics-clarity/"
+      },
+      {
+        "name": "OpenSpecimen",
+        "description": "Biobank participants, specimens and visits",
+        "url": "https://docs.omnibioai.org/integrations/details/openspecimen/"
+      },
+      {
+        "name": "REDCap",
+        "description": "Clinical research cohorts in, analysis results out",
+        "url": "https://docs.omnibioai.org/integrations/redcap/"
+      }
+    ]
+  },
+  {
+    "id": "data-repositories",
+    "title": "Data Repositories & Metadata",
+    "description": "Research data repositories and data-catalog / metadata platforms.",
+    "items": [
+      {
+        "name": "Zenodo",
+        "description": "Publish results with a citable DOI",
+        "url": "https://docs.omnibioai.org/integrations/details/zenodo/"
+      },
+      {
+        "name": "Figshare",
+        "description": "Research data repository access and publishing",
+        "url": "https://docs.omnibioai.org/integrations/details/figshare/"
+      },
+      {
+        "name": "Synapse",
+        "description": "Sage Bionetworks projects, files and tables",
+        "url": "https://docs.omnibioai.org/integrations/details/synapse/"
+      },
+      {
+        "name": "OpenMetadata",
+        "description": "Data catalog entities, lineage and metadata",
+        "url": "https://docs.omnibioai.org/integrations/details/openmetadata/"
+      }
+    ]
+  },
+  {
+    "id": "cicd-containers",
+    "title": "CI/CD, Source Control & Containers",
+    "description": "Git hosting, build and pipeline systems, and container registries.",
+    "items": [
+      {
+        "name": "GitHub + GitLab",
+        "description": "Repositories, code search, issues and pull requests",
+        "url": "https://docs.omnibioai.org/integrations/details/git-hosting/"
+      },
+      {
+        "name": "GitHub Actions",
+        "description": "Workflow runs, jobs and CI/CD monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/github-actions/"
+      },
+      {
+        "name": "GitLab",
+        "description": "Projects, pipelines and CI/CD monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/gitlab/"
+      },
+      {
+        "name": "Jenkins",
+        "description": "Jobs, parameterized builds and console output",
+        "url": "https://docs.omnibioai.org/integrations/details/jenkins/"
+      },
+      {
+        "name": "Azure DevOps",
+        "description": "Repos, work items, pipelines and builds",
+        "url": "https://docs.omnibioai.org/integrations/details/azure-devops/"
+      },
+      {
+        "name": "Docker Hub",
+        "description": "Repositories, tags, manifests and digests",
+        "url": "https://docs.omnibioai.org/integrations/details/docker-hub/"
+      },
+      {
+        "name": "GitHub Container Registry",
+        "description": "Image tags and manifests on ghcr.io",
+        "url": "https://docs.omnibioai.org/integrations/details/ghcr/"
+      },
+      {
+        "name": "Quay.io",
+        "description": "Repositories, OCI manifests and multi-platform checks",
+        "url": "https://docs.omnibioai.org/integrations/details/quay/"
+      },
+      {
+        "name": "Harbor",
+        "description": "Projects, repositories and replication",
+        "url": "https://docs.omnibioai.org/integrations/details/harbor/"
+      },
+      {
+        "name": "NVIDIA NGC",
+        "description": "Catalog and artifact namespace discovery",
+        "url": "https://docs.omnibioai.org/integrations/details/nvidia-ngc/"
+      }
+    ]
+  },
+  {
+    "id": "collaboration-ops",
+    "title": "Collaboration, ITSM & Operations",
+    "description": "Messaging, Microsoft 365, issue and incident management, monitoring and secrets health.",
+    "items": [
+      {
+        "name": "Slack",
+        "description": "Channels and users for agent collaboration",
+        "url": "https://docs.omnibioai.org/integrations/details/slack/"
+      },
+      {
+        "name": "Microsoft Teams",
+        "description": "Channel notifications via incoming webhooks",
+        "url": "https://docs.omnibioai.org/integrations/details/microsoft-teams/"
+      },
+      {
+        "name": "Microsoft Graph",
+        "description": "Entra ID, SharePoint, Outlook and Teams",
+        "url": "https://docs.omnibioai.org/integrations/details/microsoft-graph/"
+      },
+      {
+        "name": "Jira + Confluence",
+        "description": "Search, create and update issues and pages",
+        "url": "https://docs.omnibioai.org/integrations/details/atlassian/"
+      },
+      {
+        "name": "ServiceNow",
+        "description": "Search, create and update incidents",
+        "url": "https://docs.omnibioai.org/integrations/details/servicenow/"
+      },
+      {
+        "name": "PagerDuty",
+        "description": "Incidents, services and on-call monitoring",
+        "url": "https://docs.omnibioai.org/integrations/details/pagerduty/"
+      },
+      {
+        "name": "Prometheus & Grafana",
+        "description": "Metrics queries, alerts and dashboards",
+        "url": "https://docs.omnibioai.org/integrations/details/prometheus-grafana/"
+      },
+      {
+        "name": "HashiCorp Vault",
+        "description": "Health, mounts and seal status",
+        "url": "https://docs.omnibioai.org/integrations/details/vault/"
+      }
+    ]
+  }
+]

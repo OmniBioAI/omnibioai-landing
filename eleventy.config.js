@@ -17,6 +17,14 @@ export default function (eleventyConfig) {
       .join("");
   });
 
+  // Card-catalog counts (integrations, reference databases): groups is an
+  // array of { items: [...] }. "implemented" counts items without a status.
+  eleventyConfig.addFilter("itemCount", (groups) =>
+    groups.reduce((n, group) => n + group.items.length, 0));
+  eleventyConfig.addFilter("statusCount", (groups, status) =>
+    groups.flatMap((group) => group.items)
+      .filter((item) => (status === "implemented" ? !item.status : item.status === status)).length);
+
   return {
     dir: { input: "src", includes: "_includes", data: "data", output: "public" },
     templateFormats: ["njk"],
