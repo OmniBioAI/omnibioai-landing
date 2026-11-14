@@ -222,6 +222,16 @@ section.cat-section{padding-top:4rem;padding-bottom:4rem}
 .omics-card:hover .omics-tag{color:var(--text-muted)}
 .omics-more{margin-top:1rem}
 
+/* ── BioRepository ── */
+.repo-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);padding:1px 0 0 1px;margin-bottom:2rem}
+.repo-item{background:var(--bg2);border:1px solid var(--border);margin:-1px 0 0 -1px;padding:0.95rem 1.25rem 0.95rem 2.6rem;font-size:0.85rem;color:var(--text);line-height:1.55;position:relative}
+.repo-item::before{content:'◆';position:absolute;left:1.1rem;top:1.05rem;font-size:0.6rem;color:var(--accent)}
+.repo-domains-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;display:block}
+.repo-domains{display:flex;flex-wrap:wrap;gap:0.5rem 1.5rem}
+.repo-phase{display:flex;flex-wrap:wrap;align-items:center;gap:0.35rem}
+.repo-phase-name{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.05em;text-transform:uppercase;margin-right:0.15rem}
+.repo-phase .omics-tag{color:var(--text-muted)}
+
 /* ── Tags ── */
 .tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem}
 .tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.05em}
@@ -361,6 +371,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   .omics-desc{display:none}
   .omics-card{padding:1rem 1.1rem}
   .omics-title{margin-bottom:0}
+  .repo-list{grid-template-columns:1fr}
   .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
   .int-card::after{display:none}
@@ -410,6 +421,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <ul class="nav-more-menu" id="nav-more-menu">
         <li><a href="#catalogs">Catalogs</a></li>
         <li><a href="#reference-databases">Reference DBs</a></li>
+        <li><a href="#biorepository">BioRepository</a></li>
         <li><a href="#genomes">Genomes</a></li>
         <li><a href="#architecture">Architecture</a></li>
         <li><a href="about.html#publications">Papers</a></li>
@@ -1058,8 +1070,30 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <span class="tag">Slurm</span><span class="tag">HuggingFace</span><span class="tag">Ollama</span><span class="tag">Sentry</span>
     <span class="tag">Benchling</span><span class="tag">REDCap</span><span class="tag">eLabFTW</span>
     <span class="tag">AWS S3</span><span class="tag">Zenodo</span>
-    
+
   </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── BioRepository ── -->
+<section id="biorepository">
+  <span class="sec-tag">// BioRepository</span>
+  <h2 class="sec-title">Your data, versioned<br>and traceable. <span class="dl-version">In development</span></h2>
+  <p class="sec-sub">Store, organize, version and share your own biological datasets inside OmniBioAI. Every dataset gets checksums, immutable versions, lineage back to the workflows that produced it, and a GA4GH DRS identifier pipelines can use directly.</p>
+  <ul class="repo-list">
+    <li class="repo-item">Upload, or register existing data in place without copying</li>
+    <li class="repo-item">Versioning with checksums and full provenance</li>
+    <li class="repo-item">Organization- and project-level access control</li>
+    <li class="repo-item">GA4GH DRS API for workflow and tool interoperability</li>
+  </ul>
+  <span class="repo-domains-label">Data domains</span>
+  <div class="repo-domains">
+    <div class="repo-phase"><span class="repo-phase-name">Phase 1</span><span class="omics-tag">Genomics</span><span class="omics-tag">Transcriptomics</span><span class="omics-tag">Custom datasets</span></div>
+    <div class="repo-phase"><span class="repo-phase-name">Phase 2</span><span class="omics-tag">Proteomics</span><span class="omics-tag">Multi-omics</span></div>
+    <div class="repo-phase"><span class="repo-phase-name">Phase 3</span><span class="omics-tag">Imaging</span></div>
+  </div>
+  <p class="dl-note">Datasets live on on-premises tiered storage with automated backups. BioRepository stores and versions your data; LIMS-X tracks samples and lab metadata.</p>
 </section>
 
 <hr class="divider">
@@ -1519,6 +1553,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <li><a href="#literature-ai">Literature AI</a></li>
     <li><a href="#features">Features</a></li>
     <li><a href="#omics">Omics</a></li>
+    <li><a href="#biorepository">BioRepository</a></li>
     <li><a href="#genomes">Genomes</a></li>
     <li><a href="#download">Desktop apps</a></li>
     <li><a href="about.html">About</a></li>
