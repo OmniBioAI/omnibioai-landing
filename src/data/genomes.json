@@ -1,0 +1,223 @@
+[
+  {
+    "species": "Homo sapiens",
+    "commonName": "Human",
+    "assemblies": "GRCh38 (hg38), GRCh37 (hg19)",
+    "annotation": "GENCODE v44, v46, v47; v46lift37",
+    "useCases": "WGS, WES, scRNA, ATAC, clinical",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"file": "Variants (gnomAD v4.0, dbSNP, ClinVar)"},
+      {"index": "BWA"},
+      {"index": "Cell Ranger 2024-A (incl. STAR)"}
+    ]
+  },
+  {
+    "species": "Mus musculus",
+    "commonName": "Mouse",
+    "assemblies": "GRCm39, GRCm38 (mm10)",
+    "annotation": "GENCODE vM33",
+    "useCases": "Drug discovery, knockout models",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "BWA"},
+      {"file": "Cell Ranger 2024-A (not extracted)"}
+    ]
+  },
+  {
+    "species": "Rattus norvegicus",
+    "commonName": "Rat",
+    "assemblies": "GRCr8, mRatBN7.2",
+    "annotation": "Ensembl 111 (on mRatBN7.2)",
+    "useCases": "Pharmacology, toxicology",
+    "onDisk": [{"file": "Genome"}, {"file": "GTF"}, {"index": "STAR (mRatBN7.2)"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Pan troglodytes",
+    "commonName": "Chimpanzee",
+    "assemblies": "Pan_tro_3.0",
+    "annotation": "Ensembl 112",
+    "useCases": "Comparative genomics, evolution, primate research",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Macaca mulatta",
+    "commonName": "Rhesus Macaque",
+    "assemblies": "Mmul_10",
+    "annotation": "Ensembl 112",
+    "useCases": "Primate translational research",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Danio rerio",
+    "commonName": "Zebrafish",
+    "assemblies": "GRCz11",
+    "annotation": "Ensembl 112",
+    "useCases": "Developmental biology, screens",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Drosophila melanogaster",
+    "commonName": "Fruit Fly",
+    "assemblies": "BDGP6.46",
+    "annotation": "Ensembl 112",
+    "useCases": "Genetics, CRISPR screens",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Saccharomyces cerevisiae",
+    "commonName": "Budding Yeast",
+    "assemblies": "R64-1-1",
+    "annotation": "Ensembl 112",
+    "useCases": "Yeast two-hybrid, metabolomics",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Caenorhabditis elegans",
+    "commonName": "C. elegans",
+    "assemblies": "WBcel235",
+    "annotation": "Ensembl 112",
+    "useCases": "Aging, longevity, RNAi screens, neuroscience",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Arabidopsis thaliana",
+    "commonName": "Thale Cress",
+    "assemblies": "TAIR10",
+    "annotation": "Ensembl Plants 59",
+    "useCases": "Plant biology, epigenomics, stress response",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Sus scrofa",
+    "commonName": "Pig",
+    "assemblies": "Sscrofa11.1",
+    "annotation": "Ensembl 112",
+    "useCases": "Xenotransplantation, cardiovascular, metabolic disease",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Gallus gallus",
+    "commonName": "Chicken",
+    "assemblies": "GRCg7b",
+    "annotation": "Ensembl 112",
+    "useCases": "Immunology, developmental biology, vaccine research",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "STAR"}, {"index": "BWA"}, {"index": "Bowtie2"}]
+  },
+  {
+    "species": "Bos taurus",
+    "commonName": "Cow",
+    "assemblies": "ARS-UCD2.0",
+    "annotation": "Ensembl 116",
+    "useCases": "Livestock genomics, dairy and meat traits, reproduction",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Canis lupus familiaris",
+    "commonName": "Dog",
+    "assemblies": "ROS_Cfam_1.0",
+    "annotation": "Ensembl 116",
+    "useCases": "Comparative oncology, inherited disease, veterinary medicine",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Xenopus tropicalis",
+    "commonName": "Western Clawed Frog",
+    "assemblies": "UCB_Xtro_10.0",
+    "annotation": "Ensembl 116",
+    "useCases": "Embryonic development, cell cycle, regeneration",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Schizosaccharomyces pombe",
+    "commonName": "Fission Yeast",
+    "assemblies": "ASM294v2",
+    "annotation": "Ensembl Fungi 63",
+    "useCases": "Cell cycle, chromatin, DNA repair",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Oryza sativa",
+    "commonName": "Rice (japonica)",
+    "assemblies": "IRGSP-1.0",
+    "annotation": "Ensembl Plants 63",
+    "useCases": "Crop genomics, plant stress and yield traits",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Plasmodium falciparum",
+    "commonName": "Malaria Parasite (3D7)",
+    "assemblies": "GCA_000002765.3",
+    "annotation": "Ensembl Protists 63",
+    "useCases": "Drug resistance, vaccine and host–pathogen research",
+    "onDisk": [
+      {"file": "Genome"},
+      {"file": "Transcripts"},
+      {"file": "GTF"},
+      {"index": "STAR"},
+      {"index": "BWA"},
+      {"index": "Bowtie2"},
+      {"index": "Salmon"}
+    ]
+  },
+  {
+    "species": "Escherichia coli K-12 MG1655",
+    "commonName": "E. coli",
+    "assemblies": "ASM584v2",
+    "annotation": "NCBI RefSeq",
+    "useCases": "Molecular biology, synthetic biology, microbiome",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "BWA"}, {"index": "Bowtie2"}, {"index": "Salmon"}]
+  },
+  {
+    "species": "Mycobacterium tuberculosis H37Rv",
+    "commonName": "TB Bacterium",
+    "assemblies": "ASM19595v2",
+    "annotation": "NCBI RefSeq",
+    "useCases": "Drug resistance, clinical isolate genotyping",
+    "onDisk": [{"file": "Genome"}, {"file": "Transcripts"}, {"file": "GTF"}, {"index": "BWA"}, {"index": "Bowtie2"}, {"index": "Salmon"}]
+  }
+]
