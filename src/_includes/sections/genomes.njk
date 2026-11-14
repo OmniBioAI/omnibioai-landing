@@ -2,7 +2,9 @@
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
   <h2 class="sec-title">Reference Genomes</h2>
-  <p class="sec-sub">{{ genomes | length }} species with genome sequence and gene annotation on disk, and transcript sequences for {{ genomes | withFile("Transcripts") | length }} of them. For human, a BWA index is built, and the Cell Ranger 2024-A reference is ready to use and includes its own STAR index. For mouse, the Cell Ranger 2024-A reference is on disk but not yet extracted. One or more of STAR, BWA and Bowtie2 indexes also exist for {{ genomes | exceptSpecies(["Homo sapiens", "Mus musculus"]) | withIndex(["STAR", "BWA", "Bowtie2"]) | length }} other species.</p>
+{%- set indexed = genomes | withIndex(["STAR", "BWA", "Bowtie2", "Salmon", "Cell"]) | length %}
+{%- set crStar = genomes | cellRangerWithStar %}
+  <p class="sec-sub">{{ genomes | length }} species with genome sequence and gene annotation on disk, and transcript sequences for {{ genomes | withFile("Transcripts") | length }} of them. Prepared aligner indexes are available for {% if indexed == (genomes | length) %}every species{% else %}{{ indexed }} species{% endif %}: BWA for {{ genomes | withIndex(["BWA"]) | length }}, Bowtie2 for {{ genomes | withIndex(["Bowtie2"]) | length }}, STAR for {{ genomes | withIndex(["STAR"]) | length }}{% for cr in crStar %} (plus the STAR index inside {{ cr.commonName | lower }}’s {{ cr.reference }} reference){% endfor %}, and Salmon for {{ genomes | withIndex(["Salmon"]) | length }}.{% for name, sets in genomesMeta.variantSets %} {{ name }} also carries {{ sets | andList }} variant sets.{% endfor %}</p>
   <div class="genomes-wrap">
     <table class="genomes-table">
       <thead>
@@ -33,5 +35,5 @@
     <span><span class="idx-badge idx-on">STAR</span> Prepared index, ready to use</span>
     <span><span class="idx-badge idx-file">GTF</span> Sequence or annotation file</span>
   </div>
-  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026; human, mouse and rat rows rechecked 13 Nov 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
+  <p class="genome-note">Inventory of local reference storage, generated from the organism manifests, measured {{ genomesMeta.measured }}. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
 </section>

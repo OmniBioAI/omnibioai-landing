@@ -240,20 +240,20 @@ Cards link to their group's `url` (the docs catalog anchor). Add `"status": "sca
 
 ### Add a reference genome
 
-Append one object to `src/data/genomes.json`:
+`src/data/genomes.json` and `src/data/genomesMeta.json` are **generated** from the organism manifests in local reference storage (`<REFERENCE_ROOT>/organisms/<species>/manifest.yaml`). Don't edit them by hand. To add a species, add a line to `scripts/genomes-editorial.json`, which holds only the hand-kept fields (row order, common name, use cases, an optional display `species` name and the UCSC aliases to show), then regenerate and build on a host that mounts the reference storage:
 
-```json
-{
-  "species": "Felis catus",
-  "commonName": "Cat",
-  "assemblies": "F.catus_Fca126",
-  "annotation": "Ensembl 116",
-  "useCases": "Comparative genomics",
-  "onDisk": [{"file": "Genome"}, {"file": "GTF"}, {"index": "BWA"}]
-}
+```bash
+python3 -I scripts/genomes_from_manifests.py --evidence /tmp/genomes-evidence.tsv
+npm run build
 ```
 
-`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat, the architecture tile and `site-data.json` → `catalogs.organisms` all follow the number of entries. The intro also counts entries with a `{"file": "Transcripts"}` badge, and species other than human and mouse with a STAR, BWA or Bowtie2 index, so those numbers follow the file too. The human and mouse sentences are prose in `sections/genomes.njk`.
+```json
+{"slug": "felis_catus", "commonName": "Cat", "useCases": "Comparative genomics"}
+```
+
+The script refuses to run if the editorial file and the manifests list different species. Its docstring has the badge rules: a grey file badge (`{"file": …}`) or a green prepared-index badge (`{"index": …}`) appears only for manifest entries with status `present`. Index exceptions are listed in `EXCLUDE` with their reason. `--evidence` writes the `manifest.yaml:line` behind every badge.
+
+The species count in the genomes intro, the hero "Organisms" stat, the architecture tile and `site-data.json` → `catalogs.organisms` all follow the number of entries. The intro's other figures (transcripts, and species with BWA, Bowtie2, STAR or Salmon indexes) are computed from the badges in `sections/genomes.njk`. The variant sets and the "measured" date come from `genomesMeta.json`.
 
 ### Catalog tiles and omics areas
 

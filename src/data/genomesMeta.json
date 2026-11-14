@@ -1,0 +1,11 @@
+{
+  "measured": "14 Nov 2026",
+  "variantSets": {
+    "Human": [
+      "gnomAD v4.0",
+      "dbSNP",
+      "ClinVar"
+    ]
+  },
+  "source": "organism manifests (contract v1.1)"
+}

@@ -1,0 +1,22 @@
+[
+  {"slug": "homo_sapiens", "showUcscAlias": ["GRCh38", "GRCh37"], "commonName": "Human", "useCases": "WGS, WES, scRNA, ATAC, clinical"},
+  {"slug": "mus_musculus", "showUcscAlias": ["GRCm38"], "commonName": "Mouse", "useCases": "Drug discovery, knockout models"},
+  {"slug": "rattus_norvegicus", "commonName": "Rat", "useCases": "Pharmacology, toxicology"},
+  {"slug": "pan_troglodytes", "commonName": "Chimpanzee", "useCases": "Comparative genomics, evolution, primate research"},
+  {"slug": "macaca_mulatta", "commonName": "Rhesus Macaque", "useCases": "Primate translational research"},
+  {"slug": "danio_rerio", "commonName": "Zebrafish", "useCases": "Developmental biology, screens"},
+  {"slug": "drosophila_melanogaster", "commonName": "Fruit Fly", "useCases": "Genetics, CRISPR screens"},
+  {"slug": "saccharomyces_cerevisiae", "commonName": "Budding Yeast", "useCases": "Yeast two-hybrid, metabolomics"},
+  {"slug": "caenorhabditis_elegans", "commonName": "C. elegans", "useCases": "Aging, longevity, RNAi screens, neuroscience"},
+  {"slug": "arabidopsis_thaliana", "commonName": "Thale Cress", "useCases": "Plant biology, epigenomics, stress response"},
+  {"slug": "sus_scrofa", "commonName": "Pig", "useCases": "Xenotransplantation, cardiovascular, metabolic disease"},
+  {"slug": "gallus_gallus", "commonName": "Chicken", "useCases": "Immunology, developmental biology, vaccine research"},
+  {"slug": "bos_taurus", "commonName": "Cow", "useCases": "Livestock genomics, dairy and meat traits, reproduction"},
+  {"slug": "canis_lupus_familiaris", "commonName": "Dog", "useCases": "Comparative oncology, inherited disease, veterinary medicine"},
+  {"slug": "xenopus_tropicalis", "commonName": "Western Clawed Frog", "useCases": "Embryonic development, cell cycle, regeneration"},
+  {"slug": "schizosaccharomyces_pombe", "commonName": "Fission Yeast", "useCases": "Cell cycle, chromatin, DNA repair"},
+  {"slug": "oryza_sativa", "commonName": "Rice (japonica)", "useCases": "Crop genomics, plant stress and yield traits"},
+  {"slug": "plasmodium_falciparum", "commonName": "Malaria Parasite (3D7)", "useCases": "Drug resistance, vaccine and host–pathogen research"},
+  {"slug": "escherichia_coli", "species": "Escherichia coli K-12 MG1655", "commonName": "E. coli", "useCases": "Molecular biology, synthetic biology, microbiome"},
+  {"slug": "mycobacterium_tuberculosis", "species": "Mycobacterium tuberculosis H37Rv", "commonName": "TB Bacterium", "useCases": "Drug resistance, clinical isolate genotyping"}
+]
