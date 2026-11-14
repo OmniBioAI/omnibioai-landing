@@ -31,7 +31,7 @@
   {
     "species": "Rattus norvegicus",
     "commonName": "Rat",
-    "assemblies": "GRCr8, mRatBN7.2",
+    "assemblies": "GRCr8 (genome only), mRatBN7.2",
     "annotation": "Ensembl 111 (on mRatBN7.2)",
     "useCases": "Pharmacology, toxicology",
     "onDisk": [{"file": "Genome"}, {"file": "GTF"}, {"index": "STAR (mRatBN7.2)"}, {"index": "BWA"}, {"index": "Bowtie2"}]
