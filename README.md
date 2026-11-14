@@ -214,6 +214,10 @@ The page is `src/index.njk`, which includes the sections in order. The shared `<
 - The integration and reference-database sections share `src/_includes/partials/card-catalog.njk` (filter bar and card groups).
 - **Adding a new section**: create `src/_includes/sections/<name>.njk` (start it with a `<!-- ── Name ── -->` comment and a `<section id="…">`), include it at the right place in `src/index.njk`, and add `src/styles/NN-<name>.css` if needed. Pick a number that puts it before `20-responsive.css`.
 
+### Page title, description and share image
+
+`src/data/meta.json` holds the page `<title>`, meta description, canonical URL and share image. The base layout uses them for the `<title>`, `description`, Open Graph (`og:*`) and Twitter card (`twitter:*`) tags. The share image is `public/assets/og-image.png` (1200×630). Its source is `design/og-image.html`, and regeneration steps are in that file's header comment.
+
 ### Add an integration
 
 Add one object to the right group's `items` in `src/data/integrations.json`:

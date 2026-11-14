@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- Source of public/assets/og-image.png, the 1200×630 social share image.
+     Regenerate: open this file at a 1200×630 viewport and screenshot it,
+     e.g. with Playwright: page.setViewportSize({width:1200,height:630});
+     page.goto('file://…/design/og-image.html'); page.screenshot({path}). -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{position:relative;background:#04080f;color:#e8f0fe;font-family:'Space Grotesk',sans-serif;
+  background-image:linear-gradient(rgba(0,212,170,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.045) 1px,transparent 1px);background-size:48px 48px}
+.glow{position:absolute;inset:0;background:radial-gradient(ellipse 700px 500px at 82% 30%,rgba(0,212,170,0.10),transparent 70%),radial-gradient(ellipse 600px 420px at 10% 95%,rgba(0,152,255,0.08),transparent 70%)}
+.wrap{position:relative;height:100%;padding:72px 84px 64px;display:flex;flex-direction:column}
+.logo{height:46px;width:auto;align-self:flex-start;filter:drop-shadow(0 0 10px rgba(0,212,170,0.35))}
+.badge{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;margin-top:52px;border:1px solid rgba(0,212,170,0.3);background:rgba(0,212,170,0.06);padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:17px;letter-spacing:0.08em;color:#00d4aa}
+.dot{width:8px;height:8px;border-radius:50%;background:#00d4aa}
+h1{font-family:'Playfair Display',serif;font-size:76px;line-height:1.05;letter-spacing:-0.02em;margin-top:26px}
+h1 em{display:block;font-style:italic;background:linear-gradient(135deg,#00d4aa 0%,#0098ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.sub p{font-size:25px;font-weight:300;color:#9fb8d6;line-height:1.45;max-width:760px}
+.url{font-family:'JetBrains Mono',monospace;font-size:22px;color:#00d4aa;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="wrap">
+  <img class="logo" src="../public/assets/omnibioai-logo.svg" alt="OmniBioAI">
+  <span class="badge"><span class="dot"></span>AI BIOINFORMATICS PLATFORM</span>
+  <h1>AI native platform for<em>multi-omics research</em></h1>
+  <div class="sub">
+    <p>Reproducible multi-omics analysis and agentic AI, across local, HPC and cloud.</p>
+    <span class="url">omnibioai.org</span>
+  </div>
+</div>
+</body>
+</html>
