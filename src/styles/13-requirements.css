@@ -1,0 +1,9 @@
+/* ── Requirements ── */
+.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-bottom:3rem}
+.req-card{background:var(--bg2);padding:1.75rem;transition:background 0.2s}
+.req-card:hover{background:var(--surface)}
+.req-icon{font-size:1.1rem;margin-bottom:1rem;display:block}
+.req-title{font-size:0.88rem;font-weight:600;margin-bottom:0.75rem;color:var(--accent);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em}
+.req-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.85;font-weight:300}
+.req-desc strong{color:var(--text);font-weight:500}
+

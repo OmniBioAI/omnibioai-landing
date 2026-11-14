@@ -1,0 +1,8 @@
+/* ── Footer ── */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim)}
+.footer-updated:not(:empty)::before{content:' · '}
+.footer-links{display:flex;flex-wrap:wrap;gap:0.6rem 1.5rem;list-style:none}
+.footer-links a{font-size:0.78rem;color:var(--text-dim);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--accent)}
+

@@ -1,0 +1,9 @@
+/* ── Sections ── */
+section{position:relative;z-index:1;padding:6rem 2rem;max-width:1180px;margin:0 auto}
+.sec-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;display:block;opacity:0.9}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;margin-bottom:0.75rem;letter-spacing:-0.01em}
+.sec-sub{color:var(--text-muted);font-size:0.97rem;max-width:520px;margin-bottom:3.5rem;font-weight:300;line-height:1.85}
+
+/* ── Divider ── */
+.divider{border:none;border-top:1px solid var(--border);margin:0;position:relative;z-index:1}
+

@@ -1,0 +1,187 @@
+<!-- ── Reference Genomes ── -->
+<section id="genomes">
+  <span class="sec-tag">// Reference genomes</span>
+  <h2 class="sec-title">Reference Genomes</h2>
+  <p class="sec-sub">20 species with genome sequence and gene annotation on disk, and transcript sequences for 11 of them. Prepared aligner indexes are ready for human (STAR, Cell Ranger) and mouse (Bowtie2, Cell Ranger).</p>
+  <div class="genomes-wrap">
+    <table class="genomes-table">
+      <thead>
+        <tr>
+          <th>Species</th>
+          <th>Common Name</th>
+          <th>Assemblies</th>
+          <th>Annotation</th>
+          <th>Use Cases</th>
+          <th>On disk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="genome-species">Homo sapiens</span></td>
+          <td><span class="genome-common">Human</span></td>
+          <td><span class="genome-asm">GRCh38 (hg38), GRCh37 (hg19)</span></td>
+          <td>GENCODE v44, v46, v47; v46lift37</td>
+          <td>WGS, WES, scRNA, ATAC, clinical</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-file">Variants (gnomAD v4.0, dbSNP, ClinVar)</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Cell Ranger 2024-A (incl. STAR)</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Mus musculus</span></td>
+          <td><span class="genome-common">Mouse</span></td>
+          <td><span class="genome-asm">GRCm39, GRCm38 (mm10)</span></td>
+          <td>GENCODE vM33</td>
+          <td>Drug discovery, knockout models</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-file">Cell Ranger 2024-A (not extracted)</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Rattus norvegicus</span></td>
+          <td><span class="genome-common">Rat</span></td>
+          <td><span class="genome-asm">GRCr8, mRatBN7.2</span></td>
+          <td>Ensembl 111 (on mRatBN7.2)</td>
+          <td>Pharmacology, toxicology</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR (mRatBN7.2)</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Pan troglodytes</span></td>
+          <td><span class="genome-common">Chimpanzee</span></td>
+          <td><span class="genome-asm">Pan_tro_3.0</span></td>
+          <td>Ensembl 112</td>
+          <td>Comparative genomics, evolution, primate research</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Macaca mulatta</span></td>
+          <td><span class="genome-common">Rhesus Macaque</span></td>
+          <td><span class="genome-asm">Mmul_10</span></td>
+          <td>Ensembl 112</td>
+          <td>Primate translational research</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Danio rerio</span></td>
+          <td><span class="genome-common">Zebrafish</span></td>
+          <td><span class="genome-asm">GRCz11</span></td>
+          <td>Ensembl 112</td>
+          <td>Developmental biology, screens</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Drosophila melanogaster</span></td>
+          <td><span class="genome-common">Fruit Fly</span></td>
+          <td><span class="genome-asm">BDGP6.46</span></td>
+          <td>Ensembl 112</td>
+          <td>Genetics, CRISPR screens</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Saccharomyces cerevisiae</span></td>
+          <td><span class="genome-common">Budding Yeast</span></td>
+          <td><span class="genome-asm">R64-1-1</span></td>
+          <td>Ensembl 112</td>
+          <td>Yeast two-hybrid, metabolomics</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Caenorhabditis elegans</span></td>
+          <td><span class="genome-common">C. elegans</span></td>
+          <td><span class="genome-asm">WBcel235</span></td>
+          <td>Ensembl 112</td>
+          <td>Aging, longevity, RNAi screens, neuroscience</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Arabidopsis thaliana</span></td>
+          <td><span class="genome-common">Thale Cress</span></td>
+          <td><span class="genome-asm">TAIR10</span></td>
+          <td>Ensembl Plants 59</td>
+          <td>Plant biology, epigenomics, stress response</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Sus scrofa</span></td>
+          <td><span class="genome-common">Pig</span></td>
+          <td><span class="genome-asm">Sscrofa11.1</span></td>
+          <td>Ensembl 112</td>
+          <td>Xenotransplantation, cardiovascular, metabolic disease</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Gallus gallus</span></td>
+          <td><span class="genome-common">Chicken</span></td>
+          <td><span class="genome-asm">GRCg7b</span></td>
+          <td>Ensembl 112</td>
+          <td>Immunology, developmental biology, vaccine research</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Bos taurus</span></td>
+          <td><span class="genome-common">Cow</span></td>
+          <td><span class="genome-asm">ARS-UCD2.0</span></td>
+          <td>Ensembl 116</td>
+          <td>Livestock genomics, dairy and meat traits, reproduction</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Canis lupus familiaris</span></td>
+          <td><span class="genome-common">Dog</span></td>
+          <td><span class="genome-asm">ROS_Cfam_1.0</span></td>
+          <td>Ensembl 116</td>
+          <td>Comparative oncology, inherited disease, veterinary medicine</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Xenopus tropicalis</span></td>
+          <td><span class="genome-common">Western Clawed Frog</span></td>
+          <td><span class="genome-asm">UCB_Xtro_10.0</span></td>
+          <td>Ensembl 116</td>
+          <td>Embryonic development, cell cycle, regeneration</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Schizosaccharomyces pombe</span></td>
+          <td><span class="genome-common">Fission Yeast</span></td>
+          <td><span class="genome-asm">ASM294v2</span></td>
+          <td>Ensembl Fungi 63</td>
+          <td>Cell cycle, chromatin, DNA repair</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Oryza sativa</span></td>
+          <td><span class="genome-common">Rice (japonica)</span></td>
+          <td><span class="genome-asm">IRGSP-1.0</span></td>
+          <td>Ensembl Plants 63</td>
+          <td>Crop genomics, plant stress and yield traits</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Plasmodium falciparum</span></td>
+          <td><span class="genome-common">Malaria Parasite (3D7)</span></td>
+          <td><span class="genome-asm">GCA_000002765.3</span></td>
+          <td>Ensembl Protists 63</td>
+          <td>Drug resistance, vaccine and host–pathogen research</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Escherichia coli K-12 MG1655</span></td>
+          <td><span class="genome-common">E. coli</span></td>
+          <td><span class="genome-asm">ASM584v2</span></td>
+          <td>NCBI RefSeq</td>
+          <td>Molecular biology, synthetic biology, microbiome</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+        <tr>
+          <td><span class="genome-species">Mycobacterium tuberculosis H37Rv</span></td>
+          <td><span class="genome-common">TB Bacterium</span></td>
+          <td><span class="genome-asm">ASM19595v2</span></td>
+          <td>NCBI RefSeq</td>
+          <td>Drug resistance, clinical isolate genotyping</td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span><span class="idx-badge idx-on">Salmon</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="genome-legend">
+    <span><span class="idx-badge idx-on">STAR</span> Prepared index, ready to use</span>
+    <span><span class="idx-badge idx-file">GTF</span> Sequence or annotation file</span>
+  </div>
+  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
+</section>
