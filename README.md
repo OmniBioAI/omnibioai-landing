@@ -27,7 +27,7 @@ Everything the site serves lives in `public/`; Cloudflare Pages publishes only t
 | `/admin` | `public/admin.html` | Beta access admin panel (`noindex`, `no-store` via `public/_headers`) |
 | any unknown path | `public/404.html` | Not-found page, returned with status 404 (without it, Pages would serve the home page with 200) |
 
-`public/data/site-data.json` holds the catalog figures, the research inventory, and `research_inquiry_url`, the endpoint the inquiry form submits to. `public/_headers` sets the response headers.
+`public/data/site-data.json` holds the catalog figures, the research inventory, and `research_inquiry_url`, the endpoint the inquiry form submits to. It is **generated** from `src/data/siteData.json` (edit that file, then `npm run build`); `catalogs.organisms` is filled in from the number of entries in `src/data/genomes.json`. `public/_headers` sets the response headers.
 
 ---
 
@@ -253,7 +253,7 @@ Append one object to `src/data/genomes.json`:
 }
 ```
 
-`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat and the architecture tile all follow the number of entries. The rest of the intro sentence (transcripts and prepared indexes) is prose in `sections/genomes.njk`.
+`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat, the architecture tile and `site-data.json` → `catalogs.organisms` all follow the number of entries. The rest of the intro sentence (transcripts and prepared indexes) is prose in `sections/genomes.njk`.
 
 ### Catalog tiles and omics areas
 
@@ -261,7 +261,7 @@ Append one object to `src/data/genomes.json`:
 
 ### Runtime figures
 
-Elements with `data-site-stat="<key>"` are overwritten in the browser by `public/data/site-data.json` → `catalogs.<key>`. When you change a count in `src/` that has such a hook (integrations, reference databases, organisms, workflows, plugins, TES tools, API routes, literature indexes), update `site-data.json` too, or visitors will see the old figure once the JSON loads.
+Elements with `data-site-stat="<key>"` are overwritten in the browser by `public/data/site-data.json` → `catalogs.<key>`. That file is built from `src/data/siteData.json`. `organisms` is derived from `src/data/genomes.json` automatically. For the other hooked counts (integrations, reference databases, workflows, plugins, TES tools, API routes, literature indexes), update `src/data/siteData.json` when you change the figure in `src/`, or visitors will see the old figure once the JSON loads.
 
 ## Development
 

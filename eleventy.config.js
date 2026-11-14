@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-// Builds src/ into public/index.html. Everything else in public/ is
-// hand-maintained and left untouched (Eleventy never cleans its output dir).
+// Builds src/ into public/index.html and public/data/site-data.json.
+// Everything else in public/ is hand-maintained and left untouched (Eleventy
+// never cleans its output dir).
 export default function (eleventyConfig) {
   eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: true });
 
@@ -27,6 +28,6 @@ export default function (eleventyConfig) {
 
   return {
     dir: { input: "src", includes: "_includes", data: "data", output: "public" },
-    templateFormats: ["njk"],
+    templateFormats: ["njk", "11ty.js"],
   };
 }
