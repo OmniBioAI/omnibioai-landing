@@ -253,7 +253,7 @@ Append one object to `src/data/genomes.json`:
 }
 ```
 
-`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat and the architecture tile all follow the number of entries. The rest of the intro sentence (transcripts and prepared indexes) is prose in `sections/genomes.njk`.
+`{"file": …}` renders a grey file badge and `{"index": …}` a green prepared-index badge, in the order listed. The species count in the genomes intro, the hero "Organisms" stat, the architecture tile and `site-data.json` → `catalogs.organisms` all follow the number of entries. The intro also counts entries with a `{"file": "Transcripts"}` badge, and species other than human and mouse with a STAR, BWA or Bowtie2 index, so those numbers follow the file too. The human and mouse sentences are prose in `sections/genomes.njk`.
 
 ### Catalog tiles and omics areas
 

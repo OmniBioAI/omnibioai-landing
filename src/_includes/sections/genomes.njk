@@ -2,7 +2,7 @@
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
   <h2 class="sec-title">Reference Genomes</h2>
-  <p class="sec-sub">{{ genomes | length }} species with genome sequence and gene annotation on disk, and transcript sequences for 11 of them. For human, a BWA index is built, and the Cell Ranger 2024-A reference is ready to use and includes its own STAR index. For mouse, the Cell Ranger 2024-A reference is on disk but not yet extracted. One or more of STAR, BWA and Bowtie2 indexes also exist for 10 other species.</p>
+  <p class="sec-sub">{{ genomes | length }} species with genome sequence and gene annotation on disk, and transcript sequences for {{ genomes | withFile("Transcripts") | length }} of them. For human, a BWA index is built, and the Cell Ranger 2024-A reference is ready to use and includes its own STAR index. For mouse, the Cell Ranger 2024-A reference is on disk but not yet extracted. One or more of STAR, BWA and Bowtie2 indexes also exist for {{ genomes | exceptSpecies(["Homo sapiens", "Mus musculus"]) | withIndex(["STAR", "BWA", "Bowtie2"]) | length }} other species.</p>
   <div class="genomes-wrap">
     <table class="genomes-table">
       <thead>

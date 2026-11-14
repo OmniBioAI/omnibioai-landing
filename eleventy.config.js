@@ -26,6 +26,17 @@ export default function (eleventyConfig) {
     groups.flatMap((group) => group.items)
       .filter((item) => (status === "implemented" ? !item.status : item.status === status)).length);
 
+  // Genome-table counts for the genomes intro, so its prose follows
+  // src/data/genomes.json. A badge matches a tool by its first word, so
+  // "STAR (mRatBN7.2)" counts as STAR.
+  eleventyConfig.addFilter("withFile", (genomes, file) =>
+    genomes.filter((genome) => genome.onDisk.some((asset) => asset.file === file)));
+  eleventyConfig.addFilter("withIndex", (genomes, tools) =>
+    genomes.filter((genome) =>
+      genome.onDisk.some((asset) => asset.index && tools.includes(asset.index.split(" ")[0]))));
+  eleventyConfig.addFilter("exceptSpecies", (genomes, species) =>
+    genomes.filter((genome) => !species.includes(genome.species)));
+
   return {
     dir: { input: "src", includes: "_includes", data: "data", output: "public" },
     templateFormats: ["njk", "11ty.js"],
