@@ -1,6 +1,7 @@
 name: Build check
 
-# public/index.html is generated from src/ and committed, because Cloudflare
+# public/index.html and public/data/site-data.json are generated from src/
+# and committed, because Cloudflare
 # Pages publishes public/ as-is with no build command. Fail when the committed
 # page does not match what the sources build.
 on:
@@ -21,4 +22,4 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Compare with the committed page
-        run: git diff --exit-code -- public/index.html || { echo "::error::public/index.html is out of date. Edit src/, run 'npm run build' and commit the result."; exit 1; }
+        run: git diff --exit-code -- public/index.html public/data/site-data.json || { echo "::error::Generated files are out of date. Edit src/, run 'npm run build' and commit the result."; exit 1; }

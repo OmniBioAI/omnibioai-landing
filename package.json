@@ -6,7 +6,7 @@
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve --port=8080",
-    "check": "eleventy && git diff --exit-code -- public/index.html"
+    "check": "eleventy && git diff --exit-code -- public/index.html public/data/site-data.json"
   },
   "engines": {
     "node": ">=18"
