@@ -21,6 +21,7 @@
   .omics-desc{display:none}
   .omics-card{padding:1rem 1.1rem}
   .omics-title{margin-bottom:0}
+  .repo-list{grid-template-columns:1fr}
   .cat-grid{grid-template-columns:1fr 1fr}
   .int-card{padding:0.75rem 0.8rem}
   .int-card::after{display:none}

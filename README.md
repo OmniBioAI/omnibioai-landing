@@ -201,17 +201,18 @@ The page is `src/index.njk`, which includes the sections in order. The shared `<
 | Integrations (`#enterprise-integrations`) | `sections/integrations.njk` | `src/data/integrations.json` | `08-integrations.css` |
 | Reference databases (`#reference-databases`) | `sections/reference-dbs.njk` | `src/data/referenceDatabases.json` | `08-integrations.css` |
 | Catalogs (`#catalogs`) | `sections/catalogs.njk` | `src/data/catalogs.json` | `09-catalogs.css` |
-| Omics (`#omics`) | `sections/omics.njk` | `src/data/omics.json` | `10-omics.css` |
-| Reference genomes (`#genomes`) | `sections/genomes.njk` | `src/data/genomes.json` | `11-genomes.css` |
-| System requirements (hidden, HTML comment) | `sections/requirements.njk` | — | `13-requirements.css` |
-| Desktop apps (`#download`) | `sections/desktop-apps.njk` | — | `14-desktop-apps.css` |
-| Architecture + PHI (`#architecture`, `#privacy`) | `sections/architecture.njk` | organisms count ← `genomes.json` | `12-architecture.css` |
-| Request access form (`#request`) | `sections/request-access.njk`, `sections/toast.njk` | — | `15-request-access.css`, `17-toast.css` |
-| Footer | `sections/footer.njk` | — | `16-footer.css` |
+| Omics (`#omics`) | `sections/omics.njk` | `src/data/omics.json` | `10-omics.css`, `12-tags.css` |
+| BioRepository (`#biorepository`, in development) | `sections/biorepository.njk` | — | `11-biorepository.css` |
+| Reference genomes (`#genomes`) | `sections/genomes.njk` | `src/data/genomes.json` | `13-genomes.css` |
+| System requirements (hidden, HTML comment) | `sections/requirements.njk` | — | `15-requirements.css` |
+| Desktop apps (`#download`) | `sections/desktop-apps.njk` | — | `16-desktop-apps.css` |
+| Architecture + PHI (`#architecture`, `#privacy`) | `sections/architecture.njk` | organisms count ← `genomes.json` | `14-architecture.css` |
+| Request access form (`#request`) | `sections/request-access.njk`, `sections/toast.njk` | — | `17-request-access.css`, `19-toast.css` |
+| Footer | `sections/footer.njk` | — | `18-footer.css` |
 
-- **Styles**: `src/styles/NN-*.css`, and **scripts**: `src/scripts/NN-*.js`. The build inlines every file of each folder into the page's single `<style>` / `<script>`, in filename order, so the numeric prefix sets the cascade and execution order. `02-base.css` holds the colour tokens; `18-responsive.css` holds all media-query overrides (kept last so it wins). The scripts share one classic script scope, so the form's inline `onclick`/`onsubmit` handlers can call the functions they define.
+- **Styles**: `src/styles/NN-*.css`, and **scripts**: `src/scripts/NN-*.js`. The build inlines every file of each folder into the page's single `<style>` / `<script>`, in filename order, so the numeric prefix sets the cascade and execution order. `02-base.css` holds the colour tokens; `20-responsive.css` holds all media-query overrides (kept last so it wins). The scripts share one classic script scope, so the form's inline `onclick`/`onsubmit` handlers can call the functions they define.
 - The integration and reference-database sections share `src/_includes/partials/card-catalog.njk` (filter bar and card groups).
-- **Adding a new section**: create `src/_includes/sections/<name>.njk` (start it with a `<!-- ── Name ── -->` comment and a `<section id="…">`), include it at the right place in `src/index.njk`, and add `src/styles/NN-<name>.css` if needed. Pick a number that puts it before `18-responsive.css`.
+- **Adding a new section**: create `src/_includes/sections/<name>.njk` (start it with a `<!-- ── Name ── -->` comment and a `<section id="…">`), include it at the right place in `src/index.njk`, and add `src/styles/NN-<name>.css` if needed. Pick a number that puts it before `20-responsive.css`.
 
 ### Add an integration
 

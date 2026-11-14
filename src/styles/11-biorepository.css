@@ -1,0 +1,10 @@
+/* ── BioRepository ── */
+.repo-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);padding:1px 0 0 1px;margin-bottom:2rem}
+.repo-item{background:var(--bg2);border:1px solid var(--border);margin:-1px 0 0 -1px;padding:0.95rem 1.25rem 0.95rem 2.6rem;font-size:0.85rem;color:var(--text);line-height:1.55;position:relative}
+.repo-item::before{content:'◆';position:absolute;left:1.1rem;top:1.05rem;font-size:0.6rem;color:var(--accent)}
+.repo-domains-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem;display:block}
+.repo-domains{display:flex;flex-wrap:wrap;gap:0.5rem 1.5rem}
+.repo-phase{display:flex;flex-wrap:wrap;align-items:center;gap:0.35rem}
+.repo-phase-name{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--text-dim);letter-spacing:0.05em;text-transform:uppercase;margin-right:0.15rem}
+.repo-phase .omics-tag{color:var(--text-muted)}
+
