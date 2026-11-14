@@ -259,6 +259,10 @@ Append one object to `src/data/genomes.json`:
 
 `src/data/catalogs.json` holds the five catalog tiles: `value`, `label`, `detail`, `url`, plus `attributes`, the `data-*` hooks the page scripts and `site-data.json` use to update the figure at runtime. Keep those hooks as they are. `src/data/omics.json` holds the omics cards: `label`, `title`, `description`, `tags`.
 
+### Page title, description and share image
+
+`src/data/meta.json` holds the page `<title>`, meta description, page URL (`og:url`) and share image. The base layout uses them for the `<title>`, `description`, Open Graph (`og:*`) and Twitter card (`twitter:*`) tags. The share image is `public/assets/og-image.png` (1200×630). Its source is `design/og-image.html`, and regeneration steps are in that file's header comment.
+
 ### Runtime figures
 
 Elements with `data-site-stat="<key>"` are overwritten in the browser by `public/data/site-data.json` → `catalogs.<key>`. That file is built from `src/data/siteData.json`. `organisms` is derived from `src/data/genomes.json` automatically. For the other hooked counts (integrations, reference databases, workflows, plugins, TES tools, API routes, literature indexes), update `src/data/siteData.json` when you change the figure in `src/`, or visitors will see the old figure once the JSON loads.

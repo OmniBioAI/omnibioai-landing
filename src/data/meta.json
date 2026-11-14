@@ -1,0 +1,10 @@
+{
+  "title": "OmniBioAI — AI Bioinformatics Platform",
+  "description": "OmniBioAI unifies reproducible multi-omics analysis, agentic AI reasoning, and enterprise-grade infrastructure — across local, HPC, and cloud environments.",
+  "url": "https://omnibioai.org/",
+  "image": "https://omnibioai.org/assets/og-image.png",
+  "imageWidth": 1200,
+  "imageHeight": 630,
+  "imageAlt": "OmniBioAI: AI native platform for multi-omics research",
+  "twitterSite": "@OmniBioAI"
+}
