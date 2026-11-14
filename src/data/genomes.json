@@ -24,7 +24,6 @@
       {"file": "Genome"},
       {"file": "Transcripts"},
       {"file": "GTF"},
-      {"index": "BWA"},
       {"file": "Cell Ranger 2024-A (not extracted)"}
     ]
   },
