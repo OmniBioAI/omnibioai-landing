@@ -1,0 +1,109 @@
+[
+  {
+    "label": "Genomics",
+    "title": "Genome & variant analysis",
+    "description": "Germline variant calling, annotation and prioritisation, from exomes to assemblies.",
+    "tags": [
+      "WGS",
+      "WES",
+      "SV calling",
+      "ML variant prioritisation",
+      "Genome assembly",
+      "Pangenome",
+      "Optical mapping",
+      "Mitochondrial",
+      "Telomere"
+    ]
+  },
+  {
+    "label": "Long-read",
+    "title": "Long-read sequencing",
+    "description": "Nanopore and PacBio alignment, assembly, methylation and isoform analysis.",
+    "tags": ["Nanopore", "PacBio", "Native methylation", "Isoforms"]
+  },
+  {
+    "label": "Transcriptomics",
+    "title": "Bulk & specialised RNA",
+    "description": "Expression, splicing and RNA biology beyond standard RNA-seq.",
+    "tags": ["RNA-seq", "Long-read RNA", "miRNA", "lncRNA", "circRNA", "Ribo-seq", "RNA editing"]
+  },
+  {
+    "label": "Single-cell",
+    "title": "Single-cell & multiome",
+    "description": "QC, integration, clustering, trajectories and multimodal single-cell assays.",
+    "tags": ["scRNA-seq", "Cell Ranger", "CITE-seq", "scATAC-seq", "Multiome / ArchR"]
+  },
+  {
+    "label": "Spatial",
+    "title": "Spatial omics",
+    "description": "Spatially resolved expression and protein maps with cell-type deconvolution.",
+    "tags": ["Visium / HD", "Xenium", "CODEX / PhenoCycler", "Spatial proteomics", "Spatial multi-omics"]
+  },
+  {
+    "label": "Epigenomics",
+    "title": "Functional genomics & epigenomics",
+    "description": "Regulatory elements, chromatin state, 3D genome and CRISPR screens.",
+    "tags": ["ATAC-seq", "ChIP-seq", "Methylation", "Hi-C", "CRISPR screens", "Base editing"]
+  },
+  {
+    "label": "Proteomics · Metabolomics",
+    "title": "Proteomics & metabolomics",
+    "description": "Mass-spec quantification, enrichment and metabolite profiling.",
+    "tags": ["Mass spec", "Proteogenomics", "Metabolomics", "Exposome", "GSEA / GSVA"]
+  },
+  {
+    "label": "Multi-omics",
+    "title": "Multi-omics integration",
+    "description": "Joint analysis across genomic, transcriptomic, epigenomic and proteomic layers.",
+    "tags": ["Multimodal integration", "Multi-omics QC", "Cross-layer methods"]
+  },
+  {
+    "label": "Oncology",
+    "title": "Cancer genomics",
+    "description": "Somatic mutations, tumour burden and liquid biopsy analysis.",
+    "tags": ["Somatic calling", "TMB / MSI", "ctDNA", "Fragmentomics"]
+  },
+  {
+    "label": "Immunology",
+    "title": "Immunology & infectious disease",
+    "description": "Immune profiling, HLA and repertoire analysis, pathogens and vaccines.",
+    "tags": ["HLA typing", "VDJ repertoire", "Immune deconvolution", "Vaccine design", "Viral genomics"]
+  },
+  {
+    "label": "Microbiome",
+    "title": "Microbiome & metagenomics",
+    "description": "Taxonomic and functional profiling, including host–microbe interactions.",
+    "tags": ["Shotgun metagenomics", "Taxonomic profiling", "Host–microbiome"]
+  },
+  {
+    "label": "Clinical",
+    "title": "Clinical & translational",
+    "description": "Cohort analysis, clinical reporting and precision-medicine workflows, with REDCap import and export.",
+    "tags": ["Clinical reporting", "Pharmacogenomics", "Polygenic risk", "Clinical NLP", "Trial matching", "Transplant", "Reproductive"]
+  },
+  {
+    "label": "Drug discovery",
+    "title": "Drug discovery",
+    "description": "GNN-based target identification, drug response and repurposing.",
+    "tags": ["Target identification", "Drug repurposing", "Drug synergy", "Response prediction", "ADMET"]
+  },
+  {
+    "label": "Population",
+    "title": "Population & specialised genomics",
+    "description": "Population, evolutionary and ancient genomes, plus neuro and aging studies.",
+    "tags": ["Population genetics", "Evolutionary", "Ancient DNA", "Forensics", "Neurogenomics", "Aging", "Emerging methods"]
+  },
+  {
+    "label": "AI · Platform",
+    "title": "AI models & platform methods",
+    "description": "Foundation models, knowledge graphs and the tooling that keeps pipelines reproducible.",
+    "tags": [
+      "scGPT / foundation models",
+      "Biomedical knowledge graph",
+      "Benchmarking",
+      "Simulation",
+      "Pipeline chaining",
+      "Reference data"
+    ]
+  }
+]
