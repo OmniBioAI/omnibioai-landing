@@ -1102,7 +1102,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="genomes">
   <span class="sec-tag">// Reference genomes</span>
   <h2 class="sec-title">Reference Genomes</h2>
-  <p class="sec-sub">20 species with genome sequence and gene annotation on disk, and transcript sequences for 11 of them. Prepared aligner indexes are ready for human (STAR, Cell Ranger) and mouse (Bowtie2, Cell Ranger).</p>
+  <p class="sec-sub">20 species with genome sequence and gene annotation on disk, and transcript sequences for 19 of them. For human, a BWA index is built, and the Cell Ranger 2024-A reference is ready to use and includes its own STAR index. For mouse, the Cell Ranger 2024-A reference is on disk but not yet extracted. One or more of STAR, BWA and Bowtie2 indexes also exist for 18 other species.</p>
   <div class="genomes-wrap">
     <table class="genomes-table">
       <thead>
@@ -1130,12 +1130,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <td><span class="genome-asm">GRCm39, GRCm38 (mm10)</span></td>
           <td>GENCODE vM33</td>
           <td>Drug discovery, knockout models</td>
-          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-file">Cell Ranger 2024-A (not extracted)</span></td>
+          <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">Transcripts</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-file">Cell Ranger 2024-A (not extracted)</span></td>
         </tr>
         <tr>
           <td><span class="genome-species">Rattus norvegicus</span></td>
           <td><span class="genome-common">Rat</span></td>
-          <td><span class="genome-asm">GRCr8, mRatBN7.2</span></td>
+          <td><span class="genome-asm">GRCr8 (genome only), mRatBN7.2</span></td>
           <td>Ensembl 111 (on mRatBN7.2)</td>
           <td>Pharmacology, toxicology</td>
           <td><span class="idx-badge idx-file">Genome</span><span class="idx-badge idx-file">GTF</span><span class="idx-badge idx-on">STAR (mRatBN7.2)</span><span class="idx-badge idx-on">BWA</span><span class="idx-badge idx-on">Bowtie2</span></td>
@@ -1283,7 +1283,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <span><span class="idx-badge idx-on">STAR</span> Prepared index, ready to use</span>
     <span><span class="idx-badge idx-file">GTF</span> Sequence or annotation file</span>
   </div>
-  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
+  <p class="genome-note">Inventory of local reference storage, measured 19 Sep 2026; human, mouse and rat rows rechecked 13 Nov 2026. <a href="https://control.omnibioai.org" target="_blank">Live status on the platform dashboard ↗</a> · <a href="https://docs.omnibioai.org/reference-data/organism-assets/" target="_blank">Full inventory in the docs ↗</a></p>
 </section>
 
 <hr class="divider">
