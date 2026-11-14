@@ -10,7 +10,3 @@
 .omics-card:hover .omics-tag{color:var(--text-muted)}
 .omics-more{margin-top:1rem}
 
-/* ── Tags ── */
-.tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:2rem}
-.tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:2px;padding:0.2rem 0.55rem;letter-spacing:0.05em}
-
