@@ -1,0 +1,47 @@
+[
+  {
+    "value": "1000+",
+    "label": "Workflows",
+    "url": "https://docs.omnibioai.org/workflows-catalog/",
+    "attributes": {"data-site-stat": "workflows"},
+    "detail": "869 in the docs catalog, across 102 domains",
+    "bar": {
+      "label": "Engine mix in the docs catalog",
+      "legend": "Engine mix in docs catalog",
+      "segments": [
+        {"label": "Nextflow", "value": 861},
+        {"label": "WDL", "value": 5},
+        {"label": "Snakemake", "value": 2},
+        {"label": "CWL", "value": 1}
+      ]
+    }
+  },
+  {
+    "value": "501",
+    "label": "Workbench plugins",
+    "url": "https://docs.omnibioai.org/plugins/",
+    "attributes": {"data-site-stat": "plugins"},
+    "detail": "Across 22 categories, including 66 integrations"
+  },
+  {
+    "value": "12,276",
+    "label": "TES tool definitions",
+    "url": "https://docs.omnibioai.org/tools/",
+    "attributes": {"data-site-stat": "tes_tools"},
+    "detail": "8 execution backends · 9,061 auto-imported and not yet verified"
+  },
+  {
+    "value": "129",
+    "label": "Reference database plugins",
+    "url": "https://docs.omnibioai.org/reference-data/database-catalog/",
+    "attributes": {"data-sync-target": "reference-db-count"},
+    "detail": "126 implemented · 1 licence-required · 2 scaffolded"
+  },
+  {
+    "value": "219",
+    "label": "API routes",
+    "url": "https://docs.omnibioai.org/api-reference/",
+    "attributes": {"data-sync-source": "api-routes", "data-site-stat": "api_routes"},
+    "detail": "Found in source across 8 services · 109 documented publicly"
+  }
+]
