@@ -478,13 +478,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     </span>
   </a>
   <div class="stats-row">
-    <div class="stat-item"><span class="stat-num">3,000+</span><span class="stat-label">TES tool definitions</span></div>
+    <div class="stat-item"><span class="stat-num">12,000+</span><span class="stat-label">TES tool definitions</span></div>
     <div class="stat-item"><span class="stat-num">350+ (verified) </span><span class="stat-label">Workflows</span></div>
     <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Workbench plugins</span></div>
     <div class="stat-item"><span class="stat-num">1,380+</span><span class="stat-label">Container baseline</span></div>
     <div class="stat-item"><span class="stat-num">40+</span><span class="stat-label">Agentic Pipelines/Plugins</span></div>
     <div class="stat-item"><span class="stat-num">28</span><span class="stat-label">Microservices</span></div>
-    <div class="stat-item"><span class="stat-num">45M+ (29M+ distinct)</span><span class="stat-label">Abstracts</span></div>
+    <div class="stat-item"><span class="stat-num">28M+</span><span class="stat-label">Abstracts</span></div>
     <div class="stat-item"><span class="stat-num">150+</span><span class="stat-label">Domains</span></div>
     <div class="stat-item"><span class="stat-num">20</span><span class="stat-label">Organisms</span></div>
   </div>
@@ -507,7 +507,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <section id="literature-ai">
   <span class="sec-tag">// Biomedical AI — Literature Intelligence</span>
   <h2 class="sec-title">Powered by PubMed.<br>Enhanced by AI.</h2>
-  <p class="sec-sub">Grounded in evidence. Retrieval-augmented generation over 45M + PubMed abstracts, running on your own hardware with Llama 3, and every answer cites the PubMed IDs it came from.</p>
+  <p class="sec-sub">Grounded in evidence. Retrieval-augmented generation over 28.1M PubMed abstracts, running on your own hardware with Llama 3, and every answer cites the PubMed IDs it came from.</p>
   <div class="rag-layout">
     <div class="rag-pipeline">
       <div class="rag-step">
@@ -577,7 +577,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
     <div>
       <div class="rag-stats-grid">
         <div class="rag-stat-card">
-          <span class="rag-stat-num">29M</span>
+          <span class="rag-stat-num">28.1M</span>
           <span class="rag-stat-label">Distinct PubMed abstracts stored locally</span>
         </div>
         <div class="rag-stat-card">
@@ -1095,24 +1095,21 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
 <!-- ── BioRepository ── -->
 <section id="biorepository">
   <span class="sec-tag">// BioRepository</span>
-  <h2 class="sec-title">Your data, versioned<br>and traceable. <span class="dl-version">Phase 1 · Beta</span></h2>
-  <p class="sec-sub">Store, organize, version and share your own biological datasets inside OmniBioAI. Every dataset gets checksums, immutable versions and searchable metadata, with access controlled per project.</p>
+  <h2 class="sec-title">Your data, versioned<br>and traceable. <span class="dl-version">In development</span></h2>
+  <p class="sec-sub">Store, organize, version and share your own biological datasets inside OmniBioAI. Every dataset gets checksums, immutable versions, lineage back to the workflows that produced it, and a GA4GH DRS identifier pipelines can use directly.</p>
   <ul class="repo-list">
-    <li class="repo-item">Upload datasets and samples with structured metadata</li>
-    <li class="repo-item">Immutable versions with checksums, re-verified on a schedule</li>
-    <li class="repo-item">Search across your datasets, samples and projects</li>
-    <li class="repo-item">Role-based access control at project level</li>
-    <!-- VERIFY: keep only if live in Phase 1 -->
-    <li class="repo-item">Register existing data in place without copying</li>
+    <li class="repo-item">Upload, or register existing data in place without copying</li>
+    <li class="repo-item">Versioning with checksums and full provenance</li>
+    <li class="repo-item">Organization- and project-level access control</li>
     <li class="repo-item">GA4GH DRS API for workflow and tool interoperability</li>
   </ul>
   <span class="repo-domains-label">Data domains</span>
   <div class="repo-domains">
-    <div class="repo-phase"><span class="repo-phase-name">Phase 1 · Live</span><span class="omics-tag">Genomics</span><span class="omics-tag">Transcriptomics</span><span class="omics-tag">Custom datasets</span></div>
-    <div class="repo-phase"><span class="repo-phase-name">Phase 2 · Planned</span><span class="omics-tag">Proteomics</span><span class="omics-tag">Multi-omics</span></div>
-    <div class="repo-phase"><span class="repo-phase-name">Phase 3 · Planned</span><span class="omics-tag">Imaging</span></div>
+    <div class="repo-phase"><span class="repo-phase-name">Phase 1</span><span class="omics-tag">Genomics</span><span class="omics-tag">Transcriptomics</span><span class="omics-tag">Custom datasets</span></div>
+    <div class="repo-phase"><span class="repo-phase-name">Phase 2</span><span class="omics-tag">Proteomics</span><span class="omics-tag">Multi-omics</span></div>
+    <div class="repo-phase"><span class="repo-phase-name">Phase 3</span><span class="omics-tag">Imaging</span></div>
   </div>
-  <p class="dl-note">Datasets live on on-premises tiered storage with automated, monitored backups.</p>
+  <p class="dl-note">Datasets live on on-premises tiered storage with automated backups.</p>
 </section>
 
 <hr class="divider">
@@ -1357,7 +1354,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   </div>
 
   <div style="max-width:520px;margin:0 auto;background:var(--bg2);border:1px solid var(--border2);padding:2.5rem;text-align:center;box-shadow:var(--glow)">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem">● Private Beta · v0.9.0-beta</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.75rem">● Private Beta · v0.9.1-beta</div>
     <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:0.5rem">Access requires approval</h3>
     <p style="font-size:0.83rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300;line-height:1.7">Approved researchers get web access and onboarding support within 1–2 business days. Desktop installers follow when they are ready.</p>
     <a href="#request" class="btn-primary" style="display:inline-flex">↗ Request Beta Access</a>
@@ -1483,7 +1480,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   <div class="cta-wrap">
     <span class="sec-tag">// Apply for private beta</span>
     <h2>Request Access</h2>
-    <p>Get access to OmniBioAI Studio v0.9.0-beta. Accelerate your multi-omics data integration with robust, explainable AI workflows.</p>
+    <p>Get access to OmniBioAI Studio v0.9.1-beta. Accelerate your multi-omics data integration with robust, explainable AI workflows.</p>
     <form onsubmit="handleSubmit(event)">
       <div class="form-grid2">
         <div class="form-row">
