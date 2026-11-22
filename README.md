@@ -165,7 +165,7 @@ Selected peer-reviewed work powered by OmniBioAI platform methods:
 
 ## Beta Access
 
-OmniBioAI Studio v0.9.1-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
+OmniBioAI Studio v0.9.2-beta is in **private beta**. Researchers can apply via the request form on the landing page. Approved researchers receive a platform-specific download link and onboarding support within 1–2 business days.
 
 👉 [Request Access](https://omnibioai.org/#request)
 
